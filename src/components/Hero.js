@@ -1,7 +1,7 @@
 export default function() {
   return {
     template: `
-      <section id="home" class="relative bg-gradient-to-br from-blue-600 to-blue-500 py-20 text-white overflow-hidden">
+      <section id="home" class="relative bg-gradient-to-br from-blue-600 to-blue-500 py-24 pt-32 text-white overflow-hidden">
         <!-- Decorative Elements -->
         <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
           <div class="absolute h-96 w-96 -top-12 -left-16 bg-blue-600 rounded-full opacity-20 blur-3xl"></div>
@@ -10,7 +10,7 @@ export default function() {
         
         <div class="container mx-auto px-6 relative z-10">
           <div class="flex flex-col md:flex-row items-center justify-between">
-            <div class="md:w-1/2 text-center md:text-left mb-10 md:mb-0">
+            <div class="md:w-1/2 text-center md:text-left mb-10 md:mb-0 mt-8">
               <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight">
                 Wiedza o kurczach mięśniowych
               </h1>
