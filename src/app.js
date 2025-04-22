@@ -30,34 +30,47 @@ function logError(message, error) {
 // Track loading status
 let loadingErrors = [];
 
-// Try loading components with error handling
+// Initialize components
 let navigation, accordion, Components;
-try {
-  navigation = (await import('./js/components/navigation.js')).default;
-  console.log('Navigation loaded:', navigation);
-} catch (e) {
-  loadingErrors.push('navigation');
-  logError('Failed to load navigation component', e);
-}
 
-try {
-  accordion = (await import('./js/components/accordion.js')).default;
-  console.log('Accordion loaded:', accordion);
-} catch (e) {
-  loadingErrors.push('accordion');
-  logError('Failed to load accordion component', e);
-}
+// Load components using an immediately invoked async function
+(async function loadComponents() {
+  try {
+    navigation = (await import('./js/components/navigation.js')).default;
+    console.log('Navigation loaded:', navigation);
+  } catch (e) {
+    loadingErrors.push('navigation');
+    logError('Failed to load navigation component', e);
+  }
 
-try {
-  Components = (await import('./js/components.js')).default;
-  console.log('Components loaded:', Components);
-} catch (e) {
-  loadingErrors.push('components');
-  logError('Failed to load components registry', e);
-}
+  try {
+    accordion = (await import('./js/components/accordion.js')).default;
+    console.log('Accordion loaded:', accordion);
+  } catch (e) {
+    loadingErrors.push('accordion');
+    logError('Failed to load accordion component', e);
+  }
+
+  try {
+    Components = (await import('./js/components.js')).default;
+    console.log('Components loaded:', Components);
+  } catch (e) {
+    loadingErrors.push('components');
+    logError('Failed to load components registry', e);
+  }
+  
+  // Register Alpine.js components after loading
+  if (document.querySelector('[x-data]')) {
+    // Alpine is already initialized
+    registerAlpineComponents();
+  } else {
+    // Alpine is not initialized yet
+    document.addEventListener('alpine:init', registerAlpineComponents);
+  }
+})();
 
 // Register Alpine.js components
-document.addEventListener('alpine:init', () => {
+function registerAlpineComponents() {
   try {
     // Register core components
     if (navigation) Alpine.data('navigation', navigation);
@@ -68,7 +81,7 @@ document.addEventListener('alpine:init', () => {
   } catch (e) {
     logError('Error during Alpine initialization', e);
   }
-});
+}
 
 // Make Alpine available globally for debugging if needed
 window.Alpine = Alpine;
