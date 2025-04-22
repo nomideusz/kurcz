@@ -4,430 +4,104 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kurcz.pl - Kurcze mięśniowe: przyczyny i leczenie</title>
-    <link rel="stylesheet" href="styles.css">
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <!-- Styles -->
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/tailwind.css">
+    <!-- Entry point for our bundled code -->
+    <script type="module" src="/src/app.js"></script>
+    <style>
+        #loading, #error-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: sans-serif;
+        }
+        #loading {
+            background-color: #f3f4f6;
+        }
+        .loading-container, .error-container {
+            text-align: center;
+            max-width: 600px;
+            padding: 2rem;
+        }
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border-left-color: #3b82f6;
+            animation: spin 1s linear infinite;
+            margin: 1rem auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .error-container {
+            background-color: #fee2e2;
+            border: 1px solid #ef4444;
+            border-radius: 8px;
+        }
+        .debug-link {
+            margin-top: 1rem;
+            color: #3b82f6;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="logo">Kurcz<span>.pl</span></div>
-            <nav x-data="{ isOpen: false }">
-                <button class="mobile-menu-button" @click="isOpen = !isOpen">
-                    <span></span><span></span><span></span>
-                </button>
-                <ul :class="isOpen ? 'show' : ''">
-                    <li><a href="#glowna">Główna</a></li>
-                    <li><a href="#przyczyny">Przyczyny</a></li>
-                    <li><a href="#objawy">Objawy</a></li>
-                    <li><a href="#leczenie">Leczenie</a></li>
-                    <li><a href="#profilaktyka">Profilaktyka</a></li>
-                    <li><a href="#cwiczenia">Ćwiczenia</a></li>
-                    <li><a href="#kontakt">Kontakt</a></li>
-                </ul>
-            </nav>
+    <!-- Initial loading indicator -->
+    <div id="loading">
+        <div class="loading-container">
+            <h1>Kurcz.pl</h1>
+            <div class="spinner"></div>
+            <p>Ładowanie strony...</p>
         </div>
-    </header>
+    </div>
 
-    <section class="hero" id="glowna">
-        <div class="container">
-            <div class="hero-content">
-                <h1>Kurcze mięśniowe - przyczyny i leczenie</h1>
-                <h2>Kompleksowe informacje o kurczach mięśniowych, ich zapobieganiu i skutecznym leczeniu oparte na najnowszych badaniach medycznych</h2>
-                <a href="#przyczyny" class="btn">Dowiedz się więcej</a>
+    <!-- Error container (hidden by default) -->
+    <div id="error-container" style="display: none;">
+        <div class="error-container">
+            <h1>Błąd ładowania strony</h1>
+            <p id="error-message">Wystąpił problem podczas ładowania komponentów.</p>
+            <div class="debug-link">
+                <a href="/debug.html">Przejdź do strony debugowania</a>
+            </div>
+            <div class="debug-link">
+                <a href="#" id="setup-link">Uruchom proces konfiguracji</a>
+                <script>
+                    document.getElementById('setup-link').addEventListener('click', (e) => {
+                        e.preventDefault();
+                        alert('Otwórz terminal/konsolę i wykonaj polecenie: pnpm run setup');
+                    });
+                </script>
             </div>
         </div>
-    </section>
+    </div>
 
-    <section class="info-section intro-section">
-        <div class="container">
-            <h2>Czym są kurcze mięśniowe?</h2>
-            <div class="intro-content">
-                <div class="intro-text">
-                    <p>Kurcze mięśniowe to nagłe, mimowolne i bolesne skurcze mięśni, które mogą wystąpić w różnych częściach ciała. Najczęściej dotykają łydki, stopy, uda, dłonie i brzuch. Mogą pojawić się podczas aktywności fizycznej, w nocy podczas snu lub w stanie spoczynku.</p>
-                    <p>Skurcz mięśnia następuje, gdy mięsień kurczy się bez kontroli i nie może się rozluźnić. Zazwyczaj trwa od kilku sekund do kilku minut, choć dyskomfort może utrzymywać się dłużej.</p>
-                    <h3>Kto jest narażony?</h3>
-                    <ul class="intro-list">
-                        <li>Sportowcy i osoby aktywne fizycznie</li>
-                        <li>Osoby starsze (wraz z wiekiem zwiększa się ryzyko)</li>
-                        <li>Kobiety w ciąży, szczególnie w trzecim trymestrze</li>
-                        <li>Osoby z przewlekłymi chorobami (cukrzyca, niedoczynność tarczycy)</li>
-                        <li>Osoby przyjmujące niektóre leki (np. moczopędne, statyny)</li>
-                    </ul>
-                </div>
-                <div class="intro-image">
-                    <img src="https://images.unsplash.com/photo-1588286840104-8957b019727f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Fizjoterapia mięśni">
-                    <p class="image-caption">Regularna aktywność fizyczna i stretching pomagają zapobiegać kurczom mięśniowym</p>
-                </div>
-            </div>
-            <div class="section-nav">
-                <p>Przejdź do szczegółowych informacji:</p>
-                <div class="nav-buttons">
-                    <a href="#przyczyny" class="nav-btn">Przyczyny</a>
-                    <a href="#objawy" class="nav-btn">Objawy</a>
-                    <a href="#leczenie" class="nav-btn">Leczenie</a>
-                    <a href="#cwiczenia" class="nav-btn">Ćwiczenia</a>
-                    <a href="#profilaktyka" class="nav-btn">Profilaktyka</a>
-                </div>
-            </div>
-        </div>
-    </section>
+    <script>
+        // Set a timeout for the app to load
+        window.appLoadTimeout = setTimeout(() => {
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('error-container').style.display = 'flex';
+            document.getElementById('error-message').textContent = 
+                'Upłynął limit czasu ładowania strony. Upewnij się, że wszystkie komponenty istnieją i uruchom skrypt konfiguracyjny.';
+        }, 10000);
 
-    <section class="info-section alt-bg" id="przyczyny">
-        <div class="container">
-            <h2>Przyczyny kurczy mięśniowych</h2>
-            <div class="cards-container">
-                <div class="card">
-                    <div class="card-icon">
-                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="2"/>
-                            <path d="M12 8V16" stroke="currentColor" stroke-width="2"/>
-                            <path d="M8 12H16" stroke="currentColor" stroke-width="2"/>
-                        </svg>
-                    </div>
-                    <h3>Niedobory elektrolitów</h3>
-                    <p>Brak odpowiedniego poziomu magnezu, potasu i wapnia może prowadzić do kurczy mięśniowych.</p>
-                </div>
-                <div class="card">
-                    <div class="card-icon">
-                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="2"/>
-                            <path d="M12 8V16" stroke="currentColor" stroke-width="2"/>
-                        </svg>
-                    </div>
-                    <h3>Odwodnienie</h3>
-                    <p>Niewystarczająca ilość wody w organizmie może prowadzić do zaburzeń elektrolitowych i kurczy.</p>
-                </div>
-                <div class="card">
-                    <div class="card-icon">
-                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M15 5V19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                            <path d="M5 15L15 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                            <path d="M5 9L15 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                        </svg>
-                    </div>
-                    <h3>Przeciążenie mięśni</h3>
-                    <p>Intensywny wysiłek fizyczny, zwłaszcza w ciepłych warunkach, może prowadzić do kurczy.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+        // Script to handle loading errors
+        window.addEventListener('app-loaded', () => {
+            clearTimeout(window.appLoadTimeout);
+            document.getElementById('loading').style.display = 'none';
+        });
 
-    <section class="info-section" id="objawy">
-        <div class="container">
-            <h2>Objawy kurczów mięśniowych</h2>
-            <p class="section-intro">Kurcze mięśniowe mają charakterystyczne objawy, których rozpoznanie pozwala na szybką reakcję i odpowiednie działanie.</p>
-            
-            <div class="symptoms-container">
-                <div class="symptom-card">
-                    <div class="symptom-icon">
-                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M13.5 6L10 18.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                            <path d="M7.5 9.5L3.5 12L7.5 14.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M16.5 9.5L20.5 12L16.5 14.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </div>
-                    <h3>Nagły, intensywny ból</h3>
-                    <p>Ostry, przeszywający ból pojawiający się nagle podczas aktywności lub odpoczynku. Ból ma charakter kłujący i może być na tyle silny, że uniemożliwia dalszą aktywność.</p>
-                </div>
-                
-                <div class="symptom-card">
-                    <div class="symptom-icon">
-                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M4 19L8 5L12 19L16 5L20 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </div>
-                    <h3>Widoczne skurcze</h3>
-                    <p>Twarde, napięte mięśnie, które mogą być widoczne pod skórą. Mięsień często wydaje się "zwinięty" lub tworzy widoczne zgrubienie.</p>
-                </div>
-                
-                <div class="symptom-card">
-                    <div class="symptom-icon">
-                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M19 9L12 16L5 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </div>
-                    <h3>Ograniczona ruchomość</h3>
-                    <p>Czasowa niemożność poruszania kończyną objętą kurczem. Próba poruszenia kończyną zwykle nasila ból i przedłuża czas trwania kurczu.</p>
-                </div>
-                
-                <div class="symptom-card">
-                    <div class="symptom-icon">
-                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 8V12L15 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
-                        </svg>
-                    </div>
-                    <h3>Ból utrzymujący się po ustąpieniu skurczu</h3>
-                    <p>Dyskomfort lub bolesność mięśni utrzymująca się po ustąpieniu ostrej fazy kurczu. Ten ból przypomina uczucie po intensywnym treningu i może utrzymywać się nawet do 24 godzin.</p>
-                </div>
-            </div>
-            
-            <div class="medical-advice">
-                <h3>Kiedy należy skonsultować się z lekarzem?</h3>
-                <ul>
-                    <li>Gdy kurcze są bardzo częste i intensywne</li>
-                    <li>Gdy towarzyszą im obrzęki, zaczerwienienie lub zmiany skórne</li>
-                    <li>Gdy pojawiają się po rozpoczęciu przyjmowania nowego leku</li>
-                    <li>Gdy występują bez wyraźnej przyczyny</li>
-                    <li>Gdy znacząco ograniczają codzienne funkcjonowanie</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <section class="info-section alt-bg" id="leczenie">
-        <div class="container">
-            <h2>Skuteczne leczenie</h2>
-            <p class="section-intro">Leczenie kurczów mięśniowych zależy od przyczyny i intensywności objawów. Poniższe metody pomogą złagodzić objawy i zapobiec nawrotom.</p>
-            
-            <div class="treatment-steps">
-                <div class="step" x-data="{ open: false }">
-                    <div class="step-header" @click="open = !open">
-                        <h3>1. Natychmiastowa ulga</h3>
-                        <span class="icon" :class="open ? 'open' : ''">+</span>
-                    </div>
-                    <div class="step-content" x-show="open" x-transition>
-                        <p>Delikatne rozciąganie i masaż skurczonego mięśnia. Aplikacja ciepła na obszar dotknięty kurczem. W przypadku skurczów nocnych nóg - wstań z łóżka i przejdź kilka kroków, naciskając piętami na podłogę.</p>
-                        <p><strong>Dla skurczów łydki:</strong> Wyprostuj nogę i delikatnie przyciągnij palce stopy w kierunku kolana, utrzymując piętę w dół.</p>
-                    </div>
-                </div>
-                <div class="step" x-data="{ open: false }">
-                    <div class="step-header" @click="open = !open">
-                        <h3>2. Uzupełnianie elektrolitów</h3>
-                        <span class="icon" :class="open ? 'open' : ''">+</span>
-                    </div>
-                    <div class="step-content" x-show="open" x-transition>
-                        <p>Spożywanie pokarmów bogatych w magnez, potas i wapń. Suplementacja w przypadku niedoborów powinna być skonsultowana z lekarzem.</p>
-                        <ul>
-                            <li><strong>Magnez:</strong> Orzechy, nasiona, pełne ziarna, ciemna czekolada, banany</li>
-                            <li><strong>Potas:</strong> Banany, ziemniaki, awokado, suszone morele, pomidory</li>
-                            <li><strong>Wapń:</strong> Nabiał, migdały, sardynki, szpinak, brokuły</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="step" x-data="{ open: false }">
-                    <div class="step-header" @click="open = !open">
-                        <h3>3. Nawodnienie</h3>
-                        <span class="icon" :class="open ? 'open' : ''">+</span>
-                    </div>
-                    <div class="step-content" x-show="open" x-transition>
-                        <p>Regularne picie wody, zwłaszcza podczas aktywności fizycznej i w gorącym klimacie. Dla lepszego nawodnienia i uzupełnienia elektrolitów można stosować napoje izotoniczne podczas intensywnego wysiłku.</p>
-                        <p><strong>Zalecana ilość:</strong> Minimum 2 litry płynów dziennie, a podczas intensywnego wysiłku nawet 3-4 litry.</p>
-                    </div>
-                </div>
-                <div class="step" x-data="{ open: false }">
-                    <div class="step-header" @click="open = !open">
-                        <h3>4. Farmakoterapia</h3>
-                        <span class="icon" :class="open ? 'open' : ''">+</span>
-                    </div>
-                    <div class="step-content" x-show="open" x-transition>
-                        <p>W niektórych przypadkach, zwłaszcza przy nawracających kurczach, lekarz może zalecić leki rozluźniające mięśnie lub suplementy minerałów i witamin.</p>
-                        <p><strong>Ważne:</strong> Leki należy stosować wyłącznie po konsultacji z lekarzem, szczególnie jeśli występują inne schorzenia lub przyjmuje się inne leki.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="treatment-note">
-                <p>W przypadku przewlekłych lub nawracających kurczów mięśniowych, które znacząco wpływają na jakość życia, należy skonsultować się z lekarzem. Mogą one być objawem poważniejszych schorzeń, takich jak zaburzenia elektrolitowe, choroby neurologiczne czy zaburzenia krążenia.</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="info-section" id="cwiczenia">
-        <div class="container">
-            <h2>Skuteczne ćwiczenia przy kurczach</h2>
-            <p class="section-intro">Odpowiednio dobrane ćwiczenia mogą pomóc w zapobieganiu kurczom mięśniowym oraz złagodzić napięcie już skurczonych mięśni.</p>
-            
-            <div class="exercises-container">
-                <div class="exercise-item">
-                    <div class="exercise-number">01</div>
-                    <div class="exercise-content">
-                        <h3>Rozciąganie łydek</h3>
-                        <p>Stań przodem do ściany w odległości około 60-90 cm. Oprzyj ręce o ścianę, a następnie wysuń jedną nogę do tyłu, dociskając piętę do podłogi. Utrzymaj pozycję przez 30 sekund, a następnie zmień nogę. Powtórz 3 razy dla każdej nogi.</p>
-                        <div class="exercise-benefits">
-                            <span>Zapobiega kurczom łydek</span>
-                            <span>Redukuje napięcie mięśniowe</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="exercise-item">
-                    <div class="exercise-number">02</div>
-                    <div class="exercise-content">
-                        <h3>Rozciąganie ud</h3>
-                        <p>Stań prosto, zegnij kolano i chwyć stopę ręką po tej samej stronie. Przyciągnij piętę do pośladka, utrzymując kolana blisko siebie. Wytrzymaj 30 sekund i zmień nogę. Powtórz 3 razy na każdą stronę.</p>
-                        <div class="exercise-benefits">
-                            <span>Pomaga przy kurczach ud</span>
-                            <span>Zwiększa elastyczność mięśni</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="exercise-item">
-                    <div class="exercise-number">03</div>
-                    <div class="exercise-content">
-                        <h3>Rotacja stóp</h3>
-                        <p>Siedząc na krześle, unieś stopę kilka centymetrów nad podłogę. Wykonuj powolne ruchy okrężne stopą w jedną stronę 10 razy, a następnie w drugą stronę 10 razy. Powtórz dla drugiej stopy.</p>
-                        <div class="exercise-benefits">
-                            <span>Zapobiega kurczom stóp</span>
-                            <span>Poprawia krążenie</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="exercise-item">
-                    <div class="exercise-number">04</div>
-                    <div class="exercise-content">
-                        <h3>Rozciąganie rąk i dłoni</h3>
-                        <p>Wyciągnij ramię przed siebie, dłonią do góry. Drugą ręką delikatnie odciągnij palce do tyłu, w kierunku ciała. Utrzymaj pozycję przez 30 sekund. Powtórz dla drugiej ręki. Następnie wyciągnij rękę z dłonią skierowaną w dół i odciągnij palce do góry.</p>
-                        <div class="exercise-benefits">
-                            <span>Łagodzi kurcze dłoni</span>
-                            <span>Zwiększa zakres ruchu</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="exercise-note">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
-                    <path d="M12 8V13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                    <circle cx="12" cy="16" r="1" fill="currentColor"/>
-                </svg>
-                <p>Ważne: Ćwiczenia wykonuj powoli i ostrożnie. Jeśli odczuwasz ból podczas ćwiczeń, natychmiast przerwij i skonsultuj się z lekarzem lub fizjoterapeutą.</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="info-section alt-bg" id="profilaktyka">
-        <div class="container">
-            <h2>Jak zapobiegać kurczom mięśniowym?</h2>
-            <p class="section-intro">Profilaktyka jest kluczowa w zapobieganiu kurczom mięśniowym. Wprowadź te metody do swojej codziennej rutyny, aby zminimalizować ryzyko wystąpienia skurczów.</p>
-            
-            <div class="prevention-detailed">
-                <div class="prevention-card">
-                    <div class="prevention-icon">
-                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21Z" stroke="currentColor" stroke-width="2"/>
-                            <path d="M12 8V16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                            <path d="M15.5 12H8.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                        </svg>
-                    </div>
-                    <div class="prevention-content">
-                        <h3>Nawodnienie</h3>
-                        <h4>Odpowiednie nawodnienie</h4>
-                        <p>Pij wystarczającą ilość wody przed, w trakcie i po wysiłku fizycznym. Dla przeciętnej osoby zaleca się minimum 2 litry wody dziennie, a podczas intensywnego wysiłku nawet do 3-4 litrów.</p>
-                        <div class="prevention-tip">
-                            <strong>Wskazówka:</strong> Monitoruj kolor moczu - powinien być jasny, słomkowy. Ciemny mocz wskazuje na odwodnienie.
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="prevention-card">
-                    <div class="prevention-icon">
-                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M5 7H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                            <path d="M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                            <path d="M5 17H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                        </svg>
-                    </div>
-                    <div class="prevention-content">
-                        <h3>Zbilansowana dieta</h3>
-                        <h4>Odpowiednie odżywianie</h4>
-                        <p>Spożywaj produkty bogate w potas (banany, ziemniaki, awokado), magnez (orzechy, nasiona, ciemna czekolada) i wapń (nabiał, zielone warzywa, sardynki).</p>
-                        <div class="prevention-tip">
-                            <strong>Przykładowy posiłek:</strong> Sałatka z rukolą, szpinakiem, awokado, orzechami i sardynkami zawiera wszystkie kluczowe minerały zapobiegające kurczom.
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="prevention-card">
-                    <div class="prevention-icon">
-                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M4 9L9 4L14 9L19 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M4 16L9 21L14 16L19 21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </div>
-                    <div class="prevention-content">
-                        <h3>Rozciąganie</h3>
-                        <h4>Regularne rozciąganie</h4>
-                        <p>Wykonuj ćwiczenia rozciągające przed i po treningu, aby przygotować mięśnie do wysiłku i przyspieszyć regenerację. Szczególnie ważne jest rozciąganie łydek, ud i stóp.</p>
-                        <div class="prevention-tip">
-                            <strong>Zalecenie:</strong> Poświęć minimum 10 minut na rozciąganie przed treningiem i 15 minut po treningu.
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="additional-prevention">
-                <h3>Dodatkowe metody zapobiegania kurczom</h3>
-                <div class="additional-tips">
-                    <div class="tip-item">
-                        <h4>Odpoczynek i regeneracja</h4>
-                        <p>Zapewnij organizmowi wystarczającą ilość odpoczynku między treningami. Przemęczone mięśnie są bardziej podatne na kurcze.</p>
-                    </div>
-                    
-                    <div class="tip-item">
-                        <h4>Unikaj ekstremalnych temperatur</h4>
-                        <p>Zarówno przegrzanie, jak i wychłodzenie organizmu może sprzyjać kurczom. Dostosuj ubiór do warunków atmosferycznych.</p>
-                    </div>
-                    
-                    <div class="tip-item">
-                        <h4>Odpowiednie obuwie</h4>
-                        <p>Używaj obuwia dopasowanego do rodzaju aktywności fizycznej i zapewniającego właściwe podparcie stopy.</p>
-                    </div>
-                    
-                    <div class="tip-item">
-                        <h4>Stopniowe zwiększanie intensywności</h4>
-                        <p>Zwiększaj intensywność treningów stopniowo, aby dać mięśniom czas na adaptację do nowych obciążeń.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="cta-section">
-        <div class="container">
-            <h2>Potrzebujesz profesjonalnej porady?</h2>
-            <p style="text-align: center;">Skonsultuj się z lekarzem lub fizjoterapeutą w przypadku nawracających kurczy mięśniowych</p>
-            <a href="#kontakt" class="btn">Skontaktuj się z nami</a>
-        </div>
-    </section>
-
-    <footer id="kontakt">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <div class="logo">Kurcz<span>.pl</span></div>
-                    <p>Kompleksowe informacje o kurczach mięśniowych</p>
-                    <p class="footer-disclaimer">Informacje zawarte na stronie mają charakter informacyjny i nie zastępują porady lekarskiej. W przypadku problemów zdrowotnych skonsultuj się z lekarzem.</p>
-                </div>
-                <div class="footer-links">
-                    <h3>Szybkie linki</h3>
-                    <ul>
-                        <li><a href="#glowna">Główna</a></li>
-                        <li><a href="#przyczyny">Przyczyny</a></li>
-                        <li><a href="#objawy">Objawy</a></li>
-                        <li><a href="#leczenie">Leczenie</a></li>
-                        <li><a href="#cwiczenia">Ćwiczenia</a></li>
-                        <li><a href="#profilaktyka">Profilaktyka</a></li>
-                    </ul>
-                </div>
-                <div class="footer-contact">
-                    <h3>Kontakt</h3>
-                    <p>Email: info@kurcz.pl</p>
-                    <p>Tel: +48 123 456 789</p>
-                    <div class="social-links">
-                        <a href="#" class="social-link">Facebook</a>
-                        <a href="#" class="social-link">Twitter</a>
-                        <a href="#" class="social-link">Instagram</a>
-                    </div>
-                </div>
-            </div>
-            <div class="copyright">
-                <p>&copy; 2024 Kurcz.pl. Wszelkie prawa zastrzeżone.</p>
-            </div>
-        </div>
-    </footer>
+        window.addEventListener('app-error', (e) => {
+            clearTimeout(window.appLoadTimeout);
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('error-container').style.display = 'flex';
+            if (e.detail && e.detail.message) {
+                document.getElementById('error-message').textContent = e.detail.message;
+            }
+        });
+    </script>
 </body>
 </html> 

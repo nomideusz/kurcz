@@ -1,6 +1,23 @@
 {
-	"type": "module",
-	"dependencies": {
-		"alpinejs": "^3.14.9"
-	}
-}
+  "name": "kurcz-website",
+  "version": "1.0.0",
+  "description": "Website about muscle cramps",
+  "type": "module",
+  "scripts": {
+    "setup": "node setup.js",
+    "dev": "pnpm run build:css && vite & pnpm run watch:css",
+    "build": "vite build && pnpm run build:css",
+    "preview": "vite preview",
+    "build:css": "tailwindcss -i ./src/css/styles.css -o ./public/tailwind.css",
+    "watch:css": "tailwindcss -i ./src/css/styles.css -o ./public/tailwind.css --watch"
+  },
+  "dependencies": {
+    "alpinejs": "^3.13.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.31",
+    "tailwindcss": "^3.3.3",
+    "vite": "^4.4.9"
+  }
+} 

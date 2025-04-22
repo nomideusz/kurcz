@@ -1,0 +1,125 @@
+/* Import Tailwind CSS */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base styles */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply font-sans text-text bg-white dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading font-bold leading-tight;
+  }
+  
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl;
+  }
+  
+  h2 {
+    @apply text-3xl md:text-4xl;
+  }
+  
+  h3 {
+    @apply text-2xl md:text-3xl;
+  }
+  
+  a {
+    @apply text-primary hover:text-primary-dark transition-colors;
+  }
+  
+  section {
+    @apply py-16;
+  }
+  
+  section.alt-bg {
+    @apply bg-background-light dark:bg-gray-800;
+  }
+}
+
+/* Components */
+@layer components {
+  .btn {
+    @apply px-6 py-3 bg-primary text-white font-semibold rounded-md hover:bg-primary-dark transition-colors inline-block;
+  }
+  
+  .container {
+    @apply mx-auto px-4 max-w-7xl;
+  }
+  
+  .card {
+    @apply bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow;
+  }
+  
+  .dark-mode-toggle {
+    @apply w-10 h-10 flex items-center justify-center rounded-full bg-background-light dark:bg-background-dark text-text dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors;
+  }
+  
+  .dark-mode-toggle .icon {
+    @apply w-5 h-5;
+  }
+  
+  .header-controls {
+    @apply flex items-center gap-4;
+  }
+  
+  /* Header styles */
+  header {
+    @apply sticky top-0 bg-white dark:bg-gray-900 shadow-md z-50 py-4;
+  }
+  
+  header .container {
+    @apply flex justify-between items-center;
+  }
+  
+  header .logo {
+    @apply text-2xl font-bold text-primary;
+  }
+  
+  header .logo span {
+    @apply text-gray-800 dark:text-white;
+  }
+  
+  /* Mobile menu styles */
+  .mobile-menu-button {
+    @apply block md:hidden p-2;
+  }
+  
+  .mobile-menu-button span {
+    @apply block w-6 h-0.5 bg-gray-800 dark:bg-white mb-1.5 transition-transform;
+  }
+  
+  nav ul {
+    @apply hidden md:flex items-center space-x-1;
+  }
+  
+  nav ul.show {
+    @apply absolute top-full left-0 right-0 flex flex-col bg-white dark:bg-gray-900 shadow-md rounded-b-lg overflow-hidden p-4 space-y-2 md:space-y-0;
+  }
+  
+  /* Navigation styles */
+  nav ul li a {
+    @apply relative block py-2 px-4 transition-colors;
+  }
+  
+  nav ul li a.active {
+    @apply text-primary dark:text-primary-light font-semibold;
+  }
+  
+  nav ul li a.active::after {
+    content: '';
+    @apply absolute bottom-0 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-primary dark:bg-primary-light rounded-full;
+  }
+}
+
+/* Custom utilities */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+} 

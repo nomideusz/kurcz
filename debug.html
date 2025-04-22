@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kurcz.pl - Debug Page</title>
+    <!-- Use Vite's module system -->
+    <script type="module">
+        import Alpine from 'alpinejs';
+        
+        // Make Alpine available to inline scripts
+        window.Alpine = Alpine;
+        
+        // Initialize Alpine
+        Alpine.start();
+    </script>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; padding: 20px; max-width: 800px; margin: 0 auto; }
+        .debug-card { border: 1px solid #ccc; border-radius: 4px; padding: 15px; margin-bottom: 15px; }
+        .success { background-color: #d4edda; border-color: #c3e6cb; }
+        .error { background-color: #f8d7da; border-color: #f5c6cb; }
+        h2 { margin-top: 0; }
+        pre { background: #f5f5f5; padding: 10px; overflow: auto; }
+    </style>
+</head>
+<body>
+    <h1>Kurcz.pl Component Debug</h1>
+    
+    <div class="debug-card" id="alpine-test" x-data="{ message: 'Alpine.js is working!' }">
+        <h2>1. Alpine.js Basic Test</h2>
+        <p>Message: <strong x-text="message"></strong></p>
+        <button x-on:click="message = 'Button clicked!'">Change Message</button>
+    </div>
+    
+    <div class="debug-card" id="component-tests">
+        <h2>2. Component Tests</h2>
+        
+        <div x-data="{
+            components: {
+                accordion: { loaded: false, data: null, error: null },
+                darkMode: { loaded: false, data: null, error: null },
+                navigation: { loaded: false, data: null, error: null }
+            },
+            
+            async testComponent(name, path) {
+                try {
+                    // Use dynamic import with Vite's resolution
+                    const module = await import(path);
+                    if (module.default) {
+                        this.components[name].data = module.default();
+                        this.components[name].loaded = true;
+                    } else {
+                        throw new Error(`Module ${name} has no default export`);
+                    }
+                } catch(e) {
+                    console.error(`Error loading ${name}:`, e);
+                    this.components[name].error = e.toString();
+                }
+            },
+            
+            async init() {
+                // Test each component
+                await this.testComponent('accordion', '/src/js/components/accordion.js');
+                await this.testComponent('darkMode', '/src/js/components/darkMode.js');
+                await this.testComponent('navigation', '/src/js/components/navigation.js');
+            }
+        }">
+            <template x-for="(component, name) in components" :key="name">
+                <div :class="component.loaded ? 'success' : 'error'" class="debug-card">
+                    <h3 x-text="name + ' component'"></h3>
+                    <div x-show="component.loaded">
+                        <p>✓ Successfully loaded</p>
+                        <pre x-text="JSON.stringify(component.data, null, 2)"></pre>
+                    </div>
+                    <div x-show="!component.loaded">
+                        <p>✗ Failed to load:</p>
+                        <pre x-text="component.error"></pre>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </div>
+    
+    <div class="debug-card">
+        <h2>3. Try the setup script</h2>
+        <p>If you're seeing errors above, try running the setup script:</p>
+        <pre>pnpm run setup</pre>
+        <p>Then refresh this page.</p>
+    </div>
+    
+    <!-- Script to run component tests when page loads -->
+    <script type="module">
+        document.addEventListener('alpine:initialized', () => {
+            const componentTestDiv = document.querySelector('#component-tests div');
+            if (componentTestDiv && componentTestDiv.__x) {
+                componentTestDiv.__x.runEffect(() => componentTestDiv.__x.$data.init());
+            }
+        });
+    </script>
+</body>
+</html> 
