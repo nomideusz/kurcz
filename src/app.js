@@ -27,16 +27,40 @@ function logError(message, error) {
   }
 }
 
-// Track loading status
-let loadingErrors = [];
+// Make Alpine available globally for debugging if needed
+window.Alpine = Alpine;
 
-// Initialize components
-let navigation, accordion, Components;
+// Wait until components and modules are loaded before initializing Alpine
+let componentsLoaded = false;
 
-// Load components using an immediately invoked async function
-(async function loadComponents() {
+// Ensure Alpine.js doesn't start until we're ready
+document.addEventListener('alpine:init', () => {
+  // We'll register our components through the separate loadComponents function
+});
+
+// Initialize Alpine only after components are loaded
+function startAlpine() {
+  if (componentsLoaded) {
+    console.log('Starting Alpine.js with all components loaded');
+    Alpine.start();
+    
+    // Initialize UI after a small delay to ensure Alpine is running
+    setTimeout(initializeContent, 100);
+  } else {
+    console.log('Waiting for components to load...');
+    setTimeout(startAlpine, 50);
+  }
+}
+
+// Load and register components
+async function loadComponents() {
+  // Track loading status
+  let loadingErrors = [];
+  let navigation, accordion, Components;
+  
   try {
-    navigation = (await import('./js/components/navigation.js')).default;
+    const navigationModule = await import('./js/components/navigation.js');
+    navigation = navigationModule.default;
     console.log('Navigation loaded:', navigation);
   } catch (e) {
     loadingErrors.push('navigation');
@@ -44,7 +68,8 @@ let navigation, accordion, Components;
   }
 
   try {
-    accordion = (await import('./js/components/accordion.js')).default;
+    const accordionModule = await import('./js/components/accordion.js');
+    accordion = accordionModule.default;
     console.log('Accordion loaded:', accordion);
   } catch (e) {
     loadingErrors.push('accordion');
@@ -52,25 +77,15 @@ let navigation, accordion, Components;
   }
 
   try {
-    Components = (await import('./js/components.js')).default;
+    const componentsModule = await import('./js/components.js');
+    Components = componentsModule.default;
     console.log('Components loaded:', Components);
   } catch (e) {
     loadingErrors.push('components');
     logError('Failed to load components registry', e);
   }
   
-  // Register Alpine.js components after loading
-  if (document.querySelector('[x-data]')) {
-    // Alpine is already initialized
-    registerAlpineComponents();
-  } else {
-    // Alpine is not initialized yet
-    document.addEventListener('alpine:init', registerAlpineComponents);
-  }
-})();
-
-// Register Alpine.js components
-function registerAlpineComponents() {
+  // Register Alpine.js components
   try {
     // Register core components
     if (navigation) Alpine.data('navigation', navigation);
@@ -78,16 +93,19 @@ function registerAlpineComponents() {
     
     // Register template components
     if (Components) Components.install(Alpine);
+    
+    // Mark components as loaded
+    componentsLoaded = true;
+    console.log('All components registered successfully');
   } catch (e) {
-    logError('Error during Alpine initialization', e);
+    logError('Error during Alpine component registration', e);
   }
+  
+  // Start Alpine.js now that components are registered
+  startAlpine();
+  
+  return { loadingErrors };
 }
-
-// Make Alpine available globally for debugging if needed
-window.Alpine = Alpine;
-
-// Initialize Alpine
-Alpine.start();
 
 // Function to initialize the main content after Alpine is ready
 function initializeContent() {
@@ -102,43 +120,37 @@ function initializeContent() {
     const appContainer = document.createElement('div');
     appContainer.id = 'app-container';
     
-    // Use the registered template components if available
-    if (!loadingErrors.includes('components')) {
-      const layout = document.createElement('div');
-      layout.setAttribute('x-data', 'appLayout');
-      layout.innerHTML = `
-        <div>
-          <!-- Header Component -->
-          <div x-data="headerComponent" x-html="template"></div>
-          
-          <!-- Hero Component -->
-          <div x-data="heroComponent" x-html="template"></div>
-          
-          <!-- Intro Section Component -->
-          <div x-data="introSectionComponent" x-html="template"></div>
-          
-          <!-- Treatment Section Component -->
-          <div x-data="treatmentSectionComponent" x-html="template"></div>
-          
-          <!-- FAQ Section Component -->
-          <div x-data="faqSectionComponent" x-html="template"></div>
-          
-          <!-- Contact Section Component -->
-          <div x-data="contactSectionComponent" x-html="template"></div>
-          
-          <!-- Footer Component -->
-          <div x-data="footerComponent" x-html="template"></div>
-        </div>
-      `;
-      appContainer.appendChild(layout);
-    } else {
-      // Fallback to basic layout
-      const layout = document.createElement('div');
-      layout.setAttribute('x-data', 'appLayout');
-      layout.setAttribute('x-html', 'template');
-      appContainer.appendChild(layout);
-    }
+    // Create layout
+    const layout = document.createElement('div');
+    layout.setAttribute('x-data', 'appLayout');
     
+    // Add the template HTML
+    layout.innerHTML = `
+      <div>
+        <!-- Header Component -->
+        <div x-data="headerComponent" x-html="template"></div>
+        
+        <!-- Hero Component -->
+        <div x-data="heroComponent" x-html="template"></div>
+        
+        <!-- Intro Section Component -->
+        <div x-data="introSectionComponent" x-html="template"></div>
+        
+        <!-- Treatment Section Component -->
+        <div x-data="treatmentSectionComponent" x-html="template"></div>
+        
+        <!-- FAQ Section Component -->
+        <div x-data="faqSectionComponent" x-html="template"></div>
+        
+        <!-- Contact Section Component -->
+        <div x-data="contactSectionComponent" x-html="template"></div>
+        
+        <!-- Footer Component -->
+        <div x-data="footerComponent" x-html="template"></div>
+      </div>
+    `;
+    
+    appContainer.appendChild(layout);
     document.body.appendChild(appContainer);
   }
   
@@ -156,13 +168,13 @@ function initializeContent() {
   }, 100);
 }
 
-// Wait for Alpine to be ready and then initialize content
+// Start loading components
+loadComponents();
+
+// Wait for document to be ready
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', () => {
-    // Small delay to ensure Alpine has fully initialized
-    setTimeout(initializeContent, 100);
+    // Document loaded, but we'll wait for components before starting Alpine
+    console.log('Document loaded, waiting for components...');
   });
-} else {
-  // Document already loaded
-  setTimeout(initializeContent, 100);
 } 
