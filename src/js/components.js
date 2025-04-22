@@ -5,7 +5,6 @@ import Accordion from '../components/Accordion.js';
 import IntroSection from '../components/IntroSection.js';
 import TreatmentSection from '../components/TreatmentSection.js';
 import FaqSection from '../components/FaqSection.js';
-import ExpertsSection from '../components/ExpertsSection.js';
 import ContactSection from '../components/ContactSection.js';
 import AppLayout from '../components/AppLayout.js';
 
@@ -26,7 +25,6 @@ const Components = {
       Alpine.data('introSectionComponent', IntroSection);
       Alpine.data('treatmentSectionComponent', TreatmentSection);
       Alpine.data('faqSectionComponent', FaqSection);
-      Alpine.data('expertsSectionComponent', ExpertsSection);
       Alpine.data('contactSectionComponent', ContactSection);
       Alpine.data('appLayout', AppLayout);
       

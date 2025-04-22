@@ -50,10 +50,10 @@ export default function() {
             <div class="flex-shrink-0 mr-auto">
               <a 
                 href="#home" 
-                class="text-2xl font-bold transition-colors duration-300"
-                :class="scrolledDown ? 'text-blue-600' : 'text-white'"
+                class="text-2xl font-bold transition-colors duration-300 hover:text-gray-100"
+                :class="scrolledDown ? 'text-blue-600 hover:text-blue-800' : 'text-white'"
               >
-                Kurcz<span class="text-blue-400">.pl</span>
+                Kurcz<span class="text-blue-400 group-hover:text-blue-300">.pl</span>
               </a>
             </div>
             
