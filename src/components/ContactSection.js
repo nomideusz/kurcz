@@ -106,7 +106,7 @@ export default function() {
                   <div>
                     <h4 class="text-lg font-medium text-gray-800">Telefon</h4>
                     <p class="mt-1 text-gray-600">
-                      <a href="tel:+46602846912" class="hover:text-blue-600 transition-colors">+46 602 846 912</a>
+                      <a href="tel:+48602846912" class="hover:text-blue-600 transition-colors">+48 602 846 912</a>
                     </p>
                     <p class="text-sm text-gray-500 mt-1">Pon-Pt: 9:00 - 17:00</p>
                   </div>

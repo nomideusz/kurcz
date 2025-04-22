@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Favicon Generator for Kurcz.pl</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .canvas-container {
+      margin: 20px 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .download-links {
+      margin-top: 20px;
+    }
+    button {
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+    canvas {
+      border: 1px solid #ddd;
+    }
+  </style>
+</head>
+<body>
+  <h1>Favicon Generator for Kurcz.pl</h1>
+  <p>This page generates favicon files for the Kurcz.pl website. Right-click on each canvas and select "Save Image As" to download them.</p>
+  
+  <div class="canvas-container">
+    <div>
+      <h3>favicon.ico (16x16)</h3>
+      <canvas id="favicon16" width="16" height="16"></canvas>
+    </div>
+    <div>
+      <h3>favicon-32x32.png</h3>
+      <canvas id="favicon32" width="32" height="32"></canvas>
+    </div>
+    <div>
+      <h3>apple-touch-icon.png (180x180)</h3>
+      <canvas id="apple" width="180" height="180"></canvas>
+    </div>
+    <div>
+      <h3>android-chrome-192x192.png</h3>
+      <canvas id="android192" width="192" height="192"></canvas>
+    </div>
+    <div>
+      <h3>android-chrome-512x512.png</h3>
+      <canvas id="android512" width="512" height="512"></canvas>
+    </div>
+    <div>
+      <h3>og-image.jpg (1200x630)</h3>
+      <canvas id="ogImage" width="1200" height="630"></canvas>
+    </div>
+  </div>
+  
+  <div class="download-links">
+    <button id="generate">Generate All Favicons</button>
+  </div>
+  
+  <script>
+    function drawFavicon(canvasId, size) {
+      const canvas = document.getElementById(canvasId);
+      const ctx = canvas.getContext('2d');
+      
+      // Background
+      ctx.fillStyle = '#2563eb'; // Blue background
+      ctx.fillRect(0, 0, size, size);
+      
+      // Draw letter K
+      ctx.fillStyle = '#ffffff';
+      const fontSize = size * 0.7;
+      ctx.font = `bold ${fontSize}px Arial`;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('K', size/2, size/2);
+      
+      // Add a small circle
+      ctx.beginPath();
+      ctx.arc(size * 0.7, size * 0.7, size * 0.15, 0, Math.PI * 2);
+      ctx.fillStyle = '#93c5fd'; // Light blue
+      ctx.fill();
+    }
+    
+    function drawOgImage() {
+      const canvas = document.getElementById('ogImage');
+      const ctx = canvas.getContext('2d');
+      const width = 1200;
+      const height = 630;
+      
+      // Gradient background
+      const gradient = ctx.createLinearGradient(0, 0, width, height);
+      gradient.addColorStop(0, '#2563eb');
+      gradient.addColorStop(1, '#3b82f6');
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, width, height);
+      
+      // Draw title
+      ctx.fillStyle = '#ffffff';
+      ctx.font = 'bold 80px Arial';
+      ctx.textAlign = 'center';
+      ctx.fillText('Kurcz.pl', width/2, height/2 - 50);
+      
+      // Draw subtitle
+      ctx.font = '40px Arial';
+      ctx.fillText('Kompleksowa wiedza o kurczach mięśniowych', width/2, height/2 + 50);
+    }
+    
+    document.getElementById('generate').addEventListener('click', function() {
+      drawFavicon('favicon16', 16);
+      drawFavicon('favicon32', 32);
+      drawFavicon('apple', 180);
+      drawFavicon('android192', 192);
+      drawFavicon('android512', 512);
+      drawOgImage();
+    });
+  </script>
+</body>
+</html> 

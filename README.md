@@ -57,7 +57,7 @@ pnpm preview
 This project is configured to work with Captain Deploy:
 
 1. Install [Captain Deploy](https://getcaptain.co/)
-2. Run `captain-definition` to deploy the application
+2. The project includes a `captain-definition` file for deployment configuration
 
 ## Project Structure
 
@@ -65,23 +65,38 @@ This project is configured to work with Captain Deploy:
   - `js/` - JavaScript files
     - `components/` - Alpine.js components
       - `accordion.js` - Accordion component 
-      - `darkMode.js` - Dark mode toggle component
       - `navigation.js` - Navigation with mobile menu toggle
     - `main.js` - Alpine.js configuration and initialization
   - `css/` - CSS files
     - `styles.css` - Main CSS with Tailwind directives
   - `main.js` - Main entry point
+  - `components/` - Website component templates
 - `index.html` - Main HTML file
 - `public/` - Static assets that don't need processing
 - `dist/` - Production build output (generated)
 
 ## Alpine.js Components
 
-The website now uses a modular Alpine.js architecture where each interactive component is defined in its own file:
+The website uses a modular Alpine.js architecture where each interactive component is defined in its own file:
 
 - **Accordion Component**: Handles expandable sections like FAQs and treatment steps
-- **Dark Mode Component**: Manages theme switching with localStorage persistence  
 - **Navigation Component**: Handles mobile menu toggling and active section highlighting
+
+## Generating Favicon and Icons
+
+The project includes a favicon generator for creating consistent icons:
+
+1. Open `/public/generate-favicon.html` in your browser
+2. Click the "Generate All Favicons" button
+3. Right-click on each canvas and select "Save Image As" to download
+4. Save the files to the appropriate locations in the `/public` directory:
+   - favicon.ico
+   - favicon-16x16.png
+   - favicon-32x32.png
+   - apple-touch-icon.png
+   - android-chrome-192x192.png
+   - android-chrome-512x512.png
+   - og-image.jpg
 
 ## Quick Start
 

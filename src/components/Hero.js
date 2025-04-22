@@ -47,7 +47,7 @@ export default function() {
               <div class="relative w-64 h-64 md:w-80 md:h-80 bg-gradient-to-br from-blue-400 to-blue-200 rounded-full shadow-2xl flex items-center justify-center p-3">
                 <div class="absolute w-full h-full rounded-full animate-pulse bg-gradient-to-br from-white to-blue-200 opacity-20"></div>
                 <div class="w-full h-full rounded-full border-8 border-white border-opacity-20 flex items-center justify-center text-white">
-                  <img src="hero_square.png" alt="Muscle cramp illustration" class="w-full h-full object-cover rounded-full" />
+                  <img src="hero_square.png" alt="Muscle cramp illustration" class="w-full h-full object-cover rounded-full" loading="lazy" fetchpriority="high" />
                 </div>
               </div>
             </div>
