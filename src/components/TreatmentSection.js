@@ -46,50 +46,57 @@ export default function() {
             <!-- Immediate relief with Pines Accordion -->
             <div class="bg-white rounded-xl shadow-md overflow-hidden">
               <div class="p-6 sm:p-8">
-                <h3 class="text-2xl font-semibold mb-6 text-gray-800">
-                  Natychmiastowa pomoc
+                <h3 class="text-2xl font-semibold mb-8 text-gray-800 border-b pb-4">
+                  <span class="border-b-2 border-blue-500 pb-2">Natychmiastowa pomoc</span>
                 </h3>
                 
                 <!-- Accordion Items -->
-                <template x-for="item in accordionItems" :key="item.id">
-                  <div class="mb-4">
-                    <button 
-                      @click="toggleAccordion(item.id)" 
-                      class="flex justify-between items-center w-full px-4 py-3 bg-gray-50 hover:bg-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    >
-                      <span class="font-medium text-gray-800" x-text="item.title"></span>
-                      <svg 
-                        class="w-5 h-5 text-gray-500 transition duration-300 transform" 
-                        :class="{'rotate-180': item.open}" 
-                        fill="none" 
-                        viewBox="0 0 24 24" 
-                        stroke="currentColor"
+                <div class="space-y-5">
+                  <template x-for="item in accordionItems" :key="item.id">
+                    <div class="border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-200">
+                      <button 
+                        @click="toggleAccordion(item.id)" 
+                        class="flex justify-between items-center w-full px-5 py-4 bg-white hover:bg-gray-50 transition-colors duration-200 focus:outline-none"
                       >
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                      </svg>
-                    </button>
-                    <div 
-                      x-show="item.open" 
-                      x-transition:enter="transition ease-out duration-200"
-                      x-transition:enter-start="opacity-0 transform -translate-y-2"
-                      x-transition:enter-end="opacity-100 transform translate-y-0"
-                      x-transition:leave="transition ease-in duration-200"
-                      x-transition:leave-start="opacity-100 transform translate-y-0"
-                      x-transition:leave-end="opacity-0 transform -translate-y-2"
-                      class="px-4 py-5 text-gray-600 bg-white border border-t-0 border-gray-100 rounded-b-lg"
-                    >
-                      <p x-text="item.content"></p>
+                        <span class="font-medium text-gray-800 flex items-center" x-text="item.title"></span>
+                        <div class="flex items-center text-blue-500">
+                          <span class="mr-2 text-sm" x-show="!item.open">Pokaż</span>
+                          <span class="mr-2 text-sm" x-show="item.open">Ukryj</span>
+                          <svg 
+                            class="w-5 h-5 transition-transform duration-300 ease-in-out" 
+                            :class="{'rotate-180': item.open}" 
+                            fill="none" 
+                            viewBox="0 0 24 24" 
+                            stroke="currentColor"
+                          >
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                          </svg>
+                        </div>
+                      </button>
+                      <div 
+                        x-show="item.open" 
+                        x-collapse
+                        x-transition:enter="transition ease-out duration-200"
+                        x-transition:enter-start="opacity-0 transform -translate-y-2"
+                        x-transition:enter-end="opacity-100 transform translate-y-0"
+                        x-transition:leave="transition ease-in duration-200"
+                        x-transition:leave-start="opacity-100 transform translate-y-0"
+                        x-transition:leave-end="opacity-0 transform -translate-y-2"
+                        class="px-5 py-4 text-gray-600 bg-gray-50 border-t border-gray-100"
+                      >
+                        <p class="leading-relaxed" x-text="item.content"></p>
+                      </div>
                     </div>
-                  </div>
-                </template>
+                  </template>
+                </div>
               </div>
             </div>
             
             <!-- Prevention using Pines List -->
             <div class="bg-white rounded-xl shadow-md overflow-hidden">
               <div class="p-6 sm:p-8">
-                <h3 class="text-2xl font-semibold mb-6 text-gray-800">
-                  Profilaktyka
+                <h3 class="text-2xl font-semibold mb-8 text-gray-800 border-b pb-4">
+                  <span class="border-b-2 border-green-500 pb-2">Profilaktyka</span>
                 </h3>
                 
                 <ul class="space-y-6">

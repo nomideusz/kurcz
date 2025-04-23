@@ -1,5 +1,7 @@
 export default function() {
   return {
+    currentYear: new Date().getFullYear(),
+    
     template: `
       <footer id="contact" class="bg-gray-900 text-white pt-16 pb-8">
         <div class="container mx-auto px-6">
@@ -110,7 +112,7 @@ export default function() {
           <!-- Bottom Footer -->
           <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
             <p class="text-gray-500 text-sm order-2 md:order-1 mt-6 md:mt-0">
-              © 2023 Kurcz.pl. Wszelkie prawa zastrzeżone.
+              © <span x-text="currentYear"></span> Kurcz.pl. Wszelkie prawa zastrzeżone.
             </p>
             
             <!-- Social Media Links -->
