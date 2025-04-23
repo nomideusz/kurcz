@@ -1,5 +1,33 @@
 export default function() {
   return {
+    accordionItems: [
+      { 
+        id: 'stretching',
+        title: 'Rozciąganie mięśnia',
+        content: 'Delikatnie rozciągnij dotknięty mięsień. Na przykład, jeśli kurcz dotyczy łydki, wyprostuj nogę i zegnij stopę w kierunku ciała. Utrzymaj tę pozycję przez 20-30 sekund lub dopóki kurcz nie ustąpi.',
+        open: false
+      },
+      {
+        id: 'massage',
+        title: 'Masaż mięśnia',
+        content: 'Delikatnie masuj i uciskaj skurczony mięsień, aby pomóc mu się rozluźnić. Masaż pomaga przywrócić właściwe krążenie krwi oraz przyspiesza ustąpienie skurczu.',
+        open: false
+      },
+      {
+        id: 'temperature',
+        title: 'Ciepło i zimno',
+        content: 'Zastosuj ciepły kompres na skurczony mięsień, aby zwiększyć przepływ krwi i rozluźnić go. W przypadku bólu po ustąpieniu skurczu, zimny kompres może pomóc zmniejszyć stan zapalny.',
+        open: false
+      }
+    ],
+    
+    toggleAccordion(id) {
+      this.accordionItems = this.accordionItems.map(item => ({
+        ...item,
+        open: item.id === id ? !item.open : false
+      }));
+    },
+    
     template: `
       <section id="treatment" class="py-20 bg-blue-50">
         <div class="container mx-auto px-6">
@@ -22,104 +50,38 @@ export default function() {
                   Natychmiastowa pomoc
                 </h3>
                 
-                <!-- Accordion Item 1 -->
-                <div x-data="accordion" class="mb-4">
-                  <button 
-                    @click="toggle" 
-                    class="flex justify-between items-center w-full px-4 py-3 bg-gray-50 hover:bg-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  >
-                    <span class="font-medium text-gray-800">Rozciąganie mięśnia</span>
-                    <svg 
-                      class="w-5 h-5 text-gray-500 transition duration-300 transform" 
-                      :class="{'rotate-180': open}" 
-                      fill="none" 
-                      viewBox="0 0 24 24" 
-                      stroke="currentColor"
+                <!-- Accordion Items -->
+                <template x-for="item in accordionItems" :key="item.id">
+                  <div class="mb-4">
+                    <button 
+                      @click="toggleAccordion(item.id)" 
+                      class="flex justify-between items-center w-full px-4 py-3 bg-gray-50 hover:bg-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     >
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </button>
-                  <div 
-                    x-show="open" 
-                    x-transition:enter="transition ease-out duration-200"
-                    x-transition:enter-start="opacity-0 transform -translate-y-2"
-                    x-transition:enter-end="opacity-100 transform translate-y-0"
-                    x-transition:leave="transition ease-in duration-200"
-                    x-transition:leave-start="opacity-100 transform translate-y-0"
-                    x-transition:leave-end="opacity-0 transform -translate-y-2"
-                    class="px-4 py-5 text-gray-600 bg-white border border-t-0 border-gray-100 rounded-b-lg"
-                  >
-                    <p>
-                      Delikatnie rozciągnij dotknięty mięsień. Na przykład, jeśli kurcz dotyczy łydki, wyprostuj nogę i zegnij stopę w kierunku ciała. Utrzymaj tę pozycję przez 20-30 sekund lub dopóki kurcz nie ustąpi.
-                    </p>
-                  </div>
-                </div>
-                
-                <!-- Accordion Item 2 -->
-                <div x-data="accordion" class="mb-4">
-                  <button 
-                    @click="toggle" 
-                    class="flex justify-between items-center w-full px-4 py-3 bg-gray-50 hover:bg-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  >
-                    <span class="font-medium text-gray-800">Masaż mięśnia</span>
-                    <svg 
-                      class="w-5 h-5 text-gray-500 transition duration-300 transform" 
-                      :class="{'rotate-180': open}" 
-                      fill="none" 
-                      viewBox="0 0 24 24" 
-                      stroke="currentColor"
+                      <span class="font-medium text-gray-800" x-text="item.title"></span>
+                      <svg 
+                        class="w-5 h-5 text-gray-500 transition duration-300 transform" 
+                        :class="{'rotate-180': item.open}" 
+                        fill="none" 
+                        viewBox="0 0 24 24" 
+                        stroke="currentColor"
+                      >
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </button>
+                    <div 
+                      x-show="item.open" 
+                      x-transition:enter="transition ease-out duration-200"
+                      x-transition:enter-start="opacity-0 transform -translate-y-2"
+                      x-transition:enter-end="opacity-100 transform translate-y-0"
+                      x-transition:leave="transition ease-in duration-200"
+                      x-transition:leave-start="opacity-100 transform translate-y-0"
+                      x-transition:leave-end="opacity-0 transform -translate-y-2"
+                      class="px-4 py-5 text-gray-600 bg-white border border-t-0 border-gray-100 rounded-b-lg"
                     >
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </button>
-                  <div 
-                    x-show="open" 
-                    x-transition:enter="transition ease-out duration-200"
-                    x-transition:enter-start="opacity-0 transform -translate-y-2"
-                    x-transition:enter-end="opacity-100 transform translate-y-0"
-                    x-transition:leave="transition ease-in duration-200"
-                    x-transition:leave-start="opacity-100 transform translate-y-0"
-                    x-transition:leave-end="opacity-0 transform -translate-y-2"
-                    class="px-4 py-5 text-gray-600 bg-white border border-t-0 border-gray-100 rounded-b-lg"
-                  >
-                    <p>
-                      Delikatnie masuj i uciskaj skurczony mięsień, aby pomóc mu się rozluźnić. Masaż pomaga przywrócić właściwe krążenie krwi oraz przyspiesza ustąpienie skurczu.
-                    </p>
+                      <p x-text="item.content"></p>
+                    </div>
                   </div>
-                </div>
-                
-                <!-- Accordion Item 3 -->
-                <div x-data="accordion" class="mb-4">
-                  <button 
-                    @click="toggle" 
-                    class="flex justify-between items-center w-full px-4 py-3 bg-gray-50 hover:bg-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  >
-                    <span class="font-medium text-gray-800">Ciepło i zimno</span>
-                    <svg 
-                      class="w-5 h-5 text-gray-500 transition duration-300 transform" 
-                      :class="{'rotate-180': open}" 
-                      fill="none" 
-                      viewBox="0 0 24 24" 
-                      stroke="currentColor"
-                    >
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </button>
-                  <div 
-                    x-show="open" 
-                    x-transition:enter="transition ease-out duration-200"
-                    x-transition:enter-start="opacity-0 transform -translate-y-2"
-                    x-transition:enter-end="opacity-100 transform translate-y-0"
-                    x-transition:leave="transition ease-in duration-200"
-                    x-transition:leave-start="opacity-100 transform translate-y-0"
-                    x-transition:leave-end="opacity-0 transform -translate-y-2"
-                    class="px-4 py-5 text-gray-600 bg-white border border-t-0 border-gray-100 rounded-b-lg"
-                  >
-                    <p>
-                      Zastosuj ciepły kompres na skurczony mięsień, aby zwiększyć przepływ krwi i rozluźnić go. W przypadku bólu po ustąpieniu skurczu, zimny kompres może pomóc zmniejszyć stan zapalny.
-                    </p>
-                  </div>
-                </div>
+                </template>
               </div>
             </div>
             
