@@ -6,20 +6,21 @@ export default function() {
         <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
           <div class="absolute h-96 w-96 -top-12 -left-16 bg-blue-600 rounded-full opacity-20 blur-3xl"></div>
           <div class="absolute h-96 w-96 top-1/2 right-0 bg-blue-400 rounded-full opacity-20 blur-3xl"></div>
+          <div class="absolute bottom-24 left-1/3 h-64 w-64 bg-blue-300 rounded-full opacity-20 blur-3xl"></div>
         </div>
         
         <div class="container mx-auto px-6 relative z-10">
           <div class="flex flex-col md:flex-row items-center justify-between">
             <div class="md:w-1/2 text-center md:text-left mb-10 md:mb-0 mt-8">
-              <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight">
+              <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight text-white drop-shadow-sm">
                 Wiedza o kurczach mięśniowych
               </h1>
               
-              <p class="text-xl md:text-2xl mb-6 text-blue-100">
+              <p class="text-xl md:text-2xl mb-6 text-blue-100 drop-shadow-sm">
                 Kompleksowe informacje w jednym miejscu
               </p>
               
-              <p class="text-blue-100 mb-8 max-w-lg">
+              <p class="text-blue-50 mb-8 max-w-lg leading-relaxed drop-shadow-sm">
                 Kurcze mięśniowe mogą być niezwykle bolesne i utrudniać codzienne funkcjonowanie. 
                 Na tej stronie znajdziesz informacje o przyczynach, zapobieganiu i leczeniu kurczy mięśniowych.
               </p>
@@ -27,7 +28,7 @@ export default function() {
               <div class="flex flex-col sm:flex-row justify-center md:justify-start gap-4">
                 <a 
                   href="#intro" 
-                  class="inline-flex items-center justify-center rounded-lg bg-white text-blue-700 font-semibold px-6 py-3 shadow-lg hover:bg-blue-50 hover:shadow-xl transition duration-300"
+                  class="inline-flex items-center justify-center rounded-lg bg-white text-blue-700 font-semibold px-6 py-3 shadow-lg hover:bg-blue-50 hover:text-blue-800 hover:shadow-xl transition duration-300"
                 >
                   Dowiedz się więcej
                   <svg class="ml-2 h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -36,7 +37,7 @@ export default function() {
                 </a>
                 <a 
                   href="#treatment" 
-                  class="inline-flex items-center justify-center rounded-lg bg-blue-600 bg-opacity-20 text-white border border-blue-200 border-opacity-30 font-semibold px-6 py-3 hover:bg-opacity-30 hover:shadow-lg transition duration-300"
+                  class="inline-flex items-center justify-center rounded-lg bg-blue-600 bg-opacity-20 text-white border border-blue-300 border-opacity-30 font-semibold px-6 py-3 hover:bg-opacity-40 hover:border-opacity-50 hover:shadow-lg transition duration-300"
                 >
                   Metody leczenia
                 </a>
@@ -44,9 +45,10 @@ export default function() {
             </div>
             
             <div class="md:w-1/2 flex justify-center md:justify-end">
-              <div class="relative w-64 h-64 md:w-80 md:h-80 bg-gradient-to-br from-blue-400 to-blue-200 rounded-full shadow-2xl flex items-center justify-center p-3">
+              <div class="relative w-64 h-64 md:w-80 md:h-80 bg-gradient-to-br from-blue-400 to-blue-300 rounded-full shadow-2xl flex items-center justify-center p-3">
                 <div class="absolute w-full h-full rounded-full animate-pulse bg-gradient-to-br from-white to-blue-200 opacity-20"></div>
-                <div class="w-full h-full rounded-full border-8 border-white border-opacity-20 flex items-center justify-center text-white">
+                <div class="absolute inset-0 rounded-full bg-gradient-to-br from-blue-400/30 to-blue-700/30 blur-sm"></div>
+                <div class="w-full h-full rounded-full border-8 border-white border-opacity-30 flex items-center justify-center text-white overflow-hidden">
                   <img src="/img/hero_square.png" alt="Ilustracja kurczu mięśniowego" class="w-full h-full object-cover rounded-full" loading="lazy" fetchpriority="high" />
                 </div>
               </div>

@@ -27,10 +27,11 @@ export const emailConfig = {
     serviceId: tryGetEnv('VITE_EMAILJS_SERVICE_ID', 'EMAILJS_SERVICE_ID') || 
                'service_odredbg',
     
+    // Zaktualizowany poprawny ID szablonu dla produkcji
     templateId: tryGetEnv('VITE_EMAILJS_TEMPLATE_ID', 'EMAILJS_TEMPLATE_ID') || 
-                'template_fk9amfl',
+                'template_3a6k2wy',
                 
-    // Service ID dla usługi Mailtrap w EmailJS - MUSI być inny niż standardowy serviceId
+    // Service ID dla usługi Mailtrap w EmailJS - używane tylko w trybie deweloperskim
     mailtrapServiceId: tryGetEnv('VITE_EMAILJS_MAILTRAP_SERVICE_ID', 'EMAILJS_MAILTRAP_SERVICE_ID') || 
                        'service_mailtrap'
   }

@@ -47,11 +47,11 @@ export default function() {
         <div class="container mx-auto px-6 relative">
           <div class="flex justify-between items-center w-full">
             <!-- Logo - explicitly on the left -->
-            <div class="flex-shrink-0 mr-auto">
+            <div class="flex-shrink-0 mr-auto group">
               <a 
                 href="#home" 
-                class="text-2xl font-bold transition-colors duration-300 hover:text-gray-100"
-                :class="scrolledDown ? 'text-blue-600 hover:text-blue-800' : 'text-white'"
+                class="text-2xl font-bold transition-colors duration-300"
+                :class="scrolledDown ? 'text-blue-600 hover:text-blue-800' : 'text-white hover:text-blue-200'"
               >
                 Kurcz<span class="text-blue-400 group-hover:text-blue-300">.pl</span>
               </a>
@@ -69,7 +69,7 @@ export default function() {
                     : 'text-white font-medium border-white' 
                   : scrolledDown 
                     ? 'text-gray-700 hover:text-blue-600 border-transparent hover:border-blue-600' 
-                    : 'text-white/90 hover:text-white border-transparent hover:border-white'"
+                    : 'text-white/90 hover:text-blue-200 border-transparent hover:border-blue-200'"
               >
                 <span>Strona główna</span>
               </a>
@@ -83,7 +83,7 @@ export default function() {
                     : 'text-white font-medium border-white'
                   : scrolledDown 
                     ? 'text-gray-700 hover:text-blue-600 border-transparent hover:border-blue-600' 
-                    : 'text-white/90 hover:text-white border-transparent hover:border-white'"
+                    : 'text-white/90 hover:text-blue-200 border-transparent hover:border-blue-200'"
               >
                 <span>O kurczach</span>
               </a>
@@ -97,7 +97,7 @@ export default function() {
                     : 'text-white font-medium border-white'
                   : scrolledDown 
                     ? 'text-gray-700 hover:text-blue-600 border-transparent hover:border-blue-600' 
-                    : 'text-white/90 hover:text-white border-transparent hover:border-white'"
+                    : 'text-white/90 hover:text-blue-200 border-transparent hover:border-blue-200'"
               >
                 <span>Leczenie</span>
               </a>
@@ -111,7 +111,7 @@ export default function() {
                     : 'text-white font-medium border-white'
                   : scrolledDown 
                     ? 'text-gray-700 hover:text-blue-600 border-transparent hover:border-blue-600' 
-                    : 'text-white/90 hover:text-white border-transparent hover:border-white'"
+                    : 'text-white/90 hover:text-blue-200 border-transparent hover:border-blue-200'"
               >
                 <span>FAQ</span>
               </a>
@@ -125,7 +125,7 @@ export default function() {
                     : 'text-white font-medium border-white'
                   : scrolledDown 
                     ? 'text-gray-700 hover:text-blue-600 border-transparent hover:border-blue-600' 
-                    : 'text-white/90 hover:text-white border-transparent hover:border-white'"
+                    : 'text-white/90 hover:text-blue-200 border-transparent hover:border-blue-200'"
               >
                 <span>Kontakt</span>
               </a>
@@ -136,7 +136,7 @@ export default function() {
               <button 
                 @click="menuOpen = !menuOpen" 
                 class="focus:outline-none transition-colors duration-300 p-2 rounded-md z-50"
-                :class="scrolledDown ? 'text-gray-700 hover:bg-gray-100' : 'text-white hover:bg-white/10'"
+                :class="scrolledDown ? 'text-gray-700 hover:bg-gray-100' : 'text-white hover:bg-white/20'"
                 aria-label="Toggle menu"
               >
                 <svg x-cloak x-show="!menuOpen" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -161,7 +161,7 @@ export default function() {
             x-transition:leave-end="opacity-0 transform -translate-y-2"
             class="absolute top-full left-0 right-0 z-40 mt-2 px-6"
           >
-            <nav class="bg-white rounded-lg shadow-lg py-2 flex flex-col w-full max-h-[calc(100vh-150px)] overflow-y-auto">
+            <nav class="bg-white rounded-xl shadow-lg py-3 flex flex-col w-full max-h-[calc(100vh-150px)] overflow-y-auto">
               <a 
                 href="#home" 
                 @click="activeSection = 'home'; menuOpen = false" 

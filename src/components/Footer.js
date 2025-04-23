@@ -31,7 +31,7 @@ export default function() {
               </h3>
               <ul class="space-y-3">
                 <li>
-                  <a href="#home" class="text-gray-400 hover:text-white transition-colors duration-300 flex items-center">
+                  <a href="#home" class="text-gray-400 hover:text-blue-300 transition-colors duration-300 flex items-center">
                     <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                       <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
                     </svg>
@@ -39,7 +39,7 @@ export default function() {
                   </a>
                 </li>
                 <li>
-                  <a href="#intro" class="text-gray-400 hover:text-white transition-colors duration-300 flex items-center">
+                  <a href="#intro" class="text-gray-400 hover:text-blue-300 transition-colors duration-300 flex items-center">
                     <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                       <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
                     </svg>
@@ -47,7 +47,7 @@ export default function() {
                   </a>
                 </li>
                 <li>
-                  <a href="#treatment" class="text-gray-400 hover:text-white transition-colors duration-300 flex items-center">
+                  <a href="#treatment" class="text-gray-400 hover:text-blue-300 transition-colors duration-300 flex items-center">
                     <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                       <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path>
                     </svg>
@@ -55,7 +55,7 @@ export default function() {
                   </a>
                 </li>
                 <li>
-                  <a href="#contact" class="text-gray-400 hover:text-white transition-colors duration-300 flex items-center">
+                  <a href="#contact" class="text-gray-400 hover:text-blue-300 transition-colors duration-300 flex items-center">
                     <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                       <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
                       <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
@@ -74,7 +74,7 @@ export default function() {
               </h3>
               <ul class="space-y-3">
                 <li>
-                  <a href="https://kompi.pl" target="_blank" rel="noopener" class="text-gray-400 hover:text-white transition-colors duration-300 flex items-center">
+                  <a href="https://kompi.pl" target="_blank" rel="noopener" class="text-gray-400 hover:text-blue-300 transition-colors duration-300 flex items-center">
                     <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                       <path fill-rule="evenodd" d="M12.586 4.586a2 2 0 112.828 2.828l-3 3a2 2 0 01-2.828 0 1 1 0 00-1.414 1.414 4 4 0 005.656 0l3-3a4 4 0 00-5.656-5.656l-1.5 1.5a1 1 0 101.414 1.414l1.5-1.5zm-5 5a2 2 0 012.828 0 1 1 0 101.414-1.414 4 4 0 00-5.656 0l-3 3a4 4 0 105.656 5.656l1.5-1.5a1 1 0 10-1.414-1.414l-1.5 1.5a2 2 0 11-2.828-2.828l3-3z" clip-rule="evenodd"></path>
                     </svg>
@@ -82,7 +82,7 @@ export default function() {
                   </a>
                 </li>
                 <li>
-                  <a href="https://wibroakustyka.pl" target="_blank" rel="noopener" class="text-gray-400 hover:text-white transition-colors duration-300 flex items-center">
+                  <a href="https://wibroakustyka.pl" target="_blank" rel="noopener" class="text-gray-400 hover:text-blue-300 transition-colors duration-300 flex items-center">
                     <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                       <path fill-rule="evenodd" d="M12.586 4.586a2 2 0 112.828 2.828l-3 3a2 2 0 01-2.828 0 1 1 0 00-1.414 1.414 4 4 0 005.656 0l3-3a4 4 0 00-5.656-5.656l-1.5 1.5a1 1 0 101.414 1.414l1.5-1.5zm-5 5a2 2 0 012.828 0 1 1 0 101.414-1.414 4 4 0 00-5.656 0l-3 3a4 4 0 105.656 5.656l1.5-1.5a1 1 0 10-1.414-1.414l-1.5 1.5a2 2 0 11-2.828-2.828l3-3z" clip-rule="evenodd"></path>
                     </svg>
@@ -90,7 +90,7 @@ export default function() {
                   </a>
                 </li>
                 <li>
-                  <a href="https://intertecchpoland.pl" target="_blank" rel="noopener" class="text-gray-400 hover:text-white transition-colors duration-300 flex items-center">
+                  <a href="https://intertecchpoland.pl" target="_blank" rel="noopener" class="text-gray-400 hover:text-blue-300 transition-colors duration-300 flex items-center">
                     <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                       <path fill-rule="evenodd" d="M12.586 4.586a2 2 0 112.828 2.828l-3 3a2 2 0 01-2.828 0 1 1 0 00-1.414 1.414 4 4 0 005.656 0l3-3a4 4 0 00-5.656-5.656l-1.5 1.5a1 1 0 101.414 1.414l1.5-1.5zm-5 5a2 2 0 012.828 0 1 1 0 101.414-1.414 4 4 0 00-5.656 0l-3 3a4 4 0 105.656 5.656l1.5-1.5a1 1 0 10-1.414-1.414l-1.5 1.5a2 2 0 11-2.828-2.828l3-3z" clip-rule="evenodd"></path>
                     </svg>
@@ -98,7 +98,7 @@ export default function() {
                   </a>
                 </li>
                 <li>
-                  <a href="https://zaur.app" target="_blank" rel="noopener" class="text-gray-400 hover:text-white transition-colors duration-300 flex items-center">
+                  <a href="https://zaur.app" target="_blank" rel="noopener" class="text-gray-400 hover:text-blue-300 transition-colors duration-300 flex items-center">
                     <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                       <path fill-rule="evenodd" d="M12.586 4.586a2 2 0 112.828 2.828l-3 3a2 2 0 01-2.828 0 1 1 0 00-1.414 1.414 4 4 0 005.656 0l3-3a4 4 0 00-5.656-5.656l-1.5 1.5a1 1 0 101.414 1.414l1.5-1.5zm-5 5a2 2 0 012.828 0 1 1 0 101.414-1.414 4 4 0 00-5.656 0l-3 3a4 4 0 105.656 5.656l1.5-1.5a1 1 0 10-1.414-1.414l-1.5 1.5a2 2 0 11-2.828-2.828l3-3z" clip-rule="evenodd"></path>
                     </svg>
@@ -117,7 +117,7 @@ export default function() {
             
             <!-- Social Media Links -->
             <div class="flex space-x-4 order-1 md:order-2">
-              <a href="https://www.facebook.com/profile.php?id=61575552422497" target="_blank" rel="noopener" class="text-gray-400 hover:text-blue-400 transition-colors duration-300">
+              <a href="https://www.facebook.com/profile.php?id=61575552422497" target="_blank" rel="noopener" class="text-gray-400 hover:text-blue-300 transition-colors duration-300">
                 <span class="sr-only">Facebook</span>
                 <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" />
