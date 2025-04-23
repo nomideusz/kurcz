@@ -44,7 +44,7 @@ export default function() {
         class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
         :class="scrolledDown ? 'bg-white/95 backdrop-blur-sm shadow-md py-4' : 'bg-transparent py-6'"
       >
-        <div class="container mx-auto px-6">
+        <div class="container mx-auto px-6 relative">
           <div class="flex justify-between items-center w-full">
             <!-- Logo - explicitly on the left -->
             <div class="flex-shrink-0 mr-auto">
@@ -132,16 +132,17 @@ export default function() {
             </nav>
             
             <!-- Mobile Menu Button -->
-            <div class="md:hidden flex items-center">
+            <div class="md:hidden flex items-center ml-4">
               <button 
                 @click="menuOpen = !menuOpen" 
-                class="focus:outline-none transition-colors duration-300"
-                :class="scrolledDown ? 'text-gray-700' : 'text-white'"
+                class="focus:outline-none transition-colors duration-300 p-2 rounded-md z-50"
+                :class="scrolledDown ? 'text-gray-700 hover:bg-gray-100' : 'text-white hover:bg-white/10'"
+                aria-label="Toggle menu"
               >
-                <svg x-show="!menuOpen" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg x-cloak x-show="!menuOpen" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
-                <svg x-show="menuOpen" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg x-cloak x-show="menuOpen" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </button>
@@ -150,6 +151,7 @@ export default function() {
           
           <!-- Mobile Menu (Pines Dropdown Style) -->
           <div 
+            x-cloak
             x-show="menuOpen" 
             x-transition:enter="transition ease-out duration-200"
             x-transition:enter-start="opacity-0 transform -translate-y-2"
@@ -157,9 +159,9 @@ export default function() {
             x-transition:leave="transition ease-in duration-200"
             x-transition:leave-start="opacity-100 transform translate-y-0"
             x-transition:leave-end="opacity-0 transform -translate-y-2"
-            class="md:hidden pt-4 pb-2 bg-white rounded-lg shadow-lg mt-2"
+            class="absolute top-full left-0 right-0 z-40 mt-2 px-6"
           >
-            <nav class="flex flex-col space-y-0 py-1">
+            <nav class="bg-white rounded-lg shadow-lg py-2 flex flex-col w-full max-h-[calc(100vh-150px)] overflow-y-auto">
               <a 
                 href="#home" 
                 @click="activeSection = 'home'; menuOpen = false" 

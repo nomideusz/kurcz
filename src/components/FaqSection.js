@@ -3,27 +3,32 @@ export default function() {
     faqs: [
       {
         question: 'Czy kurcz można wyleczyć?',
-        answer: 'Tak, kurcze przywodzicieli można skutecznie leczyć. Skuteczność leczenia zależy od wielu czynników, w tym od indywidualnych predyspozycji pacjenta, czasu trwania dolegliwości i zastosowanego programu terapeutycznego.',
+        answer: 'Tak, kurcze mięśniowe można skutecznie wyleczyć. Skuteczność leczenia zależy od wielu czynników, w tym od indywidualnych predyspozycji pacjenta, czasu trwania dolegliwości i zastosowanego programu terapeutycznego. Najlepsze efekty osiąga się przy kompleksowym podejściu łączącym fizjoterapię, odpowiednie nawodnienie i suplementację.',
         open: false
       },
       {
         question: 'Jak długo trwa rehabilitacja?',
-        answer: 'Czas trwania rehabilitacji jest indywidualny dla każdego pacjenta i zależy od stopnia nasilenia dolegliwości. Zazwyczaj pierwsze rezultaty są widoczne po 3-4 tygodniach systematycznej pracy, a pełny proces rehabilitacji może trwać od 2 do 6 miesięcy.',
+        answer: 'Czas trwania rehabilitacji jest indywidualny dla każdego pacjenta i zależy od stopnia nasilenia dolegliwości. Zazwyczaj pierwsze rezultaty są widoczne po 3-4 tygodniach systematycznej pracy, a pełny proces rehabilitacji może trwać od 2 do 6 miesięcy. Kluczowa jest regularność wykonywania zaleconych ćwiczeń.',
         open: false
       },
       {
         question: 'Czy mogę ćwiczyć samodzielnie w domu?',
-        answer: 'Tak, jednak kluczowe jest najpierw nauczenie się prawidłowego wykonywania ćwiczeń pod okiem specjalisty. Po opanowaniu prawidłowej techniki ćwiczeń, pacjent otrzymuje indywidualnie dobrany program ćwiczeń do samodzielnego wykonywania w domu.',
+        answer: 'Tak, jednak kluczowe jest najpierw nauczenie się prawidłowego wykonywania ćwiczeń pod okiem specjalisty. Po opanowaniu prawidłowej techniki ćwiczeń, pacjent otrzymuje indywidualnie dobrany program ćwiczeń do samodzielnego wykonywania w domu. Regularne wykonywanie zaleconych ćwiczeń przyspiesza proces zdrowienia.',
         open: false
       },
       {
         question: 'Czy mogę biegać podczas rehabilitacji?',
-        answer: 'Na początkowym etapie rehabilitacji zazwyczaj zaleca się ograniczenie lub czasowe zaprzestanie biegania, aby zmniejszyć obciążenie stawów i mięśni. W miarę postępów w terapii, aktywność biegowa jest stopniowo przywracana, często z modyfikacjami techniki biegu.',
+        answer: 'Na początkowym etapie rehabilitacji zazwyczaj zaleca się ograniczenie lub czasowe zaprzestanie biegania, aby zmniejszyć obciążenie stawów i mięśni. W miarę postępów w terapii, aktywność biegowa jest stopniowo przywracana, często z modyfikacjami techniki biegu. Zawsze konsultuj się z fizjoterapeutą przed powrotem do biegania.',
         open: false
       },
       {
-        question: 'Jakie są objawy kurczu przywodzicieli?',
-        answer: 'Objawy mogą obejmować ból w pachwinie lub wewnętrznej części uda, szczególnie podczas aktywności fizycznej, ograniczenie ruchomości w stawie biodrowym, uczucie sztywności w obszarze pachwinowym, a w zaawansowanych przypadkach - ból nawet podczas spoczynku.',
+        question: 'Jakie są objawy kurczu mięśniowego?',
+        answer: 'Objawy mogą obejmować nagły, intensywny ból mięśnia, wyczuwalny twardy skurcz lub guzek w mięśniu, czasową niemożność używania mięśnia, a w przypadku kurczy łydki - uczucie ściągnięcia lub skrócenia mięśnia. Kurcze mogą wystąpić podczas aktywności fizycznej, w nocy lub po długotrwałym pozostawaniu w jednej pozycji.',
+        open: false
+      },
+      {
+        question: 'Jak zapobiegać kurczom mięśniowym?',
+        answer: 'Regularne nawadnianie, odpowiednia dieta bogata w elektrolity (magnez, potas, wapń), rozgrzewka przed aktywnością fizyczną i stretching po niej, unikanie przeciążeń mięśniowych oraz stopniowe zwiększanie intensywności treningów to kluczowe elementy profilaktyki kurczy mięśniowych. Warto również zadbać o odpowiednią suplementację, zwłaszcza przy intensywnym wysiłku fizycznym.',
         open: false
       }
     ],
@@ -40,7 +45,7 @@ export default function() {
           <div class="text-center mb-16">
             <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-800">Najczęściej zadawane pytania</h2>
             <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-              Odpowiedzi na najczęstsze pytania dotyczące kurczu przywodzicieli i jego leczenia
+              Odpowiedzi na najczęstsze pytania dotyczące kurczy mięśniowych i ich leczenia
             </p>
           </div>
           
