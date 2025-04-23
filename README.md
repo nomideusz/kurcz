@@ -104,10 +104,10 @@ Run the following commands to get started:
 
 ```bash
 # Install dependencies
-pnpm install
+npm install
 
-# Start development server with hot reload
-pnpm dev
+# Start development server
+npm run dev
 ```
 
 ## External Links
@@ -120,4 +120,91 @@ pnpm dev
 
 ## License
 
-MIT 
+MIT
+
+## Contact Form Setup
+
+To enable the contact form functionality, you need to set up EmailJS:
+
+1. Sign up for a free account at [EmailJS](https://www.emailjs.com/)
+2. Create a new email service (Gmail, Outlook, etc.) in your EmailJS dashboard
+3. Create a new email template with the following template variables:
+   - `from_name` - Sender's name
+   - `reply_to` - Sender's email
+   - `message` - The message content
+
+4. Get your credentials:
+   - Public Key (from Account Settings)
+   - Service ID (from the Email Services tab)
+   - Template ID (from the Email Templates tab)
+
+5. Set up your credentials using one of these methods:
+
+### Option 1: Update config.js directly (for development)
+
+Open `src/config.js` and replace the placeholder values:
+
+```js
+emailjs: {
+  publicKey: 'your_actual_public_key_here',
+  serviceId: 'your_actual_service_id_here',
+  templateId: 'your_actual_template_id_here'
+}
+```
+
+### Option 2: Use environment variables (recommended for production)
+
+Create a `.env` file in the root directory with:
+
+```
+VITE_EMAILJS_PUBLIC_KEY=your_actual_public_key_here
+VITE_EMAILJS_SERVICE_ID=your_actual_service_id_here
+VITE_EMAILJS_TEMPLATE_ID=your_actual_template_id_here
+```
+
+**Important**: Never commit `.env` files with actual credentials to version control. Add `.env` to your `.gitignore` file.
+
+### Adding Mailtrap for Email Testing
+
+The contact form includes a developer toggle for test mode using Mailtrap:
+
+1. Sign up for a free account at [Mailtrap](https://mailtrap.io/)
+2. Go to Email Testing → Inboxes and view your inbox
+3. In EmailJS, create a new email service:
+   - Go to Email Services → Add New Service → SMTP
+   - Enter a unique Service ID like 'mailtrap'
+   - Use the SMTP credentials from your Mailtrap inbox:
+     - Host: sandbox.smtp.mailtrap.io
+     - Port: 2525
+     - Username: (from Mailtrap inbox)
+     - Password: (from Mailtrap inbox)
+   - Select "Sending" as the email feature
+
+4. Add the Mailtrap service ID to your configuration:
+
+```js
+// In config.js
+emailjs: {
+  // ... other settings
+  mailtrapServiceId: 'your_mailtrap_service_id_here'
+}
+```
+
+Or with environment variables:
+
+```
+VITE_EMAILJS_MAILTRAP_SERVICE_ID=your_mailtrap_service_id_here
+```
+
+5. When developing, click the "Dev Options" text below the contact form to toggle test mode
+   - In test mode, emails will be sent to your Mailtrap inbox instead of real recipients
+
+## Development
+
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+``` 

@@ -1,21 +1,202 @@
+import { emailConfig } from '../config.js';
+
 export default function() {
   return {
     formSubmitted: false,
+    formError: false,
+    errorMessage: '',
+    loading: false,
     name: '',
     email: '',
     message: '',
+    isTestMode: false,
+    isEmailJSReady: false,
+    
+    init() {
+      // Check if test mode is enabled in localStorage
+      this.isTestMode = localStorage.getItem('emailTestMode') === 'true';
+      
+      // Load EmailJS script if it's not already loaded
+      this.loadEmailJS();
+    },
+    
+    loadEmailJS() {
+      if (window.emailjs) {
+        // EmailJS is already loaded
+        this.initializeEmailJS();
+        return;
+      }
+      
+      // Use the latest EmailJS SDK (v4)
+      const script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
+      script.async = true;
+      document.head.appendChild(script);
+      
+      script.onload = () => {
+        this.initializeEmailJS();
+      };
+      
+      script.onerror = () => {
+        console.error("Failed to load EmailJS script");
+        this.formError = true;
+        this.errorMessage = "Nie udało się załadować biblioteki do wysyłania e-maili. Prosimy o kontakt telefoniczny.";
+      };
+    },
+    
+    initializeEmailJS() {
+      try {
+        // Initialize EmailJS with your public key from config using the new API format
+        window.emailjs.init({
+          publicKey: emailConfig.emailjs.publicKey
+        });
+        
+        this.isEmailJSReady = true;
+        console.log("EmailJS initialized successfully with version:", window.emailjs.version);
+        
+        // Run a quick test to verify configuration
+        this.testEmailJSConfig();
+      } catch (error) {
+        console.error("Error initializing EmailJS:", error);
+        this.formError = true;
+        this.errorMessage = "Wystąpił błąd podczas inicjalizacji systemu kontaktowego. Prosimy o kontakt telefoniczny.";
+      }
+    },
+    
+    testEmailJSConfig() {
+      // Only test in development mode and not in production
+      if (import.meta.env?.DEV && this.isEmailJSReady) {
+        console.log("Testing EmailJS configuration...");
+        console.log("EmailJS Config:", emailConfig.emailjs);
+      }
+    },
+    
+    toggleTestMode() {
+      this.isTestMode = !this.isTestMode;
+      localStorage.setItem('emailTestMode', this.isTestMode);
+      console.log("Test mode toggled:", this.isTestMode ? "ON" : "OFF");
+    },
+    
+    validateConfig() {
+      const { publicKey, serviceId, templateId, mailtrapServiceId } = emailConfig.emailjs;
+      const activeServiceId = this.isTestMode ? mailtrapServiceId : serviceId;
+      
+      if (!this.isEmailJSReady) {
+        return "System kontaktowy nie jest gotowy. Odśwież stronę lub spróbuj ponownie później.";
+      }
+      
+      if (!publicKey || publicKey === 'your_emailjs_public_key') {
+        return "Brak klucza publicznego EmailJS.";
+      }
+      
+      if (this.isTestMode && (!mailtrapServiceId || mailtrapServiceId === 'your_mailtrap_service_id')) {
+        return "Tryb testowy nie jest poprawnie skonfigurowany.";
+      }
+      
+      if (!this.isTestMode && (!serviceId || serviceId === 'your_emailjs_service_id')) {
+        return "Usługa EmailJS nie jest poprawnie skonfigurowana.";
+      }
+      
+      if (!templateId || templateId === 'your_emailjs_template_id') {
+        return "Szablon EmailJS nie jest poprawnie skonfigurowany.";
+      }
+      
+      if (activeServiceId === 'service_mailtrap' && !this.isTestMode) {
+        return "Nie można użyć usługi Mailtrap w trybie produkcyjnym.";
+      }
+      
+      return null; // Config is valid
+    },
     
     submitForm() {
-      // Normally this would submit to a server
-      this.formSubmitted = true;
+      this.loading = true;
+      this.formError = false;
       
-      // Reset form after submission
-      setTimeout(() => {
-        this.formSubmitted = false;
-        this.name = '';
-        this.email = '';
-        this.message = '';
-      }, 3000);
+      // Validate form data
+      if (!this.name || !this.email || !this.message) {
+        this.formError = true;
+        this.errorMessage = "Proszę wypełnić wszystkie pola formularza.";
+        this.loading = false;
+        return;
+      }
+      
+      // Check if EmailJS is ready
+      if (!this.isEmailJSReady) {
+        this.formError = true;
+        this.errorMessage = "System do wysyłania e-maili nie jest gotowy. Odśwież stronę i spróbuj ponownie.";
+        this.loading = false;
+        return;
+      }
+      
+      // Check if EmailJS is properly configured
+      const configError = this.validateConfig();
+      if (configError) {
+        console.error("EmailJS configuration error:", configError);
+        this.formError = true;
+        this.errorMessage = `Błąd konfiguracji: ${configError} Prosimy o kontakt telefoniczny.`;
+        this.loading = false;
+        return;
+      }
+      
+      const { publicKey, serviceId, templateId, mailtrapServiceId } = emailConfig.emailjs;
+      
+      // Choose which service ID to use based on test mode
+      const activeServiceId = this.isTestMode ? mailtrapServiceId : serviceId;
+      
+      // Log configuration for debugging
+      console.log("EmailJS Configuration:", {
+        publicKey: publicKey ? (publicKey.substring(0, 5) + '...') : null,
+        serviceId,
+        templateId,
+        mailtrapServiceId,
+        isTestMode: this.isTestMode,
+        activeServiceId
+      });
+      
+      // Prepare data for submission
+      const templateParams = {
+        from_name: this.name,
+        reply_to: this.email,
+        message: this.message
+      };
+      
+      // Log if in test mode
+      if (this.isTestMode) {
+        console.log("Sending in TEST MODE to Mailtrap");
+      }
+      
+      // Send email using EmailJS with values from config (with updated API for v4)
+      window.emailjs
+        .send(activeServiceId, templateId, templateParams)
+        .then((response) => {
+          // Success
+          console.log("Email sent successfully:", response);
+          this.formSubmitted = true;
+          this.loading = false;
+          
+          // Reset form after submission
+          setTimeout(() => {
+            this.formSubmitted = false;
+            this.name = '';
+            this.email = '';
+            this.message = '';
+          }, 3000);
+        })
+        .catch((error) => {
+          // Error with more details
+          console.error("Email sending failed:", error);
+          
+          // Get detailed error message
+          let errorMessage = "Spróbuj ponownie później.";
+          if (error) {
+            if (error.text) errorMessage = error.text;
+            else if (error.message) errorMessage = error.message;
+          }
+          
+          this.formError = true;
+          this.errorMessage = `Wystąpił błąd podczas wysyłania wiadomości: ${errorMessage}`;
+          this.loading = false;
+        });
     },
     
     template: `
@@ -44,6 +225,11 @@ export default function() {
                 <p class="text-sm">Odpowiemy najszybciej jak to możliwe.</p>
               </div>
               
+              <div x-show="formError" class="mb-6 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+                <p class="font-medium">Błąd!</p>
+                <p class="text-sm" x-text="errorMessage"></p>
+              </div>
+              
               <form x-show="!formSubmitted" @submit.prevent="submitForm">
                 <div class="mb-6">
                   <label for="name" class="block text-gray-700 text-sm font-medium mb-2">Imię i nazwisko</label>
@@ -54,6 +240,7 @@ export default function() {
                     class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     placeholder="Jan Kowalski"
                     required
+                    :disabled="loading"
                   >
                 </div>
                 
@@ -66,6 +253,7 @@ export default function() {
                     class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     placeholder="jan@example.com"
                     required
+                    :disabled="loading"
                   >
                 </div>
                 
@@ -78,14 +266,44 @@ export default function() {
                     rows="4"
                     placeholder="Twoja wiadomość..."
                     required
+                    :disabled="loading"
                   ></textarea>
+                </div>
+                
+                <!-- Developer test mode toggle -->
+                <div class="mb-6 flex items-center" x-data="{ showDevOptions: false }">
+                  <button 
+                    type="button" 
+                    class="text-xs text-gray-500 hover:text-gray-700"
+                    @click.prevent="showDevOptions = !showDevOptions"
+                  >
+                    Dev Options
+                  </button>
+                  
+                  <div x-show="showDevOptions" class="ml-3 flex items-center">
+                    <label class="relative inline-flex items-center cursor-pointer">
+                      <input type="checkbox" class="sr-only peer" x-model="isTestMode" @change="toggleTestMode">
+                      <div class="w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-blue-600"></div>
+                      <span class="ml-2 text-xs font-medium text-gray-500">
+                        <span x-text="isTestMode ? 'Tryb testowy (Mailtrap)' : 'Tryb produkcyjny'"></span>
+                      </span>
+                    </label>
+                  </div>
                 </div>
                 
                 <button 
                   type="submit" 
                   class="w-full bg-blue-600 text-white font-semibold px-6 py-3 rounded-lg shadow-md hover:bg-blue-700 transition duration-300"
+                  :disabled="loading"
                 >
-                  Wyślij wiadomość
+                  <span x-show="!loading">Wyślij wiadomość</span>
+                  <span x-show="loading" class="flex items-center justify-center">
+                    <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Wysyłanie...
+                  </span>
                 </button>
               </form>
             </div>

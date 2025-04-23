@@ -22,8 +22,13 @@
     <!-- Styles -->
     <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="/tailwind.css">
-    <!-- Entry point for our bundled code -->
-    <script type="module" src="/src/app.js"></script>
+    
+    <!-- Entry point for our bundled code first, before Alpine -->
+    <script type="module" src="/src/main.js"></script>
+    
+    <!-- Alpine JS - Loaded after our bundle -->
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    
     <style>
         #loading, #error-container {
             display: flex;
@@ -74,6 +79,11 @@
         </div>
     </div>
 
+    <!-- Main app container -->
+    <div id="app">
+        <div id="app-layout"></div>
+    </div>
+
     <!-- Error container (hidden by default) -->
     <div id="error-container" style="display: none;">
         <div class="error-container">
@@ -102,6 +112,15 @@
             document.getElementById('error-message').textContent = 
                 'Upłynął limit czasu ładowania strony. Upewnij się, że wszystkie komponenty istnieją i uruchom skrypt konfiguracyjny.';
         }, 10000);
+
+        // Hide loading when components are loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            // Hide loading indicator when Alpine is set up
+            setTimeout(() => {
+                document.getElementById('loading').style.display = 'none';
+                clearTimeout(window.appLoadTimeout);
+            }, 2000);
+        });
 
         // Script to handle loading errors
         window.addEventListener('app-loaded', () => {

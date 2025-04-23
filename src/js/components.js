@@ -8,6 +8,19 @@ import FaqSection from '../components/FaqSection.js';
 import ContactSection from '../components/ContactSection.js';
 import AppLayout from '../components/AppLayout.js';
 
+// Directly export all components for immediate use
+export const components = {
+  headerComponent: Header,
+  footerComponent: Footer,
+  heroComponent: Hero,
+  accordionComponent: Accordion,
+  introSectionComponent: IntroSection,
+  treatmentSectionComponent: TreatmentSection,
+  faqSectionComponent: FaqSection,
+  contactSectionComponent: ContactSection,
+  appLayout: AppLayout
+};
+
 // Function to check if component exists and has template property
 function validateComponent(component, name) {
   if (!component) {
@@ -46,17 +59,7 @@ const Components = {
     console.log('Registering components with Alpine.js...');
     
     // Component registration map with validation
-    const componentMap = [
-      { name: 'headerComponent', component: Header },
-      { name: 'footerComponent', component: Footer },
-      { name: 'heroComponent', component: Hero },
-      { name: 'accordionComponent', component: Accordion },
-      { name: 'introSectionComponent', component: IntroSection },
-      { name: 'treatmentSectionComponent', component: TreatmentSection },
-      { name: 'faqSectionComponent', component: FaqSection },
-      { name: 'contactSectionComponent', component: ContactSection },
-      { name: 'appLayout', component: AppLayout }
-    ];
+    const componentMap = Object.entries(components).map(([name, component]) => ({ name, component }));
     
     // Register each component with validation
     let successCount = 0;
@@ -81,5 +84,12 @@ const Components = {
     console.log(`Component registration complete: ${successCount} succeeded, ${failCount} failed`);
   }
 };
+
+// Also register components globally if window is available (for direct script use)
+if (typeof window !== 'undefined') {
+  Object.entries(components).forEach(([name, component]) => {
+    window[name] = component;
+  });
+}
 
 export default Components; 
