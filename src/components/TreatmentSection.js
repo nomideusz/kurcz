@@ -168,7 +168,7 @@ export default function() {
           <div class="mt-20 text-center">
             <a 
               href="#contact" 
-              class="inline-flex items-center justify-center rounded-lg bg-blue-600 text-white font-semibold px-8 py-4 shadow-lg hover:bg-blue-700 transition duration-300"
+              class="inline-flex items-center justify-center rounded-lg bg-blue-700 text-white font-semibold px-8 py-4 shadow-lg hover:bg-blue-800 hover:shadow-xl transition-all duration-300"
             >
               Skonsultuj się z lekarzem
               <svg class="ml-2 h-5 w-5" viewBox="0 0 20 20" fill="currentColor">

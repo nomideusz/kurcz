@@ -88,7 +88,7 @@ export default function() {
             <p class="text-gray-600 mb-6">Masz inne pytanie? Skontaktuj się z nami!</p>
             <a 
               href="#contact" 
-              class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 transition-colors duration-300"
+              class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-700 hover:bg-blue-800 hover:shadow-lg transition-all duration-300"
             >
               Skontaktuj się
               <svg class="ml-2 -mr-1 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

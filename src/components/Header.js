@@ -18,6 +18,13 @@ export default function() {
         // Update active section based on scroll position
         this.updateActiveSection();
       });
+
+      // Close menu when escape key is pressed
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && this.menuOpen) {
+          this.menuOpen = false;
+        }
+      });
     },
     
     updateActiveSection() {
@@ -44,6 +51,21 @@ export default function() {
         class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
         :class="scrolledDown ? 'bg-white/95 backdrop-blur-sm shadow-md py-4' : 'bg-transparent py-6'"
       >
+        <!-- Fullscreen backdrop for mobile menu -->
+        <div 
+          x-cloak
+          x-show="menuOpen" 
+          x-transition:enter="transition-opacity ease-out duration-300"
+          x-transition:enter-start="opacity-0"
+          x-transition:enter-end="opacity-100"
+          x-transition:leave="transition-opacity ease-in duration-300"
+          x-transition:leave-start="opacity-100"
+          x-transition:leave-end="opacity-0"
+          @click="menuOpen = false"
+          class="fixed inset-0 bg-black/50 z-40"
+          aria-hidden="true"
+        ></div>
+
         <div class="container mx-auto px-6 relative">
           <div class="flex justify-between items-center w-full">
             <!-- Logo - explicitly on the left -->
@@ -138,6 +160,8 @@ export default function() {
                 class="focus:outline-none transition-colors duration-300 p-2 rounded-md z-50"
                 :class="scrolledDown ? 'text-gray-700 hover:bg-gray-100' : 'text-white hover:bg-white/20'"
                 aria-label="Toggle menu"
+                aria-expanded="menuOpen"
+                aria-controls="mobile-menu"
               >
                 <svg x-cloak x-show="!menuOpen" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -160,6 +184,8 @@ export default function() {
             x-transition:leave-start="opacity-100 transform translate-y-0"
             x-transition:leave-end="opacity-0 transform -translate-y-2"
             class="absolute top-full left-0 right-0 z-40 mt-2 px-6"
+            id="mobile-menu"
+            @click.away="menuOpen = false"
           >
             <nav class="bg-white rounded-xl shadow-lg py-3 flex flex-col w-full max-h-[calc(100vh-150px)] overflow-y-auto">
               <a 

@@ -37,7 +37,7 @@ export default function() {
                 </a>
                 <a 
                   href="#treatment" 
-                  class="inline-flex items-center justify-center rounded-lg bg-blue-600 bg-opacity-20 text-white border border-blue-300 border-opacity-30 font-semibold px-6 py-3 hover:bg-opacity-40 hover:border-opacity-50 hover:shadow-lg transition duration-300"
+                  class="inline-flex items-center justify-center rounded-lg bg-blue-700 text-white border border-blue-600 font-semibold px-6 py-3 shadow-lg hover:bg-blue-800 hover:border-blue-700 hover:shadow-xl transition duration-300"
                 >
                   Metody leczenia
                 </a>
