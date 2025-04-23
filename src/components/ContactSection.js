@@ -13,8 +13,8 @@ export default function() {
     isEmailJSReady: false,
     
     init() {
-      // Check if test mode is enabled in localStorage
-      this.isTestMode = localStorage.getItem('emailTestMode') === 'true';
+      // Usunięto test mode, zawsze używamy produkcyjnego
+      this.isTestMode = false;
       
       // Load EmailJS script if it's not already loaded
       this.loadEmailJS();
@@ -53,9 +53,6 @@ export default function() {
         
         this.isEmailJSReady = true;
         console.log("EmailJS initialized successfully with version:", window.emailjs.version);
-        
-        // Run a quick test to verify configuration
-        this.testEmailJSConfig();
       } catch (error) {
         console.error("Error initializing EmailJS:", error);
         this.formError = true;
@@ -63,23 +60,8 @@ export default function() {
       }
     },
     
-    testEmailJSConfig() {
-      // Only test in development mode and not in production
-      if (import.meta.env?.DEV && this.isEmailJSReady) {
-        console.log("Testing EmailJS configuration...");
-        console.log("EmailJS Config:", emailConfig.emailjs);
-      }
-    },
-    
-    toggleTestMode() {
-      this.isTestMode = !this.isTestMode;
-      localStorage.setItem('emailTestMode', this.isTestMode);
-      console.log("Test mode toggled:", this.isTestMode ? "ON" : "OFF");
-    },
-    
     validateConfig() {
-      const { publicKey, serviceId, templateId, mailtrapServiceId } = emailConfig.emailjs;
-      const activeServiceId = this.isTestMode ? mailtrapServiceId : serviceId;
+      const { publicKey, serviceId, templateId } = emailConfig.emailjs;
       
       if (!this.isEmailJSReady) {
         return "System kontaktowy nie jest gotowy. Odśwież stronę lub spróbuj ponownie później.";
@@ -89,20 +71,12 @@ export default function() {
         return "Brak klucza publicznego EmailJS.";
       }
       
-      if (this.isTestMode && (!mailtrapServiceId || mailtrapServiceId === 'your_mailtrap_service_id')) {
-        return "Tryb testowy nie jest poprawnie skonfigurowany.";
-      }
-      
-      if (!this.isTestMode && (!serviceId || serviceId === 'your_emailjs_service_id')) {
+      if (!serviceId || serviceId === 'your_emailjs_service_id') {
         return "Usługa EmailJS nie jest poprawnie skonfigurowana.";
       }
       
       if (!templateId || templateId === 'your_emailjs_template_id') {
         return "Szablon EmailJS nie jest poprawnie skonfigurowany.";
-      }
-      
-      if (activeServiceId === 'service_mailtrap' && !this.isTestMode) {
-        return "Nie można użyć usługi Mailtrap w trybie produkcyjnym.";
       }
       
       return null; // Config is valid
@@ -138,20 +112,7 @@ export default function() {
         return;
       }
       
-      const { publicKey, serviceId, templateId, mailtrapServiceId } = emailConfig.emailjs;
-      
-      // Choose which service ID to use based on test mode
-      const activeServiceId = this.isTestMode ? mailtrapServiceId : serviceId;
-      
-      // Log configuration for debugging
-      console.log("EmailJS Configuration:", {
-        publicKey: publicKey ? (publicKey.substring(0, 5) + '...') : null,
-        serviceId,
-        templateId,
-        mailtrapServiceId,
-        isTestMode: this.isTestMode,
-        activeServiceId
-      });
+      const { serviceId, templateId } = emailConfig.emailjs;
       
       // Prepare data for submission
       const templateParams = {
@@ -160,14 +121,9 @@ export default function() {
         message: this.message
       };
       
-      // Log if in test mode
-      if (this.isTestMode) {
-        console.log("Sending in TEST MODE to Mailtrap");
-      }
-      
       // Send email using EmailJS with values from config (with updated API for v4)
       window.emailjs
-        .send(activeServiceId, templateId, templateParams)
+        .send(serviceId, templateId, templateParams)
         .then((response) => {
           // Success
           console.log("Email sent successfully:", response);
@@ -268,27 +224,6 @@ export default function() {
                     required
                     :disabled="loading"
                   ></textarea>
-                </div>
-                
-                <!-- Developer test mode toggle -->
-                <div class="mb-6 flex items-center" x-data="{ showDevOptions: false }">
-                  <button 
-                    type="button" 
-                    class="text-xs text-gray-500 hover:text-gray-700"
-                    @click.prevent="showDevOptions = !showDevOptions"
-                  >
-                    Dev Options
-                  </button>
-                  
-                  <div x-show="showDevOptions" class="ml-3 flex items-center">
-                    <label class="relative inline-flex items-center cursor-pointer">
-                      <input type="checkbox" class="sr-only peer" x-model="isTestMode" @change="toggleTestMode">
-                      <div class="w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-blue-600"></div>
-                      <span class="ml-2 text-xs font-medium text-gray-500">
-                        <span x-text="isTestMode ? 'Tryb testowy (Mailtrap)' : 'Tryb produkcyjny'"></span>
-                      </span>
-                    </label>
-                  </div>
                 </div>
                 
                 <button 
