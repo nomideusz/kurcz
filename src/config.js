@@ -29,7 +29,7 @@ export const emailConfig = {
     
     // Zaktualizowany poprawny ID szablonu dla produkcji
     templateId: tryGetEnv('VITE_EMAILJS_TEMPLATE_ID', 'EMAILJS_TEMPLATE_ID') || 
-                'template_3a6k2wy',
+                'template_58mu3e2',
                 
     // Service ID dla usługi Mailtrap w EmailJS - używane tylko w trybie deweloperskim
     mailtrapServiceId: tryGetEnv('VITE_EMAILJS_MAILTRAP_SERVICE_ID', 'EMAILJS_MAILTRAP_SERVICE_ID') || 

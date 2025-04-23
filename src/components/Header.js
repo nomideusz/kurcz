@@ -62,21 +62,21 @@ export default function() {
               <a 
                 href="#home" 
                 @click="activeSection = 'home'" 
-                class="relative py-2 px-1 transition-colors duration-300 border-b-2"
+                class="relative py-2 px-1 transition-all duration-300 border-b-2"
                 :class="isActive('home') 
                   ? scrolledDown 
                     ? 'text-blue-700 font-medium border-blue-600' 
                     : 'text-white font-medium border-white' 
                   : scrolledDown 
                     ? 'text-gray-700 hover:text-blue-600 border-transparent hover:border-blue-600' 
-                    : 'text-white/90 hover:text-blue-200 border-transparent hover:border-blue-200'"
+                    : 'text-white/90 hover:text-white border-transparent hover:border-white'"
               >
                 <span>Strona główna</span>
               </a>
               <a 
                 href="#intro" 
                 @click="activeSection = 'intro'" 
-                class="relative py-2 px-1 transition-colors duration-300 border-b-2"
+                class="relative py-2 px-1 transition-all duration-300 border-b-2"
                 :class="isActive('intro') 
                   ? scrolledDown 
                     ? 'text-blue-700 font-medium border-blue-600' 
@@ -90,7 +90,7 @@ export default function() {
               <a 
                 href="#treatment" 
                 @click="activeSection = 'treatment'" 
-                class="relative py-2 px-1 transition-colors duration-300 border-b-2"
+                class="relative py-2 px-1 transition-all duration-300 border-b-2"
                 :class="isActive('treatment') 
                   ? scrolledDown 
                     ? 'text-blue-700 font-medium border-blue-600' 
@@ -104,7 +104,7 @@ export default function() {
               <a 
                 href="#faq" 
                 @click="activeSection = 'faq'" 
-                class="relative py-2 px-1 transition-colors duration-300 border-b-2"
+                class="relative py-2 px-1 transition-all duration-300 border-b-2"
                 :class="isActive('faq') 
                   ? scrolledDown 
                     ? 'text-blue-700 font-medium border-blue-600' 
@@ -118,7 +118,7 @@ export default function() {
               <a 
                 href="#contact" 
                 @click="activeSection = 'contact'" 
-                class="relative py-2 px-1 transition-colors duration-300 border-b-2"
+                class="relative py-2 px-1 transition-all duration-300 border-b-2"
                 :class="isActive('contact') 
                   ? scrolledDown 
                     ? 'text-blue-700 font-medium border-blue-600' 
@@ -165,7 +165,7 @@ export default function() {
               <a 
                 href="#home" 
                 @click="activeSection = 'home'; menuOpen = false" 
-                class="text-gray-700 hover:text-blue-600 transition py-3 px-4 hover:bg-blue-50 border-l-4"
+                class="text-gray-700 hover:text-blue-600 transition-all duration-300 py-3 px-4 hover:bg-blue-50 border-l-4"
                 :class="isActive('home') ? 'bg-blue-50 text-blue-700 font-medium border-blue-600' : 'border-transparent'"
               >
                 Strona główna
@@ -173,7 +173,7 @@ export default function() {
               <a 
                 href="#intro" 
                 @click="activeSection = 'intro'; menuOpen = false" 
-                class="text-gray-700 hover:text-blue-600 transition py-3 px-4 hover:bg-blue-50 border-l-4"
+                class="text-gray-700 hover:text-blue-600 transition-all duration-300 py-3 px-4 hover:bg-blue-50 border-l-4"
                 :class="isActive('intro') ? 'bg-blue-50 text-blue-700 font-medium border-blue-600' : 'border-transparent'"
               >
                 O kurczach
@@ -181,7 +181,7 @@ export default function() {
               <a 
                 href="#treatment" 
                 @click="activeSection = 'treatment'; menuOpen = false" 
-                class="text-gray-700 hover:text-blue-600 transition py-3 px-4 hover:bg-blue-50 border-l-4"
+                class="text-gray-700 hover:text-blue-600 transition-all duration-300 py-3 px-4 hover:bg-blue-50 border-l-4"
                 :class="isActive('treatment') ? 'bg-blue-50 text-blue-700 font-medium border-blue-600' : 'border-transparent'"
               >
                 Leczenie
@@ -189,7 +189,7 @@ export default function() {
               <a 
                 href="#faq" 
                 @click="activeSection = 'faq'; menuOpen = false" 
-                class="text-gray-700 hover:text-blue-600 transition py-3 px-4 hover:bg-blue-50 border-l-4"
+                class="text-gray-700 hover:text-blue-600 transition-all duration-300 py-3 px-4 hover:bg-blue-50 border-l-4"
                 :class="isActive('faq') ? 'bg-blue-50 text-blue-700 font-medium border-blue-600' : 'border-transparent'"
               >
                 FAQ
@@ -197,7 +197,7 @@ export default function() {
               <a 
                 href="#contact" 
                 @click="activeSection = 'contact'; menuOpen = false" 
-                class="text-gray-700 hover:text-blue-600 transition py-3 px-4 hover:bg-blue-50 border-l-4"
+                class="text-gray-700 hover:text-blue-600 transition-all duration-300 py-3 px-4 hover:bg-blue-50 border-l-4"
                 :class="isActive('contact') ? 'bg-blue-50 text-blue-700 font-medium border-blue-600' : 'border-transparent'"
               >
                 Kontakt

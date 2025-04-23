@@ -12,20 +12,20 @@ importers:
         specifier: ^4.4.1
         version: 4.4.1
       alpinejs:
-        specifier: ^3.13.0
+        specifier: ^3.14.9
         version: 3.14.9
     devDependencies:
       autoprefixer:
-        specifier: ^10.4.16
+        specifier: ^10.4.21
         version: 10.4.21(postcss@8.5.3)
       postcss:
-        specifier: ^8.4.31
+        specifier: ^8.5.3
         version: 8.5.3
       tailwindcss:
-        specifier: ^3.3.3
+        specifier: ^3.4.17
         version: 3.4.17
       vite:
-        specifier: ^4.4.9
+        specifier: ^4.5.13
         version: 4.5.13
 
 packages:
