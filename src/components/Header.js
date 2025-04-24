@@ -38,6 +38,15 @@ export default function() {
           this.menuOpen = false;
         }
       });
+
+      // Add/remove blur class to main content when mobile menu is toggled
+      this.$watch('menuOpen', (isOpen) => {
+        if (isOpen) {
+          document.body.classList.add('content-blurred');
+        } else {
+          document.body.classList.remove('content-blurred');
+        }
+      });
     },
     
     updateActiveSection() {
@@ -62,9 +71,9 @@ export default function() {
     template: `
       <header 
         class="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
-        :class="scrolledDown ? 'bg-white/95 backdrop-blur-sm shadow-lg py-3' : 'bg-transparent py-6'"
+        :class="scrolledDown || menuOpen ? 'bg-white/95 backdrop-blur-sm shadow-lg py-3' : 'bg-transparent py-6'"
       >
-        <!-- Fullscreen backdrop for mobile menu -->
+        <!-- Full-page content overlay (blurs content behind menu) -->
         <div 
           x-cloak
           x-show="menuOpen" 
@@ -74,8 +83,24 @@ export default function() {
           x-transition:leave="transition-opacity ease-in duration-300"
           x-transition:leave-start="opacity-100"
           x-transition:leave-end="opacity-0"
+          class="fixed inset-0 bg-transparent z-30 pointer-events-none"
+          style="backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);"
+          aria-hidden="true"
+        ></div>
+        
+        <!-- Fullscreen backdrop for mobile menu -->
+        <div 
+          x-cloak
+          x-show="menuOpen" 
+          x-transition:enter="transition ease-out duration-300"
+          x-transition:enter-start="opacity-0 backdrop-blur-none"
+          x-transition:enter-end="opacity-100 backdrop-blur-sm"
+          x-transition:leave="transition ease-in duration-300"
+          x-transition:leave-start="opacity-100 backdrop-blur-sm"
+          x-transition:leave-end="opacity-0 backdrop-blur-none"
           @click="menuOpen = false"
           class="fixed inset-0 bg-black/60 z-40 backdrop-blur-sm"
+          style="backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);"
           aria-hidden="true"
         ></div>
 
@@ -233,15 +258,17 @@ export default function() {
             x-transition:leave="transition ease-in duration-300"
             x-transition:leave-start="opacity-100 transform translate-y-0"
             x-transition:leave-end="opacity-0 transform -translate-y-4"
-            class="absolute top-full left-0 right-0 z-40 mt-4 px-6"
+            class="absolute top-full left-0 right-0 z-50 mt-4 px-6 no-blur"
             id="mobile-menu"
+            style="filter: none !important; backdrop-filter: none !important;"
             @click.away="menuOpen = false"
           >
-            <nav class="bg-white rounded-xl shadow-xl py-4 flex flex-col w-full max-h-[calc(100vh-150px)] overflow-y-auto">
+            <nav class="bg-white rounded-xl shadow-xl py-4 flex flex-col w-full max-h-[calc(100vh-150px)] overflow-y-auto no-blur"
+                 style="filter: none !important; backdrop-filter: none !important;">
               <button 
                 @click="activeSection = 'home'; menuOpen = false; window.location.href='#home'" 
                 type="button"
-                class="text-gray-700 hover:text-blue-600 transition-all duration-300 py-4 px-6 hover:bg-blue-50 border-l-4 text-left bg-transparent cursor-pointer w-full font-medium"
+                class="text-gray-700 hover:text-blue-600 transition-all duration-300 py-4 px-6 hover:bg-blue-50 border-l-4 text-left bg-transparent cursor-pointer w-full font-medium no-blur"
                 :class="isActive('home') ? 'bg-blue-50 text-blue-700 border-blue-600' : 'border-transparent'"
               >
                 <div class="flex items-center">
@@ -254,7 +281,7 @@ export default function() {
               <button 
                 @click="activeSection = 'intro'; menuOpen = false; window.location.href='#intro'" 
                 type="button"
-                class="text-gray-700 hover:text-blue-600 transition-all duration-300 py-4 px-6 hover:bg-blue-50 border-l-4 text-left bg-transparent cursor-pointer w-full font-medium"
+                class="text-gray-700 hover:text-blue-600 transition-all duration-300 py-4 px-6 hover:bg-blue-50 border-l-4 text-left bg-transparent cursor-pointer w-full font-medium no-blur"
                 :class="isActive('intro') ? 'bg-blue-50 text-blue-700 border-blue-600' : 'border-transparent'"
               >
                 <div class="flex items-center">
@@ -267,7 +294,7 @@ export default function() {
               <button 
                 @click="activeSection = 'treatment'; menuOpen = false; window.location.href='#treatment'" 
                 type="button"
-                class="text-gray-700 hover:text-blue-600 transition-all duration-300 py-4 px-6 hover:bg-blue-50 border-l-4 text-left bg-transparent cursor-pointer w-full font-medium"
+                class="text-gray-700 hover:text-blue-600 transition-all duration-300 py-4 px-6 hover:bg-blue-50 border-l-4 text-left bg-transparent cursor-pointer w-full font-medium no-blur"
                 :class="isActive('treatment') ? 'bg-blue-50 text-blue-700 border-blue-600' : 'border-transparent'"
               >
                 <div class="flex items-center">
@@ -280,7 +307,7 @@ export default function() {
               <button 
                 @click="activeSection = 'wibroakustyka'; menuOpen = false; window.location.href='#wibroakustyka'" 
                 type="button"
-                class="text-gray-700 hover:text-blue-600 transition-all duration-300 py-4 px-6 hover:bg-blue-50 border-l-4 text-left bg-transparent cursor-pointer w-full font-medium"
+                class="text-gray-700 hover:text-blue-600 transition-all duration-300 py-4 px-6 hover:bg-blue-50 border-l-4 text-left bg-transparent cursor-pointer w-full font-medium no-blur"
                 :class="isActive('wibroakustyka') ? 'bg-blue-50 text-blue-700 border-blue-600' : 'border-transparent'"
               >
                 <div class="flex items-center">
@@ -293,7 +320,7 @@ export default function() {
               <button 
                 @click="activeSection = 'faq'; menuOpen = false; window.location.href='#faq'" 
                 type="button"
-                class="text-gray-700 hover:text-blue-600 transition-all duration-300 py-4 px-6 hover:bg-blue-50 border-l-4 text-left bg-transparent cursor-pointer w-full font-medium"
+                class="text-gray-700 hover:text-blue-600 transition-all duration-300 py-4 px-6 hover:bg-blue-50 border-l-4 text-left bg-transparent cursor-pointer w-full font-medium no-blur"
                 :class="isActive('faq') ? 'bg-blue-50 text-blue-700 border-blue-600' : 'border-transparent'"
               >
                 <div class="flex items-center">
@@ -306,7 +333,7 @@ export default function() {
               <button 
                 @click="activeSection = 'contact'; menuOpen = false; window.location.href='#contact'" 
                 type="button"
-                class="text-gray-700 hover:text-blue-600 transition-all duration-300 py-4 px-6 hover:bg-blue-50 border-l-4 text-left bg-transparent cursor-pointer w-full font-medium"
+                class="text-gray-700 hover:text-blue-600 transition-all duration-300 py-4 px-6 hover:bg-blue-50 border-l-4 text-left bg-transparent cursor-pointer w-full font-medium no-blur"
                 :class="isActive('contact') ? 'bg-blue-50 text-blue-700 border-blue-600' : 'border-transparent'"
               >
                 <div class="flex items-center">

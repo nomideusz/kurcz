@@ -160,63 +160,63 @@ export default function() {
               
               <div class="bg-white rounded-xl shadow-md overflow-hidden p-6">
                 <ul class="space-y-4">
-                  <li class="flex items-start">
-                    <div class="flex-shrink-0 w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 mr-3">
-                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  <li class="flex flex-row items-start">
+                    <div class="flex-shrink-0 w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 mr-3 mt-0.5">
+                      <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                       </svg>
                     </div>
-                    <div>
-                      <h4 class="font-medium text-gray-800">Utrzymuj odpowiednie nawodnienie</h4>
-                      <p class="mt-1 text-gray-600">Pij regularnie wodę przez cały dzień, szczególnie przed, w trakcie i po aktywności fizycznej.</p>
+                    <div class="flex-1">
+                      <h4 class="font-medium text-gray-800 mt-0">Utrzymuj odpowiednie nawodnienie</h4>
+                      <p class="text-gray-600">Pij regularnie wodę przez cały dzień, szczególnie przed, w trakcie i po aktywności fizycznej.</p>
                     </div>
                   </li>
                   
-                  <li class="flex items-start">
-                    <div class="flex-shrink-0 w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 mr-3">
-                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  <li class="flex flex-row items-start">
+                    <div class="flex-shrink-0 w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 mr-3 mt-0.5">
+                      <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                       </svg>
                     </div>
-                    <div>
-                      <h4 class="font-medium text-gray-800">Zrównoważona dieta</h4>
-                      <p class="mt-1 text-gray-600">Spożywaj pokarmy bogate w potas, magnez i wapń, kluczowe minerały dla prawidłowej funkcji mięśni.</p>
+                    <div class="flex-1">
+                      <h4 class="font-medium text-gray-800 mt-0">Zrównoważona dieta</h4>
+                      <p class="text-gray-600">Spożywaj pokarmy bogate w potas, magnez i wapń, kluczowe minerały dla prawidłowej funkcji mięśni.</p>
                     </div>
                   </li>
                   
-                  <li class="flex items-start">
-                    <div class="flex-shrink-0 w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 mr-3">
-                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  <li class="flex flex-row items-start">
+                    <div class="flex-shrink-0 w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 mr-3 mt-0.5">
+                      <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                       </svg>
                     </div>
-                    <div>
-                      <h4 class="font-medium text-gray-800">Regularne rozciąganie</h4>
-                      <p class="mt-1 text-gray-600">Wykonuj ćwiczenia rozciągające przed i po aktywności fizycznej, szczególnie skupiając się na mięśniach podatnych na skurcze.</p>
+                    <div class="flex-1">
+                      <h4 class="font-medium text-gray-800 mt-0">Regularne rozciąganie</h4>
+                      <p class="text-gray-600">Wykonuj ćwiczenia rozciągające przed i po aktywności fizycznej, szczególnie skupiając się na mięśniach podatnych na skurcze.</p>
                     </div>
                   </li>
                   
-                  <li class="flex items-start">
-                    <div class="flex-shrink-0 w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 mr-3">
-                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  <li class="flex flex-row items-start">
+                    <div class="flex-shrink-0 w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 mr-3 mt-0.5">
+                      <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                       </svg>
                     </div>
-                    <div>
-                      <h4 class="font-medium text-gray-800">Stopniowe zwiększanie intensywności ćwiczeń</h4>
-                      <p class="mt-1 text-gray-600">Unikaj nagłego zwiększania intensywności lub czasu trwania aktywności fizycznej. Pozwól swoim mięśniom dostosować się stopniowo.</p>
+                    <div class="flex-1">
+                      <h4 class="font-medium text-gray-800 mt-0">Stopniowe zwiększanie intensywności ćwiczeń</h4>
+                      <p class="text-gray-600">Unikaj nagłego zwiększania intensywności lub czasu trwania aktywności fizycznej. Pozwól swoim mięśniom dostosować się stopniowo.</p>
                     </div>
                   </li>
                   
-                  <li class="flex items-start">
-                    <div class="flex-shrink-0 w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 mr-3">
-                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  <li class="flex flex-row items-start">
+                    <div class="flex-shrink-0 w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 mr-3 mt-0.5">
+                      <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                       </svg>
                     </div>
-                    <div>
-                      <h4 class="font-medium text-gray-800">Regularny przegląd leków</h4>
-                      <p class="mt-1 text-gray-600">Konsultuj z lekarzem leki, które przyjmujesz, ponieważ niektóre mogą zwiększać ryzyko wystąpienia skurczów mięśni.</p>
+                    <div class="flex-1">
+                      <h4 class="font-medium text-gray-800 mt-0">Regularny przegląd leków</h4>
+                      <p class="text-gray-600">Konsultuj z lekarzem leki, które przyjmujesz, ponieważ niektóre mogą zwiększać ryzyko wystąpienia skurczów mięśni.</p>
                     </div>
                   </li>
                 </ul>
@@ -232,31 +232,31 @@ export default function() {
                 </svg>
               </div>
               <div>
-                <h4 class="text-xl font-semibold text-gray-800">Kiedy skontaktować się z lekarzem?</h4>
+                <h4 class="text-xl font-semibold text-gray-800 mt-0">Kiedy skontaktować się z lekarzem?</h4>
                 <ul class="mt-2 space-y-2 text-gray-600">
-                  <li class="flex items-center">
-                    <svg class="w-4 h-4 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <li class="flex flex-row items-center">
+                    <svg class="w-4 h-4 text-blue-600 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                     </svg>
-                    Skurcze są częste i nawracające, mimo stosowania metod profilaktyki
+                    <span class="flex-1">Skurcze są częste i nawracające, mimo stosowania metod profilaktyki</span>
                   </li>
-                  <li class="flex items-center">
-                    <svg class="w-4 h-4 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <li class="flex flex-row items-center">
+                    <svg class="w-4 h-4 text-blue-600 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                     </svg>
-                    Skurczom towarzyszy silny ból, obrzęk lub zaczerwienienie
+                    <span class="flex-1">Skurczom towarzyszy silny ból, obrzęk lub zaczerwienienie</span>
                   </li>
-                  <li class="flex items-center">
-                    <svg class="w-4 h-4 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <li class="flex flex-row items-center">
+                    <svg class="w-4 h-4 text-blue-600 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                     </svg>
-                    Skurcze występują bez wyraźnej przyczyny lub w spoczynku
+                    <span class="flex-1">Skurcze występują bez wyraźnej przyczyny lub w spoczynku</span>
                   </li>
-                  <li class="flex items-center">
-                    <svg class="w-4 h-4 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <li class="flex flex-row items-center">
+                    <svg class="w-4 h-4 text-blue-600 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                     </svg>
-                    Masz choroby przewlekłe jak cukrzyca, choroby nerwów lub naczyń krwionośnych
+                    <span class="flex-1">Masz choroby przewlekłe jak cukrzyca, choroby nerwów lub naczyń krwionośnych</span>
                   </li>
                 </ul>
               </div>
