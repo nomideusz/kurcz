@@ -1,26 +1,39 @@
 export default function() {
   return {
     init() {
-      // We'll use text-based logo until images are available
+      // Loggers to debug visibility issues
+      console.log('Logo component initialized');
+      
+      // Listen for header store changes
+      document.addEventListener('alpine:initialized', () => {
+        console.log('Alpine initialized in Logo component');
+        if (window.Alpine && window.Alpine.store('header')) {
+          console.log('Header store state:', window.Alpine.store('header'));
+        } else {
+          console.warn('Header store not found when Logo initialized');
+        }
+      });
     },
     
     template: `
-      <div class="logo-container">
-        <!-- Text logo for scrolled/menu open state (dark background) -->
-        <div 
+      <div class="logo-container block h-9 sm:h-10 relative">
+        <!-- Dark logo for scrolled/menu open state -->
+        <img 
+          x-cloak
           x-show="$store.header.scrolledDown || $store.header.menuOpen"
-          class="h-9 sm:h-10 flex items-center font-bold text-gray-800 text-xl transition-all duration-300"
+          src="/img/logo.webp" 
+          class="h-9 sm:h-10 w-auto transition-opacity duration-300"
+          alt="Logo KURCZ"
         >
-          KURCZ.PL
-        </div>
         
-        <!-- Text logo for transparent header state (light text on dark background) -->
-        <div 
+        <!-- White logo for transparent header state -->
+        <img 
+          x-cloak
           x-show="!$store.header.scrolledDown && !$store.header.menuOpen"
-          class="h-9 sm:h-10 flex items-center font-bold text-white text-xl transition-all duration-300"
+          src="/img/logo-white.webp" 
+          class="h-9 sm:h-10 w-auto transition-opacity duration-300"
+          alt="Logo KURCZ"
         >
-          KURCZ.PL
-        </div>
       </div>
     `
   };
