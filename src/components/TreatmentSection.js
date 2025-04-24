@@ -47,6 +47,53 @@ export default function() {
     template: `
       <section id="treatment" class="py-20 bg-gray-50">
         <div class="container mx-auto px-6">
+          <!-- Emergency Relief Card -->
+          <div class="max-w-5xl mx-auto mb-16 bg-red-50 rounded-xl shadow-lg overflow-hidden border-l-4 border-red-500 transform transition-all duration-300 hover:shadow-xl">
+            <div class="p-6 md:p-8">
+              <div class="flex items-center mb-6">
+                <svg class="w-10 h-10 text-red-600 mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                </svg>
+                <h2 class="text-2xl md:text-3xl font-bold text-red-800">Natychmiastowa pomoc przy kurczach</h2>
+              </div>
+              
+              <div class="grid md:grid-cols-3 gap-4 mb-6">
+                <div class="bg-white p-5 rounded-lg shadow-md border-l-4 border-red-400 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+                  <div class="flex items-center mb-3">
+                    <span class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center text-red-600 mr-3 font-bold text-lg">1</span>
+                    <h3 class="font-semibold text-gray-800 text-lg">Rozciąganie</h3>
+                  </div>
+                  <p class="text-gray-600">Delikatnie rozciągnij skurczony mięsień. Przy skurczu łydki - wyprostuj nogę i przyciągnij palce w kierunku ciała.</p>
+                </div>
+                
+                <div class="bg-white p-5 rounded-lg shadow-md border-l-4 border-red-400 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+                  <div class="flex items-center mb-3">
+                    <span class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center text-red-600 mr-3 font-bold text-lg">2</span>
+                    <h3 class="font-semibold text-gray-800 text-lg">Masaż</h3>
+                  </div>
+                  <p class="text-gray-600">Delikatnie masuj skurczony mięsień okrężnymi ruchami, stopniowo zwiększając nacisk do momentu ustąpienia skurczu.</p>
+                </div>
+                
+                <div class="bg-white p-5 rounded-lg shadow-md border-l-4 border-red-400 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+                  <div class="flex items-center mb-3">
+                    <span class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center text-red-600 mr-3 font-bold text-lg">3</span>
+                    <h3 class="font-semibold text-gray-800 text-lg">Nawodnienie</h3>
+                  </div>
+                  <p class="text-gray-600">Wypij wodę z elektrolitami. Uzupełnij elektrolity (sód, potas, magnez) - możesz dodać szczyptę soli do wody.</p>
+                </div>
+              </div>
+              
+              <div class="bg-white p-5 rounded-lg shadow-md border-l-4 border-red-400">
+                <p class="text-red-700 font-medium flex items-start">
+                  <svg class="w-6 h-6 inline-block mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span>Skurcze utrzymujące się dłużej niż 10 minut, bardzo bolesne, lub występujące regularnie wymagają konsultacji lekarskiej.</span>
+                </p>
+              </div>
+            </div>
+          </div>
+          
           <div class="max-w-3xl mx-auto text-center mb-16">
             <span class="text-blue-600 font-semibold text-sm uppercase tracking-wider">Leczenie i Profilaktyka</span>
             <h2 class="text-3xl md:text-4xl font-bold mt-2 mb-6 text-gray-800">

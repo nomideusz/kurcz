@@ -1,5 +1,6 @@
 // Import CSS
 import './css/styles.css';
+import './css/typography.css';
 
 // Import Alpine and components
 import Alpine from 'alpinejs';
@@ -10,6 +11,8 @@ import IntroSection from './components/IntroSection.js';
 import TreatmentSection from './components/TreatmentSection.js';
 import FaqSection from './components/FaqSection.js';
 import ContactSection from './components/ContactSection.js';
+import WibroakustykaSection from './components/WibroakustykaSection.js';
+import Logo from './components/Logo.js';
 import AppLayout from './components/AppLayout.js';
 import { emailConfig } from './config.js';
 
@@ -38,6 +41,8 @@ window.introSectionComponent = IntroSection;
 window.treatmentSectionComponent = TreatmentSection;
 window.faqSectionComponent = FaqSection;
 window.contactSectionComponent = ContactSection;
+window.wibroakustykaSectionComponent = WibroakustykaSection;
+window.logoComponent = Logo;
 window.appLayout = AppLayout;
 
 // Function to render the app
@@ -56,6 +61,9 @@ function renderApp() {
       
       <!-- Treatment Section Component -->
       <div x-data="treatmentSectionComponent()" x-html="template"></div>
+      
+      <!-- Wibroakustyka Section Component -->
+      <div x-data="wibroakustykaSectionComponent()" x-html="template"></div>
       
       <!-- FAQ Section Component -->
       <div x-data="faqSectionComponent()" x-html="template"></div>
