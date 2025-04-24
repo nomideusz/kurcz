@@ -86,15 +86,16 @@ export default function() {
           
           <div class="text-center mt-12">
             <p class="text-gray-600 mb-6">Masz inne pytanie? Skontaktuj się z nami!</p>
-            <a 
-              href="#contact" 
-              class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-700 hover:bg-blue-800 hover:shadow-lg transition-all duration-300"
+            <button 
+              type="button"
+              @click="window.location.href='#contact'"
+              class="inline-flex items-center justify-center rounded-lg bg-blue-700 text-white font-semibold px-6 py-3 shadow-lg hover:bg-blue-800 hover:text-white hover:shadow-xl transition-all duration-300"
             >
               Skontaktuj się
               <svg class="ml-2 -mr-1 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
               </svg>
-            </a>
+            </button>
           </div>
         </div>
       </section>

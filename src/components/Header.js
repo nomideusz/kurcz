@@ -70,21 +70,22 @@ export default function() {
           <div class="flex justify-between items-center w-full">
             <!-- Logo - explicitly on the left -->
             <div class="flex-shrink-0 mr-auto group">
-              <a 
-                href="#home" 
-                class="text-2xl font-bold transition-colors duration-300"
+              <button 
+                @click="window.location.href='#home'" 
+                type="button"
+                class="text-2xl font-bold transition-colors duration-300 bg-transparent border-0 p-0 cursor-pointer"
                 :class="scrolledDown ? 'text-blue-600 hover:text-blue-800' : 'text-white hover:text-blue-200'"
               >
                 Kurcz<span class="text-blue-400 group-hover:text-blue-300">.pl</span>
-              </a>
+              </button>
             </div>
             
             <!-- Desktop Navigation - explicitly on the right -->
             <nav class="hidden md:flex space-x-8 ml-auto">
-              <a 
-                href="#home" 
-                @click="activeSection = 'home'" 
-                class="relative py-2 px-1 transition-all duration-300 border-b-2"
+              <button 
+                @click="activeSection = 'home'; window.location.href='#home'" 
+                type="button"
+                class="relative py-2 px-1 transition-all duration-300 border-b-2 bg-transparent cursor-pointer"
                 :class="isActive('home') 
                   ? scrolledDown 
                     ? 'text-blue-700 font-medium border-blue-600' 
@@ -94,11 +95,11 @@ export default function() {
                     : 'text-white/90 hover:text-white border-transparent hover:border-white'"
               >
                 <span>Strona główna</span>
-              </a>
-              <a 
-                href="#intro" 
-                @click="activeSection = 'intro'" 
-                class="relative py-2 px-1 transition-all duration-300 border-b-2"
+              </button>
+              <button 
+                @click="activeSection = 'intro'; window.location.href='#intro'" 
+                type="button"
+                class="relative py-2 px-1 transition-all duration-300 border-b-2 bg-transparent cursor-pointer"
                 :class="isActive('intro') 
                   ? scrolledDown 
                     ? 'text-blue-700 font-medium border-blue-600' 
@@ -108,11 +109,11 @@ export default function() {
                     : 'text-white/90 hover:text-blue-200 border-transparent hover:border-blue-200'"
               >
                 <span>O kurczach</span>
-              </a>
-              <a 
-                href="#treatment" 
-                @click="activeSection = 'treatment'" 
-                class="relative py-2 px-1 transition-all duration-300 border-b-2"
+              </button>
+              <button 
+                @click="activeSection = 'treatment'; window.location.href='#treatment'" 
+                type="button"
+                class="relative py-2 px-1 transition-all duration-300 border-b-2 bg-transparent cursor-pointer"
                 :class="isActive('treatment') 
                   ? scrolledDown 
                     ? 'text-blue-700 font-medium border-blue-600' 
@@ -122,11 +123,11 @@ export default function() {
                     : 'text-white/90 hover:text-blue-200 border-transparent hover:border-blue-200'"
               >
                 <span>Leczenie</span>
-              </a>
-              <a 
-                href="#faq" 
-                @click="activeSection = 'faq'" 
-                class="relative py-2 px-1 transition-all duration-300 border-b-2"
+              </button>
+              <button 
+                @click="activeSection = 'faq'; window.location.href='#faq'" 
+                type="button"
+                class="relative py-2 px-1 transition-all duration-300 border-b-2 bg-transparent cursor-pointer"
                 :class="isActive('faq') 
                   ? scrolledDown 
                     ? 'text-blue-700 font-medium border-blue-600' 
@@ -136,11 +137,11 @@ export default function() {
                     : 'text-white/90 hover:text-blue-200 border-transparent hover:border-blue-200'"
               >
                 <span>FAQ</span>
-              </a>
-              <a 
-                href="#contact" 
-                @click="activeSection = 'contact'" 
-                class="relative py-2 px-1 transition-all duration-300 border-b-2"
+              </button>
+              <button 
+                @click="activeSection = 'contact'; window.location.href='#contact'" 
+                type="button"
+                class="relative py-2 px-1 transition-all duration-300 border-b-2 bg-transparent cursor-pointer"
                 :class="isActive('contact') 
                   ? scrolledDown 
                     ? 'text-blue-700 font-medium border-blue-600' 
@@ -150,7 +151,7 @@ export default function() {
                     : 'text-white/90 hover:text-blue-200 border-transparent hover:border-blue-200'"
               >
                 <span>Kontakt</span>
-              </a>
+              </button>
             </nav>
             
             <!-- Mobile Menu Button -->
@@ -188,46 +189,46 @@ export default function() {
             @click.away="menuOpen = false"
           >
             <nav class="bg-white rounded-xl shadow-lg py-3 flex flex-col w-full max-h-[calc(100vh-150px)] overflow-y-auto">
-              <a 
-                href="#home" 
-                @click="activeSection = 'home'; menuOpen = false" 
-                class="text-gray-700 hover:text-blue-600 transition-all duration-300 py-3 px-4 hover:bg-blue-50 border-l-4"
+              <button 
+                @click="activeSection = 'home'; menuOpen = false; window.location.href='#home'" 
+                type="button"
+                class="text-gray-700 hover:text-blue-600 transition-all duration-300 py-3 px-4 hover:bg-blue-50 border-l-4 text-left bg-transparent cursor-pointer w-full"
                 :class="isActive('home') ? 'bg-blue-50 text-blue-700 font-medium border-blue-600' : 'border-transparent'"
               >
                 Strona główna
-              </a>
-              <a 
-                href="#intro" 
-                @click="activeSection = 'intro'; menuOpen = false" 
-                class="text-gray-700 hover:text-blue-600 transition-all duration-300 py-3 px-4 hover:bg-blue-50 border-l-4"
+              </button>
+              <button 
+                @click="activeSection = 'intro'; menuOpen = false; window.location.href='#intro'" 
+                type="button"
+                class="text-gray-700 hover:text-blue-600 transition-all duration-300 py-3 px-4 hover:bg-blue-50 border-l-4 text-left bg-transparent cursor-pointer w-full"
                 :class="isActive('intro') ? 'bg-blue-50 text-blue-700 font-medium border-blue-600' : 'border-transparent'"
               >
                 O kurczach
-              </a>
-              <a 
-                href="#treatment" 
-                @click="activeSection = 'treatment'; menuOpen = false" 
-                class="text-gray-700 hover:text-blue-600 transition-all duration-300 py-3 px-4 hover:bg-blue-50 border-l-4"
+              </button>
+              <button 
+                @click="activeSection = 'treatment'; menuOpen = false; window.location.href='#treatment'" 
+                type="button"
+                class="text-gray-700 hover:text-blue-600 transition-all duration-300 py-3 px-4 hover:bg-blue-50 border-l-4 text-left bg-transparent cursor-pointer w-full"
                 :class="isActive('treatment') ? 'bg-blue-50 text-blue-700 font-medium border-blue-600' : 'border-transparent'"
               >
                 Leczenie
-              </a>
-              <a 
-                href="#faq" 
-                @click="activeSection = 'faq'; menuOpen = false" 
-                class="text-gray-700 hover:text-blue-600 transition-all duration-300 py-3 px-4 hover:bg-blue-50 border-l-4"
+              </button>
+              <button 
+                @click="activeSection = 'faq'; menuOpen = false; window.location.href='#faq'" 
+                type="button"
+                class="text-gray-700 hover:text-blue-600 transition-all duration-300 py-3 px-4 hover:bg-blue-50 border-l-4 text-left bg-transparent cursor-pointer w-full"
                 :class="isActive('faq') ? 'bg-blue-50 text-blue-700 font-medium border-blue-600' : 'border-transparent'"
               >
                 FAQ
-              </a>
-              <a 
-                href="#contact" 
-                @click="activeSection = 'contact'; menuOpen = false" 
-                class="text-gray-700 hover:text-blue-600 transition-all duration-300 py-3 px-4 hover:bg-blue-50 border-l-4"
+              </button>
+              <button 
+                @click="activeSection = 'contact'; menuOpen = false; window.location.href='#contact'" 
+                type="button"
+                class="text-gray-700 hover:text-blue-600 transition-all duration-300 py-3 px-4 hover:bg-blue-50 border-l-4 text-left bg-transparent cursor-pointer w-full"
                 :class="isActive('contact') ? 'bg-blue-50 text-blue-700 font-medium border-blue-600' : 'border-transparent'"
               >
                 Kontakt
-              </a>
+              </button>
             </nav>
           </div>
         </div>

@@ -31,12 +31,16 @@ export default function() {
                   przeciążenie mięśni i długotrwałe utrzymywanie jednej pozycji.
                 </p>
                 <div class="mt-6 pt-6 border-t border-gray-100">
-                  <a href="#treatment" class="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-800">
+                  <button 
+                    @click="window.location.href='#treatment'" 
+                    type="button"
+                    class="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-800"
+                  >
                     Dowiedz się więcej
                     <svg class="ml-1 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
                     </svg>
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>
@@ -58,12 +62,16 @@ export default function() {
                   osłabienie, a w przypadku niedoboru elektrolitów również zaburzenia rytmu serca.
                 </p>
                 <div class="mt-6 pt-6 border-t border-gray-100">
-                  <a href="#treatment" class="inline-flex items-center text-sm font-medium text-green-600 hover:text-green-800">
+                  <button 
+                    @click="window.location.href='#treatment'" 
+                    type="button"
+                    class="inline-flex items-center text-sm font-medium text-green-600 hover:text-green-800"
+                  >
                     Dowiedz się więcej
                     <svg class="ml-1 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
                     </svg>
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>
@@ -85,12 +93,16 @@ export default function() {
                   (np. cukrzycą) są bardziej narażone na występowanie kurczy mięśniowych.
                 </p>
                 <div class="mt-6 pt-6 border-t border-gray-100">
-                  <a href="#treatment" class="inline-flex items-center text-sm font-medium text-purple-600 hover:text-purple-800">
+                  <button 
+                    @click="window.location.href='#treatment'" 
+                    type="button"
+                    class="inline-flex items-center text-sm font-medium text-purple-600 hover:text-purple-800"
+                  >
                     Dowiedz się więcej
                     <svg class="ml-1 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
                     </svg>
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>

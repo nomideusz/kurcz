@@ -26,21 +26,23 @@ export default function() {
               </p>
               
               <div class="flex flex-col sm:flex-row justify-center md:justify-start gap-4">
-                <a 
-                  href="#intro" 
-                  class="inline-flex items-center justify-center rounded-lg bg-white text-blue-700 font-semibold px-6 py-3 shadow-lg hover:bg-blue-50 hover:text-blue-800 hover:shadow-xl transition duration-300"
+                <button 
+                  type="button"
+                  @click="window.location.href='#intro'"
+                  class="inline-flex items-center justify-center rounded-lg bg-white text-blue-700 font-semibold px-6 py-3 shadow-lg hover:bg-blue-50 hover:text-blue-800 hover:shadow-xl transition-all duration-300"
                 >
                   Dowiedz się więcej
                   <svg class="ml-2 h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
                   </svg>
-                </a>
-                <a 
-                  href="#treatment" 
-                  class="inline-flex items-center justify-center rounded-lg bg-blue-700 text-white border border-blue-600 font-semibold px-6 py-3 shadow-lg hover:bg-blue-800 hover:border-blue-700 hover:shadow-xl transition duration-300"
+                </button>
+                <button 
+                  type="button"
+                  @click="window.location.href='#treatment'"
+                  class="inline-flex items-center justify-center rounded-lg bg-blue-700 text-white font-semibold px-6 py-3 shadow-lg hover:bg-blue-800 hover:text-white hover:shadow-xl transition-all duration-300"
                 >
                   Metody leczenia
-                </a>
+                </button>
               </div>
             </div>
             
