@@ -180,7 +180,7 @@ export default function() {
                   </div>
                   <div class="ml-4">
                     <p class="text-sm text-gray-500 font-medium">Adres</p>
-                    <p class="text-gray-600">Słomniki, Polska</p>
+                    <p class="text-gray-600">Kraków, Polska</p>
                   </div>
                 </div>
                 
