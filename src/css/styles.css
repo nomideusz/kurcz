@@ -180,6 +180,11 @@
 
 /* Custom utilities */
 @layer utilities {
+  /* Logo inversion utility */
+  .logo-invert {
+    filter: invert(1) brightness(10);
+  }
+
   .text-balance {
     text-wrap: balance;
   }

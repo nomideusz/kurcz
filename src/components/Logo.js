@@ -15,9 +15,15 @@ export default function() {
     template: `
       <div class="logo-container">
         <img 
+          x-show="scrolledDown"
           src="/img/logo.png" 
-          class="h-10 w-auto transition-all duration-300"
-          :class="scrolledDown ? '' : 'invert'" 
+          class="h-9 sm:h-10 w-auto transition-opacity duration-300"
+          alt="Logo"
+        >
+        <img 
+          x-show="!scrolledDown"
+          src="/img/logo-white.png" 
+          class="h-9 sm:h-10 w-auto transition-opacity duration-300"
           alt="Logo"
         >
       </div>
