@@ -17,6 +17,13 @@ export default function() {
       Alpine.store('header').scrolledDown = this.scrolledDown;
       Alpine.store('header').menuOpen = this.menuOpen;
       
+      // Debug header state
+      console.log('Header initialized with state:', {
+        scrolledDown: this.scrolledDown,
+        menuOpen: this.menuOpen,
+        activeSection: this.activeSection
+      });
+      
       // Add scroll event listener to track scrolling state and update active section
       window.addEventListener('scroll', () => {
         // Check if page is scrolled down for sticky header styling
@@ -130,9 +137,28 @@ export default function() {
             <div class="flex-shrink-0 mr-auto">
               <a 
                 href="#home"
-                class="block focus:outline-none"
+                class="block focus:outline-none h-9 sm:h-10"
               >
-                <div x-data="logoComponent()" x-init="init()" x-html="template"></div>
+                <!-- Logo component directly embedded -->
+                <div class="logo-container block h-9 sm:h-10 relative">
+                  <!-- Dark logo for scrolled/menu open state -->
+                  <img 
+                    x-cloak
+                    x-show="scrolledDown || menuOpen"
+                    src="/img/logo.webp" 
+                    class="h-9 sm:h-10 w-auto transition-opacity duration-300"
+                    alt="Logo KURCZ"
+                  >
+                  
+                  <!-- White logo for transparent header state -->
+                  <img 
+                    x-cloak
+                    x-show="!scrolledDown && !menuOpen"
+                    src="/img/logo-white.webp" 
+                    class="h-9 sm:h-10 w-auto transition-opacity duration-300"
+                    alt="Logo KURCZ"
+                  >
+                </div>
               </a>
             </div>
             

@@ -21,7 +21,7 @@ export default function() {
         <img 
           x-cloak
           x-show="$store.header.scrolledDown || $store.header.menuOpen"
-          src="logo.webp" 
+          src="/img/logo.webp" 
           class="h-9 sm:h-10 w-auto transition-opacity duration-300"
           alt="Logo KURCZ"
         >
@@ -30,7 +30,7 @@ export default function() {
         <img 
           x-cloak
           x-show="!$store.header.scrolledDown && !$store.header.menuOpen"
-          src="logo-white.webp" 
+          src="/img/logo-white.webp" 
           class="h-9 sm:h-10 w-auto transition-opacity duration-300"
           alt="Logo KURCZ"
         >
