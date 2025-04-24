@@ -23,6 +23,9 @@ document.addEventListener('alpine:init', () => {
     menuOpen: false,
     scrolledDown: window.scrollY > 50
   });
+  
+  // Debug log for store initialization
+  console.log('Alpine.js header store initialized:', Alpine.store('header'));
 });
 
 // Log environment information for debugging
