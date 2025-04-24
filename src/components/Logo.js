@@ -1,28 +1,20 @@
 export default function() {
   return {
-    scrolledDown: false,
-    
     init() {
-      // Listen for custom event from the Header component
-      window.addEventListener('scroll-state-changed', (e) => {
-        this.scrolledDown = e.detail.scrolledDown;
-      });
-      
-      // Check initial state - if we're already scrolled down on page load
-      this.scrolledDown = window.scrollY > 50;
+      // We'll now rely on the Alpine store for state
     },
     
     template: `
       <div class="logo-container">
         <img 
-          x-show="scrolledDown"
-          src="/img/logo.png" 
+          x-show="$store.header.scrolledDown || $store.header.menuOpen"
+          src="/img/logo.webp" 
           class="h-9 sm:h-10 w-auto transition-opacity duration-300"
           alt="Logo"
         >
         <img 
-          x-show="!scrolledDown"
-          src="/img/logo-white.png" 
+          x-show="!$store.header.scrolledDown && !$store.header.menuOpen"
+          src="/img/logo-white.webp" 
           class="h-9 sm:h-10 w-auto transition-opacity duration-300"
           alt="Logo"
         >

@@ -40,62 +40,73 @@ export default function() {
     },
     
     template: `
-      <section id="faq" class="py-20 bg-gray-50">
+      <section id="faq" class="py-20 bg-white">
         <div class="container mx-auto px-6">
-          <div class="text-center mb-16">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-800">Najczęściej zadawane pytania</h2>
-            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-              Odpowiedzi na najczęstsze pytania dotyczące kurczy mięśniowych i ich leczenia
+          <div class="max-w-6xl mx-auto text-center mb-16">
+            <span class="section-subtitle">Pytania i odpowiedzi</span>
+            <h2 class="section-title">
+              Najczęściej zadawane pytania
+            </h2>
+            <p class="section-description">
+              Zebraliśmy odpowiedzi na najczęściej zadawane pytania dotyczące kurczy mięśniowych.
+              Jeśli nie znajdziesz tu odpowiedzi na swoje pytanie, skontaktuj się z nami.
             </p>
           </div>
           
-          <div class="max-w-3xl mx-auto">
-            <template x-for="(faq, index) in faqs" :key="index">
-              <div class="mb-4 border border-gray-200 rounded-lg overflow-hidden bg-white shadow-sm transition-all duration-200">
-                <button 
-                  @click="toggleFaq(index)"
-                  class="flex justify-between items-center w-full p-5 text-left"
-                >
-                  <span class="text-lg font-semibold text-gray-800" x-text="faq.question"></span>
-                  <svg 
-                    class="w-5 h-5 text-blue-500 transform transition-transform duration-200"
-                    :class="faq.open ? 'rotate-180' : ''"
-                    fill="none" 
-                    stroke="currentColor" 
-                    viewBox="0 0 24 24" 
-                    xmlns="http://www.w3.org/2000/svg"
+          <div class="max-w-6xl mx-auto">
+            <div class="bg-white shadow-soft rounded-xl overflow-hidden">
+              <template x-for="(faq, index) in faqs" :key="index">
+                <div class="border-b border-gray-200 last:border-0">
+                  <button 
+                    @click="toggleFaq(index)" 
+                    class="w-full text-left px-6 py-5 focus:outline-none flex justify-between items-center"
+                    :class="faq.open ? 'bg-blue-50' : 'hover:bg-gray-50'"
                   >
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                  </svg>
-                </button>
-                <div 
-                  x-show="faq.open" 
-                  x-transition:enter="transition ease-out duration-200"
-                  x-transition:enter-start="opacity-0 transform -translate-y-2"
-                  x-transition:enter-end="opacity-100 transform translate-y-0"
-                  x-transition:leave="transition ease-in duration-150"
-                  x-transition:leave-start="opacity-100 transform translate-y-0"
-                  x-transition:leave-end="opacity-0 transform -translate-y-2"
-                  class="px-5 pb-5 pt-0"
-                >
-                  <p class="text-gray-600" x-text="faq.answer"></p>
+                    <span class="font-semibold text-lg text-gray-800" x-text="faq.question"></span>
+                    <svg 
+                      class="w-5 h-5 text-blue-500 transition-transform duration-300" 
+                      :class="faq.open ? 'transform rotate-180' : ''"
+                      fill="none" 
+                      stroke="currentColor" 
+                      viewBox="0 0 24 24" 
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                  </button>
+                  
+                  <div 
+                    x-show="faq.open"
+                    x-transition:enter="transition ease-out duration-200"
+                    x-transition:enter-start="opacity-0"
+                    x-transition:enter-end="opacity-100"
+                    x-transition:leave="transition ease-in duration-150"
+                    x-transition:leave-start="opacity-100"
+                    x-transition:leave-end="opacity-0"
+                    class="px-6 py-5 bg-blue-50 border-t border-blue-100"
+                  >
+                    <p class="text-gray-600" x-text="faq.answer"></p>
+                  </div>
                 </div>
-              </div>
-            </template>
+              </template>
+            </div>
           </div>
           
-          <div class="text-center mt-12">
-            <p class="text-gray-600 mb-6">Masz inne pytanie? Skontaktuj się z nami!</p>
-            <button 
-              type="button"
-              @click="window.location.href='#contact'"
-              class="inline-flex items-center justify-center rounded-lg bg-blue-700 text-white font-semibold px-6 py-3 shadow-lg hover:bg-blue-800 hover:text-white hover:shadow-xl transition-all duration-300"
-            >
-              Skontaktuj się
-              <svg class="ml-2 -mr-1 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <div class="max-w-6xl mx-auto mt-16 bg-gray-50 rounded-xl p-8 text-center">
+            <h3 class="text-2xl font-semibold text-gray-800 mb-4">Masz inne pytania?</h3>
+            <p class="text-gray-600 mb-6 max-w-3xl mx-auto">
+              Jeśli nie znalazłeś odpowiedzi na swoje pytanie lub potrzebujesz więcej informacji,
+              skontaktuj się z nami. Nasi specjaliści chętnie odpowiedzą na wszystkie Twoje pytania.
+            </p>
+            <a 
+              @click.prevent="document.getElementById('contact').scrollIntoView({behavior: 'smooth', block: 'start'})" 
+              href="#contact" 
+              class="inline-flex items-center justify-center px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-all duration-300 transform hover:-translate-y-1 shadow-md hover:shadow-lg">
+              Skontaktuj się z nami
+              <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
               </svg>
-            </button>
+            </a>
           </div>
         </div>
       </section>

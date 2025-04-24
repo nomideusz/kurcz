@@ -194,24 +194,23 @@ export default function() {
     },
     
     template: `
-      <section id="contact" class="py-20 bg-gray-50">
+      <section id="contact" class="py-20 bg-white">
         <div class="container mx-auto px-6">
-          <div class="text-center mb-16">
-            <span class="text-blue-600 font-semibold text-sm uppercase tracking-wider">Kontakt</span>
-            <h2 class="text-3xl md:text-4xl font-bold mt-2 mb-4 text-gray-800">Jak się z nami skontaktować?</h2>
-            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-              Masz pytania lub potrzebujesz dodatkowych informacji? Skontaktuj się z nami. 
-              Jesteśmy do Twojej dyspozycji.
+          <div class="max-w-3xl mx-auto text-center mb-12">
+            <span class="section-subtitle">Skontaktuj się z nami</span>
+            <h2 class="section-title">Kontakt</h2>
+            <p class="section-description">
+              Masz pytania? Skontaktuj się z nami, a nasi specjaliści chętnie odpowiedzą na wszystkie Twoje pytania.
             </p>
           </div>
-          
-          <div class="max-w-5xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden md:flex transition-all duration-300 hover:shadow-xl">
-            <div class="w-full md:w-1/2 p-8 md:p-12 bg-blue-50">
-              <h3 class="text-2xl font-semibold text-gray-800 mb-8">Dane kontaktowe</h3>
+
+          <div class="grid md:grid-cols-2 gap-10 max-w-6xl mx-auto">
+            <div class="bg-white rounded-xl shadow-soft p-6 md:p-8">
+              <h3 class="text-2xl font-semibold text-gray-800 mb-6">Wyślij wiadomość</h3>
               
-              <div class="space-y-8">
+              <div class="space-y-6">
                 <div class="flex items-center group">
-                  <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:bg-blue-200">
+                  <div class="icon-circle icon-circle-md bg-blue-100 flex-shrink-0 transition-all duration-300 group-hover:bg-blue-200">
                     <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
                     </svg>
@@ -266,7 +265,7 @@ export default function() {
               </div>
             </div>
             
-            <div class="w-full md:w-1/2 p-8 md:p-12 border-t md:border-t-0 md:border-l border-gray-100">
+            <div class="bg-white rounded-xl shadow-soft p-6 md:p-8">
               <h3 class="text-2xl font-semibold text-gray-800 mb-8">Formularz kontaktowy</h3>
               
               <div x-show="formSubmitted" 

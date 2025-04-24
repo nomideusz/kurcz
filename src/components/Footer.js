@@ -6,7 +6,7 @@ export default function () {
       <footer id="contact" class="bg-gray-900 text-white pt-20 pb-10">
         <div class="container mx-auto px-6">
           <!-- Upper Footer -->
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16 max-w-6xl mx-auto">
             <!-- About Column -->
             <div class="col-span-1 lg:col-span-2">
               <h2 class="text-3xl font-bold mb-6 group">
@@ -34,7 +34,7 @@ export default function () {
               <ul class="space-y-4">
                 <li>
                   <button 
-                    @click="window.location.href='#home'" 
+                    @click="document.getElementById('home').scrollIntoView({behavior: 'smooth', block: 'start'})" 
                     type="button"
                     class="text-gray-400 hover:text-blue-300 transition-colors duration-300 flex items-center bg-transparent border-0 p-0 cursor-pointer group"
                   >
@@ -48,7 +48,7 @@ export default function () {
                 </li>
                 <li>
                   <button 
-                    @click="window.location.href='#intro'" 
+                    @click="document.getElementById('intro').scrollIntoView({behavior: 'smooth', block: 'start'})" 
                     type="button"
                     class="text-gray-400 hover:text-blue-300 transition-colors duration-300 flex items-center bg-transparent border-0 p-0 cursor-pointer group"
                   >
@@ -62,7 +62,7 @@ export default function () {
                 </li>
                 <li>
                   <button 
-                    @click="window.location.href='#treatment'" 
+                    @click="document.getElementById('treatment').scrollIntoView({behavior: 'smooth', block: 'start'})" 
                     type="button"
                     class="text-gray-400 hover:text-blue-300 transition-colors duration-300 flex items-center bg-transparent border-0 p-0 cursor-pointer group"
                   >
@@ -76,7 +76,35 @@ export default function () {
                 </li>
                 <li>
                   <button 
-                    @click="window.location.href='#contact'" 
+                    @click="document.getElementById('wibroakustyka').scrollIntoView({behavior: 'smooth', block: 'start'})" 
+                    type="button"
+                    class="text-gray-400 hover:text-blue-300 transition-colors duration-300 flex items-center bg-transparent border-0 p-0 cursor-pointer group"
+                  >
+                    <span class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center mr-3 group-hover:bg-blue-900/30 transition-colors duration-300">
+                      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18 3a1 1 0 00-1.196-.98l-10 2A1 1 0 006 5v9.114A4.369 4.369 0 005 14c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V7.82l8-1.6v5.894A4.37 4.37 0 0015 12c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V3z"></path>
+                      </svg>
+                    </span>
+                    <span class="group-hover:translate-x-1 transition-transform duration-300">Wibroakustyka</span>
+                  </button>
+                </li>
+                <li>
+                  <button 
+                    @click="document.getElementById('faq').scrollIntoView({behavior: 'smooth', block: 'start'})" 
+                    type="button"
+                    class="text-gray-400 hover:text-blue-300 transition-colors duration-300 flex items-center bg-transparent border-0 p-0 cursor-pointer group"
+                  >
+                    <span class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center mr-3 group-hover:bg-blue-900/30 transition-colors duration-300">
+                      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"></path>
+                      </svg>
+                    </span>
+                    <span class="group-hover:translate-x-1 transition-transform duration-300">FAQ</span>
+                  </button>
+                </li>
+                <li>
+                  <button 
+                    @click="document.getElementById('contact').scrollIntoView({behavior: 'smooth', block: 'start'})" 
                     type="button"
                     class="text-gray-400 hover:text-blue-300 transition-colors duration-300 flex items-center bg-transparent border-0 p-0 cursor-pointer group"
                   >
@@ -130,7 +158,7 @@ export default function () {
 
                 <li>
                   <button 
-                    @click="window.open('https://intertecchpoland.pl', '_blank')" 
+                    @click="window.open('https://intertechpoland.pl', '_blank')" 
                     type="button"
                     class="text-gray-400 hover:text-blue-300 transition-colors duration-300 flex items-center bg-transparent border-0 p-0 cursor-pointer group"
                   >
@@ -161,7 +189,7 @@ export default function () {
           </div>
           
           <!-- Bottom Footer -->
-          <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
+          <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center max-w-6xl mx-auto">
             <p class="text-gray-500 text-sm order-2 md:order-1 mt-6 md:mt-0">
               © <span x-text="currentYear"></span> Kurcz.pl. Wszelkie prawa zastrzeżone.
             </p>

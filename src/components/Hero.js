@@ -14,7 +14,7 @@ export default function() {
         </div>
         
         <div class="container mx-auto px-6 relative z-10">
-          <div class="flex flex-col md:flex-row items-center justify-between">
+          <div class="flex flex-col md:flex-row items-center justify-between max-w-6xl mx-auto">
             <div class="md:w-1/2 text-center md:text-left mb-10 md:mb-0 mt-8">
               <div class="inline-block px-3 py-1 bg-blue-700/30 backdrop-blur-sm rounded-full mb-4 border border-blue-400/30">
                 <span class="text-sm font-medium text-blue-100">Pomoc przy kurczach mięśniowych</span>

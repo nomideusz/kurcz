@@ -16,6 +16,15 @@ import Logo from './components/Logo.js';
 import AppLayout from './components/AppLayout.js';
 import { emailConfig } from './config.js';
 
+// Initialize Alpine.js store for shared state
+document.addEventListener('alpine:init', () => {
+  // Initialize header store
+  Alpine.store('header', {
+    menuOpen: false,
+    scrolledDown: window.scrollY > 50
+  });
+});
+
 // Log environment information for debugging
 console.log("App Environment:", {
   isDev: import.meta?.env?.DEV || false,
@@ -81,11 +90,14 @@ function renderApp() {
 document.addEventListener('DOMContentLoaded', () => {
   console.log('Document loaded, initializing Alpine.js components...');
   
-  // Render app content
-  renderApp();
-  
   // Make Alpine available globally for debugging
   window.Alpine = Alpine;
+  
+  // Start Alpine
+  Alpine.start();
+  
+  // Render app content after Alpine is started
+  renderApp();
   
   // Hide loading indicator after a delay
   setTimeout(() => {

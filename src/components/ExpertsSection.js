@@ -3,7 +3,7 @@ export default function() {
     template: `
       <section id="experts" class="py-20 bg-blue-50">
         <div class="container mx-auto px-6">
-          <div class="max-w-3xl mx-auto text-center mb-16">
+          <div class="max-w-6xl mx-auto text-center mb-16">
             <span class="text-blue-600 font-semibold text-sm uppercase tracking-wider">Opinie ekspertów</span>
             <h2 class="text-3xl md:text-4xl font-bold mt-2 mb-6 text-gray-800">
               Specjaliści o kurczach mięśniowych
@@ -14,7 +14,7 @@ export default function() {
             </p>
           </div>
           
-          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
             <!-- Expert 1 -->
             <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
               <div class="p-6">
@@ -95,9 +95,12 @@ export default function() {
           </div>
           
           <!-- Call to Action -->
-          <div class="mt-16 text-center">
-            <a href="#contact" class="inline-flex items-center justify-center rounded-lg bg-blue-700 text-white font-semibold px-8 py-4 shadow-lg hover:bg-blue-800 hover:shadow-xl transition-all duration-300">
-              Umów konsultację
+          <div class="mt-8 text-center">
+            <a 
+              @click.prevent="document.getElementById('contact').scrollIntoView({behavior: 'smooth', block: 'start'})" 
+              href="#contact" 
+              class="inline-flex items-center justify-center px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-all duration-300 transform hover:-translate-y-1 shadow-md hover:shadow-lg">
+              Skontaktuj się z nami
               <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
               </svg>

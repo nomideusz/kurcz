@@ -10,6 +10,13 @@ export default function() {
         this.activeSection = window.location.hash.substring(1);
       }
       
+      // Check initial state - if we're already scrolled down on page load
+      this.scrolledDown = window.scrollY > 50;
+      
+      // Update the Alpine store with the current state
+      Alpine.store('header').scrolledDown = this.scrolledDown;
+      Alpine.store('header').menuOpen = this.menuOpen;
+      
       // Add scroll event listener to track scrolling state and update active section
       window.addEventListener('scroll', () => {
         // Check if page is scrolled down for sticky header styling
@@ -18,6 +25,10 @@ export default function() {
         
         // Dispatch custom event when scrolledDown state changes
         if (wasScrolledDown !== this.scrolledDown) {
+          // Update the store
+          Alpine.store('header').scrolledDown = this.scrolledDown;
+          
+          // Keep the custom event for backward compatibility
           window.dispatchEvent(new CustomEvent('scroll-state-changed', {
             detail: { scrolledDown: this.scrolledDown }
           }));
@@ -36,11 +47,15 @@ export default function() {
       window.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && this.menuOpen) {
           this.menuOpen = false;
+          Alpine.store('header').menuOpen = false;
         }
       });
 
       // Add/remove blur class to main content when mobile menu is toggled
       this.$watch('menuOpen', (isOpen) => {
+        // Update the store
+        Alpine.store('header').menuOpen = isOpen;
+        
         if (isOpen) {
           document.body.classList.add('content-blurred');
         } else {
@@ -54,12 +69,17 @@ export default function() {
       
       // Find the current visible section
       sections.forEach(section => {
-        const sectionTop = section.offsetTop - 100;
+        const sectionTop = section.offsetTop - 80;
         const sectionHeight = section.offsetHeight;
         const sectionId = section.getAttribute('id');
         
         if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
-          this.activeSection = sectionId;
+          // Match footer's ID 'contact' for consistency
+          if (sectionId === 'contact') {
+            this.activeSection = 'contact';
+          } else {
+            this.activeSection = sectionId;
+          }
         }
       });
     },
@@ -105,7 +125,7 @@ export default function() {
         ></div>
 
         <div class="container mx-auto px-6 relative">
-          <div class="flex justify-between items-center w-full">
+          <div class="flex justify-between items-center w-full max-w-6xl mx-auto">
             <!-- Logo on the left -->
             <div class="flex-shrink-0 mr-auto">
               <a 
@@ -117,9 +137,9 @@ export default function() {
             </div>
             
             <!-- Desktop Navigation - explicitly on the right -->
-            <nav class="hidden md:flex space-x-6 ml-auto">
+            <nav class="hidden md:flex space-x-8 ml-auto">
               <button 
-                @click="activeSection = 'home'; window.location.href='#home'" 
+                @click="activeSection = 'home'; document.getElementById('home').scrollIntoView({behavior: 'smooth', block: 'start'})" 
                 type="button"
                 class="relative font-medium py-2 px-1 transition-all duration-300 bg-transparent cursor-pointer focus:outline-none"
                 :class="isActive('home') 
@@ -137,7 +157,7 @@ export default function() {
                 ></span>
               </button>
               <button 
-                @click="activeSection = 'intro'; window.location.href='#intro'" 
+                @click="activeSection = 'intro'; document.getElementById('intro').scrollIntoView({behavior: 'smooth', block: 'start'})" 
                 type="button"
                 class="relative font-medium py-2 px-1 transition-all duration-300 bg-transparent cursor-pointer focus:outline-none"
                 :class="isActive('intro') 
@@ -155,7 +175,7 @@ export default function() {
                 ></span>
               </button>
               <button 
-                @click="activeSection = 'treatment'; window.location.href='#treatment'" 
+                @click="activeSection = 'treatment'; document.getElementById('treatment').scrollIntoView({behavior: 'smooth', block: 'start'})" 
                 type="button"
                 class="relative font-medium py-2 px-1 transition-all duration-300 bg-transparent cursor-pointer focus:outline-none"
                 :class="isActive('treatment') 
@@ -173,7 +193,7 @@ export default function() {
                 ></span>
               </button>
               <button 
-                @click="activeSection = 'wibroakustyka'; window.location.href='#wibroakustyka'" 
+                @click="activeSection = 'wibroakustyka'; document.getElementById('wibroakustyka').scrollIntoView({behavior: 'smooth', block: 'start'})" 
                 type="button"
                 class="relative font-medium py-2 px-1 transition-all duration-300 bg-transparent cursor-pointer focus:outline-none"
                 :class="isActive('wibroakustyka') 
@@ -191,7 +211,7 @@ export default function() {
                 ></span>
               </button>
               <button 
-                @click="activeSection = 'faq'; window.location.href='#faq'" 
+                @click="activeSection = 'faq'; document.getElementById('faq').scrollIntoView({behavior: 'smooth', block: 'start'})" 
                 type="button"
                 class="relative font-medium py-2 px-1 transition-all duration-300 bg-transparent cursor-pointer focus:outline-none"
                 :class="isActive('faq') 
@@ -209,7 +229,7 @@ export default function() {
                 ></span>
               </button>
               <button 
-                @click="activeSection = 'contact'; window.location.href='#contact'" 
+                @click="activeSection = 'contact'; document.getElementById('contact').scrollIntoView({behavior: 'smooth', block: 'start'})" 
                 type="button"
                 class="relative font-medium py-2 px-1 transition-all duration-300 bg-transparent cursor-pointer focus:outline-none"
                 :class="isActive('contact') 
@@ -231,7 +251,7 @@ export default function() {
             <!-- Mobile Menu Button -->
             <div class="md:hidden flex items-center ml-4">
               <button 
-                @click="menuOpen = !menuOpen" 
+                @click="menuOpen = !menuOpen; Alpine.store('header').menuOpen = menuOpen" 
                 class="focus:outline-none transition-colors duration-300 p-2 rounded-md z-50"
                 :class="scrolledDown ? 'text-gray-700 hover:bg-gray-100' : 'text-white hover:bg-white/20'"
                 aria-label="Toggle menu"
@@ -266,7 +286,7 @@ export default function() {
             <nav class="bg-white rounded-xl shadow-xl py-4 flex flex-col w-full max-h-[calc(100vh-150px)] overflow-y-auto no-blur"
                  style="filter: none !important; backdrop-filter: none !important;">
               <button 
-                @click="activeSection = 'home'; menuOpen = false; window.location.href='#home'" 
+                @click="activeSection = 'home'; menuOpen = false; Alpine.store('header').menuOpen = false; document.getElementById('home').scrollIntoView({behavior: 'smooth', block: 'start'})" 
                 type="button"
                 class="text-gray-700 hover:text-blue-600 transition-all duration-300 py-4 px-6 hover:bg-blue-50 border-l-4 text-left bg-transparent cursor-pointer w-full font-medium no-blur"
                 :class="isActive('home') ? 'bg-blue-50 text-blue-700 border-blue-600' : 'border-transparent'"
@@ -279,7 +299,7 @@ export default function() {
                 </div>
               </button>
               <button 
-                @click="activeSection = 'intro'; menuOpen = false; window.location.href='#intro'" 
+                @click="activeSection = 'intro'; menuOpen = false; Alpine.store('header').menuOpen = false; document.getElementById('intro').scrollIntoView({behavior: 'smooth', block: 'start'})" 
                 type="button"
                 class="text-gray-700 hover:text-blue-600 transition-all duration-300 py-4 px-6 hover:bg-blue-50 border-l-4 text-left bg-transparent cursor-pointer w-full font-medium no-blur"
                 :class="isActive('intro') ? 'bg-blue-50 text-blue-700 border-blue-600' : 'border-transparent'"
@@ -292,7 +312,7 @@ export default function() {
                 </div>
               </button>
               <button 
-                @click="activeSection = 'treatment'; menuOpen = false; window.location.href='#treatment'" 
+                @click="activeSection = 'treatment'; menuOpen = false; Alpine.store('header').menuOpen = false; document.getElementById('treatment').scrollIntoView({behavior: 'smooth', block: 'start'})" 
                 type="button"
                 class="text-gray-700 hover:text-blue-600 transition-all duration-300 py-4 px-6 hover:bg-blue-50 border-l-4 text-left bg-transparent cursor-pointer w-full font-medium no-blur"
                 :class="isActive('treatment') ? 'bg-blue-50 text-blue-700 border-blue-600' : 'border-transparent'"
@@ -305,7 +325,7 @@ export default function() {
                 </div>
               </button>
               <button 
-                @click="activeSection = 'wibroakustyka'; menuOpen = false; window.location.href='#wibroakustyka'" 
+                @click="activeSection = 'wibroakustyka'; menuOpen = false; Alpine.store('header').menuOpen = false; document.getElementById('wibroakustyka').scrollIntoView({behavior: 'smooth', block: 'start'})" 
                 type="button"
                 class="text-gray-700 hover:text-blue-600 transition-all duration-300 py-4 px-6 hover:bg-blue-50 border-l-4 text-left bg-transparent cursor-pointer w-full font-medium no-blur"
                 :class="isActive('wibroakustyka') ? 'bg-blue-50 text-blue-700 border-blue-600' : 'border-transparent'"
@@ -318,7 +338,7 @@ export default function() {
                 </div>
               </button>
               <button 
-                @click="activeSection = 'faq'; menuOpen = false; window.location.href='#faq'" 
+                @click="activeSection = 'faq'; menuOpen = false; Alpine.store('header').menuOpen = false; document.getElementById('faq').scrollIntoView({behavior: 'smooth', block: 'start'})" 
                 type="button"
                 class="text-gray-700 hover:text-blue-600 transition-all duration-300 py-4 px-6 hover:bg-blue-50 border-l-4 text-left bg-transparent cursor-pointer w-full font-medium no-blur"
                 :class="isActive('faq') ? 'bg-blue-50 text-blue-700 border-blue-600' : 'border-transparent'"
@@ -331,7 +351,7 @@ export default function() {
                 </div>
               </button>
               <button 
-                @click="activeSection = 'contact'; menuOpen = false; window.location.href='#contact'" 
+                @click="activeSection = 'contact'; menuOpen = false; Alpine.store('header').menuOpen = false; document.getElementById('contact').scrollIntoView({behavior: 'smooth', block: 'start'})" 
                 type="button"
                 class="text-gray-700 hover:text-blue-600 transition-all duration-300 py-4 px-6 hover:bg-blue-50 border-l-4 text-left bg-transparent cursor-pointer w-full font-medium no-blur"
                 :class="isActive('contact') ? 'bg-blue-50 text-blue-700 border-blue-600' : 'border-transparent'"

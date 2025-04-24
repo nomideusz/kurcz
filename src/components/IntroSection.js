@@ -1,22 +1,22 @@
 export default function() {
   return {
     template: `
-      <section id="intro" class="py-24 bg-gray-50">
+      <section id="intro" class="py-24 bg-gradient-to-b from-gray-50 to-white">
         <div class="container mx-auto px-6">
-          <div class="max-w-3xl mx-auto text-center mb-20">
-            <span class="text-blue-600 font-semibold text-sm uppercase tracking-wider">Wprowadzenie</span>
-            <h2 class="text-3xl md:text-4xl font-bold mt-2 mb-6 text-gray-800">
+          <div class="max-w-6xl mx-auto text-center mb-20">
+            <span class="section-subtitle">Wprowadzenie</span>
+            <h2 class="section-title">
               Czym są kurcze mięśniowe?
             </h2>
-            <p class="text-lg text-gray-600 leading-relaxed">
-              Kurcze mięśniowe to niekontrolowane, często bolesne skurcze mięśni, które mogą dotknąć każdego.
-              Poznaj ich przyczyny i skuteczne metody zapobiegania.
+            <p class="section-description">
+              Kurcze mięśniowe to niekontrolowane, często bolesne skurcze mięśni, które mogą wystąpić u każdego.
+              Poznaj ich przyczyny, objawy oraz skuteczne metody zapobiegania i leczenia.
             </p>
           </div>
           
-          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
-            <!-- Card 1 - Pines Card Style -->
-            <div class="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden group transform hover:-translate-y-2">
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10 max-w-6xl mx-auto">
+            <!-- Card 1 - Przyczyny -->
+            <div class="bg-white rounded-xl shadow-soft overflow-hidden group transform hover:-translate-y-2 transition-all duration-300 hover:shadow-lg">
               <div class="h-3 bg-blue-500 w-full group-hover:bg-blue-600 transition-colors duration-300"></div>
               <div class="p-8">
                 <div class="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mb-6 text-blue-600 group-hover:scale-110 transition-transform duration-300">
@@ -27,11 +27,33 @@ export default function() {
                 <h3 class="text-xl font-semibold mb-4 text-gray-800 group-hover:text-blue-600 transition-colors duration-300">
                   Najczęstsze przyczyny
                 </h3>
-                <p class="text-gray-600 leading-relaxed">
-                  Najczęstsze przyczyny kurczy mięśniowych to odwodnienie, niedobór elektrolitów, 
-                  przeciążenie mięśni i długotrwałe utrzymywanie jednej pozycji.
-                </p>
-                <div class="mt-8 pt-6 border-t border-gray-100">
+                <ul class="space-y-3 text-gray-600 mb-6">
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-blue-500 mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                    <span>Odwodnienie organizmu</span>
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-blue-500 mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                    <span>Niedobór elektrolitów (Na, K, Mg, Ca)</span>
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-blue-500 mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                    <span>Przeciążenie mięśni podczas wysiłku</span>
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-blue-500 mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                    <span>Długotrwałe utrzymywanie jednej pozycji</span>
+                  </li>
+                </ul>
+                <div class="pt-4 border-t border-gray-100">
                   <button 
                     @click="window.location.href='#treatment'" 
                     type="button"
@@ -47,8 +69,8 @@ export default function() {
               </div>
             </div>
             
-            <!-- Card 2 - Pines Card Style -->
-            <div class="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden group transform hover:-translate-y-2">
+            <!-- Card 2 - Objawy -->
+            <div class="bg-white rounded-xl shadow-soft overflow-hidden group transform hover:-translate-y-2 transition-all duration-300 hover:shadow-lg">
               <div class="h-3 bg-green-500 w-full group-hover:bg-green-600 transition-colors duration-300"></div>
               <div class="p-8">
                 <div class="w-16 h-16 bg-green-100 rounded-lg flex items-center justify-center mb-6 text-green-600 group-hover:scale-110 transition-transform duration-300">
@@ -59,11 +81,33 @@ export default function() {
                 <h3 class="text-xl font-semibold mb-4 text-gray-800 group-hover:text-green-600 transition-colors duration-300">
                   Objawy towarzyszące
                 </h3>
-                <p class="text-gray-600 leading-relaxed">
-                  Kurczom mięśniowym często towarzyszą uczucie zmęczenia, bóle głowy, 
-                  osłabienie, a w przypadku niedoboru elektrolitów również zaburzenia rytmu serca.
-                </p>
-                <div class="mt-8 pt-6 border-t border-gray-100">
+                <ul class="space-y-3 text-gray-600 mb-6">
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-green-500 mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                    <span>Nagły, intensywny ból mięśnia</span>
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-green-500 mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                    <span>Wyczuwalne stwardnienie mięśnia</span>
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-green-500 mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                    <span>Uczucie zmęczenia i osłabienia</span>
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-green-500 mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                    <span>Możliwe zaburzenia rytmu serca (przy niedoborze elektrolitów)</span>
+                  </li>
+                </ul>
+                <div class="pt-4 border-t border-gray-100">
                   <button 
                     @click="window.location.href='#treatment'" 
                     type="button"
@@ -79,8 +123,8 @@ export default function() {
               </div>
             </div>
             
-            <!-- Card 3 - Pines Card Style -->
-            <div class="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden group transform hover:-translate-y-2">
+            <!-- Card 3 - Grupy ryzyka -->
+            <div class="bg-white rounded-xl shadow-soft overflow-hidden group transform hover:-translate-y-2 transition-all duration-300 hover:shadow-lg">
               <div class="h-3 bg-purple-500 w-full group-hover:bg-purple-600 transition-colors duration-300"></div>
               <div class="p-8">
                 <div class="w-16 h-16 bg-purple-100 rounded-lg flex items-center justify-center mb-6 text-purple-600 group-hover:scale-110 transition-transform duration-300">
@@ -91,11 +135,33 @@ export default function() {
                 <h3 class="text-xl font-semibold mb-4 text-gray-800 group-hover:text-purple-600 transition-colors duration-300">
                   Osoby w grupie ryzyka
                 </h3>
-                <p class="text-gray-600 leading-relaxed">
-                  Sportowcy, osoby starsze, kobiety w ciąży oraz osoby z pewnymi schorzeniami 
-                  (np. cukrzycą) są bardziej narażone na występowanie kurczy mięśniowych.
-                </p>
-                <div class="mt-8 pt-6 border-t border-gray-100">
+                <ul class="space-y-3 text-gray-600 mb-6">
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-purple-500 mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                    <span>Sportowcy i osoby aktywne fizycznie</span>
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-purple-500 mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                    <span>Osoby starsze (powyżej 65 lat)</span>
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-purple-500 mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                    <span>Kobiety w ciąży</span>
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-purple-500 mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                    <span>Osoby z chorobami przewlekłymi (cukrzyca, choroby tarczycy)</span>
+                  </li>
+                </ul>
+                <div class="pt-4 border-t border-gray-100">
                   <button 
                     @click="window.location.href='#treatment'" 
                     type="button"
@@ -113,18 +179,26 @@ export default function() {
           </div>
           
           <!-- Call to action -->
-          <div class="mt-16 max-w-3xl mx-auto bg-blue-50 rounded-xl p-8 shadow-md text-center">
+          <div class="mt-16 max-w-6xl mx-auto bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-8 shadow-soft text-center">
             <h3 class="text-2xl font-bold text-gray-800 mb-4">Doświadczasz kurczy mięśniowych?</h3>
-            <p class="text-gray-600 mb-6">Przejdź do sekcji leczenia, aby uzyskać natychmiastową pomoc i praktyczne rozwiązania.</p>
-            <button 
-              @click="window.location.href='#treatment'" 
-              class="inline-flex items-center justify-center px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-all duration-300 transform hover:-translate-y-1 shadow-md hover:shadow-lg"
-            >
-              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7"></path>
-              </svg>
-              Sprawdź metody leczenia
-            </button>
+            <p class="text-gray-600 mb-6">Poznaj skuteczne metody radzenia sobie z nimi oraz strategie zapobiegania nawrotom w przyszłości.</p>
+            <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+              <a 
+                @click.prevent="document.getElementById('about').scrollIntoView({behavior: 'smooth', block: 'start'})" 
+                href="#about" 
+                class="inline-flex items-center justify-center px-6 py-3 bg-gray-100 text-gray-800 font-medium rounded-lg hover:bg-gray-200 transition-all duration-300 transform hover:-translate-y-1 shadow-md hover:shadow-lg">
+                Dowiedz się więcej
+              </a>
+              <a 
+                @click.prevent="document.getElementById('contact').scrollIntoView({behavior: 'smooth', block: 'start'})" 
+                href="#contact" 
+                class="inline-flex items-center justify-center px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-all duration-300 transform hover:-translate-y-1 shadow-md hover:shadow-lg">
+                Skontaktuj się
+                <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                </svg>
+              </a>
+            </div>
           </div>
         </div>
       </section>
