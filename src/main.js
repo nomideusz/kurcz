@@ -21,14 +21,12 @@ console.log("App Environment:", {
   envVars: {
     hasVitePublicKey: Boolean(import.meta?.env?.VITE_EMAILJS_PUBLIC_KEY),
     hasViteServiceId: Boolean(import.meta?.env?.VITE_EMAILJS_SERVICE_ID),
-    hasViteTemplateId: Boolean(import.meta?.env?.VITE_EMAILJS_TEMPLATE_ID),
-    hasViteMailtrapServiceId: Boolean(import.meta?.env?.VITE_EMAILJS_MAILTRAP_SERVICE_ID)
+    hasViteTemplateId: Boolean(import.meta?.env?.VITE_EMAILJS_TEMPLATE_ID)
   },
   emailConfig: {
     publicKey: emailConfig.emailjs.publicKey ? (emailConfig.emailjs.publicKey.substring(0, 5) + '...') : null,
     serviceId: emailConfig.emailjs.serviceId,
-    templateId: emailConfig.emailjs.templateId,
-    mailtrapServiceId: emailConfig.emailjs.mailtrapServiceId
+    templateId: emailConfig.emailjs.templateId
   }
 });
 

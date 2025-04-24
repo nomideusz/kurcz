@@ -9,13 +9,9 @@ export default function() {
     name: '',
     email: '',
     message: '',
-    isTestMode: false,
     isEmailJSReady: false,
     
     init() {
-      // Usunięto test mode, zawsze używamy produkcyjnego
-      this.isTestMode = false;
-      
       // Load EmailJS script if it's not already loaded
       this.loadEmailJS();
     },
@@ -46,40 +42,18 @@ export default function() {
     
     initializeEmailJS() {
       try {
-        // Initialize EmailJS with your public key from config using the new API format
+        // Initialize EmailJS with your public key from config
         window.emailjs.init({
           publicKey: emailConfig.emailjs.publicKey
         });
         
         this.isEmailJSReady = true;
-        console.log("EmailJS initialized successfully with version:", window.emailjs.version);
+        console.log("EmailJS initialized successfully");
       } catch (error) {
         console.error("Error initializing EmailJS:", error);
         this.formError = true;
         this.errorMessage = "Wystąpił błąd podczas inicjalizacji systemu kontaktowego. Prosimy o kontakt telefoniczny.";
       }
-    },
-    
-    validateConfig() {
-      const { publicKey, serviceId, templateId } = emailConfig.emailjs;
-      
-      if (!this.isEmailJSReady) {
-        return "System kontaktowy nie jest gotowy. Odśwież stronę lub spróbuj ponownie później.";
-      }
-      
-      if (!publicKey || publicKey === 'your_emailjs_public_key') {
-        return "Brak klucza publicznego EmailJS.";
-      }
-      
-      if (!serviceId || serviceId === 'your_emailjs_service_id') {
-        return "Usługa EmailJS nie jest poprawnie skonfigurowana.";
-      }
-      
-      if (!templateId || templateId === 'your_emailjs_template_id') {
-        return "Szablon EmailJS nie jest poprawnie skonfigurowany.";
-      }
-      
-      return null; // Config is valid
     },
     
     submitForm() {
@@ -102,17 +76,10 @@ export default function() {
         return;
       }
       
-      // Check if EmailJS is properly configured
-      const configError = this.validateConfig();
-      if (configError) {
-        console.error("EmailJS configuration error:", configError);
-        this.formError = true;
-        this.errorMessage = `Błąd konfiguracji: ${configError} Prosimy o kontakt telefoniczny.`;
-        this.loading = false;
-        return;
-      }
-      
-      const { serviceId, templateId } = emailConfig.emailjs;
+      // Use the direct service and template IDs
+      // Hardcoding these values ensures we never accidentally use Mailtrap
+      const serviceId = 'service_odredbg';
+      const templateId = 'template_58mu3e2';
       
       // Prepare data for submission
       const templateParams = {
@@ -121,12 +88,12 @@ export default function() {
         message: this.message
       };
       
-      // Send email using EmailJS with values from config (with updated API for v4)
+      // Send email using EmailJS
       window.emailjs
         .send(serviceId, templateId, templateParams)
         .then((response) => {
           // Success
-          console.log("Email sent successfully:", response);
+          console.log("Email sent successfully");
           this.formSubmitted = true;
           this.loading = false;
           
@@ -139,14 +106,22 @@ export default function() {
           }, 3000);
         })
         .catch((error) => {
-          // Error with more details
+          // Error handling
           console.error("Email sending failed:", error);
           
-          // Get detailed error message
+          // Check for specific error messages
           let errorMessage = "Spróbuj ponownie później.";
+          
+          // Check for specific error types
           if (error) {
-            if (error.text) errorMessage = error.text;
-            else if (error.message) errorMessage = error.message;
+            if (error.text && error.text.includes("Mailtrap")) {
+              // This should never happen now, but just in case
+              errorMessage = "Problem z konfiguracją usługi email. Prosimy o kontakt telefoniczny.";
+            } else if (error.text) {
+              errorMessage = error.text;
+            } else if (error.message) {
+              errorMessage = error.message;
+            }
           }
           
           this.formError = true;
@@ -233,26 +208,71 @@ export default function() {
             <div class="w-full md:w-1/2 p-8 md:p-12">
               <h3 class="text-2xl font-semibold text-gray-800 mb-6">Formularz kontaktowy</h3>
               
-              <form class="space-y-6">
+              <div x-show="formSubmitted" class="mb-6 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded">
+                <p class="font-medium">Dziękujemy za wiadomość!</p>
+                <p class="text-sm">Odpowiemy najszybciej jak to możliwe.</p>
+              </div>
+              
+              <div x-show="formError" class="mb-6 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+                <p class="font-medium">Błąd!</p>
+                <p class="text-sm" x-text="errorMessage"></p>
+              </div>
+              
+              <form x-show="!formSubmitted" @submit.prevent="submitForm" class="space-y-6">
                 <div>
                   <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Imię i nazwisko</label>
-                  <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
+                  <input 
+                    type="text" 
+                    id="name" 
+                    x-model="name"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                    :disabled="loading"
+                    required
+                  >
                 </div>
                 
                 <div>
                   <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                  <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
+                  <input 
+                    type="email" 
+                    id="email" 
+                    x-model="email"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                    :disabled="loading"
+                    required
+                  >
                 </div>
                 
                 <div>
                   <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Wiadomość</label>
-                  <textarea id="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"></textarea>
+                  <textarea 
+                    id="message" 
+                    rows="4" 
+                    x-model="message"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                    :disabled="loading"
+                    required
+                  ></textarea>
                 </div>
                 
                 <div>
-                  <button type="submit" class="w-full bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors">
-                    Wyślij wiadomość
+                  <button 
+                    type="submit" 
+                    class="w-full bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
+                    :disabled="loading"
+                  >
+                    <span x-show="!loading">Wyślij wiadomość</span>
+                    <span x-show="loading" class="flex items-center justify-center">
+                      <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                      Wysyłanie...
+                    </span>
                   </button>
+                  <p class="text-sm text-gray-500 mt-3">
+                    Jeśli masz problemy z wysłaniem formularza, skorzystaj z bezpośredniego kontaktu telefonicznego lub email.
+                  </p>
                 </div>
               </form>
             </div>
