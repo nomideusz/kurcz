@@ -64,7 +64,7 @@ export default function() {
                 <div class="absolute inset-0 rounded-full bg-gradient-to-br from-blue-400/30 to-blue-700/30 blur-sm"></div>
                 <div class="absolute w-full h-full rounded-full border-2 border-white/20 animate-spin-slow"></div>
                 <div class="w-full h-full rounded-full border-8 border-white border-opacity-30 flex items-center justify-center text-white overflow-hidden">
-                  <img src="/img/hero_square.png" alt="Ilustracja kurczu mięśniowego" class="w-full h-full object-cover rounded-full" loading="lazy" fetchpriority="high" />
+                  <img src="/img/hero_square.webp" alt="Ilustracja kurczu mięśniowego" class="w-full h-full object-cover rounded-full" loading="lazy" fetchpriority="high" />
                 </div>
               </div>
             </div>
