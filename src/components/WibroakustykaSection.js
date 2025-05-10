@@ -2,7 +2,7 @@ export default function() {
   return {
     features: [
       "Zwiększenie elastyczności tkanek mięśniowych",
-      "Redukcję napięcia i zapobieganie kurczom",
+      "Redukcję napięcia i zapobieganie kurczom mięśniowym",
       "Poprawę mikrokrążenia w obszarach zagrożonych kurczami",
       "Przyspieszenie regeneracji po wysiłku fizycznym"
     ],
@@ -12,9 +12,9 @@ export default function() {
         <div class="container mx-auto px-6">
           <div class="text-center max-w-6xl mx-auto mb-8">
             <span class="section-subtitle">Innowacyjne rozwiązania</span>
-            <h2 class="section-title">Wibroakustyka</h2>
+            <h2 class="section-title">Wibroakustyka w walce z kurczami</h2>
             <p class="section-description">
-              Odkryj nowoczesne podejście do profilaktyki i redukcji ryzyka kurczów mięśniowych 
+              Odkryj nowoczesne podejście do profilaktyki i redukcji ryzyka kurczy mięśniowych 
               przy pomocy zaawansowanej terapii wibroakustycznej.
             </p>
           </div>
@@ -29,57 +29,26 @@ export default function() {
                   Badania kliniczne wykazują jej skuteczność w zakresie poprawy funkcjonowania układu mięśniowego poprzez:
                 </p>
                 <ul class="space-y-2 mb-5">
-                  <li class="flex items-start">
-                    <div class="flex-shrink-0">
-                      <svg class="h-6 w-6 text-green-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                      </svg>
-                    </div>
-                    <p class="ml-3 text-base text-gray-700">Zwiększenie elastyczności tkanek mięśniowych</p>
-                  </li>
-                  <li class="flex items-start">
-                    <div class="flex-shrink-0">
-                      <svg class="h-6 w-6 text-green-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                      </svg>
-                    </div>
-                    <p class="ml-3 text-base text-gray-700">Redukcję napięcia i zapobieganie kurczom</p>
-                  </li>
-                  <li class="flex items-start">
-                    <div class="flex-shrink-0">
-                      <svg class="h-6 w-6 text-green-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                      </svg>
-                    </div>
-                    <p class="ml-3 text-base text-gray-700">Poprawę mikrokrążenia w obszarach zagrożonych kurczami</p>
-                  </li>
-                  <li class="flex items-start">
-                    <div class="flex-shrink-0">
-                      <svg class="h-6 w-6 text-green-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                      </svg>
-                    </div>
-                    <p class="ml-3 text-base text-gray-700">Przyspieszenie regeneracji po wysiłku fizycznym</p>
-                  </li>
+                  <template x-for="(feature, index) in features" :key="index">
+                    <li class="flex items-start">
+                      <div class="flex-shrink-0">
+                        <svg class="h-6 w-6 text-green-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                      <p class="ml-3 text-base text-gray-700" x-text="feature"></p>
+                    </li>
+                  </template>
                 </ul>
-                
-                <button 
-                  @click="window.open('https://wibroakustyka.ai', '_blank')" 
-                  class="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-800 transition-colors group mb-6"
-                >
-                  <span>Dowiedz się więcej</span>
-                  <svg class="ml-1 w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                  </svg>
-                </button>
               </div>
               
               <img 
                 src="/img/wibroakustyka2.webp" 
                 alt="Terapia wibroakustyczna" 
                 class="w-full h-auto object-cover rounded-b-xl" 
-                width="400" 
-                height="300"
+                width="600" 
+                height="400"
+                loading="lazy"
               />
             </div>
             
@@ -94,7 +63,7 @@ export default function() {
                   <div>
                     <h4 class="text-xl font-semibold mb-3 text-gray-800">Ważna informacja</h4>
                     <p class="text-gray-600">
-                      Terapia wibroakustyczna stanowi uzupełnienie konwencjonalnych metod leczenia i profilaktyki kurczów mięśniowych. 
+                      Terapia wibroakustyczna stanowi uzupełnienie konwencjonalnych metod leczenia i profilaktyki kurczy mięśniowych. 
                       Zawsze konsultuj nowe metody terapeutyczne z lekarzem, szczególnie jeśli cierpisz na przewlekłe dolegliwości.
                     </p>
                   </div>
@@ -111,7 +80,7 @@ export default function() {
                   <div>
                     <h4 class="text-xl font-semibold mb-3 text-gray-800">Potwierdzona skuteczność</h4>
                     <p class="text-gray-600">
-                      Metoda wibroakustyczna posiada udokumentowane badania kliniczne potwierdzające jej skuteczność w redukcji częstotliwości występowania kurczów mięśniowych i przyspieszeniu regeneracji.
+                      Metoda wibroakustyczna posiada udokumentowane badania kliniczne potwierdzające jej skuteczność w redukcji częstotliwości występowania kurczy mięśniowych i przyspieszeniu regeneracji tkanek.
                     </p>
                   </div>
                 </div>
@@ -127,7 +96,7 @@ export default function() {
                   <div>
                     <h4 class="text-xl font-semibold mb-3 text-gray-800">Dostępność terapii</h4>
                     <p class="text-gray-600">
-                      Technologia wibroakustyczna jest coraz bardziej dostępna zarówno w ośrodkach medycznych, jak i w formie urządzeń do użytku domowego, co czyni ją przystępną opcją terapeutyczną dla szerokiego grona pacjentów.
+                      Technologia wibroakustyczna jest coraz bardziej dostępna zarówno w ośrodkach medycznych, jak i w formie urządzeń do użytku domowego, co czyni ją przystępną opcją terapeutyczną dla osób cierpiących na nawracające kurcze mięśniowe.
                     </p>
                   </div>
                 </div>
@@ -137,7 +106,7 @@ export default function() {
           
           <div class="max-w-6xl mx-auto mt-8 bg-white rounded-xl p-6 md:p-8 shadow-soft text-center">
             <h3 class="text-2xl font-bold text-gray-800 mb-4">Zainteresowany wibroakustyką?</h3>
-            <p class="text-gray-600 mb-5">Odkryj więcej szczegółów na temat zastosowania wibroakustyki w terapii kurczów mięśniowych i innych dolegliwości.</p>
+            <p class="text-gray-600 mb-5">Odkryj więcej szczegółów na temat zastosowania wibroakustyki w terapii kurczy mięśniowych i innych dolegliwości.</p>
             <button 
               @click="window.open('https://wibroakustyka.ai', '_blank')"
               class="inline-flex items-center justify-center px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-all duration-300 transform hover:-translate-y-1 shadow-md hover:shadow-lg"

@@ -1,9 +1,9 @@
 export default function() {
   return {
     template: `
-      <section id="home" class="relative bg-gradient-to-br from-blue-600 to-blue-500 py-24 pt-24 pb-36 text-white overflow-hidden">
-        <!-- Decorative Elements -->
-        <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+      <section id="home" class="relative bg-gradient-to-br from-blue-600 to-blue-500 py-24 pt-24 pb-36 text-white overflow-hidden min-h-[600px]">
+        <!-- Decorative Elements - now with fixed sizes to prevent layout shifts -->
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none" aria-hidden="true" style="contain: strict;">
           <div class="absolute h-96 w-96 -top-12 -left-16 bg-blue-600 rounded-full opacity-20 blur-3xl animate-blob"></div>
           <div class="absolute h-96 w-96 top-1/2 right-0 bg-blue-400 rounded-full opacity-20 blur-3xl animate-blob animation-delay-2000"></div>
           <div class="absolute bottom-24 left-1/3 h-64 w-64 bg-blue-300 rounded-full opacity-20 blur-3xl animate-blob animation-delay-4000"></div>
@@ -36,7 +36,7 @@ export default function() {
               <div class="flex flex-col sm:flex-row justify-center md:justify-start gap-5 mb-8">
                 <button 
                   type="button"
-                  @click="window.location.href='#treatment'"
+                  @click="document.getElementById('treatment').scrollIntoView({behavior: 'smooth', block: 'start'})"
                   class="inline-flex items-center justify-center rounded-lg bg-red-600 text-white font-semibold px-6 py-4 shadow-lg hover:bg-red-700 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
                 >
                   <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -46,7 +46,7 @@ export default function() {
                 </button>
                 <button 
                   type="button"
-                  @click="window.location.href='#intro'"
+                  @click="document.getElementById('intro').scrollIntoView({behavior: 'smooth', block: 'start'})"
                   class="inline-flex items-center justify-center rounded-lg bg-white text-blue-700 font-semibold px-6 py-4 shadow-lg hover:bg-blue-50 hover:text-blue-800 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
                 >
                   Dowiedz się więcej
@@ -64,16 +64,24 @@ export default function() {
                 <div class="absolute inset-0 rounded-full bg-gradient-to-br from-blue-400/30 to-blue-700/30 blur-sm"></div>
                 <div class="absolute w-full h-full rounded-full border-2 border-white/20 animate-spin-slow"></div>
                 <div class="w-full h-full rounded-full border-8 border-white border-opacity-30 flex items-center justify-center text-white overflow-hidden">
-                  <img src="/img/hero_square.webp" alt="Ilustracja kurczu mięśniowego" class="w-full h-full object-cover rounded-full" loading="lazy" fetchpriority="high" />
+                  <img 
+                    src="/img/hero_square.webp" 
+                    alt="Ilustracja kurczu mięśniowego" 
+                    class="w-full h-full object-cover rounded-full" 
+                    width="384" 
+                    height="384" 
+                    loading="eager" 
+                    fetchpriority="high" 
+                  />
                 </div>
               </div>
             </div>
           </div>
         </div>
         
-        <!-- Wave Shape Divider -->
-        <div class="absolute bottom-0 left-0 w-full overflow-hidden">
-          <svg class="relative block w-full h-16 md:h-24 lg:h-32" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <!-- Wave Shape Divider - now with width and height -->
+        <div class="absolute bottom-0 left-0 w-full overflow-hidden" style="height: 32px; contain: content;">
+          <svg class="relative block w-full h-16 md:h-24 lg:h-32" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none" width="1200" height="120">
             <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" class="fill-gray-50"></path>
           </svg>
         </div>

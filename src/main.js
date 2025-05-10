@@ -9,6 +9,8 @@ import Footer from './components/Footer.js';
 import Hero from './components/Hero.js';
 import IntroSection from './components/IntroSection.js';
 import TreatmentSection from './components/TreatmentSection.js';
+import PreventionSection from './components/PreventionSection.js';
+import ComparisonSection from './components/ComparisonSection.js';
 import FaqSection from './components/FaqSection.js';
 import ContactSection from './components/ContactSection.js';
 import WibroakustykaSection from './components/WibroakustykaSection.js';
@@ -51,6 +53,8 @@ window.footerComponent = Footer;
 window.heroComponent = Hero;
 window.introSectionComponent = IntroSection;
 window.treatmentSectionComponent = TreatmentSection;
+window.preventionSectionComponent = PreventionSection;
+window.comparisonSectionComponent = ComparisonSection;
 window.faqSectionComponent = FaqSection;
 window.contactSectionComponent = ContactSection;
 window.wibroakustykaSectionComponent = WibroakustykaSection;
@@ -73,6 +77,12 @@ function renderApp() {
       
       <!-- Treatment Section Component -->
       <div x-data="treatmentSectionComponent()" x-html="template"></div>
+      
+      <!-- Prevention Section Component -->
+      <div x-data="preventionSectionComponent()" x-html="template"></div>
+      
+      <!-- Comparison Section Component -->
+      <div x-data="comparisonSectionComponent()" x-html="template"></div>
       
       <!-- Wibroakustyka Section Component -->
       <div x-data="wibroakustykaSectionComponent()" x-html="template"></div>

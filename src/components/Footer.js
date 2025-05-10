@@ -27,11 +27,8 @@ export default function () {
             
             <!-- Quick Links -->
             <div>
-              <h3 class="text-lg font-semibold mb-8 relative">
-                <span class="relative z-10">Nawigacja</span>
-                <span class="absolute bottom-0 left-0 w-16 h-1 bg-blue-500 z-0"></span>
-              </h3>
-              <ul class="space-y-4">
+              <h3 class="text-xs leading-4 font-medium tracking-wider uppercase text-gray-400 mb-4">Nawigacja</h3>
+              <ul class="space-y-3 text-sm font-medium">
                 <li>
                   <button 
                     @click="document.getElementById('home').scrollIntoView({behavior: 'smooth', block: 'start'})" 
@@ -43,9 +40,10 @@ export default function () {
                         <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
                       </svg>
                     </span>
-                    <span class="group-hover:translate-x-1 transition-transform duration-300">Strona główna</span>
+                    Strona główna
                   </button>
                 </li>
+                
                 <li>
                   <button 
                     @click="document.getElementById('intro').scrollIntoView({behavior: 'smooth', block: 'start'})" 
@@ -57,9 +55,10 @@ export default function () {
                         <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
                       </svg>
                     </span>
-                    <span class="group-hover:translate-x-1 transition-transform duration-300">O kurczach</span>
+                    Informacje
                   </button>
                 </li>
+                
                 <li>
                   <button 
                     @click="document.getElementById('treatment').scrollIntoView({behavior: 'smooth', block: 'start'})" 
@@ -71,7 +70,37 @@ export default function () {
                         <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path>
                       </svg>
                     </span>
-                    <span class="group-hover:translate-x-1 transition-transform duration-300">Leczenie</span>
+                    Pierwsza pomoc
+                  </button>
+                </li>
+                
+                <li>
+                  <button 
+                    @click="document.getElementById('prevention').scrollIntoView({behavior: 'smooth', block: 'start'})" 
+                    type="button"
+                    class="text-gray-400 hover:text-blue-300 transition-colors duration-300 flex items-center bg-transparent border-0 p-0 cursor-pointer group"
+                  >
+                    <span class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center mr-3 group-hover:bg-blue-900/30 transition-colors duration-300">
+                      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+                      </svg>
+                    </span>
+                    Profilaktyka
+                  </button>
+                </li>
+                
+                <li>
+                  <button 
+                    @click="document.getElementById('comparison').scrollIntoView({behavior: 'smooth', block: 'start'})" 
+                    type="button"
+                    class="text-gray-400 hover:text-blue-300 transition-colors duration-300 flex items-center bg-transparent border-0 p-0 cursor-pointer group"
+                  >
+                    <span class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center mr-3 group-hover:bg-blue-900/30 transition-colors duration-300">
+                      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M5 3a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2V5a2 2 0 00-2-2H5zm0 2h10v7h-2l-1 2H8l-1-2H5V5z" clip-rule="evenodd"></path>
+                      </svg>
+                    </span>
+                    Kurcz vs. skurcz
                   </button>
                 </li>
                 <li>
