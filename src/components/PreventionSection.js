@@ -28,7 +28,7 @@ export default function() {
           
           <!-- Main Content Cards -->
           <div class="max-w-6xl mx-auto">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-8 md:gap-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
               <!-- Card 1 -->
               <div class="bg-white rounded-xl shadow-soft overflow-hidden transform hover:-translate-y-1 transition-all duration-300 hover:shadow-lg border-t-4 border-blue-500 h-full">
                 <div class="p-6 sm:p-8">
