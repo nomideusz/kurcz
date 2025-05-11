@@ -29,8 +29,13 @@ export default function() {
     
     // Toggle mobile menu
     toggleMobileMenu() {
-      this.menuOpen = !this.menuOpen;
-      Alpine.store('header').menuOpen = this.menuOpen;
+      if (Alpine.store('header')) {
+        this.menuOpen = !this.menuOpen;
+        Alpine.store('header').menuOpen = this.menuOpen;
+      } else {
+        console.error('Header store is not initialized; menu toggle skipped.');
+        // Optionally, you could initialize it here as a fallback, but it's better handled globally.
+      }
     },
     
     // Toggle More dropdown
