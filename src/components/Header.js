@@ -342,7 +342,7 @@ export default function() {
                 <div class="space-y-1 px-2">
                   <template x-for="item in navItems" :key="item.id">
                     <button 
-                      @click="toggleMobileMenu(); activeSection = item.id; document.getElementById(item.id).scrollIntoView({behavior: 'smooth', block: 'start'});" 
+                      @click="toggleMobileMenu(); $nextTick(() => { activeSection = item.id; document.getElementById(item.id).scrollIntoView({behavior: 'smooth', block: 'start'}); });" 
                       class="w-full flex items-center px-3 py-2 text-base font-medium rounded-md"
                       :class="isActive(item.id) ? 'text-white bg-blue-800' : 'text-gray-800 hover:bg-gray-100'"
                     >

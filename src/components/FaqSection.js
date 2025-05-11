@@ -3,7 +3,7 @@ export default function() {
     faqs: [
       {
         question: 'Jaka jest różnica między kurczem a skurczem mięśni?',
-        answer: 'Choć w języku potocznym terminy te bywają używane zamiennie, mają różne znaczenia medyczne. Kurcz to nagłe, mimowolne i zazwyczaj bolesne napięcie mięśnia, zawsze nieświadome i patologiczne (np. kurcz łydki, stopy). Skurcz natomiast to szersze pojęcie — fizjologiczny proces napinania się mięśnia, który może być świadomy lub mimowolny. W terminologii medycznej preferowany jest termin "skurcz", natomiast w mowie potocznej częściej używa się określenia "kurcz" dla bolesnych, nagłych napięć mięśniowych. Można powiedzieć, że każdy kurcz jest rodzajem skurczu, ale nie każdy skurcz jest kurczem.',
+        answer: 'Choć w języku potocznym terminy te bywają używane zamiennie, mają różne znaczenia medyczne. Kurcz to nagłe, mimowolne i zazwyczaj bolesne napięcie mięśnia, zawsze nieświadome i patologiczne (np. kurcz łydki, stopy). Skurcz natomiast to szersze pojęcie — fizjologiczny proces napinania się mięśnia, który może być świadomy lub mimowolny. W terminologii medycznej preferowany jest termin „skurcz”, natomiast w mowie potocznej częściej używa się określenia „kurcz” dla bolesnych, nagłych napięć mięśniowych. Można powiedzieć, że każdy kurcz jest rodzajem skurczu, ale nie każdy skurcz jest kurczem.',
         open: false
       },
       {

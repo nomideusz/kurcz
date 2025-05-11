@@ -28,7 +28,7 @@ export default function() {
       {
         id: 5,
         title: 'Aktywność fizyczna',
-        content: 'Po ustąpieniu kurczu wprowadź ćwiczenia przywracające sprawność: 1) "Pisanie alfabetu" stopą w powietrzu dla kurczy łydek, 2) Powolne przysiady przy ścianie dla kurczy ud, 3) Zginanie i prostowanie palców stóp z oporem dla kurczy stóp. Każde ćwiczenie wykonuj przez 30 sekund, powtarzając 3 razy z przerwami. Rozpoczynaj od niskiej intensywności, stopniowo ją zwiększając przez kilka dni po epizodzie kurczu.',
+        content: 'Po ustąpieniu kurczu wprowadź ćwiczenia przywracające sprawność: 1) „Pisanie alfabetu” stopą w powietrzu dla kurczy łydek, 2) Powolne przysiady przy ścianie dla kurczy ud, 3) Zginanie i prostowanie palców stóp z oporem dla kurczy stóp. Każde ćwiczenie wykonuj przez 30 sekund, powtarzając 3 razy z przerwami. Rozpoczynaj od niskiej intensywności, stopniowo ją zwiększając przez kilka dni po epizodzie kurczu.',
         isOpen: false
       }
     ],
