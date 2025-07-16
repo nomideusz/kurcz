@@ -29,12 +29,14 @@ export default function() {
     
     // Toggle mobile menu
     toggleMobileMenu() {
-      if (Alpine.store('header')) {
-        this.menuOpen = !this.menuOpen;
-        Alpine.store('header').menuOpen = this.menuOpen;
-      } else {
-        console.error('Header store is not initialized; menu toggle skipped.');
-        // Optionally, you could initialize it here as a fallback, but it's better handled globally.
+      this.menuOpen = !this.menuOpen;
+      // Try to update store if available, but don't fail if it's not
+      try {
+        if (Alpine.store && Alpine.store('header')) {
+          Alpine.store('header').menuOpen = this.menuOpen;
+        }
+      } catch (e) {
+        console.warn('Alpine store update failed:', e);
       }
     },
     
@@ -52,9 +54,15 @@ export default function() {
       // Check initial state - if we're already scrolled down on page load
       this.scrolledDown = window.scrollY > 50;
       
-      // Update the Alpine store with the current state
-      Alpine.store('header').scrolledDown = this.scrolledDown;
-      Alpine.store('header').menuOpen = this.menuOpen;
+      // Update the Alpine store with the current state if available
+      try {
+        if (Alpine.store && Alpine.store('header')) {
+          Alpine.store('header').scrolledDown = this.scrolledDown;
+          Alpine.store('header').menuOpen = this.menuOpen;
+        }
+      } catch (e) {
+        console.warn('Alpine store initialization failed:', e);
+      }
       
       // Debug header state
       console.log('Header initialized with state:', {
@@ -71,8 +79,14 @@ export default function() {
         
         // Dispatch custom event when scrolledDown state changes
         if (wasScrolledDown !== this.scrolledDown) {
-          // Update the store
-          Alpine.store('header').scrolledDown = this.scrolledDown;
+          // Update the store if available
+          try {
+            if (Alpine.store && Alpine.store('header')) {
+              Alpine.store('header').scrolledDown = this.scrolledDown;
+            }
+          } catch (e) {
+            console.warn('Alpine store update failed:', e);
+          }
           
           // Keep the custom event for backward compatibility
           window.dispatchEvent(new CustomEvent('scroll-state-changed', {
@@ -93,7 +107,13 @@ export default function() {
       window.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && this.menuOpen) {
           this.menuOpen = false;
-          Alpine.store('header').menuOpen = false;
+          try {
+            if (Alpine.store && Alpine.store('header')) {
+              Alpine.store('header').menuOpen = false;
+            }
+          } catch (e) {
+            console.warn('Alpine store update failed:', e);
+          }
         }
         
         if (e.key === 'Escape' && this.moreMenuOpen) {
@@ -103,8 +123,14 @@ export default function() {
 
       // Add/remove blur class to main content when mobile menu is toggled
       this.$watch('menuOpen', (isOpen) => {
-        // Update the store
-        Alpine.store('header').menuOpen = isOpen;
+        // Update the store if available
+        try {
+          if (Alpine.store && Alpine.store('header')) {
+            Alpine.store('header').menuOpen = isOpen;
+          }
+        } catch (e) {
+          console.warn('Alpine store update failed:', e);
+        }
         
         if (isOpen) {
           document.body.classList.add('content-blurred');
