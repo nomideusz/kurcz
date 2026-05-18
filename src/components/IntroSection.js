@@ -18,7 +18,7 @@ export default function() {
               Kurcze mięśniowe — <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary-500 to-health">przyczyny, objawy i leczenie</span>
             </h2>
             <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto font-light leading-relaxed">
-              Kurcze mięśniowe to mimowolne, często bolesne skurcze mięśni, które mogą dotknąć każdego z nas.
+              Kurcze mięśniowe to mimowolne, często bolesne kurcze mięśni, które mogą dotknąć każdego z nas.
               Poznaj ich medyczne podłoże, czynniki ryzyka oraz sprawdzone metody prewencji i skutecznego leczenia.
             </p>
           </div>
@@ -110,7 +110,7 @@ export default function() {
                   <span class="flex-shrink-0 w-6 h-6 rounded-full bg-health/10 flex items-center justify-center mr-3 mt-0.5 text-health">
                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
                   </span>
-                  <span>Dyskomfort utrzymujący się po ustąpieniu skurczu</span>
+                  <span>Dyskomfort utrzymujący się po ustąpieniu kurczu</span>
                 </li>
               </ul>
               

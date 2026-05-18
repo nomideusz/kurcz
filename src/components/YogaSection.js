@@ -34,7 +34,7 @@ export default function() {
                     </span>
                     <div>
                       <strong class="text-gray-900 font-medium block">Zwiększona elastyczność</strong>
-                      <span class="text-sm">Asany skutecznie wydłużają włókna mięśniowe, zmniejszając ich podatność na nagłe skurcze.</span>
+                      <span class="text-sm">Asany skutecznie wydłużają włókna mięśniowe, zmniejszając ich podatność na nagłe kurcze.</span>
                     </div>
                   </li>
                   <li class="flex items-start">

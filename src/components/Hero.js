@@ -28,11 +28,11 @@ export default function() {
               
               <h1 class="font-heading text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-[1.1] text-white tracking-tight">
                 Zrozumieć <br/>
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-health-light">Skurcze Mięśni</span>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-health-light">Kurcze Mięśni</span>
               </h1>
               
               <p class="text-xl md:text-2xl mb-8 text-gray-300 font-light max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                Kompleksowa wiedza medyczna w jednym miejscu. Poznaj najczęstsze przyczyny bolesnych skurczy nóg i mięśni, znajdź natychmiastową ulgę oraz skutecznie zapobiegaj ich nawrotom na co dzień.
+                Kompleksowa wiedza medyczna w jednym miejscu. Poznaj najczęstsze przyczyny bolesnych kurczy nóg i mięśni, znajdź natychmiastową ulgę oraz skutecznie zapobiegaj ich nawrotom na co dzień.
               </p>
               
               <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-4">

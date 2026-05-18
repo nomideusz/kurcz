@@ -76,7 +76,7 @@ export default function() {
                 </div>
                 <div>
                   <h3 class="font-heading text-3xl md:text-4xl font-bold text-gray-900 mb-2">Natychmiastowa ulga w bólu</h3>
-                  <p class="text-gray-500 text-lg">Zastosuj te 3 kroki, aby szybko przerwać bolesny skurcz mięśnia.</p>
+                  <p class="text-gray-500 text-lg">Zastosuj te 3 kroki, aby szybko przerwać bolesny kurcz mięśnia.</p>
                 </div>
               </div>
               
