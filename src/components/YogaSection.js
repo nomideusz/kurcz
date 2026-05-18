@@ -83,7 +83,7 @@ export default function() {
                     href="https://szkolyjogi.pl" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    class="group relative inline-flex items-center justify-center w-full rounded-2xl bg-primary-600 text-white font-medium px-8 py-4 overflow-hidden transition-all duration-300 hover:scale-[1.02] hover:shadow-glow hover:bg-primary-700"
+                    class="group relative inline-flex items-center justify-center w-full rounded-2xl bg-primary-600 text-white font-medium px-8 py-4 overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-glow"
                   >
                     <span class="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-black"></span>
                     <span class="relative flex items-center gap-2">
