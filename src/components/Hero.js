@@ -60,21 +60,33 @@ export default function() {
             </div>
             
             <div class="lg:w-1/2 w-full max-w-lg lg:max-w-none relative flex justify-center animate-fade-in delay-200">
-              <!-- Glassmorphism Image Container -->
-              <div class="relative w-full aspect-square max-w-[500px] rounded-[2.5rem] bg-surface-dark/20 backdrop-blur-xl border border-white/10 shadow-2xl p-4 md:p-6 rotate-3 hover:rotate-0 transition-transform duration-500 ease-out overflow-hidden group">
-                <div class="absolute inset-0 bg-gradient-to-tr from-primary-600/20 to-health-dark/20 opacity-50"></div>
-                <div class="relative w-full h-full rounded-[1.5rem] overflow-hidden border border-white/10 shadow-inner">
+              <!-- Advanced Glassmorphism UI Container -->
+              <div class="relative w-full aspect-[4/3] lg:aspect-square max-w-[600px] rounded-[2rem] bg-surface-dark/40 backdrop-blur-2xl border border-teal-500/30 shadow-[0_0_50px_rgba(20,184,166,0.15)] p-2 md:p-4 transition-all duration-700 hover:shadow-[0_0_80px_rgba(20,184,166,0.3)] hover:border-teal-400/50 group overflow-hidden">
+                
+                <!-- Glowing accents inside frame -->
+                <div class="absolute -top-20 -right-20 w-40 h-40 bg-teal-500/30 rounded-full blur-[50px] group-hover:bg-teal-400/40 transition-colors duration-500"></div>
+                <div class="absolute -bottom-20 -left-20 w-60 h-60 bg-blue-600/20 rounded-full blur-[60px] group-hover:bg-blue-500/30 transition-colors duration-500"></div>
+
+                <div class="relative w-full h-full rounded-[1.5rem] overflow-hidden border border-white/5 shadow-inner bg-gray-900/50">
                   <img 
-                    src="/img/hero_square.webp" 
-                    alt="Ilustracja kurczu mięśniowego" 
-                    class="w-full h-full object-cover transform scale-105 group-hover:scale-110 transition-transform duration-700 ease-in-out" 
-                    width="500" 
-                    height="500" 
+                    src="/img/hero_anatomy.png" 
+                    alt="Biometryczna analiza układu mięśniowego" 
+                    class="w-full h-full object-cover object-center transform scale-100 group-hover:scale-105 transition-transform duration-1000 ease-out" 
+                    width="600" 
+                    height="600" 
                     loading="eager" 
                     fetchpriority="high" 
                   />
-                  <!-- Gradient Overlay -->
-                  <div class="absolute inset-0 bg-gradient-to-t from-[#020617]/80 via-transparent to-transparent"></div>
+                  <!-- Gradient Overlays to blend with dark bg -->
+                  <div class="absolute inset-0 bg-gradient-to-t from-[#020617] via-transparent to-transparent opacity-80"></div>
+                  <div class="absolute inset-0 bg-gradient-to-r from-[#020617]/50 via-transparent to-transparent"></div>
+                  
+                  <!-- HUD Elements overlay -->
+                  <div class="absolute top-4 left-4 flex gap-2">
+                    <span class="w-2 h-2 rounded-full bg-teal-400 animate-pulse"></span>
+                    <span class="w-2 h-2 rounded-full bg-teal-400/50"></span>
+                    <span class="w-2 h-2 rounded-full bg-teal-400/30"></span>
+                  </div>
                 </div>
               </div>
             </div>
