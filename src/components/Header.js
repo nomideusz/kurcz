@@ -216,7 +216,7 @@ export default function() {
         ></div>
 
         <div class="container mx-auto px-6 relative">
-          <div class="flex justify-between items-center w-full max-w-6xl mx-auto">
+          <div class="flex justify-between items-center w-full max-w-7xl mx-auto">
             <!-- Logo on the left -->
             <div class="flex-shrink-0 mr-auto">
               <a 
