@@ -45,159 +45,149 @@ export default function() {
     },
     
     template: `
-      <section id="treatment" class="py-12 md:py-20 bg-gray-50">
-        <div class="container mx-auto px-4 sm:px-6">
+      <section id="treatment" class="py-24 md:py-32 bg-surface">
+        <div class="container mx-auto px-6">
           <!-- Main Section Heading -->
-          <div class="max-w-6xl mx-auto text-center mb-10 md:mb-16">
-            <span class="section-subtitle block text-sm sm:text-base">Pierwsza pomoc</span>
-            <h2 class="section-title text-3xl md:text-4xl lg:text-5xl font-bold mt-2 mb-4">
-              Natychmiastowa pomoc przy kurczach mięśniowych
+          <div class="max-w-4xl mx-auto text-center mb-16 md:mb-24 animate-slide-up">
+            <div class="inline-flex items-center gap-2 px-4 py-2 bg-health/10 text-health-dark rounded-full mb-6 border border-health/20 font-medium text-sm">
+              <span class="w-2 h-2 rounded-full bg-health animate-pulse"></span>
+              Pierwsza pomoc
+            </div>
+            <h2 class="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 tracking-tight">
+              Natychmiastowa pomoc przy <span class="text-transparent bg-clip-text bg-gradient-to-r from-health to-primary-500">kurczach mięśniowych</span>
             </h2>
-            <p class="section-description text-base sm:text-lg text-gray-600 max-w-3xl mx-auto">
+            <p class="text-lg md:text-xl text-gray-600 font-light leading-relaxed max-w-2xl mx-auto">
               Poznaj sprawdzone techniki szybkiej ulgi, które pomogą Ci natychmiast złagodzić ból i dyskomfort podczas kurczu mięśnia. Szybka reakcja jest kluczowa dla efektywnego radzenia sobie z tą dolegliwością.
             </p>
-            <div class="mt-3 sm:mt-4">
-              <button 
-                @click="document.getElementById('prevention').scrollIntoView({behavior: 'smooth', block: 'start'})" 
-                type="button"
-                class="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-800 transition-colors mx-auto relative"
-              >
-                <span>Przejdź do metod profilaktyki</span>
-                <svg class="ml-1 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                </svg>
-                <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 hover:w-full transition-all duration-300"></span>
-              </button>
-            </div>
           </div>
         
-          <!-- Emergency Relief Card -->
-          <div class="max-w-6xl mx-auto mb-10 md:mb-16 bg-red-50 rounded-xl shadow-soft overflow-hidden border-l-4 border-red-500 transform transition-all duration-300 hover:shadow-md">
-            <div class="p-4 sm:p-6 md:p-8">
-              <div class="flex flex-col sm:flex-row sm:items-center mb-4 sm:mb-6">
-                <div class="flex-shrink-0 mr-4 mb-3 sm:mb-0">
-                  <div class="icon-circle icon-circle-lg bg-red-100 text-red-600">
-                    <svg class="w-7 h-7 md:w-9 md:h-9" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
-                    </svg>
-                  </div>
+          <!-- Emergency Relief Glass Card -->
+          <div class="max-w-6xl mx-auto mb-20 md:mb-32 relative group">
+            <div class="absolute inset-0 bg-gradient-to-r from-red-400 to-rose-400 rounded-[2.5rem] opacity-10 blur-xl group-hover:opacity-20 transition-opacity duration-500"></div>
+            <div class="relative bg-white border border-red-100 rounded-[2.5rem] shadow-glass p-8 md:p-12 overflow-hidden">
+              <!-- Decorative element -->
+              <div class="absolute top-0 right-0 w-64 h-64 bg-red-50 rounded-full blur-[80px] -mr-32 -mt-32 pointer-events-none"></div>
+
+              <div class="flex flex-col md:flex-row items-start md:items-center gap-6 mb-10 md:mb-12 relative z-10">
+                <div class="w-16 h-16 rounded-2xl bg-red-50 text-red-500 flex items-center justify-center flex-shrink-0 border border-red-100">
+                  <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                  </svg>
                 </div>
-                <h2 class="text-xl sm:text-2xl md:text-3xl font-bold text-red-800 leading-tight">Natychmiastowa ulga przy kurczach mięśniowych</h2>
+                <div>
+                  <h3 class="font-heading text-3xl md:text-4xl font-bold text-gray-900 mb-2">Natychmiastowa ulga w bólu</h3>
+                  <p class="text-gray-500 text-lg">Zastosuj te 3 kroki, aby szybko przerwać bolesny skurcz mięśnia.</p>
+                </div>
               </div>
               
               <!-- Emergency Cards Grid -->
-              <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 mb-4 md:mb-6">
-                <div class="card p-3 sm:p-5 sm:border-l-4 sm:border-red-400 hover-lift relative overflow-hidden bg-white sm:bg-transparent rounded-lg sm:rounded-none shadow-sm sm:shadow-none">
-                  <div class="absolute right-0 top-0 text-red-100 opacity-30 leading-none" style="font-size: 8rem; line-height: 0.8; transform: translate(10%, -10%);">1</div>
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-8 relative z-10">
+                <div class="group/card bg-gray-50 hover:bg-white rounded-2xl p-6 border border-gray-100 hover:border-red-100 hover:shadow-soft transition-all duration-300 relative overflow-hidden">
+                  <div class="absolute -right-4 -top-4 text-gray-100 font-heading font-bold text-8xl group-hover/card:text-red-50 transition-colors duration-300 pointer-events-none select-none">1</div>
                   <div class="relative z-10">
-                    <h3 class="card-title text-base sm:text-lg mb-1 sm:mb-2">Techniki rozciągania</h3>
-                    <p class="text-base sm:text-lg text-gray-600">Delikatnie rozciągnij mięsień poprzez wyprostowanie kończyny i przytrzymanie pozycji przez 20-30 sekund, oddychając głęboko.</p>
+                    <h4 class="font-heading text-xl font-bold mb-3 text-gray-900 group-hover/card:text-red-600 transition-colors">Techniki rozciągania</h4>
+                    <p class="text-gray-600 leading-relaxed">Delikatnie rozciągnij mięsień poprzez wyprostowanie kończyny i przytrzymanie pozycji przez 20-30 sekund, oddychając głęboko.</p>
                   </div>
                 </div>
                 
-                <div class="card p-3 sm:p-5 sm:border-l-4 sm:border-red-400 hover-lift relative overflow-hidden bg-white sm:bg-transparent rounded-lg sm:rounded-none shadow-sm sm:shadow-none">
-                  <div class="absolute right-0 top-0 text-red-100 opacity-30 leading-none" style="font-size: 8rem; line-height: 0.8; transform: translate(10%, -10%);">2</div>
+                <div class="group/card bg-gray-50 hover:bg-white rounded-2xl p-6 border border-gray-100 hover:border-red-100 hover:shadow-soft transition-all duration-300 relative overflow-hidden">
+                  <div class="absolute -right-4 -top-4 text-gray-100 font-heading font-bold text-8xl group-hover/card:text-red-50 transition-colors duration-300 pointer-events-none select-none">2</div>
                   <div class="relative z-10">
-                    <h3 class="card-title text-base sm:text-lg mb-1 sm:mb-2">Prawidłowe nawodnienie</h3>
-                    <p class="text-base sm:text-lg text-gray-600">Uzupełnij elektrolity i nawodnienie poprzez picie wody z dodatkiem soli mineralnych (sód, potas, magnez) lub napojów izotoniczych.</p>
+                    <h4 class="font-heading text-xl font-bold mb-3 text-gray-900 group-hover/card:text-red-600 transition-colors">Prawidłowe nawodnienie</h4>
+                    <p class="text-gray-600 leading-relaxed">Uzupełnij elektrolity i nawodnienie poprzez picie wody z dodatkiem soli mineralnych (sód, potas, magnez) lub napojów izotoniczych.</p>
                   </div>
                 </div>
                 
-                <div class="card p-3 sm:p-5 sm:border-l-4 sm:border-red-400 hover-lift relative overflow-hidden bg-white sm:bg-transparent rounded-lg sm:rounded-none shadow-sm sm:shadow-none">
-                  <div class="absolute right-0 top-0 text-red-100 opacity-30 leading-none" style="font-size: 8rem; line-height: 0.8; transform: translate(10%, -10%);">3</div>
+                <div class="group/card bg-gray-50 hover:bg-white rounded-2xl p-6 border border-gray-100 hover:border-red-100 hover:shadow-soft transition-all duration-300 relative overflow-hidden">
+                  <div class="absolute -right-4 -top-4 text-gray-100 font-heading font-bold text-8xl group-hover/card:text-red-50 transition-colors duration-300 pointer-events-none select-none">3</div>
                   <div class="relative z-10">
-                    <h3 class="card-title text-base sm:text-lg mb-1 sm:mb-2">Masaż leczniczy</h3>
-                    <p class="text-base sm:text-lg text-gray-600">Wykonuj okrężne, delikatne ruchy masujące na mięśniu dotkniętym kurczem, stopniowo zwiększając nacisk do momentu rozluźnienia.</p>
+                    <h4 class="font-heading text-xl font-bold mb-3 text-gray-900 group-hover/card:text-red-600 transition-colors">Masaż leczniczy</h4>
+                    <p class="text-gray-600 leading-relaxed">Wykonuj okrężne, delikatne ruchy masujące na mięśniu dotkniętym kurczem, stopniowo zwiększając nacisk do momentu rozluźnienia.</p>
                   </div>
                 </div>
               </div>
               
-              <div class="card p-3 sm:p-5 sm:border-l-4 sm:border-red-400 bg-white sm:bg-transparent rounded-lg sm:rounded-none shadow-sm sm:shadow-none">
-                <p class="text-red-700 font-medium flex items-start text-base sm:text-lg">
-                  <svg class="w-5 h-5 sm:w-6 sm:h-6 inline-block mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
-                  </svg>
-                  <span>Natychmiastowa konsultacja medyczna konieczna przy: kurczach utrzymujących się ponad 10 minut, bardzo bolesnych, występujących regularnie lub z obrzękiem i zaczerwienieniem.</span>
+              <div class="bg-red-50/50 rounded-xl p-4 border border-red-100 flex items-start gap-3 relative z-10">
+                <svg class="w-6 h-6 text-red-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+                </svg>
+                <p class="text-red-800 text-sm md:text-base font-medium">
+                  Natychmiastowa konsultacja medyczna konieczna przy: kurczach utrzymujących się ponad 10 minut, bardzo bolesnych, występujących regularnie lub z obrzękiem i zaczerwienieniem.
                 </p>
               </div>
             </div>
           </div>
           
-          <div class="max-w-6xl mx-auto">
-            <h3 class="component-title text-xl sm:text-2xl md:text-3xl font-bold mb-6 text-center">
-              Szczegółowe metody doraźnego leczenia
+          <div class="max-w-4xl mx-auto">
+            <h3 class="font-heading text-3xl font-bold mb-8 text-center text-gray-900">
+              Szczegółowe metody leczenia
             </h3>
             
-            <div class="rounded-xl overflow-hidden shadow-soft">
+            <div class="space-y-4">
               <template x-for="(item, index) in accordion" :key="item.id">
-                <div class="border-b border-gray-200 last:border-0">
+                <div class="bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm transition-all duration-300 hover:shadow-soft" :class="item.isOpen ? 'ring-1 ring-primary-200' : ''">
                   <button 
                     @click="toggleAccordion(item.id)" 
-                    class="w-full text-left px-4 sm:px-5 py-3 sm:py-4 focus:outline-none flex justify-between items-center transition-colors duration-200"
-                    :class="item.isOpen ? 'bg-blue-50' : 'bg-white hover:bg-gray-50'"
+                    class="w-full text-left px-6 py-5 focus:outline-none flex justify-between items-center transition-colors duration-300"
+                    :class="item.isOpen ? 'bg-primary-50/50' : 'hover:bg-gray-50'"
                   >
-                    <span class="text-base sm:text-lg font-medium text-gray-800" x-text="item.title"></span>
-                    <svg 
-                      class="w-5 h-5 text-blue-500 transition-transform duration-200" 
-                      :class="item.isOpen ? 'transform rotate-180' : ''"
-                      fill="none" 
-                      stroke="currentColor" 
-                      viewBox="0 0 24 24" 
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                    </svg>
+                    <span class="font-heading text-lg font-semibold text-gray-900" :class="item.isOpen ? 'text-primary-700' : ''" x-text="item.title"></span>
+                    <div class="w-8 h-8 rounded-full flex items-center justify-center transition-colors duration-300" :class="item.isOpen ? 'bg-primary-100 text-primary-600' : 'bg-gray-100 text-gray-400'">
+                      <svg 
+                        class="w-5 h-5 transition-transform duration-300" 
+                        :class="item.isOpen ? 'transform rotate-180' : ''"
+                        fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                      >
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                      </svg>
+                    </div>
                   </button>
                   
                   <div 
                     x-show="item.isOpen" 
-                    x-transition:enter="transition ease-out duration-200"
-                    x-transition:enter-start="opacity-0 transform -translate-y-2"
-                    x-transition:enter-end="opacity-100 transform translate-y-0"
-                    x-transition:leave="transition ease-in duration-200"
-                    x-transition:leave-start="opacity-100 transform translate-y-0"
-                    x-transition:leave-end="opacity-0 transform -translate-y-2"
-                    class="px-4 sm:px-5 py-3 sm:py-4 bg-blue-50 border-t border-blue-100"
+                    x-collapse
+                    class="px-6 pb-6 pt-2 bg-primary-50/50"
                   >
-                    <p class="text-base sm:text-lg text-gray-600" x-text="item.content"></p>
+                    <p class="text-gray-600 leading-relaxed" x-text="item.content"></p>
                   </div>
                 </div>
               </template>
             </div>
           </div>
           
-          <div class="mt-10 md:mt-16 max-w-6xl mx-auto bg-blue-50 rounded-xl shadow-soft overflow-hidden p-4 sm:p-6 md:p-8">
-            <div class="flex flex-col sm:flex-row items-start">
-              <div class="flex-shrink-0 icon-circle icon-circle-md bg-blue-100 text-blue-600 mb-4 sm:mb-0 sm:mr-5">
-                <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          <div class="mt-16 md:mt-24 max-w-4xl mx-auto bg-surface border border-gray-200 rounded-[2rem] shadow-soft overflow-hidden p-8 md:p-12 relative">
+            <div class="absolute top-0 right-0 w-40 h-40 bg-gray-100 rounded-full blur-[60px] -mr-20 -mt-20 pointer-events-none"></div>
+            <div class="flex flex-col md:flex-row items-start gap-8 relative z-10">
+              <div class="w-16 h-16 rounded-2xl bg-gray-50 text-gray-500 flex items-center justify-center flex-shrink-0 border border-gray-200">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                 </svg>
               </div>
               <div>
-                <h4 class="text-xl sm:text-2xl font-semibold text-gray-900 mb-3 sm:mb-4">Kiedy skontaktować się z lekarzem?</h4>
-                <ul class="space-y-2 sm:space-y-3 text-gray-600 text-base sm:text-lg">
-                  <li class="feature-list-item">
-                    <svg class="w-4 h-4 sm:w-5 sm:h-5 text-blue-600 mr-2 sm:mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                    </svg>
+                <h4 class="font-heading text-2xl font-bold text-gray-900 mb-6">Kiedy skontaktować się z lekarzem?</h4>
+                <ul class="space-y-4 text-gray-600">
+                  <li class="flex items-start">
+                    <span class="flex-shrink-0 w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center mr-4 mt-0.5 text-gray-500">
+                      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                    </span>
                     <span>Częste, nawracające kurcze mimo stosowania metod profilaktycznych</span>
                   </li>
-                  <li class="feature-list-item">
-                    <svg class="w-4 h-4 sm:w-5 sm:h-5 text-blue-600 mr-2 sm:mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                    </svg>
+                  <li class="flex items-start">
+                    <span class="flex-shrink-0 w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center mr-4 mt-0.5 text-gray-500">
+                      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                    </span>
                     <span>Kurcze wyjątkowo silne lub utrzymujące się ponad 10 minut</span>
                   </li>
-                  <li class="feature-list-item">
-                    <svg class="w-4 h-4 sm:w-5 sm:h-5 text-blue-600 mr-2 sm:mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                    </svg>
+                  <li class="flex items-start">
+                    <span class="flex-shrink-0 w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center mr-4 mt-0.5 text-gray-500">
+                      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                    </span>
                     <span>Występowanie obrzęku, zaczerwienienia, widocznych deformacji lub silnego bólu</span>
                   </li>
-                  <li class="feature-list-item">
-                    <svg class="w-4 h-4 sm:w-5 sm:h-5 text-blue-600 mr-2 sm:mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                    </svg>
+                  <li class="flex items-start">
+                    <span class="flex-shrink-0 w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center mr-4 mt-0.5 text-gray-500">
+                      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                    </span>
                     <span>Kurcze pojawiające się po urazie lub współwystępujące z innymi niepokojącymi objawami</span>
                   </li>
                 </ul>
@@ -206,19 +196,13 @@ export default function() {
           </div>
           
           <!-- Disclaimer -->
-          <div class="mt-8 md:mt-12 max-w-6xl mx-auto text-center">
-            <div class="p-3 sm:p-4 bg-gray-50 border border-gray-200 rounded-lg">
-              <p class="text-sm sm:text-base text-gray-600">
-                <svg class="w-3 h-3 sm:w-4 sm:h-4 inline-block mr-1 text-gray-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
-                </svg>
-                <strong>Zastrzeżenie medyczne:</strong> Informacje zawarte na tej stronie mają charakter edukacyjny i nie zastępują profesjonalnej konsultacji medycznej.
-                W przypadku poważnych lub nawracających problemów zdrowotnych zawsze skonsultuj się z wykwalifikowanym lekarzem.
-              </p>
-            </div>
+          <div class="mt-12 max-w-4xl mx-auto text-center">
+            <p class="text-sm text-gray-400">
+              <strong>Zastrzeżenie medyczne:</strong> Informacje zawarte na tej stronie mają charakter edukacyjny i nie zastępują profesjonalnej konsultacji medycznej. W przypadku poważnych problemów zdrowotnych zawsze skonsultuj się z wykwalifikowanym lekarzem.
+            </p>
           </div>
         </div>
       </section>
     `
   };
-} 
+}

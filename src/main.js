@@ -14,6 +14,7 @@ import ComparisonSection from './components/ComparisonSection.js';
 import FaqSection from './components/FaqSection.js';
 import ContactSection from './components/ContactSection.js';
 import WibroakustykaSection from './components/WibroakustykaSection.js';
+import YogaSection from './components/YogaSection.js';
 import Logo from './components/Logo.js';
 import AppLayout from './components/AppLayout.js';
 import { emailConfig } from './config.js';
@@ -58,6 +59,7 @@ window.comparisonSectionComponent = ComparisonSection;
 window.faqSectionComponent = FaqSection;
 window.contactSectionComponent = ContactSection;
 window.wibroakustykaSectionComponent = WibroakustykaSection;
+window.yogaSectionComponent = YogaSection;
 window.logoComponent = Logo;
 window.appLayout = AppLayout;
 
@@ -86,6 +88,9 @@ function renderApp() {
       
       <!-- Wibroakustyka Section Component -->
       <div x-data="wibroakustykaSectionComponent()" x-html="template"></div>
+      
+      <!-- Yoga Section Component -->
+      <div x-data="yogaSectionComponent()" x-html="template"></div>
       
       <!-- FAQ Section Component -->
       <div x-data="faqSectionComponent()" x-html="template"></div>

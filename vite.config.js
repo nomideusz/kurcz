@@ -58,17 +58,6 @@ export default defineConfig({
     }
   },
   css: {
-    postcss: {
-      plugins: [
-        postcssPresetEnv(),
-        cssnano({
-          preset: ['default', {
-            discardComments: { removeAll: true },
-            normalizeWhitespace: true,
-          }],
-        }),
-      ],
-    },
     preprocessorOptions: {
       scss: {
         quietDeps: true,

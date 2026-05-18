@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kurcz.pl - Kurcze mięśniowe: przyczyny i leczenie</title>
-    <meta name="description" content="Kompendium wiedzy o kurczach mięśniowych - poznaj przyczyny, metody leczenia i zapobieganie skurczom mięśni. Praktyczne informacje opracowane przez specjalistów.">
+    <title>Kurcze mięśniowe (skurcze) - przyczyny, objawy i skuteczne leczenie | Kurcz.pl</title>
+    <meta name="description" content="Dowiedz się wszystkiego o kurczach mięśniowych (potocznie skurczach). Poznaj najczęstsze przyczyny, skuteczne metody leczenia, pierwszą pomoc, wibroakustykę i profilaktykę.">
+    <meta name="keywords" content="kurcze mięśniowe, skurcze, skurcze łydek, skurcze nóg, bolesne skurcze, przyczyny skurczy, leczenie kurczy mięśni, pierwsza pomoc, wibroakustyka, zdrowie mięśni, zapobieganie skurczom">
     <link rel="sitemap" type="application/xml" href="/sitemap.xml">
     <meta name="robots" content="index, follow">
     <!-- Favicon -->
@@ -14,16 +15,19 @@
     <link rel="manifest" href="/site.webmanifest">
     <link rel="shortcut icon" href="/favicon.ico">
     <!-- Open Graph / Social Media -->
-    <meta property="og:title" content="Kurcz.pl - Kompleksowa wiedza o kurczach mięśniowych">
-    <meta property="og:description" content="Poznaj przyczyny, metody leczenia i zapobieganie kurczom mięśniowym. Praktyczne informacje w jednym miejscu.">
+    <meta property="og:title" content="Kurcze mięśniowe - przyczyny i szybka ulga | Kurcz.pl">
+    <meta property="og:description" content="Męczysz się z bolesnymi skurczami? Poznaj przyczyny, domowe sposoby, metody leczenia i dowiedz się, jak skutecznie im zapobiegać.">
     <meta property="og:image" content="https://kurcz.pl/og-image.jpg">
     <meta property="og:url" content="https://kurcz.pl">
     <meta property="og:type" content="website">
     
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
     <!-- Preload głównych zasobów -->
     <link rel="preload" href="/img/hero_square.webp" as="image">
-    <link rel="preload" href="/tailwind.css" as="style">
-    <link rel="preload" href="/style.css" as="style">
     
     <!-- Critical CSS inline -->
     <style>
@@ -34,6 +38,7 @@
             line-height: 1.5;
             color: #374151;
             background-color: #f3f4f6;
+            overflow-x: hidden;
         }
         #loading, #error-container {
             display: flex;
@@ -85,16 +90,6 @@
             min-height: 100vh;
         }
     </style>
-    
-    <!-- Styles - defer non-critical CSS -->
-    <link rel="stylesheet" href="/style.css" media="print" onload="this.media='all'">
-    <link rel="stylesheet" href="/tailwind.css" media="print" onload="this.media='all'">
-    
-    <!-- Fallback for browsers that don't support JS loading -->
-    <noscript>
-        <link rel="stylesheet" href="/style.css">
-        <link rel="stylesheet" href="/tailwind.css">
-    </noscript>
     
     <!-- Entry point for our bundled code first, before Alpine -->
     <script type="module" src="/src/main.js"></script>

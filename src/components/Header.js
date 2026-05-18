@@ -13,6 +13,7 @@ export default function() {
       { id: 'prevention', label: 'Profilaktyka', icon: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z', priority: 1 },
       { id: 'comparison', label: 'Kurcz vs. skurcz', icon: 'M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6', priority: 2 },
       { id: 'wibroakustyka', label: 'Wibroakustyka', icon: 'M18 3a1 1 0 00-1.196-.98l-10 2A1 1 0 006 5v9.114A4.369 4.369 0 005 14c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V7.82l8-1.6v5.894A4.37 4.37 0 0015 12c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V3z', priority: 2 },
+      { id: 'yoga', label: 'Joga', icon: 'M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z', priority: 2 },
       { id: 'faq', label: 'FAQ', icon: 'M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z', priority: 2 },
       { id: 'contact', label: 'Kontakt', icon: 'M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z', priority: 1 }
     ],
@@ -181,7 +182,7 @@ export default function() {
     template: `
       <header 
         class="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
-        :class="scrolledDown || menuOpen ? 'bg-white/95 backdrop-blur-sm shadow-lg py-3' : 'bg-transparent py-6'"
+        :class="scrolledDown || menuOpen ? 'bg-white/80 backdrop-blur-xl shadow-glass border-b border-white/20 py-3' : 'bg-transparent py-6'"
       >
         <!-- Full-page content overlay (blurs content behind menu) -->
         <div 
@@ -256,20 +257,20 @@ export default function() {
                 <button 
                   @click="activeSection = item.id; document.getElementById(item.id).scrollIntoView({behavior: 'smooth', block: 'start'});" 
                   type="button"
-                  class="relative font-medium py-2 px-1 transition-all duration-300 bg-transparent cursor-pointer focus:outline-none text-sm lg:text-base"
+                  class="relative font-heading font-semibold py-2 px-1 transition-all duration-300 bg-transparent cursor-pointer focus:outline-none text-sm lg:text-base"
                   :class="isActive(item.id) 
                     ? scrolledDown 
-                      ? 'text-blue-700' 
+                      ? 'text-primary-600' 
                       : 'text-white' 
                     : scrolledDown 
-                      ? 'text-gray-700 hover:text-blue-600' 
+                      ? 'text-gray-700 hover:text-primary-600' 
                       : 'text-white/90 hover:text-white'"
                 >
                   <span class="relative z-10" x-text="item.label"></span>
                   <span 
                     x-show="isActive(item.id)" 
-                    class="absolute top-full left-0 w-full h-0.5"
-                    :class="scrolledDown ? 'bg-blue-700' : 'bg-white'"
+                    class="absolute top-full left-0 w-full h-0.5 rounded-full"
+                    :class="scrolledDown ? 'bg-primary-600' : 'bg-white'"
                   ></span>
                 </button>
               </template>
@@ -280,13 +281,13 @@ export default function() {
                   id="more-menu-button"
                   @click="toggleMoreMenu()"
                   type="button"
-                  class="relative font-medium py-2 px-1 transition-all duration-300 bg-transparent cursor-pointer focus:outline-none flex items-center text-sm lg:text-base"
+                  class="relative font-heading font-semibold py-2 px-1 transition-all duration-300 bg-transparent cursor-pointer focus:outline-none flex items-center text-sm lg:text-base"
                   :class="secondaryNavItems.some(item => isActive(item.id))
                     ? scrolledDown 
-                      ? 'text-blue-700' 
+                      ? 'text-primary-600' 
                       : 'text-white' 
                     : scrolledDown 
-                      ? 'text-gray-700 hover:text-blue-600' 
+                      ? 'text-gray-700 hover:text-primary-600' 
                       : 'text-white/90 hover:text-white'"
                 >
                   <span class="relative z-10">Więcej</span>
@@ -302,8 +303,8 @@ export default function() {
                   </svg>
                   <span 
                     x-show="secondaryNavItems.some(item => isActive(item.id))" 
-                    class="absolute top-full left-0 w-full h-0.5"
-                    :class="scrolledDown ? 'bg-blue-700' : 'bg-white'"
+                    class="absolute top-full left-0 w-full h-0.5 rounded-full"
+                    :class="scrolledDown ? 'bg-primary-600' : 'bg-white'"
                   ></span>
                 </button>
                 
@@ -323,8 +324,8 @@ export default function() {
                   <template x-for="item in secondaryNavItems" :key="item.id">
                     <button
                       @click="activeSection = item.id; moreMenuOpen = false; document.getElementById(item.id).scrollIntoView({behavior: 'smooth', block: 'start'});"
-                      class="w-full text-left block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 rounded-md"
-                      :class="isActive(item.id) ? 'bg-blue-50 text-blue-700' : ''"
+                      class="w-full text-left block px-4 py-2 text-sm font-heading font-medium transition-colors text-gray-700 hover:bg-primary-50 hover:text-primary-600 rounded-md"
+                      :class="isActive(item.id) ? 'bg-primary-50 text-primary-600 font-semibold' : ''"
                       x-text="item.label"
                     ></button>
                   </template>
@@ -374,8 +375,8 @@ export default function() {
                   <template x-for="item in navItems" :key="item.id">
                     <button 
                       @click="toggleMobileMenu(); setTimeout(() => { if (document.getElementById(item.id)) { activeSection = item.id; document.getElementById(item.id).scrollIntoView({behavior: 'smooth', block: 'start'}); } }, 100);" 
-                      class="w-full flex items-center px-3 py-2 text-base font-medium rounded-md"
-                      :class="isActive(item.id) ? 'text-white bg-blue-800' : 'text-gray-800 hover:bg-gray-100'"
+                      class="w-full flex items-center px-4 py-3 text-base font-heading font-semibold rounded-xl transition-all duration-200"
+                      :class="isActive(item.id) ? 'text-white bg-primary-600 shadow-md' : 'text-gray-800 hover:bg-primary-50 hover:text-primary-600'"
                     >
                       <svg class="mr-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" x-bind:d="item.icon"></path>
