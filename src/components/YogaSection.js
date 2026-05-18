@@ -79,10 +79,8 @@ export default function() {
                     Niezależnie od tego, czy dopiero zaczynasz swoją przygodę, czy szukasz zaawansowanych praktyk - odkryj najlepsze szkoły jogi w swojej okolicy i zacznij dbać o swoje ciało już dziś.
                   </p>
                   
-                  <a 
-                    href="https://szkolyjogi.pl" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
+                  <button 
+                    @click="window.open('https://szkolyjogi.pl', '_blank')"
                     class="group relative inline-flex items-center justify-center w-full rounded-2xl bg-primary-600 text-white font-medium px-8 py-4 overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-glow"
                   >
                     <span class="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-black"></span>
@@ -92,7 +90,7 @@ export default function() {
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
                       </svg>
                     </span>
-                  </a>
+                  </button>
                 </div>
               </div>
 
