@@ -1,6 +1,7 @@
 import { mkdirSync, readFileSync, writeFileSync } from 'fs';
 import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
+import { getLandingPage } from '../src/content/landing-pages.js';
 import { getStaticPage } from '../src/content/static-pages.js';
 import { routes, SITE_URL, getOgImage } from '../src/seo/routes.js';
 import { buildPageSchema, schemaToJsonLd } from '../src/seo/schema.js';
@@ -28,6 +29,26 @@ function buildStaticNoscript(route) {
     .join('');
 
   return `<noscript id="static-prerender"><article><h1>${escapeHtml(page.h1)}</h1>${sections}</article></noscript>`;
+}
+
+function buildLandingNoscript(route) {
+  const page = getLandingPage(route.path);
+  if (!page) return '';
+
+  const sections = page.sections
+    .map((section) => {
+      const bullets = section.bullets?.length
+        ? `<ul>${section.bullets.map((b) => `<li>${escapeHtml(b)}</li>`).join('')}</ul>`
+        : '';
+      return `<section><h2>${escapeHtml(section.heading)}</h2><p>${escapeHtml(section.body)}</p>${bullets}</section>`;
+    })
+    .join('');
+
+  const faq = page.faq?.length
+    ? `<section><h2>Najczęstsze pytania</h2>${page.faq.map((item) => `<details><summary>${escapeHtml(item.question)}</summary><p>${escapeHtml(item.answer)}</p></details>`).join('')}</section>`
+    : '';
+
+  return `<noscript id="landing-prerender"><article><h1>${escapeHtml(page.h1)}</h1><p>${escapeHtml(page.intro)}</p>${sections}${faq}</article></noscript>`;
 }
 
 function customizeHtml(template, route) {
@@ -76,6 +97,13 @@ function customizeHtml(template, route) {
   if (route.type === 'static') {
     const noscript = buildStaticNoscript(route);
     if (noscript && !html.includes('id="static-prerender"')) {
+      html = html.replace('<div id="app">', `${noscript}\n    <div id="app">`);
+    }
+  }
+
+  if (route.type === 'landing') {
+    const noscript = buildLandingNoscript(route);
+    if (noscript && !html.includes('id="landing-prerender"')) {
       html = html.replace('<div id="app">', `${noscript}\n    <div id="app">`);
     }
   }

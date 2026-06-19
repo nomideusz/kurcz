@@ -1,3 +1,5 @@
+import { landingRoutes } from '../content/landing-pages.js';
+
 export const SITE_URL = 'https://kurcz.pl';
 export const SITE_NAME = 'Kurcz.pl';
 export const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.jpg`;
@@ -174,7 +176,7 @@ export const staticRoutes = [
   },
 ];
 
-export const routes = [...topicRoutes, ...staticRoutes];
+export const routes = [...topicRoutes, ...landingRoutes, ...staticRoutes];
 
 /** @deprecated use DEFAULT_OG_IMAGE */
 export const OG_IMAGE = DEFAULT_OG_IMAGE;
@@ -198,6 +200,14 @@ export function getOgImage(route) {
 
 export function isStaticRoute(route) {
   return route.type === 'static';
+}
+
+export function isLandingRoute(route) {
+  return route.type === 'landing';
+}
+
+export function isStandaloneRoute(route) {
+  return route.type === 'static' || route.type === 'landing';
 }
 
 export const navItems = [

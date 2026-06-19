@@ -1,5 +1,5 @@
 import { applyRouteMeta } from '../seo/meta.js';
-import { getRouteByPath, hashToPath, isStaticRoute, routes } from '../seo/routes.js';
+import { getRouteByPath, hashToPath, isStandaloneRoute, routes } from '../seo/routes.js';
 
 function normalizePath(pathname) {
   const path = pathname.replace(/\/+$/, '') || '/';
@@ -45,9 +45,9 @@ export function initRouter() {
   window.__KURCZ_CURRENT_ROUTE__ = route;
   applyRouteMeta(route);
 
-  if (!isStaticRoute(route) && route.sectionId !== 'home') {
+  if (!isStandaloneRoute(route) && route.sectionId !== 'home') {
     scrollToSection(route.sectionId);
-  } else if (isStaticRoute(route)) {
+  } else if (isStandaloneRoute(route)) {
     window.scrollTo({ top: 0, behavior: 'instant' });
   }
 
@@ -56,7 +56,7 @@ export function initRouter() {
     window.__KURCZ_CURRENT_ROUTE__ = nextRoute;
     applyRouteMeta(nextRoute);
 
-    if (isStaticRoute(nextRoute)) {
+    if (isStandaloneRoute(nextRoute)) {
       window.location.reload();
       return;
     }

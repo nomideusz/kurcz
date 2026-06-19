@@ -651,10 +651,8 @@ Dla kurcz.pl optymalna jest **opcja 1 (SSG/prerender) + Markdown dla bloga/FAQ**
 
 - [ ] Blog + system slugów
 - [ ] Huby poradnikowe
-- [ ] Landing pages pod konkretne frazy (kurcze łydek, kurcze nocne itd.)
-- [ ] CMS / Markdown workflow dla treści
-- [ ] E-E-A-T: autorzy, daty, recenzja merytoryczna
-- [ ] Linkowanie wewnętrzne i mapa treści
+- [x] Landing pages pod konkretne frazy (kurcze łydek, kurcze nocne itd.) — 13 stron w `/src/content/landing-pages.js`
+- [x] Linkowanie wewnętrzne i mapa treści (related links + footer poradniki)
 - [ ] Monitoring Search Console + Core Web Vitals
 
 **Szacowany czas etapu 3:** ciągły rozwój treści, 2–4 tygodnie na infrastrukturę bloga

@@ -1,3 +1,4 @@
+import { getLandingPage } from '../content/landing-pages.js';
 import { faqItems } from './faq-data.js';
 import { getTopicFaq } from './topic-faq.js';
 import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from './routes.js';
@@ -32,22 +33,40 @@ export function buildBreadcrumbSchema(route) {
     return null;
   }
 
+  const items = [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Strona główna',
+      item: SITE_URL,
+    },
+  ];
+
+  if (route.hubPath && route.hubLabel) {
+    items.push({
+      '@type': 'ListItem',
+      position: 2,
+      name: route.hubLabel,
+      item: `${SITE_URL}${route.hubPath}`,
+    });
+    items.push({
+      '@type': 'ListItem',
+      position: 3,
+      name: route.breadcrumbLabel ?? route.h1,
+      item: `${SITE_URL}${route.path}`,
+    });
+  } else {
+    items.push({
+      '@type': 'ListItem',
+      position: 2,
+      name: route.breadcrumbLabel ?? route.h1,
+      item: `${SITE_URL}${route.path}`,
+    });
+  }
+
   return {
     '@type': 'BreadcrumbList',
-    itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'Strona główna',
-        item: SITE_URL,
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: route.breadcrumbLabel ?? route.h1,
-        item: `${SITE_URL}${route.path}`,
-      },
-    ],
+    itemListElement: items,
   };
 }
 
@@ -107,6 +126,11 @@ export function buildPageSchema(route) {
 
   if (route.path === '/faq') {
     graphs.push(buildFAQPageSchema(faqItems));
+  } else if (route.type === 'landing') {
+    const landing = getLandingPage(route.path);
+    if (landing?.faq?.length) {
+      graphs.push(buildFAQPageSchema(landing.faq));
+    }
   } else {
     const topicFaq = getTopicFaq(route.path);
     if (topicFaq?.length) {

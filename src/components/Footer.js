@@ -1,9 +1,11 @@
 import { footerLegalLinks } from '../seo/routes.js';
+import { footerLandingLinks } from '../content/landing-pages.js';
 
 export default function () {
   return {
     currentYear: new Date().getFullYear(),
     legalLinks: footerLegalLinks,
+    landingLinks: footerLandingLinks,
 
     template: `
       <footer id="footer" class="bg-gray-900 text-white pt-20 pb-10 relative overflow-hidden">
@@ -15,7 +17,7 @@ export default function () {
 
         <div class="container mx-auto px-6 relative z-10">
           <!-- Upper Footer -->
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16 max-w-7xl mx-auto">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-12 mb-16 max-w-7xl mx-auto">
             <!-- About Column -->
             <div class="col-span-1 lg:col-span-2">
               <h2 class="font-heading text-3xl md:text-4xl font-bold mb-6 group inline-block">
@@ -217,6 +219,21 @@ export default function () {
                     <span class="group-hover:translate-x-1 transition-transform duration-300">Szkoły Jogi</span>
                   </button>
                 </li>
+              </ul>
+            </div>
+
+            <!-- Poradniki -->
+            <div>
+              <h3 class="font-heading text-sm font-bold tracking-wider uppercase text-gray-300 mb-6 relative inline-block">
+                Poradniki
+                <span class="absolute -bottom-2 left-0 w-1/2 h-0.5 bg-primary-500 rounded-full"></span>
+              </h3>
+              <ul class="space-y-3 text-sm">
+                <template x-for="link in landingLinks" :key="link.path">
+                  <li>
+                    <a :href="link.path" class="text-gray-400 hover:text-primary-300 transition-colors no-underline" x-text="link.label"></a>
+                  </li>
+                </template>
               </ul>
             </div>
 
