@@ -29,7 +29,7 @@ export default function() {
               </div>
               <div class="flex space-x-2 mt-2 md:mt-0">
                 <button 
-                  @click="window.location.href='#treatment'" 
+                  @click="window.location.href='/pierwsza-pomoc'" 
                   class="bg-white text-red-600 hover:bg-red-100 px-4 py-1 rounded-md text-sm font-medium transition-colors"
                 >
                   Więcej pomocy

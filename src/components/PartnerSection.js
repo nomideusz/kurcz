@@ -44,7 +44,7 @@ export default function() {
               <div class="relative">
                 <div class="absolute -top-6 -left-6 w-24 h-24 bg-blue-100 rounded-full opacity-70 blur-md animate-pulse"></div>
                 <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-blue-200 rounded-full opacity-50 blur-md animate-pulse animation-delay-2000"></div>
-                <img src="/img/wibroakustyka.webp" alt="Wibroakustyka.ai fotel do immersyjnego doświadczania muzyki" class="relative z-10 rounded-xl shadow-xl w-full object-cover transform hover:scale-[1.02] transition-transform duration-500" />
+                <img src="/img/wibroakustyka.webp" alt="Fotel wibroakustyczny Wibroakustyka.ai — terapia wspierająca zdrowie mięśni" width="640" height="360" loading="lazy" class="relative z-10 rounded-xl shadow-xl w-full object-cover transform hover:scale-[1.02] transition-transform duration-500" />
               </div>
             </div>
             

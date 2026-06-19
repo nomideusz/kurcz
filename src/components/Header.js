@@ -1,3 +1,5 @@
+import { getRouteByPath, navItems } from '../seo/routes.js';
+
 export default function() {
   return {
     menuOpen: false,
@@ -5,18 +7,7 @@ export default function() {
     scrolledDown: false,
     moreMenuOpen: false,
     
-    // Navigation items data structure
-    navItems: [
-      { id: 'home', label: 'Strona główna', icon: 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6', priority: 1 },
-      { id: 'intro', label: 'Informacje', icon: 'M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z', priority: 1 },
-      { id: 'treatment', label: 'Pierwsza pomoc', icon: 'M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z', priority: 1 },
-      { id: 'prevention', label: 'Profilaktyka', icon: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z', priority: 1 },
-      { id: 'comparison', label: 'Kurcz vs. skurcz', icon: 'M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6', priority: 2 },
-      { id: 'wibroakustyka', label: 'Wibroakustyka', icon: 'M18 3a1 1 0 00-1.196-.98l-10 2A1 1 0 006 5v9.114A4.369 4.369 0 005 14c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V7.82l8-1.6v5.894A4.37 4.37 0 0015 12c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V3z', priority: 2 },
-      { id: 'yoga', label: 'Joga', icon: 'M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z', priority: 2 },
-      { id: 'faq', label: 'FAQ', icon: 'M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z', priority: 2 },
-      { id: 'contact', label: 'Kontakt', icon: 'M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z', priority: 1 }
-    ],
+    navItems,
     
     // Get primary navigation items
     get primaryNavItems() {
@@ -47,10 +38,8 @@ export default function() {
     },
     
     init() {
-      // Set initial active section based on URL hash if present
-      if (window.location.hash) {
-        this.activeSection = window.location.hash.substring(1);
-      }
+      const route = getRouteByPath(window.location.pathname);
+      this.activeSection = route.sectionId;
       
       // Check initial state - if we're already scrolled down on page load
       this.scrolledDown = window.scrollY > 50;
@@ -220,7 +209,7 @@ export default function() {
             <!-- Logo on the left -->
             <div class="flex-shrink-0 mr-auto">
               <a 
-                href="#home"
+                href="/"
                 class="block focus:outline-none h-9 sm:h-10"
               >
                 <!-- Logo component directly embedded -->
@@ -254,10 +243,10 @@ export default function() {
             <nav class="hidden md:flex space-x-4 lg:space-x-6 ml-auto">
               <!-- Primary Navigation Items - always visible -->
               <template x-for="item in primaryNavItems" :key="item.id">
-                <button 
-                  @click="activeSection = item.id; document.getElementById(item.id).scrollIntoView({behavior: 'smooth', block: 'start'});" 
-                  type="button"
-                  class="relative font-heading font-semibold py-2 px-1 transition-all duration-300 bg-transparent cursor-pointer focus:outline-none text-sm lg:text-base"
+                <a 
+                  :href="item.path"
+                  @click="activeSection = item.id; menuOpen = false"
+                  class="relative font-heading font-semibold py-2 px-1 transition-all duration-300 cursor-pointer focus:outline-none text-sm lg:text-base no-underline"
                   :class="isActive(item.id) 
                     ? scrolledDown 
                       ? 'text-primary-600' 
@@ -272,7 +261,7 @@ export default function() {
                     class="absolute top-full left-0 w-full h-0.5 rounded-full"
                     :class="scrolledDown ? 'bg-primary-600' : 'bg-white'"
                   ></span>
-                </button>
+                </a>
               </template>
               
               <!-- Secondary Items - grouped in "Więcej" dropdown on all screen sizes -->
@@ -322,12 +311,13 @@ export default function() {
                   class="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 p-1 z-50"
                 >
                   <template x-for="item in secondaryNavItems" :key="item.id">
-                    <button
-                      @click="activeSection = item.id; moreMenuOpen = false; document.getElementById(item.id).scrollIntoView({behavior: 'smooth', block: 'start'});"
-                      class="w-full text-left block px-4 py-2 text-sm font-heading font-medium transition-colors text-gray-700 hover:bg-primary-50 hover:text-primary-600 rounded-md"
+                    <a
+                      :href="item.path"
+                      @click="activeSection = item.id; moreMenuOpen = false"
+                      class="w-full text-left block px-4 py-2 text-sm font-heading font-medium transition-colors text-gray-700 hover:bg-primary-50 hover:text-primary-600 rounded-md no-underline"
                       :class="isActive(item.id) ? 'bg-primary-50 text-primary-600 font-semibold' : ''"
                       x-text="item.label"
-                    ></button>
+                    ></a>
                   </template>
                 </div>
               </div>
@@ -373,16 +363,17 @@ export default function() {
               <div class="pt-2 pb-2">
                 <div class="space-y-1 px-2">
                   <template x-for="item in navItems" :key="item.id">
-                    <button 
-                      @click="toggleMobileMenu(); setTimeout(() => { if (document.getElementById(item.id)) { activeSection = item.id; document.getElementById(item.id).scrollIntoView({behavior: 'smooth', block: 'start'}); } }, 100);" 
-                      class="w-full flex items-center px-4 py-3 text-base font-heading font-semibold rounded-xl transition-all duration-200"
+                    <a 
+                      :href="item.path"
+                      @click="menuOpen = false"
+                      class="w-full flex items-center px-4 py-3 text-base font-heading font-semibold rounded-xl transition-all duration-200 no-underline"
                       :class="isActive(item.id) ? 'text-white bg-primary-600 shadow-md' : 'text-gray-800 hover:bg-primary-50 hover:text-primary-600'"
                     >
                       <svg class="mr-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" x-bind:d="item.icon"></path>
                       </svg>
                       <span x-text="item.label"></span>
-                    </button>
+                    </a>
                   </template>
                 </div>
               </div>

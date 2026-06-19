@@ -1,6 +1,7 @@
-# Allow all web crawlers access to all content
 User-agent: *
 Allow: /
 
-# Sitemap location
-Sitemap: https://kurcz.pl/sitemap.xml 
+Disallow: /debug.html
+Disallow: /assets/
+
+Sitemap: https://kurcz.pl/sitemap_index.xml

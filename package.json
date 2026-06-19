@@ -6,7 +6,7 @@
   "scripts": {
     "setup": "node setup.js",
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && node scripts/post-build-seo.js",
     "preview": "vite preview",
     "analyze": "vite build --mode=analyze"
   },

@@ -1,5 +1,11 @@
 export default function() {
+  const path = (typeof window.__KURCZ_ROUTE__ === 'string'
+    ? window.__KURCZ_ROUTE__
+    : window.location.pathname).replace(/\/+$/, '') || '/';
+
   return {
+    isHome: path === '/',
+
     template: `
       <section id="home" class="relative bg-background-dark py-32 lg:py-48 text-white overflow-hidden min-h-[800px] flex items-center">
         <!-- Modern Animated Mesh Background -->
@@ -26,20 +32,31 @@ export default function() {
                 <span class="text-sm font-medium tracking-wide text-gray-200 uppercase">Pomoc przy kurczach mięśniowych</span>
               </div>
               
-              <h1 class="font-heading text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-[1.1] text-white tracking-tight">
+              <h1
+                x-show="isHome"
+                class="font-heading text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-[1.1] text-white tracking-tight"
+              >
                 Zrozumieć <br/>
                 <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-health-light">Kurcze Mięśni</span>
               </h1>
+              <p
+                x-show="!isHome"
+                x-cloak
+                class="font-heading text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-[1.1] text-white tracking-tight"
+                aria-hidden="true"
+              >
+                Zrozumieć <br/>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-health-light">Kurcze Mięśni</span>
+              </p>
               
               <p class="text-xl md:text-2xl mb-8 text-gray-300 font-light max-w-2xl mx-auto lg:mx-0 leading-relaxed">
                 Kompleksowa wiedza medyczna w jednym miejscu. Poznaj najczęstsze przyczyny bolesnych kurczy nóg i mięśni, znajdź natychmiastową ulgę oraz skutecznie zapobiegaj ich nawrotom na co dzień.
               </p>
               
               <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
-                <button 
-                  type="button"
-                  @click="document.getElementById('treatment').scrollIntoView({behavior: 'smooth', block: 'start'})"
-                  class="group relative inline-flex items-center justify-center rounded-2xl bg-primary-600 text-white font-medium px-8 py-4 overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-glow"
+                <a 
+                  href="/pierwsza-pomoc"
+                  class="group relative inline-flex items-center justify-center rounded-2xl bg-primary-600 text-white font-medium px-8 py-4 overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-glow no-underline"
                 >
                   <span class="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-black"></span>
                   <span class="relative flex items-center gap-2">
@@ -48,14 +65,13 @@ export default function() {
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
                     </svg>
                   </span>
-                </button>
-                <button 
-                  type="button"
-                  @click="document.getElementById('intro').scrollIntoView({behavior: 'smooth', block: 'start'})"
-                  class="group inline-flex items-center justify-center rounded-2xl bg-surface-dark/40 backdrop-blur-md text-white border border-white/10 font-medium px-8 py-4 transition-all duration-300 hover:bg-surface-dark/60 hover:border-white/20 hover:scale-105"
+                </a>
+                <a 
+                  href="/kurcze-miesniowe"
+                  class="group inline-flex items-center justify-center rounded-2xl bg-surface-dark/40 backdrop-blur-md text-white border border-white/10 font-medium px-8 py-4 transition-all duration-300 hover:bg-surface-dark/60 hover:border-white/20 hover:scale-105 no-underline"
                 >
                   Dowiedz się więcej
-                </button>
+                </a>
               </div>
             </div>
             
@@ -70,7 +86,7 @@ export default function() {
                 <div class="relative w-full h-full rounded-[1.5rem] overflow-hidden border border-white/5 shadow-inner bg-gray-900/50">
                   <img 
                     src="/img/hero_anatomy.png" 
-                    alt="Biometryczna analiza układu mięśniowego" 
+                  alt="Schemat układu mięśniowego — ilustracja edukacyjna o kurczach mięśniowych" 
                     class="w-full h-full object-cover object-center transform scale-100 group-hover:scale-105 transition-transform duration-1000 ease-out" 
                     width="600" 
                     height="600" 

@@ -1,6 +1,9 @@
+import { footerLegalLinks } from '../seo/routes.js';
+
 export default function () {
   return {
     currentYear: new Date().getFullYear(),
+    legalLinks: footerLegalLinks,
 
     template: `
       <footer id="footer" class="bg-gray-900 text-white pt-20 pb-10 relative overflow-hidden">
@@ -12,7 +15,7 @@ export default function () {
 
         <div class="container mx-auto px-6 relative z-10">
           <!-- Upper Footer -->
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16 max-w-6xl mx-auto">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16 max-w-7xl mx-auto">
             <!-- About Column -->
             <div class="col-span-1 lg:col-span-2">
               <h2 class="font-heading text-3xl md:text-4xl font-bold mb-6 group inline-block">
@@ -26,7 +29,7 @@ export default function () {
               <div class="p-5 bg-gray-800/40 rounded-2xl border border-gray-700/50 backdrop-blur-sm">
                 <p class="text-gray-400 text-sm leading-relaxed">
                   <strong class="text-gray-300">Zastrzeżenie:</strong> Informacje zawarte na stronie mają charakter edukacyjny i nie zastępują porady lekarskiej.
-                  W przypadku problemów zdrowotnych zawsze skonsultuj się z lekarzem.
+                  <a href="/disclaimer-medyczny" class="text-primary-400 hover:text-primary-300 underline">Disclaimer medyczny</a>
                 </p>
               </div>
             </div>
@@ -39,10 +42,9 @@ export default function () {
               </h3>
               <ul class="space-y-4 text-sm font-medium">
                 <li>
-                  <button 
-                    @click="document.getElementById('home').scrollIntoView({behavior: 'smooth', block: 'start'})" 
-                    type="button"
-                    class="text-gray-400 hover:text-primary-300 transition-colors duration-300 flex items-center bg-transparent border-0 p-0 cursor-pointer group"
+                  <a 
+                    href="/"
+                    class="text-gray-400 hover:text-primary-300 transition-colors duration-300 flex items-center no-underline group"
                   >
                     <span class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center mr-3 group-hover:bg-primary-900/50 group-hover:text-primary-300 transition-colors duration-300">
                       <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -50,14 +52,13 @@ export default function () {
                       </svg>
                     </span>
                     <span class="group-hover:translate-x-1 transition-transform duration-300">Strona główna</span>
-                  </button>
+                  </a>
                 </li>
                 
                 <li>
-                  <button 
-                    @click="document.getElementById('intro').scrollIntoView({behavior: 'smooth', block: 'start'})" 
-                    type="button"
-                    class="text-gray-400 hover:text-primary-300 transition-colors duration-300 flex items-center bg-transparent border-0 p-0 cursor-pointer group"
+                  <a 
+                    href="/kurcze-miesniowe"
+                    class="text-gray-400 hover:text-primary-300 transition-colors duration-300 flex items-center no-underline group"
                   >
                     <span class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center mr-3 group-hover:bg-primary-900/50 group-hover:text-primary-300 transition-colors duration-300">
                       <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -65,14 +66,13 @@ export default function () {
                       </svg>
                     </span>
                     <span class="group-hover:translate-x-1 transition-transform duration-300">Informacje</span>
-                  </button>
+                  </a>
                 </li>
                 
                 <li>
-                  <button 
-                    @click="document.getElementById('treatment').scrollIntoView({behavior: 'smooth', block: 'start'})" 
-                    type="button"
-                    class="text-gray-400 hover:text-primary-300 transition-colors duration-300 flex items-center bg-transparent border-0 p-0 cursor-pointer group"
+                  <a 
+                    href="/pierwsza-pomoc"
+                    class="text-gray-400 hover:text-primary-300 transition-colors duration-300 flex items-center no-underline group"
                   >
                     <span class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center mr-3 group-hover:bg-primary-900/50 group-hover:text-primary-300 transition-colors duration-300">
                       <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -80,14 +80,13 @@ export default function () {
                       </svg>
                     </span>
                     <span class="group-hover:translate-x-1 transition-transform duration-300">Pierwsza pomoc</span>
-                  </button>
+                  </a>
                 </li>
                 
                 <li>
-                  <button 
-                    @click="document.getElementById('prevention').scrollIntoView({behavior: 'smooth', block: 'start'})" 
-                    type="button"
-                    class="text-gray-400 hover:text-primary-300 transition-colors duration-300 flex items-center bg-transparent border-0 p-0 cursor-pointer group"
+                  <a 
+                    href="/profilaktyka"
+                    class="text-gray-400 hover:text-primary-300 transition-colors duration-300 flex items-center no-underline group"
                   >
                     <span class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center mr-3 group-hover:bg-primary-900/50 group-hover:text-primary-300 transition-colors duration-300">
                       <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -95,14 +94,13 @@ export default function () {
                       </svg>
                     </span>
                     <span class="group-hover:translate-x-1 transition-transform duration-300">Profilaktyka</span>
-                  </button>
+                  </a>
                 </li>
                 
                 <li>
-                  <button 
-                    @click="document.getElementById('comparison').scrollIntoView({behavior: 'smooth', block: 'start'})" 
-                    type="button"
-                    class="text-gray-400 hover:text-primary-300 transition-colors duration-300 flex items-center bg-transparent border-0 p-0 cursor-pointer group"
+                  <a 
+                    href="/kurcz-vs-skurcz"
+                    class="text-gray-400 hover:text-primary-300 transition-colors duration-300 flex items-center no-underline group"
                   >
                     <span class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center mr-3 group-hover:bg-primary-900/50 group-hover:text-primary-300 transition-colors duration-300">
                       <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -110,13 +108,12 @@ export default function () {
                       </svg>
                     </span>
                     <span class="group-hover:translate-x-1 transition-transform duration-300">Kurcz vs. skurcz</span>
-                  </button>
+                  </a>
                 </li>
                 <li>
-                  <button 
-                    @click="document.getElementById('wibroakustyka').scrollIntoView({behavior: 'smooth', block: 'start'})" 
-                    type="button"
-                    class="text-gray-400 hover:text-primary-300 transition-colors duration-300 flex items-center bg-transparent border-0 p-0 cursor-pointer group"
+                  <a 
+                    href="/wibroakustyka"
+                    class="text-gray-400 hover:text-primary-300 transition-colors duration-300 flex items-center no-underline group"
                   >
                     <span class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center mr-3 group-hover:bg-primary-900/50 group-hover:text-primary-300 transition-colors duration-300">
                       <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -124,13 +121,12 @@ export default function () {
                       </svg>
                     </span>
                     <span class="group-hover:translate-x-1 transition-transform duration-300">Wibroakustyka</span>
-                  </button>
+                  </a>
                 </li>
                 <li>
-                  <button 
-                    @click="document.getElementById('faq').scrollIntoView({behavior: 'smooth', block: 'start'})" 
-                    type="button"
-                    class="text-gray-400 hover:text-primary-300 transition-colors duration-300 flex items-center bg-transparent border-0 p-0 cursor-pointer group"
+                  <a 
+                    href="/faq"
+                    class="text-gray-400 hover:text-primary-300 transition-colors duration-300 flex items-center no-underline group"
                   >
                     <span class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center mr-3 group-hover:bg-primary-900/50 group-hover:text-primary-300 transition-colors duration-300">
                       <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -138,13 +134,12 @@ export default function () {
                       </svg>
                     </span>
                     <span class="group-hover:translate-x-1 transition-transform duration-300">FAQ</span>
-                  </button>
+                  </a>
                 </li>
                 <li>
-                  <button 
-                    @click="document.getElementById('contact').scrollIntoView({behavior: 'smooth', block: 'start'})" 
-                    type="button"
-                    class="text-gray-400 hover:text-primary-300 transition-colors duration-300 flex items-center bg-transparent border-0 p-0 cursor-pointer group"
+                  <a 
+                    href="/kontakt"
+                    class="text-gray-400 hover:text-primary-300 transition-colors duration-300 flex items-center no-underline group"
                   >
                     <span class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center mr-3 group-hover:bg-primary-900/50 group-hover:text-primary-300 transition-colors duration-300">
                       <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -153,7 +148,7 @@ export default function () {
                       </svg>
                     </span>
                     <span class="group-hover:translate-x-1 transition-transform duration-300">Kontakt</span>
-                  </button>
+                  </a>
                 </li>
               </ul>
             </div>
@@ -222,6 +217,21 @@ export default function () {
                     <span class="group-hover:translate-x-1 transition-transform duration-300">Szkoły Jogi</span>
                   </button>
                 </li>
+              </ul>
+            </div>
+
+            <!-- Legal links -->
+            <div class="col-span-1 md:col-span-2 lg:col-span-1">
+              <h3 class="font-heading text-sm font-bold tracking-wider uppercase text-gray-300 mb-6 relative inline-block">
+                Informacje prawne
+                <span class="absolute -bottom-2 left-0 w-1/2 h-0.5 bg-primary-500 rounded-full"></span>
+              </h3>
+              <ul class="space-y-3 text-sm">
+                <template x-for="link in legalLinks" :key="link.path">
+                  <li>
+                    <a :href="link.path" class="text-gray-400 hover:text-primary-300 transition-colors no-underline" x-text="link.label"></a>
+                  </li>
+                </template>
               </ul>
             </div>
           </div>

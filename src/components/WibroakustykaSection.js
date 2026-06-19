@@ -57,7 +57,7 @@ export default function() {
                 <div class="absolute inset-0 bg-primary-900/10 mix-blend-multiply transition-opacity duration-500 group-hover:opacity-0"></div>
                 <img 
                   src="/img/wibroakustyka2.webp" 
-                  alt="Terapia wibroakustyczna" 
+                  alt="Sesja terapii wibroakustycznej — metoda wspierająca przy kurczach mięśniowych" 
                   class="w-full h-48 md:h-64 object-cover transform transition-transform duration-700 group-hover:scale-105" 
                   width="600" 
                   height="400"
