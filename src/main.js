@@ -17,6 +17,7 @@ import WibroakustykaSection from './components/WibroakustykaSection.js';
 import YogaSection from './components/YogaSection.js';
 import Breadcrumbs from './components/Breadcrumbs.js';
 import StaticPage from './components/StaticPage.js';
+import CookieConsent from './components/CookieConsent.js';
 import Logo from './components/Logo.js';
 import AppLayout from './components/AppLayout.js';
 import { emailConfig } from './config.js';
@@ -43,6 +44,7 @@ window.wibroakustykaSectionComponent = WibroakustykaSection;
 window.yogaSectionComponent = YogaSection;
 window.breadcrumbsComponent = Breadcrumbs;
 window.staticPageComponent = StaticPage;
+window.cookieConsentComponent = CookieConsent;
 window.logoComponent = Logo;
 window.appLayout = AppLayout;
 
@@ -81,13 +83,19 @@ document.addEventListener('DOMContentLoaded', () => {
   const route = initRouter();
 
   window.Alpine = Alpine;
-  Alpine.start();
 
   if (isStaticRoute(route)) {
     renderStaticApp();
   } else {
     renderTopicApp();
   }
+
+  const consentRoot = document.getElementById('cookie-consent');
+  if (consentRoot) {
+    consentRoot.innerHTML = `<div x-data="cookieConsentComponent()" x-html="template"></div>`;
+  }
+
+  Alpine.start();
 
   setTimeout(() => {
     const loadingEl = document.getElementById('loading');
