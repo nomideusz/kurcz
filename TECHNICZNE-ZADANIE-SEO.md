@@ -8,41 +8,40 @@ Kurcz.pl to serwis informacyjny o kurczach mięśniowych — nie sklep interneto
 
 ---
 
-## Stan obecny (audyt kodu)
+## Stan obecny (audyt kodu — czerwiec 2026)
 
 | Element | Status | Uwagi |
 |---------|--------|-------|
 | Title, meta description | ✅ | Per-strona (prerender + router) |
 | Meta keywords | ✅ | Obecne, niski priorytet dla Google |
 | Open Graph | ✅ | Per-strona w prerenderze |
-| robots.txt | ✅ | Bez `Crawl-delay`, wskazuje sitemap_index |
-| sitemap_index.xml | ✅ | Automatyczny przy buildzie |
-| Przyjazne URL | ✅ | 9 tras + prerender HTML |
+| robots.txt | ✅ | Bez `Crawl-delay`, wskazuje `sitemap_index.xml` |
+| sitemap_index.xml | ✅ | Automatyczny przy buildzie — **27 tras** w `sitemap-pages.xml` |
+| Przyjazne URL | ✅ | 9 tematów + 13 landing pages + hub `/poradniki` + 4 statyczne |
 | Canonical | ✅ | W `<head>` każdej strony |
-| Schema.org | ✅ | Organization, WebSite, MedicalWebPage, FAQPage |
-| GTM / GA4 | ✅ | GTM-P7N9JKMT w index.html (wszystkie strony po buildzie) |
-| Breadcrumbs | ❌ | Etap 2 |
-| FAQ (treść) | ✅ | Sekcja FAQ w SPA, 7 pytań |
-| FAQ (schema FAQPage) | ✅ | Na `/faq` |
-| Blog / poradniki | ❌ | Etap 3 |
-| Strony statyczne | ❌ | Etap 2 |
-| Obrazy WebP + alt | ⚠️ Częściowo | Kilka obrazów z alt, hero w WebP |
+| Schema.org | ✅ | Organization, WebSite, MedicalWebPage, WebPage, FAQPage, BreadcrumbList |
+| GTM / GA4 | ✅ | GTM-P7N9JKMT; GA4 `G-TXFQKNHYQ2` — tag w panelu GTM + Consent Mode v2 |
+| Umami Analytics | ✅ | `umami.zaur.app`, ładowany po zgodzie cookies; CWV + zdarzenia niestandardowe |
+| Cookie consent | ✅ | Banner + `localStorage`; GA/Umami tylko po akceptacji |
+| Breadcrumbs | ✅ | Widoczne + `BreadcrumbList` schema (tematy, landingi, statyczne) |
+| FAQ (treść) | ✅ | `/faq` (7 pytań), FAQ tematyczne, FAQ na landing pages |
+| FAQ (schema FAQPage) | ✅ | `/faq`, landing pages, wybrane tematy |
+| Landing pages SEO | ✅ | 13 stron w `src/content/landing-pages.js` |
+| Hub poradników | ✅ | `/poradniki` — indeks 13 poradników w 3 kategoriach |
+| Blog | ❌ | Etap 3 — planowany `/blog/[slug]` |
+| Strony statyczne | ✅ | `/o-nas`, `/regulamin`, `/polityka-prywatnosci`, `/disclaimer-medyczny` |
+| Obrazy WebP + alt | ⚠️ Częściowo | Lazy loading i alt na kluczowych obrazach; brak plików OG w `/public/og/` |
 | PWA / Service Worker | ✅ | VitePWA w `vite.config.js` |
 | noindex debug.html | ✅ | meta robots noindex |
+| Przekierowanie legacy sitemap | ✅ | nginx: `/sitemap.xml` → 301 → `/sitemap_index.xml` |
 
 ---
 
 ## STRUKTURA URL — TEMATY GŁÓWNE
 
-Obecnie cała treść działa jako jedna strona z kotwicami, np.:
+**Wdrożono.** Wcześniej cała treść działała jako jedna strona z kotwicami (`/#section`). Obecnie każdy temat ma własny URL i prerenderowany HTML.
 
-```
-https://kurcz.pl/#treatment
-https://kurcz.pl/#prevention
-https://kurcz.pl/#faq
-```
-
-Fragmenty URL (`#`) nie są traktowane przez Google jako osobne strony. Należy wdrożyć przyjazne adresy bez parametrów i hashy.
+Fragmenty URL (`#`) nie są traktowane przez Google jako osobne strony — legacy hashe przekierowywane są client-side (`src/js/router.js` → `hashToPath`).
 
 ### Docelowa struktura głównych tematów
 
@@ -62,96 +61,95 @@ Fragmenty URL (`#`) nie są traktowane przez Google jako osobne strony. Należy 
 
 ## PODSTRONY TEMATYCZNE (landing pages SEO)
 
-Przygotować możliwość tworzenia podstron pod konkretne zapytania wyszukiwania.
+**Wdrożono 13 landing pages** (`src/content/landing-pages.js`). Indeks: `/poradniki`.
 
-### Kurcze według lokalizacji i kontekstu
+### Zaimplementowane
+
+| URL | Status |
+|-----|--------|
+| `/kurcze-lydek` | ✅ |
+| `/kurcze-stop` | ✅ |
+| `/kurcze-nocne` | ✅ |
+| `/kurcze-u-sportowcow` | ✅ |
+| `/kurcze-u-kobiet-w-ciazy` | ✅ |
+| `/kurcze-u-osob-starszych` | ✅ |
+| `/kurcze-u-diabetykow` | ✅ |
+| `/niedobor-magnezu` | ✅ |
+| `/kurcze-a-odwodnienie` | ✅ |
+| `/kurcze-a-leki` | ✅ |
+| `/rozciaganie-przy-kurczach` | ✅ |
+| `/masaz-przy-kurczach` | ✅ |
+| `/suplementacja-magnezem` | ✅ |
+
+### Planowane (nie wdrożone)
 
 ```
-/kurcze-lydek
-/kurcze-stop
 /kurcze-ud
-/kurcze-nocne
-/kurcze-u-sportowcow
-/kurcze-u-kobiet-w-ciazy
-/kurcze-u-osob-starszych
-/kurcze-u-diabetykow
-```
-
-### Przyczyny i czynniki ryzyka
-
-```
-/niedobor-magnezu
 /niedobor-potasu
-/kurcze-a-odwodnienie
-/kurcze-a-leki
 /kurcze-a-stres
-```
-
-### Metody leczenia i ulgi
-
-```
-/rozciaganie-przy-kurczach
-/masaz-przy-kurczach
 /elektrolity-przy-kurczach
-/suplementacja-magnezem
 ```
 
-Każda podstrona powinna mieć unikalną treść, linkowanie do tematu nadrzędnego oraz powiązane artykuły blogowe.
+Każda landing page ma: unikalną treść, FAQ, linki powiązane, breadcrumbs (`Strona główna > Poradniki > …`), schema `MedicalWebPage` + `FAQPage`, prerender `<noscript>`.
 
 ---
 
 ## PRZEKIEROWANIA 301
 
-Wdrożyć przekierowania 301 ze starych adresów z kotwicami na nowe adresy SEO.
+### Hashe legacy (client-side)
 
-Przykłady:
+Wdrożono w `src/js/router.js` — fragment URL nie trafia do serwera, więc nginx nie może przekierować `/#section`. Przekierowanie odbywa się po załadowaniu strony (`history.replaceState`).
 
 ```
 https://kurcz.pl/#intro        → https://kurcz.pl/kurcze-miesniowe
-https://kurcz.pl/#treatment  → https://kurcz.pl/pierwsza-pomoc
-https://kurcz.pl/#prevention → https://kurcz.pl/profilaktyka
-https://kurcz.pl/#comparison → https://kurcz.pl/kurcz-vs-skurcz
+https://kurcz.pl/#treatment    → https://kurcz.pl/pierwsza-pomoc
+https://kurcz.pl/#prevention   → https://kurcz.pl/profilaktyka
+https://kurcz.pl/#comparison   → https://kurcz.pl/kurcz-vs-skurcz
 https://kurcz.pl/#wibroakustyka → https://kurcz.pl/wibroakustyka
-https://kurcz.pl/#yoga       → https://kurcz.pl/joga-a-kurcze
-https://kurcz.pl/#faq        → https://kurcz.pl/faq
-https://kurcz.pl/#contact    → https://kurcz.pl/kontakt
+https://kurcz.pl/#yoga         → https://kurcz.pl/joga-a-kurcze
+https://kurcz.pl/#faq          → https://kurcz.pl/faq
+https://kurcz.pl/#contact      → https://kurcz.pl/kontakt
 ```
 
-Konfiguracja w Nginx (Docker) lub na poziomie hostingu (Railway / Captain Deploy).
+### Legacy sitemap (nginx)
+
+Wdrożono w `nginx.conf`:
+
+```
+/sitemap.xml  →  301  →  /sitemap_index.xml
+```
+
+Rekomendacja: w GSC zgłosić `https://kurcz.pl/sitemap_index.xml` i usunąć stary wpis `sitemap.xml` (opcjonalnie).
 
 ---
 
 ## SITEMAP
 
-Obecna sitemap zawiera URL z fragmentami hash — należy zastąpić ją pełną, automatyczną strukturą.
+**Wdrożono.** Skrypt `scripts/post-build-seo.js` generuje sitemap przy `pnpm build`.
 
-### Sitemap powinna zawierać
-
-- stronę główną
-- wszystkie tematy główne
-- wszystkie podstrony tematyczne
-- wszystkie wpisy blogowe
-- strony FAQ (globalne i tematyczne)
-- strony poradnikowe
-- strony statyczne
-
-### Rekomendowana struktura
+### Obecna struktura (27 URL)
 
 ```
 /sitemap_index.xml
+└── /sitemap-pages.xml   — wszystkie indeksowane trasy (tematy, landingi, /poradniki, statyczne)
 ```
 
-A w niej:
+Zawartość `sitemap-pages.xml`:
+
+- strona główna + 8 tematów głównych (w tym `/kontakt`, `/faq`)
+- 13 landing pages SEO
+- hub `/poradniki`
+- 4 strony statyczne (`/o-nas`, `/regulamin`, `/polityka-prywatnosci`, `/disclaimer-medyczny`)
+
+### Docelowa struktura (gdy powstanie blog)
 
 ```
-/sitemap-pages.xml       — strona główna, kontakt, o nas, regulamin itd.
-/sitemap-topics.xml      — tematy główne i podstrony tematyczne
-/sitemap-blog.xml        — wpisy blogowe
-/sitemap-guides.xml      — poradniki
-/sitemap-faq.xml         — strony FAQ
+/sitemap_index.xml
+├── /sitemap-pages.xml       — strona główna, kontakt, o nas, regulamin itd.
+├── /sitemap-topics.xml      — tematy główne i landing pages (opcjonalny podział)
+├── /sitemap-blog.xml        — wpisy blogowe
+└── /sitemap-guides.xml      — poradniki (obecnie `/poradniki` w pages)
 ```
-
-Sitemap powinna być generowana automatycznie przy buildzie (Vite plugin / skrypt) lub z CMS, gdy treści będą edytowalne.
 
 ---
 
@@ -231,33 +229,30 @@ Każdy artykuł musi mieć:
 
 ## SCHEMA.ORG
 
-Obecnie brak danych strukturalnych. Wdrożyć JSON-LD:
+**Wdrożono** JSON-LD generowany per strona (`src/seo/schema.js`, wstrzykiwany w prerenderze).
 
 ### Strona główna
 
-- `Organization`
-- `WebSite` (z `SearchAction`, jeśli będzie wyszukiwarka)
-- `MedicalWebPage` (opcjonalnie, ze względu na charakter YMYL)
+- `Organization` ✅
+- `WebSite` ✅
+- `MedicalWebPage` (opcjonalnie) — na podstronach tematycznych
 
-### Strony tematyczne
+### Strony tematyczne i landing pages
 
-- `BreadcrumbList`
-- `MedicalWebPage` lub `WebPage`
-- `FAQPage` (jeśli strona zawiera FAQ)
+- `BreadcrumbList` ✅
+- `MedicalWebPage` ✅
+- `FAQPage` ✅ (gdy strona ma FAQ)
 
-### Artykuły blogowe
+### Hub `/poradniki` i strony statyczne
+
+- `WebPage` ✅
+- `BreadcrumbList` ✅
+
+### Do wdrożenia (blog)
 
 - `Article` / `BlogPosting`
-- `BreadcrumbList`
 - `author` z danymi autora
-
-### FAQ
-
-- `FAQPage`
-
-### Kontakt
-
-- `ContactPage`
+- `ContactPage` (opcjonalnie dla `/kontakt`)
 
 ### Przykład FAQPage
 
@@ -280,17 +275,18 @@ Obecnie brak danych strukturalnych. Wdrożyć JSON-LD:
 
 ## BREADCRUMBS
 
-Wdrożyć widoczne breadcrumbs na każdej podstronie.
+**Wdrożono** (`src/components/Breadcrumbs.js`, landing pages, strony statyczne).
 
-### Przykład
+### Przykłady
 
 ```
-Strona główna > Kurcze mięśniowe > Kurcze łydek
-Strona główna > Blog > Kurcze łydek w nocy — co robić?
-Strona główna > Pierwsza pomoc > Rozciąganie przy kurczach
+Strona główna > Kurcze mięśniowe
+Strona główna > Poradniki > Kurcze łydek
+Strona główna > Poradniki
+Strona główna > O nas
 ```
 
-Breadcrumbs powinny być oznaczone schema.org `BreadcrumbList`.
+Schema.org `BreadcrumbList` generowany w `buildPageSchema()`.
 
 ---
 
@@ -322,63 +318,86 @@ Parametry UTM (`utm_source`, `utm_medium` itd.) — canonical bez parametrów.
 
 ## BLOG I PORADNIKI
 
-Przygotować strukturę bloga i hubów poradnikowych:
+### Hub poradników — wdrożono
+
+```
+/poradniki                  — indeks 13 landing pages w 3 kategoriach
+```
+
+Pliki: `src/content/poradniki-hub.js`, `src/components/PoradnikiPage.js`.
+
+Kategorie na `/poradniki`:
+
+1. Kurcze według lokalizacji i sytuacji (7 poradników)
+2. Przyczyny i czynniki ryzyka (3)
+3. Metody ulgi i profilaktyki (3)
+
+Nawigacja: Header → **Więcej → Poradniki**; stopka → kolumna Poradniki + link w menu głównym.
+
+### Blog — planowany (etap 3)
 
 ```
 /blog
-/poradniki
-/poradniki/kurcze-lydek
-/poradniki/pierwsza-pomoc
-/poradniki/profilaktyka
-/poradniki/wibroakustyka
-/poradniki/joga
-/poradniki/kurcz-vs-skurcz
+/blog/[slug]
 ```
 
-### Każdy wpis blogowy powinien mieć
-
-- SEO Title
-- Meta Description
-- H1
-- slug
-- zdjęcie główne + alt
-- spis treści (TOC)
-- sekcję FAQ (opcjonalnie)
-- linkowanie do stron tematycznych
-- linkowanie do powiązanych artykułów
-- schema.org `BlogPosting` lub `Article`
-- datę publikacji i `dateModified`
+Docelowe huby tematyczne pod `/poradniki/[temat]` — opcjonalnie w przyszłości; obecnie landing pages linkują do tematów głównych (`/kurcze-miesniowe`, `/pierwsza-pomoc`, `/profilaktyka`).
 
 ---
 
 ## FAQ
 
-Obecnie FAQ istnieje jako sekcja accordion w SPA (7 pytań w `FaqSection.js`).
+**Częściowo wdrożono.**
 
-### Docelowa struktura FAQ
+| Lokalizacja | Status |
+|-------------|--------|
+| Globalne FAQ → `/faq` | ✅ 7 pytań, `FAQPage` schema |
+| FAQ na stronach tematycznych | ✅ wybrane tematy (`src/seo/topic-faq.js`) |
+| FAQ na landing pages | ✅ per strona w `landing-pages.js` |
+| FAQ pod artykułem blogowym | ❌ wymaga bloga |
+| Edycja bez rebuildu (CMS/Markdown) | ❌ treść w plikach JS |
 
-- globalne FAQ → `/faq`
-- FAQ na stronie tematycznej (np. `/kurcze-lydek#faq`)
-- FAQ pod artykułem blogowym
-
-FAQ powinno być oznaczone schema.org `FAQPage`.
-
-Treść FAQ powinna być edytowalna bez przebudowy całej aplikacji (Markdown / CMS / pliki JSON).
+Treść FAQ edytowalna w kodzie: `src/seo/faq-data.js`, `src/seo/topic-faq.js`, `src/content/landing-pages.js`.
 
 ---
 
 ## GOOGLE ANALYTICS 4 I GOOGLE TAG MANAGER
 
-Obecnie brak analityki. Wdrożyć Google Tag Manager na wszystkich stronach.
+**Wdrożono.**
 
-GTM musi być dodany:
+| Element | Wartość / plik |
+|---------|----------------|
+| GTM ID | `GTM-P7N9JKMT` (`index.html`) |
+| GA4 Measurement ID | `G-TXFQKNHYQ2` (tag w panelu GTM) |
+| Consent Mode v2 | Domyślnie `denied`; aktualizacja po akceptacji bannera |
+| Cookie banner | `src/components/CookieConsent.js` |
+| Konfiguracja | `src/seo/analytics-config.js`, `src/js/consent.js` |
 
-- w sekcji `<head>`
-- bezpośrednio po otwarciu `<body>`
+GTM w `<head>` i `<body>`. GA4 podłączany przez GTM z respektowaniem `analytics_storage`.
 
-Następnie przez GTM podłączyć GA4.
+### Umami Analytics (wdrożono)
 
-### Rekomendowane zdarzenia (portal informacyjny)
+| Element | Wartość / plik |
+|---------|----------------|
+| Host | `https://umami.zaur.app/script.js` |
+| Website ID | `eb613710-3de9-4a68-b7cf-baba6fe224cc` |
+| Loader | `src/js/umami.js` — tylko po zgodzie cookies |
+| Konfiguracja | `data-do-not-track`, `data-performance` (CWV), `data-domains=kurcz.pl,www.kurcz.pl` |
+
+### Zdarzenia niestandardowe (Umami)
+
+| Zdarzenie | Opis |
+|-----------|------|
+| `cookie_consent` | Akceptacja wszystkich cookies |
+| `contact_form_submit` | Wysłanie formularza kontaktowego |
+| `contact_form_error` | Błąd walidacji / wysyłki |
+| `contact_click` | Kliknięcie telefonu lub e-maila |
+| `faq_open` | Rozwinięcie FAQ (faq / topic / landing) |
+| `outbound_click` | Link partnerski (footer, sekcje) |
+| `related_topic_click` | Link powiązany na landing page |
+| `guide_click` | Kliknięcie karty na `/poradniki` |
+
+### Zdarzenia rekomendowane (GA4 przez GTM — do skonfigurowania w panelu)
 
 | Zdarzenie | Opis |
 |-----------|------|
@@ -386,12 +405,7 @@ Następnie przez GTM podłączyć GA4.
 | `scroll` | Scroll depth (25%, 50%, 75%, 100%) |
 | `faq_expand` | Rozwinięcie pytania FAQ |
 | `contact_form_submit` | Wysłanie formularza kontaktowego |
-| `contact_click` | Kliknięcie CTA „Skontaktuj się” |
-| `phone_click` | Kliknięcie numeru telefonu |
-| `email_click` | Kliknięcie adresu e-mail |
-| `outbound_click` | Kliknięcie linku partnerskiego (wibroakustyka.ai, kompi.pl itd.) |
-| `cta_click` | Kliknięcie głównych CTA (np. „Natychmiastowa pomoc”) |
-| `section_view` | Wejście w sekcję tematyczną (do czasu migracji z SPA) |
+| `outbound_click` | Kliknięcie linku partnerskiego |
 
 ---
 
@@ -409,45 +423,39 @@ Zweryfikować właściwość domeny (DNS lub plik HTML).
 
 ## OPEN GRAPH
 
-Obecnie Open Graph jest tylko na stronie głównej.
+**Wdrożono per strona** w prerenderze (`scripts/post-build-seo.js`).
 
-### Dodać Open Graph dla
+- strona główna ✅
+- strony tematyczne ✅ (dedykowane ścieżki OG w `src/seo/routes.js`)
+- landing pages ✅ (domyślnie `/og-image.jpg`)
+- hub `/poradniki` ✅
+- strony statyczne ✅
+- artykuły blogowe ❌ (etap 3)
 
-- strony głównej ✅ (już jest)
-- stron tematycznych
-- artykułów blogowych
-- strony FAQ
+### Brakujące pliki graficzne
 
-### Podstawowe tagi
-
-```html
-<meta property="og:title" content="..." />
-<meta property="og:description" content="..." />
-<meta property="og:image" content="https://kurcz.pl/og/kurcze-lydek.jpg" />
-<meta property="og:url" content="https://kurcz.pl/kurcze-lydek" />
-<meta property="og:type" content="article" />
-<meta property="og:locale" content="pl_PL" />
-<meta name="twitter:card" content="summary_large_image" />
-```
-
-Przygotować dedykowane obrazy OG (1200×630 px) per główny temat.
+Ścieżki OG skonfigurowane — wymagane pliki JPG 1200×630 w `/public/og/` (obecnie tylko README).
 
 ---
 
 ## WYDAJNOŚĆ STRONY (Core Web Vitals)
 
-Stack: Vite + Alpine.js + Tailwind — lekki, ale SPA z client-side rendering może wpływać na LCP i indeksację.
+Stack: Vite + Alpine.js + Tailwind + **prerender wielostronicowy** (`scripts/post-build-seo.js`).
 
-### Priorytety
+### Wdrożone
 
-- szybkie ładowanie obrazów hero (preload już jest dla `hero_square.webp`)
-- lazy loading dla obrazów poniżej pierwszego ekranu
-- kompresja obrazów WebP
-- poprawne wymiary obrazów (`width` / `height` — zapobiega CLS)
-- minimalizacja JS i CSS (terser + cssnano już w buildzie)
-- rozważyć SSG / prerender dla stron treściowych
-- font-display: swap dla Google Fonts
-- ograniczyć animacje blob na mobile (INP)
+- prerender HTML per route (LCP + indeksacja treści)
+- preload hero (`hero_square.webp`)
+- lazy loading obrazów poniżej foldu
+- minifikacja JS/CSS (build Vite)
+- Umami `data-performance` — zbieranie CWV od odwiedzających (po zgodzie)
+
+### Do poprawy
+
+- pliki OG w `/public/og/`
+- `font-display: swap` dla Google Fonts
+- ograniczenie animacji blob na mobile (INP)
+- monitoring CWV w Search Console
 
 ### Metryki docelowe
 
@@ -508,69 +516,46 @@ Upewnić się, że mają `noindex`:
 
 ## MENU I LINKOWANIE WEWNĘTRZNE
 
-Obecne menu (Header) opiera się na scroll do kotwic. Po migracji na URL:
+**Wdrożono** — menu oparte na URL (`src/seo/routes.js` → `navItems`).
 
-### Menu główne — proponowane pozycje
+### Menu główne (Header)
 
-- Kurcze mięśniowe
-- Pierwsza pomoc
-- Profilaktyka
-- Kurcz vs. skurcz
-- Wibroakustyka
-- Joga
-- FAQ
-- Blog (nowe)
-- Kontakt
+**Priorytet 1 (widoczne):** Strona główna, Informacje, Pierwsza pomoc, Profilaktyka, Kontakt
 
-Każda strona tematyczna powinna linkować do:
+**Priorytet 2 (dropdown „Więcej”):** Kurcz vs. skurcz, **Poradniki**, Wibroakustyka, Joga, FAQ
 
-- strony nadrzędnej (hub)
-- 2–4 powiązanych podstron
-- 1–2 artykułów blogowych
-- sekcji FAQ (jeśli istnieje)
+### Linkowanie wewnętrzne
+
+- landing pages → `/poradniki`, powiązane tematy, tematy główne
+- `/poradniki` → wszystkie 13 poradników + linki do sekcji głównych
+- stopka → Poradniki, 6 wyróżnionych poradników, tematy, partnerzy, strony prawne
 
 ---
 
 ## STOPKA
 
-Obecna stopka zawiera nawigację kotwicową i partnerów. Uzupełnić o linki do stron statycznych:
+**Wdrożono.**
 
-- O nas → `/o-nas`
-- Kontakt → `/kontakt`
-- Regulamin → `/regulamin`
-- Polityka prywatności → `/polityka-prywatnosci`
-- Disclaimer medyczny → `/disclaimer-medyczny`
-- Blog → `/blog`
-- FAQ → `/faq`
-- Główne tematy (linki do hubów tematycznych)
-
-Partnerzy (zachować):
-
-- Wibroakustyka.ai
-- Kompi.pl
-- Intertech Poland
-- Szkoły Jogi
+- Nawigacja tematów (URL, nie kotwice)
+- **Poradniki** — link do `/poradniki` + 6 wyróżnionych poradników
+- Informacje prawne: O nas, Kontakt, Regulamin, Polityka prywatności, Disclaimer medyczny, FAQ
+- Partnerzy: Wibroakustyka.ai, Kompi.pl, Intertech Poland, Szkoły Jogi
+- Disclaimer YMYL w treści stopki
 
 ---
 
 ## STRONY STATYCZNE
 
-Przygotować lub sprawdzić strony:
+**Wdrożono** (`src/content/static-pages.js`, `src/components/StaticPage.js`).
 
 ```
-/o-nas
-/kontakt
-/regulamin
-/polityka-prywatnosci
-/disclaimer-medyczny
-/faq
+/o-nas                    ✅
+/regulamin                ✅
+/polityka-prywatnosci     ✅
+/disclaimer-medyczny      ✅
+/kontakt                  ✅ (strona tematyczna, nie static type)
+/faq                      ✅ (strona tematyczna)
 ```
-
-### Disclaimer medyczny (wymagany dla YMYL)
-
-Treść z stopki powinna być rozwinięta na dedykowanej stronie:
-
-> Informacje zawarte na stronie mają charakter edukacyjny i nie zastępują porady lekarskiej. W przypadku problemów zdrowotnych zawsze skonsultuj się z lekarzem.
 
 ---
 
@@ -599,23 +584,25 @@ To będzie potrzebne dla Google AI Overviews, ChatGPT Search, Gemini, Perplexity
 
 ---
 
-## ARCHITEKTURA TECHNICZNA — MIGRACJA SPA → WIELOSTRONNICOWA
+## ARCHITEKTURA TECHNICZNA
 
-Obecna architektura: **Vite + Alpine.js**, jedna strona HTML, komponenty ładowane dynamicznie.
+**Wdrożono opcję 1:** prerender/SSG przy buildzie + Vite + Alpine.js.
 
-### Opcje migracji (od najlżejszej)
+| Plik | Rola |
+|------|------|
+| `src/seo/routes.js` | Definicja tras, meta SEO, nawigacja |
+| `scripts/post-build-seo.js` | Prerender HTML, sitemap, robots.txt, schema per URL |
+| `src/js/router.js` | Routing client-side, legacy hash redirect |
+| `src/content/landing-pages.js` | Treść 13 landing pages |
+| `src/content/poradniki-hub.js` | Hub `/poradniki` |
+| `src/content/static-pages.js` | Strony prawne / o nas |
+| `nginx.conf` | `try_files` + redirect sitemap |
 
-1. **Prerender / SSG** — Vite plugin (np. `vite-plugin-ssg`) generuje statyczne HTML per route przy buildzie. Minimalna przebudowa, dobra dla treści statycznych.
+Każda trasa ma własny `dist/[path]/index.html` z meta, canonical, OG i `<noscript>` dla crawlerów.
 
-2. **Multi-page Vite** — osobne pliki HTML per temat (`kurcze-lydek.html` → `/kurcze-lydek`). Proste, bez frameworka routingu.
+### Następny krok architektury (etap 3)
 
-3. **Astro / 11ty** — migracja komponentów do SSG z Markdown dla bloga. Większy nakład, najlepsze długoterminowo dla content site.
-
-4. **Vue/React Router** — pełny SPA z history API. Wymaga SSR lub prerender dla SEO.
-
-### Rekomendacja
-
-Dla kurcz.pl optymalna jest **opcja 1 (SSG/prerender) + Markdown dla bloga/FAQ**, przy zachowaniu obecnego stacku Vite + Alpine.js tam, gdzie interaktywność jest potrzebna.
+Markdown / CMS dla bloga i FAQ — bez pełnej migracji frameworka.
 
 ---
 
@@ -650,75 +637,82 @@ Dla kurcz.pl optymalna jest **opcja 1 (SSG/prerender) + Markdown dla bloga/FAQ**
 ### Etap 3 — rozwój (content + AI Search)
 
 - [ ] Blog + system slugów
-- [ ] Huby poradnikowe
-- [x] Landing pages pod konkretne frazy (kurcze łydek, kurcze nocne itd.) — 13 stron w `/src/content/landing-pages.js`
-- [x] Linkowanie wewnętrzne i mapa treści (related links + footer poradniki)
+- [x] Hub poradników (`/poradniki`) — indeks 13 landing pages w 3 kategoriach
+- [x] Landing pages pod konkretne frazy — 13 stron w `src/content/landing-pages.js`
+- [x] Linkowanie wewnętrzne i mapa treści (related links, footer, `/poradniki`)
+- [ ] CMS / Markdown workflow dla treści
+- [ ] E-E-A-T: autorzy, daty, recenzja merytoryczna
 - [ ] Monitoring Search Console + Core Web Vitals
+- [ ] Dodatkowe landing pages (`/kurcze-ud`, `/niedobor-potasu`, `/kurcze-a-stres`)
 
 **Szacowany czas etapu 3:** ciągły rozwój treści, 2–4 tygodnie na infrastrukturę bloga
 
 ---
 
-## PROŚBA O INFORMACJĘ ZWROTNĄ
+## PROŚBA O INFORMACJĘ ZWROTNĄ — STAN NA CZERWIEC 2026
 
-Proszę o informację:
-
-1. **Które z tych elementów są już wdrożone?**
-   - Patrz tabela „Stan obecny” na początku dokumentu.
-
-2. **Które wymagają doprogramowania?**
-   - Routing wielostronicowy, sitemap, schema.org, GTM, blog, strony statyczne, breadcrumbs, canonical per page.
-
-3. **Ile czasu zajmie wdrożenie etapu 1?**
-   - Szacunek: **3–5 dni roboczych** (przy opcji SSG/prerender bez pełnej migracji frameworka).
-
-4. **Czy obecna architektura (Vite + Alpine.js SPA) pozwala na zmianę URL bez przebudowy całego serwisu?**
-   - Tak, częściowo — wymagany prerender lub multi-page build. Pełny SPA bez SSR nie wystarczy dla SEO wielostronicowego.
-
-5. **Czy możemy wdrożyć sitemap_index.xml?**
-   - Tak — skrypt generujący sitemap przy `pnpm build` na podstawie listy routes/treści.
-
-6. **Czy możemy ręcznie edytować SEO Title, Meta Description, H1 i FAQ dla każdej strony tematycznej?**
-   - Obecnie nie — wymaga wprowadzenia warstwy treści (Markdown frontmatter, JSON config lub headless CMS).
-
-7. **Czy planowany jest blog / CMS, czy treści pozostają w kodzie?**
-   - Decyzja wpływa na wybór architektury etapu 3.
-
-8. **Czy treści medyczne będą weryfikowane przez specjalistę (E-E-A-T)?**
-   - Istotne dla YMYL i AI Search w kategorii zdrowia.
+| Pytanie | Odpowiedź |
+|---------|-----------|
+| Co wdrożono? | Etapy 1–2 ukończone; etap 3 częściowo (landing pages, hub `/poradniki`, Umami) |
+| Co wymaga dopracowania? | Pliki OG, blog/CMS, E-E-A-T, GSC monitoring, tag GA4 w GTM |
+| Czy URL działa bez hashy? | Tak — 27 tras z prerenderem |
+| Czy sitemap automatyczna? | Tak — `pnpm build` → 27 URL |
+| Czy SEO Title/Description/H1 edytowalne? | Tak — w `routes.js`, `landing-pages.js`, `static-pages.js`, `poradniki-hub.js` |
+| Blog / CMS? | Nie — treści w plikach JS; Markdown planowany na etap 3 |
+| E-E-A-T / weryfikacja medyczna? | Do ustalenia — istotne dla YMYL |
 
 ---
 
-## ZAŁĄCZNIK — MAPA TREŚCI (propozycja)
+## ZAŁĄCZNIK — MAPA TREŚCI (stan wdrożenia)
 
 ```
-/                           Hub główny
-├── /kurcze-miesniowe       Przegląd tematu
-│   ├── /kurcze-lydek
-│   ├── /kurcze-stop
-│   ├── /kurcze-nocne
-│   └── /kurcze-u-sportowcow
-├── /pierwsza-pomoc
-│   ├── /rozciaganie-przy-kurczach
-│   └── /masaz-przy-kurczach
-├── /profilaktyka
-│   ├── /niedobor-magnezu
-│   └── /suplementacja-magnezem
-├── /kurcz-vs-skurcz
-├── /wibroakustyka
-├── /joga-a-kurcze
-├── /faq
-├── /blog
-│   └── /blog/[slug]
-├── /poradniki
-│   └── /poradniki/[temat]
-├── /kontakt
-├── /o-nas
-├── /regulamin
-├── /polityka-prywatnosci
-└── /disclaimer-medyczny
+/                           Hub główny ✅
+├── /kurcze-miesniowe       Przegląd tematu ✅
+├── /pierwsza-pomoc         ✅
+├── /profilaktyka           ✅
+├── /kurcz-vs-skurcz        ✅
+├── /wibroakustyka          ✅
+├── /joga-a-kurcze          ✅
+├── /faq                    ✅
+├── /kontakt                ✅
+├── /poradniki              Hub poradników ✅
+│   ├── /kurcze-lydek       ✅
+│   ├── /kurcze-stop        ✅
+│   ├── /kurcze-nocne       ✅
+│   ├── /kurcze-u-sportowcow ✅
+│   ├── /kurcze-u-kobiet-w-ciazy ✅
+│   ├── /kurcze-u-osob-starszych ✅
+│   ├── /kurcze-u-diabetykow ✅
+│   ├── /niedobor-magnezu   ✅
+│   ├── /kurcze-a-odwodnienie ✅
+│   ├── /kurcze-a-leki      ✅
+│   ├── /rozciaganie-przy-kurczach ✅
+│   ├── /masaz-przy-kurczach ✅
+│   └── /suplementacja-magnezem ✅
+├── /blog                   ❌ planowany
+│   └── /blog/[slug]        ❌
+├── /o-nas                  ✅
+├── /regulamin              ✅
+├── /polityka-prywatnosci   ✅
+└── /disclaimer-medyczny    ✅
 ```
+
+**27 tras** w sitemap (9 tematów + 13 landingów + `/poradniki` + 4 statyczne; `/` liczona raz).
 
 ---
 
-*Dokument przygotowany na podstawie audytu repozytorium kurcz.pl (Vite, Alpine.js, SPA z kotwicami). Data: czerwiec 2025.*
+## PLIKI KLUCZOWE (implementacja)
+
+| Obszar | Ścieżki |
+|--------|---------|
+| Trasy i meta SEO | `src/seo/routes.js`, `meta.js`, `schema.js` |
+| Landing pages | `src/content/landing-pages.js`, `src/components/LandingPage.js` |
+| Hub poradników | `src/content/poradniki-hub.js`, `src/components/PoradnikiPage.js` |
+| Strony statyczne | `src/content/static-pages.js`, `src/components/StaticPage.js` |
+| Build / prerender | `scripts/post-build-seo.js`, `nginx.conf` |
+| Analityka | `src/seo/analytics-config.js`, `src/js/consent.js`, `src/js/umami.js` |
+| Cookie banner | `src/components/CookieConsent.js` |
+
+---
+
+*Dokument zaktualizowany po wdrożeniu etapów 1–2 oraz części etapu 3 (landing pages, hub `/poradniki`, Umami). Ostatnia aktualizacja: czerwiec 2026.*
