@@ -138,7 +138,7 @@ export function buildPageSchema(route) {
     }
   }
 
-  if (route.type === 'static') {
+  if (route.type === 'static' || route.type === 'hub') {
     graphs.push(buildWebPageSchema(route));
   } else if (route.path !== '/') {
     graphs.push(buildMedicalWebPageSchema(route));

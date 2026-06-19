@@ -39,9 +39,7 @@ export default function () {
               <ol class="flex flex-wrap items-center gap-2 text-sm text-gray-500 mb-4">
                 <li><a href="/" class="hover:text-primary-600 no-underline">Strona główna</a></li>
                 <li aria-hidden="true" class="text-gray-300">/</li>
-                <li>
-                  <a :href="page?.hub.path" class="hover:text-primary-600 no-underline" x-text="page?.hub.label"></a>
-                </li>
+                <li><a href="/poradniki" class="hover:text-primary-600 no-underline">Poradniki</a></li>
                 <li aria-hidden="true" class="text-gray-300">/</li>
                 <li><span class="text-gray-700 font-medium" x-text="route.breadcrumbLabel"></span></li>
               </ol>
@@ -101,7 +99,10 @@ export default function () {
 
               <template x-if="page.relatedLinks && page.relatedLinks.length">
                 <section class="pt-4 border-t border-gray-200">
-                  <h2 class="font-heading text-lg font-bold text-gray-900 mb-4">Powiązane tematy</h2>
+                  <div class="flex items-center justify-between gap-4 mb-4">
+                    <h2 class="font-heading text-lg font-bold text-gray-900">Powiązane tematy</h2>
+                    <a href="/poradniki" class="text-sm text-primary-600 hover:text-primary-800 no-underline whitespace-nowrap">Wszystkie poradniki →</a>
+                  </div>
                   <div class="flex flex-wrap gap-3">
                     <template x-for="(link, li) in page.relatedLinks" :key="li">
                       <a :href="link.path" @click="trackRelatedClick(link)" class="inline-flex items-center px-4 py-2 rounded-full bg-primary-50 text-primary-700 hover:bg-primary-100 text-sm font-medium no-underline transition-colors" x-text="link.label"></a>

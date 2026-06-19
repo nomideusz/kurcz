@@ -372,8 +372,10 @@ export function toLandingRoute(page) {
     type: 'landing',
     h1: page.h1,
     breadcrumbLabel: page.h1.split(' — ')[0] ?? page.h1,
-    hubPath: page.hub.path,
-    hubLabel: page.hub.label,
+    hubPath: '/poradniki',
+    hubLabel: 'Poradniki',
+    topicPath: page.hub.path,
+    topicLabel: page.hub.label,
     title: page.title,
     description: page.description,
     ogImage: 'https://kurcz.pl/og-image.jpg',
@@ -384,11 +386,7 @@ export function toLandingRoute(page) {
 
 export const landingRoutes = landingPages.map(toLandingRoute);
 
-export const footerLandingLinks = [
-  { path: '/kurcze-lydek', label: 'Kurcze łydek' },
-  { path: '/kurcze-nocne', label: 'Kurcze nocne' },
-  { path: '/niedobor-magnezu', label: 'Niedobór magnezu' },
-  { path: '/rozciaganie-przy-kurczach', label: 'Rozciąganie przy kurczach' },
-  { path: '/kurcze-u-sportowcow', label: 'Kurcze u sportowców' },
-  { path: '/kurcze-a-leki', label: 'Kurcze a leki' },
-];
+export const footerLandingLinks = landingPages.map((page) => ({
+  path: page.path,
+  label: page.h1.split(' — ')[0] ?? page.h1,
+}));

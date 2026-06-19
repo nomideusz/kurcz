@@ -1,6 +1,7 @@
 import { mkdirSync, readFileSync, writeFileSync } from 'fs';
 import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
+import { getPoradnikiHub } from '../src/content/poradniki-hub.js';
 import { getLandingPage } from '../src/content/landing-pages.js';
 import { getStaticPage } from '../src/content/static-pages.js';
 import { routes, SITE_URL, getOgImage } from '../src/seo/routes.js';
@@ -49,6 +50,22 @@ function buildLandingNoscript(route) {
     : '';
 
   return `<noscript id="landing-prerender"><article><h1>${escapeHtml(page.h1)}</h1><p>${escapeHtml(page.intro)}</p>${sections}${faq}</article></noscript>`;
+}
+
+function buildHubNoscript(route) {
+  const hub = getPoradnikiHub();
+  if (route.path !== hub.path) return '';
+
+  const categories = hub.categories
+    .map((category) => {
+      const links = category.guides
+        .map((guide) => `<li><a href="${escapeHtml(guide.path)}">${escapeHtml(guide.title)}</a></li>`)
+        .join('');
+      return `<section><h2>${escapeHtml(category.title)}</h2><p>${escapeHtml(category.description)}</p><ul>${links}</ul></section>`;
+    })
+    .join('');
+
+  return `<noscript id="hub-prerender"><article><h1>${escapeHtml(hub.h1)}</h1><p>${escapeHtml(hub.intro)}</p>${categories}</article></noscript>`;
 }
 
 function customizeHtml(template, route) {
@@ -104,6 +121,13 @@ function customizeHtml(template, route) {
   if (route.type === 'landing') {
     const noscript = buildLandingNoscript(route);
     if (noscript && !html.includes('id="landing-prerender"')) {
+      html = html.replace('<div id="app">', `${noscript}\n    <div id="app">`);
+    }
+  }
+
+  if (route.type === 'hub') {
+    const noscript = buildHubNoscript(route);
+    if (noscript && !html.includes('id="hub-prerender"')) {
       html = html.replace('<div id="app">', `${noscript}\n    <div id="app">`);
     }
   }

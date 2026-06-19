@@ -19,6 +19,7 @@ export const umamiEvents = {
   faqOpen: 'faq_open',
   outboundClick: 'outbound_click',
   relatedTopicClick: 'related_topic_click',
+  guideClick: 'guide_click',
   emergencyCta: 'emergency_cta',
 };
 

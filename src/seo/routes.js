@@ -1,4 +1,5 @@
 import { landingRoutes } from '../content/landing-pages.js';
+import { poradnikiHubRoute } from '../content/poradniki-hub.js';
 
 export const SITE_URL = 'https://kurcz.pl';
 export const SITE_NAME = 'Kurcz.pl';
@@ -176,7 +177,7 @@ export const staticRoutes = [
   },
 ];
 
-export const routes = [...topicRoutes, ...landingRoutes, ...staticRoutes];
+export const routes = [...topicRoutes, ...landingRoutes, poradnikiHubRoute, ...staticRoutes];
 
 /** @deprecated use DEFAULT_OG_IMAGE */
 export const OG_IMAGE = DEFAULT_OG_IMAGE;
@@ -206,8 +207,12 @@ export function isLandingRoute(route) {
   return route.type === 'landing';
 }
 
+export function isHubRoute(route) {
+  return route.type === 'hub';
+}
+
 export function isStandaloneRoute(route) {
-  return route.type === 'static' || route.type === 'landing';
+  return route.type === 'static' || route.type === 'landing' || route.type === 'hub';
 }
 
 export const navItems = [
@@ -216,6 +221,7 @@ export const navItems = [
   { id: 'treatment', path: '/pierwsza-pomoc', label: 'Pierwsza pomoc', icon: 'M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z', priority: 1 },
   { id: 'prevention', path: '/profilaktyka', label: 'Profilaktyka', icon: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z', priority: 1 },
   { id: 'comparison', path: '/kurcz-vs-skurcz', label: 'Kurcz vs. skurcz', icon: 'M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6', priority: 2 },
+  { id: 'poradniki', path: '/poradniki', label: 'Poradniki', icon: 'M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253', priority: 2 },
   { id: 'wibroakustyka', path: '/wibroakustyka', label: 'Wibroakustyka', icon: 'M18 3a1 1 0 00-1.196-.98l-10 2A1 1 0 006 5v9.114A4.369 4.369 0 005 14c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V7.82l8-1.6v5.894A4.37 4.37 0 0015 12c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V3z', priority: 2 },
   { id: 'yoga', path: '/joga-a-kurcze', label: 'Joga', icon: 'M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z', priority: 2 },
   { id: 'faq', path: '/faq', label: 'FAQ', icon: 'M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z', priority: 2 },

@@ -39,7 +39,8 @@ export default function() {
     
     init() {
       const route = getRouteByPath(window.location.pathname);
-      this.activeSection = route.sectionId;
+      const navMatch = navItems.find((item) => item.path === route.path);
+      this.activeSection = navMatch?.id ?? route.sectionId ?? 'home';
       
       // Check initial state - if we're already scrolled down on page load
       this.scrolledDown = window.scrollY > 50;

@@ -18,13 +18,14 @@ import YogaSection from './components/YogaSection.js';
 import Breadcrumbs from './components/Breadcrumbs.js';
 import StaticPage from './components/StaticPage.js';
 import LandingPage from './components/LandingPage.js';
+import PoradnikiPage from './components/PoradnikiPage.js';
 import CookieConsent from './components/CookieConsent.js';
 import Logo from './components/Logo.js';
 import AppLayout from './components/AppLayout.js';
 import { emailConfig } from './config.js';
 import { initRouter } from './js/router.js';
 import { initUmamiFromConsent } from './js/umami.js';
-import { isLandingRoute, isStaticRoute } from './seo/routes.js';
+import { isHubRoute, isLandingRoute, isStaticRoute } from './seo/routes.js';
 
 document.addEventListener('alpine:init', () => {
   Alpine.store('header', {
@@ -47,6 +48,7 @@ window.yogaSectionComponent = YogaSection;
 window.breadcrumbsComponent = Breadcrumbs;
 window.staticPageComponent = StaticPage;
 window.landingPageComponent = LandingPage;
+window.poradnikiPageComponent = PoradnikiPage;
 window.cookieConsentComponent = CookieConsent;
 window.logoComponent = Logo;
 window.appLayout = AppLayout;
@@ -93,6 +95,17 @@ function renderLandingApp() {
   `;
 }
 
+function renderPoradnikiApp() {
+  const appLayout = document.getElementById('app-layout');
+  if (!appLayout) return;
+
+  appLayout.innerHTML = `
+    <div x-data="headerComponent()" x-html="template"></div>
+    <div x-data="poradnikiPageComponent()" x-html="template"></div>
+    <div x-data="footerComponent()" x-html="template"></div>
+  `;
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   const route = initRouter();
   initUmamiFromConsent();
@@ -101,6 +114,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (isStaticRoute(route)) {
     renderStaticApp();
+  } else if (isHubRoute(route)) {
+    renderPoradnikiApp();
   } else if (isLandingRoute(route)) {
     renderLandingApp();
   } else {
