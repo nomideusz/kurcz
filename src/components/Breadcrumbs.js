@@ -1,11 +1,10 @@
+import { getClientRoutePath } from '../js/route-path.js';
 import { getRouteByPath } from '../seo/routes.js';
 import { getTopicFaq } from '../seo/topic-faq.js';
 import { trackFaqOpen } from '../js/umami.js';
 
 export default function () {
-  const path = typeof window.__KURCZ_ROUTE__ === 'string'
-    ? window.__KURCZ_ROUTE__
-    : window.location.pathname;
+  const path = getClientRoutePath();
   const route = getRouteByPath(path);
   const topicFaq = getTopicFaq(route.path);
 

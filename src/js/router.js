@@ -1,9 +1,9 @@
 import { applyRouteMeta } from '../seo/meta.js';
-import { getRouteByPath, hashToPath, isStandaloneRoute, routes } from '../seo/routes.js';
+import { getClientRoutePath, normalizeRoutePath } from './route-path.js';
+import { getRouteByPath, hashToPath, isStandaloneRoute } from '../seo/routes.js';
 
 function normalizePath(pathname) {
-  const path = pathname.replace(/\/+$/, '') || '/';
-  return routes.some((route) => route.path === path) ? path : '/';
+  return normalizeRoutePath(pathname);
 }
 
 function scrollToSection(sectionId) {
@@ -31,11 +31,8 @@ function redirectLegacyHash() {
 }
 
 function resolveInitialPath() {
-  if (typeof window.__KURCZ_ROUTE__ === 'string') {
-    return normalizePath(window.__KURCZ_ROUTE__);
-  }
   redirectLegacyHash();
-  return normalizePath(window.location.pathname);
+  return getClientRoutePath();
 }
 
 export function initRouter() {

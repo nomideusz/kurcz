@@ -1,7 +1,7 @@
+import { getClientRoutePath } from '../js/route-path.js';
+
 export default function() {
-  const path = (typeof window.__KURCZ_ROUTE__ === 'string'
-    ? window.__KURCZ_ROUTE__
-    : window.location.pathname).replace(/\/+$/, '') || '/';
+  const path = getClientRoutePath();
 
   return {
     isHome: path === '/',

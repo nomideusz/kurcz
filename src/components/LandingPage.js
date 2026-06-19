@@ -1,12 +1,11 @@
 import { getLandingPage } from '../content/landing-pages.js';
+import { getClientRoutePath } from '../js/route-path.js';
 import { getRouteByPath } from '../seo/routes.js';
 import { umamiEvents } from '../seo/analytics-config.js';
 import { trackEvent, trackFaqOpen } from '../js/umami.js';
 
 export default function () {
-  const path = typeof window.__KURCZ_ROUTE__ === 'string'
-    ? window.__KURCZ_ROUTE__
-    : window.location.pathname;
+  const path = getClientRoutePath();
   const route = getRouteByPath(path);
   const page = getLandingPage(route.path);
 

@@ -1,10 +1,9 @@
 import { getStaticPage } from '../content/static-pages.js';
+import { getClientRoutePath } from '../js/route-path.js';
 import { getRouteByPath } from '../seo/routes.js';
 
 export default function () {
-  const path = typeof window.__KURCZ_ROUTE__ === 'string'
-    ? window.__KURCZ_ROUTE__
-    : window.location.pathname;
+  const path = getClientRoutePath();
   const route = getRouteByPath(path);
   const page = getStaticPage(route.path);
 
