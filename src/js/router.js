@@ -1,16 +1,22 @@
 import { applyRouteMeta } from '../seo/meta.js';
 import { getClientRoutePath, normalizeRoutePath } from './route-path.js';
-import { getRouteByPath, hashToPath, isStandaloneRoute } from '../seo/routes.js';
+import {
+  getAppShell,
+  getRouteByPath,
+  hashToPath,
+  isStandaloneRoute,
+  isTopicRoute,
+} from '../seo/routes.js';
 
 function normalizePath(pathname) {
   return normalizeRoutePath(pathname);
 }
 
-function scrollToSection(sectionId) {
+function scrollToSection(sectionId, smooth = false) {
   const scroll = () => {
     const el = document.getElementById(sectionId);
     if (el) {
-      el.scrollIntoView({ behavior: 'instant', block: 'start' });
+      el.scrollIntoView({ behavior: smooth ? 'smooth' : 'instant', block: 'start' });
     }
   };
 
@@ -35,34 +41,110 @@ function resolveInitialPath() {
   return getClientRoutePath();
 }
 
-export function initRouter() {
-  const path = resolveInitialPath();
-  const route = getRouteByPath(path);
+function dispatchRouteChanged(route) {
+  window.dispatchEvent(new CustomEvent('route-changed', { detail: route }));
+}
 
+function applyRouteChange(route, { smoothScroll = false } = {}) {
   window.__KURCZ_CURRENT_ROUTE__ = route;
   applyRouteMeta(route);
 
   if (!isStandaloneRoute(route) && route.sectionId !== 'home') {
-    scrollToSection(route.sectionId);
+    scrollToSection(route.sectionId, smoothScroll);
+  } else if (route.sectionId === 'home') {
+    window.scrollTo({ top: 0, behavior: smoothScroll ? 'smooth' : 'instant' });
   } else if (isStandaloneRoute(route)) {
     window.scrollTo({ top: 0, behavior: 'instant' });
   }
 
+  dispatchRouteChanged(route);
+}
+
+export function navigateToPath(path, { replace = false, smoothScroll = true } = {}) {
+  const normalized = normalizePath(path);
+  const targetRoute = getRouteByPath(normalized);
+  const currentRoute = getCurrentRoute();
+
+  if (getAppShell(targetRoute) !== getAppShell(currentRoute)) {
+    window.location.assign(path);
+    return;
+  }
+
+  if (!isTopicRoute(targetRoute)) {
+    window.location.assign(path);
+    return;
+  }
+
+  if (replace) {
+    window.history.replaceState(null, '', path);
+  } else {
+    window.history.pushState(null, '', path);
+  }
+
+  applyRouteChange(targetRoute, { smoothScroll });
+}
+
+function handleInternalLinkClick(event) {
+  if (event.defaultPrevented || event.button !== 0) return;
+  if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+
+  const anchor = event.target.closest('a[href]');
+  if (!anchor || anchor.target === '_blank') return;
+
+  const href = anchor.getAttribute('href');
+  if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:')) {
+    return;
+  }
+
+  let url;
+  try {
+    url = new URL(anchor.href, window.location.origin);
+  } catch {
+    return;
+  }
+
+  if (url.origin !== window.location.origin) return;
+
+  const currentRoute = getCurrentRoute();
+  if (!isTopicRoute(currentRoute)) return;
+
+  const path = normalizePath(url.pathname);
+  const targetRoute = getRouteByPath(path);
+  if (!isTopicRoute(targetRoute)) return;
+
+  event.preventDefault();
+
+  if (path === normalizePath(window.location.pathname)) {
+    if (targetRoute.sectionId !== 'home') {
+      scrollToSection(targetRoute.sectionId, true);
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    dispatchRouteChanged(targetRoute);
+    return;
+  }
+
+  navigateToPath(path, { smoothScroll: true });
+}
+
+export function initRouter() {
+  const path = resolveInitialPath();
+  const route = getRouteByPath(path);
+
+  applyRouteChange(route);
+
+  document.addEventListener('click', handleInternalLinkClick);
+
   window.addEventListener('popstate', () => {
     const nextRoute = getRouteByPath(normalizePath(window.location.pathname));
-    window.__KURCZ_CURRENT_ROUTE__ = nextRoute;
-    applyRouteMeta(nextRoute);
+    const currentRoute = getCurrentRoute();
 
-    if (isStandaloneRoute(nextRoute)) {
+    if (getAppShell(nextRoute) !== getAppShell(currentRoute)) {
       window.location.reload();
       return;
     }
 
-    if (nextRoute.sectionId !== 'home') {
-      scrollToSection(nextRoute.sectionId);
-    } else {
-      window.scrollTo({ top: 0, behavior: 'instant' });
-    }
+    applyRouteChange(nextRoute, { smoothScroll: false });
   });
 
   return route;

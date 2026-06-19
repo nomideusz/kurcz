@@ -14,6 +14,19 @@ export default function () {
     visible: route.path !== '/',
     openFaqIndex: null,
 
+    syncRoute(nextRoute) {
+      this.route = nextRoute;
+      this.topicFaq = getTopicFaq(nextRoute.path);
+      this.visible = nextRoute.path !== '/';
+      this.openFaqIndex = null;
+    },
+
+    init() {
+      window.addEventListener('route-changed', (event) => {
+        this.syncRoute(event.detail);
+      });
+    },
+
     toggleTopicFaq(index) {
       const willOpen = this.openFaqIndex !== index;
       this.openFaqIndex = this.openFaqIndex === index ? null : index;

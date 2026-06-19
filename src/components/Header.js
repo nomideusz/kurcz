@@ -1,3 +1,4 @@
+import { getClientRoutePath } from '../js/route-path.js';
 import { getRouteByPath, navItems } from '../seo/routes.js';
 
 export default function() {
@@ -8,6 +9,11 @@ export default function() {
     moreMenuOpen: false,
     
     navItems,
+
+    syncActiveSection(route) {
+      const navMatch = navItems.find((item) => item.path === route.path);
+      this.activeSection = navMatch?.id ?? route.sectionId ?? 'home';
+    },
     
     // Get primary navigation items
     get primaryNavItems() {
@@ -38,9 +44,14 @@ export default function() {
     },
     
     init() {
-      const route = getRouteByPath(window.location.pathname);
-      const navMatch = navItems.find((item) => item.path === route.path);
-      this.activeSection = navMatch?.id ?? route.sectionId ?? 'home';
+      const route = getRouteByPath(getClientRoutePath());
+      this.syncActiveSection(route);
+
+      window.addEventListener('route-changed', (event) => {
+        this.syncActiveSection(event.detail);
+        this.menuOpen = false;
+        this.moreMenuOpen = false;
+      });
       
       // Check initial state - if we're already scrolled down on page load
       this.scrolledDown = window.scrollY > 50;

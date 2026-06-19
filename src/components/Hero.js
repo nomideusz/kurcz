@@ -6,6 +6,12 @@ export default function() {
   return {
     isHome: path === '/',
 
+    init() {
+      window.addEventListener('route-changed', (event) => {
+        this.isHome = event.detail.path === '/';
+      });
+    },
+
     template: `
       <section id="home" class="relative bg-background-dark py-32 lg:py-48 text-white overflow-hidden min-h-[800px] flex items-center">
         <!-- Modern Animated Mesh Background -->
