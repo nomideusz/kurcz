@@ -1,4 +1,6 @@
 import { emailConfig } from '../config.js';
+import { umamiEvents } from '../seo/analytics-config.js';
+import { trackContactClick, trackEvent, trackOutboundClick } from '../js/umami.js';
 
 export default function() {
   return {
@@ -124,6 +126,7 @@ export default function() {
       if (!this.validateForm()) {
         this.formError = true;
         this.errorMessage = "Proszę wypełnić poprawnie wszystkie pola formularza.";
+        trackEvent(umamiEvents.contactFormError, { reason: 'validation' });
         this.loading = false;
         return;
       }
@@ -132,6 +135,7 @@ export default function() {
       if (!this.isEmailJSReady) {
         this.formError = true;
         this.errorMessage = "System do wysyłania e-maili nie jest gotowy. Odśwież stronę i spróbuj ponownie.";
+        trackEvent(umamiEvents.contactFormError, { reason: 'not_ready' });
         this.loading = false;
         return;
       }
@@ -154,6 +158,7 @@ export default function() {
         .then((response) => {
           // Success
           console.log("Email sent successfully");
+          trackEvent(umamiEvents.contactFormSubmit, { path: window.location.pathname });
           this.formSubmitted = true;
           this.loading = false;
           
@@ -189,8 +194,24 @@ export default function() {
           
           this.formError = true;
           this.errorMessage = `Wystąpił błąd podczas wysyłania wiadomości: ${errorMessage}`;
+          trackEvent(umamiEvents.contactFormError, { reason: 'send_failed' });
           this.loading = false;
         });
+    },
+
+    callPhone() {
+      trackContactClick('phone');
+      window.location.href = 'tel:+48602846912';
+    },
+
+    sendEmail() {
+      trackContactClick('email');
+      window.location.href = 'mailto:s@kurcz.pl';
+    },
+
+    openFacebook() {
+      trackOutboundClick('https://www.facebook.com/profile.php?id=61575552422497', 'Facebook', 'contact');
+      window.open('https://www.facebook.com/profile.php?id=61575552422497', '_blank');
     },
     
     template: `
@@ -236,7 +257,7 @@ export default function() {
                       </div>
                       <div>
                         <p class="text-sm text-gray-500 font-medium mb-1">Infolinia</p>
-                        <button @click="window.location.href='tel:+48602846912'" type="button" class="text-lg text-gray-900 font-semibold group-hover/item:text-primary-600 transition-colors focus:outline-none text-left">+48 602 846 912</button>
+                        <button @click="callPhone()" type="button" class="text-lg text-gray-900 font-semibold group-hover/item:text-primary-600 transition-colors focus:outline-none text-left">+48 602 846 912</button>
                       </div>
                     </div>
                     
@@ -249,7 +270,7 @@ export default function() {
                       </div>
                       <div>
                         <p class="text-sm text-gray-500 font-medium mb-1">Adres e-mail</p>
-                        <button @click="window.location.href='mailto:s@kurcz.pl'" type="button" class="text-lg text-gray-900 font-semibold group-hover/item:text-health-dark transition-colors focus:outline-none text-left">s@kurcz.pl</button>
+                        <button @click="sendEmail()" type="button" class="text-lg text-gray-900 font-semibold group-hover/item:text-health-dark transition-colors focus:outline-none text-left">s@kurcz.pl</button>
                       </div>
                     </div>
                     
@@ -270,7 +291,7 @@ export default function() {
                   
                   <div class="mt-10 pt-8 border-t border-gray-100">
                     <p class="text-sm text-gray-500 font-medium mb-4">Znajdź nas w sieci</p>
-                    <button @click="window.open('https://www.facebook.com/profile.php?id=61575552422497', '_blank')" type="button" class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-gray-50 text-gray-600 hover:bg-blue-600 hover:text-white transition-colors duration-300">
+                    <button @click="openFacebook()" type="button" class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-gray-50 text-gray-600 hover:bg-blue-600 hover:text-white transition-colors duration-300">
                       <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"></path>
                       </svg>

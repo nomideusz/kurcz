@@ -1,5 +1,12 @@
+import { trackOutboundClick } from '../js/umami.js';
+
 export default function() {
   return {
+    openPartner(url, label) {
+      trackOutboundClick(url, label, 'yoga');
+      window.open(url, '_blank');
+    },
+
     template: `
       <section id="yoga" class="py-24 md:py-32 bg-surface relative overflow-hidden">
         <!-- Background accents -->
@@ -80,7 +87,7 @@ export default function() {
                   </p>
                   
                   <button 
-                    @click="window.open('https://szkolyjogi.pl', '_blank')"
+                    @click="openPartner('https://szkolyjogi.pl', 'Szkoły Jogi')"
                     class="group relative inline-flex items-center justify-center w-full rounded-2xl bg-primary-600 text-white font-medium px-8 py-4 overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-glow"
                   >
                     <span class="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-black"></span>

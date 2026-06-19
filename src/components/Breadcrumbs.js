@@ -1,5 +1,6 @@
 import { getRouteByPath } from '../seo/routes.js';
 import { getTopicFaq } from '../seo/topic-faq.js';
+import { trackFaqOpen } from '../js/umami.js';
 
 export default function () {
   const path = typeof window.__KURCZ_ROUTE__ === 'string'
@@ -15,7 +16,11 @@ export default function () {
     openFaqIndex: null,
 
     toggleTopicFaq(index) {
+      const willOpen = this.openFaqIndex !== index;
       this.openFaqIndex = this.openFaqIndex === index ? null : index;
+      if (willOpen && this.topicFaq?.[index]) {
+        trackFaqOpen('topic', this.topicFaq[index].question);
+      }
     },
 
     template: `

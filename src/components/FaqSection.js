@@ -1,13 +1,18 @@
 import { faqItems } from '../seo/faq-data.js';
+import { trackFaqOpen } from '../js/umami.js';
 
 export default function() {
   return {
     faqs: faqItems.map((faq) => ({ ...faq, open: false })),
     toggleFaq(index) {
+      const willOpen = !this.faqs[index].open;
       this.faqs = this.faqs.map((faq, i) => ({
         ...faq,
         open: i === index ? !faq.open : false
       }));
+      if (willOpen) {
+        trackFaqOpen('faq', this.faqs[index].question);
+      }
     },
     
     template: `

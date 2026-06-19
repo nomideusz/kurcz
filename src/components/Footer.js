@@ -1,11 +1,22 @@
 import { footerLegalLinks } from '../seo/routes.js';
 import { footerLandingLinks } from '../content/landing-pages.js';
+import { trackOutboundClick } from '../js/umami.js';
 
 export default function () {
   return {
     currentYear: new Date().getFullYear(),
     legalLinks: footerLegalLinks,
     landingLinks: footerLandingLinks,
+
+    openPartner(url, label) {
+      trackOutboundClick(url, label, 'footer');
+      window.open(url, '_blank');
+    },
+
+    openFacebook() {
+      trackOutboundClick('https://www.facebook.com/profile.php?id=61575552422497', 'Facebook', 'footer');
+      window.open('https://www.facebook.com/profile.php?id=61575552422497', '_blank');
+    },
 
     template: `
       <footer id="footer" class="bg-gray-900 text-white pt-20 pb-10 relative overflow-hidden">
@@ -164,7 +175,7 @@ export default function () {
               <ul class="space-y-4">
                 <li>
                   <button 
-                    @click="window.open('https://wibroakustyka.ai', '_blank')" 
+                    @click="openPartner('https://wibroakustyka.ai', 'Wibroakustyka.ai')" 
                     type="button"
                     class="text-gray-400 hover:text-primary-300 transition-colors duration-300 flex items-center bg-transparent border-0 p-0 cursor-pointer group"
                   >
@@ -178,7 +189,7 @@ export default function () {
                 </li>
                 <li>
                   <button 
-                    @click="window.open('https://kompi.pl', '_blank')" 
+                    @click="openPartner('https://kompi.pl', 'Kompi.pl')" 
                     type="button"
                     class="text-gray-400 hover:text-primary-300 transition-colors duration-300 flex items-center bg-transparent border-0 p-0 cursor-pointer group"
                   >
@@ -193,7 +204,7 @@ export default function () {
 
                 <li>
                   <button 
-                    @click="window.open('https://intertechpoland.pl', '_blank')" 
+                    @click="openPartner('https://intertechpoland.pl', 'Intertech Poland')" 
                     type="button"
                     class="text-gray-400 hover:text-primary-300 transition-colors duration-300 flex items-center bg-transparent border-0 p-0 cursor-pointer group"
                   >
@@ -207,7 +218,7 @@ export default function () {
                 </li>
                 <li>
                   <button 
-                    @click="window.open('https://szkolyjogi.pl', '_blank')" 
+                    @click="openPartner('https://szkolyjogi.pl', 'Szkoły Jogi')" 
                     type="button"
                     class="text-gray-400 hover:text-primary-300 transition-colors duration-300 flex items-center bg-transparent border-0 p-0 cursor-pointer group"
                   >
@@ -262,7 +273,7 @@ export default function () {
             <!-- Social Media Links -->
             <div class="flex space-x-4 order-1 md:order-2">
               <button 
-                @click="window.open('https://www.facebook.com/profile.php?id=61575552422497', '_blank')" 
+                @click="openFacebook()" 
                 type="button"
                 class="text-gray-400 hover:text-primary-300 transition-colors duration-300 bg-transparent border-0 p-0 cursor-pointer"
                 aria-label="Facebook"

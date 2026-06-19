@@ -1,4 +1,5 @@
 import { consentStorageKey } from '../seo/analytics-config.js';
+import { loadUmami, trackConsentChoice } from './umami.js';
 
 const CONSENT_DENIED = {
   ad_storage: 'denied',
@@ -39,6 +40,7 @@ export function applyConsentChoice(choice) {
   if (choice === 'granted') {
     pushConsentUpdate(CONSENT_GRANTED);
     saveConsent('granted');
+    loadUmami().then(() => trackConsentChoice('granted'));
   } else {
     pushConsentUpdate(CONSENT_DENIED);
     saveConsent('denied');

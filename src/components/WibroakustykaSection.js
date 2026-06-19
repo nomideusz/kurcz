@@ -1,3 +1,5 @@
+import { trackOutboundClick } from '../js/umami.js';
+
 export default function() {
   return {
     features: [
@@ -6,6 +8,11 @@ export default function() {
       "Poprawę mikrokrążenia w obszarach zagrożonych kurczami",
       "Przyspieszenie regeneracji po wysiłku fizycznym"
     ],
+
+    openPartner(url, label) {
+      trackOutboundClick(url, label, 'wibroakustyka');
+      window.open(url, '_blank');
+    },
     
     template: `
       <section id="wibroakustyka" class="py-24 md:py-32 bg-background-light relative overflow-hidden">
@@ -130,7 +137,7 @@ export default function() {
                 <p class="text-lg text-gray-600 mb-10 max-w-2xl mx-auto font-light">Odkryj więcej szczegółów na temat innowacyjnego zastosowania wibroakustyki w terapii kurczy mięśniowych i innych dolegliwości.</p>
                 
                 <button 
-                  @click="window.open('https://wibroakustyka.ai', '_blank')"
+                  @click="openPartner('https://wibroakustyka.ai', 'Wibroakustyka.ai')"
                   class="group/btn relative inline-flex items-center justify-center rounded-2xl bg-primary-600 text-white font-medium px-8 py-4 overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-glow"
                 >
                   <span class="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-black"></span>

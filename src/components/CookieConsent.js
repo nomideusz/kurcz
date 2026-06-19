@@ -35,9 +35,9 @@ export default function () {
           </h2>
           <p class="text-sm md:text-base text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
             Używamy niezbędnych plików cookies, aby strona działała poprawnie. Za Twoją zgodą
-            stosujemy też Google Analytics (G-TXFQKNHYQ2) przez Google Tag Manager, aby analizować
-            ruch i ulepszać serwis. Możesz zaakceptować wszystkie cookies lub ograniczyć się do
-            niezbędnych.
+            stosujemy też Google Analytics (G-TXFQKNHYQ2) przez Google Tag Manager oraz Umami
+            (analityka bez cookies), aby analizować ruch i ulepszać serwis. Możesz zaakceptować
+            wszystkie cookies lub ograniczyć się do niezbędnych.
             <a href="/polityka-prywatnosci" class="text-primary-600 hover:underline ml-1">Polityka prywatności</a>
           </p>
           <div class="flex flex-col sm:flex-row gap-3 sm:justify-end">

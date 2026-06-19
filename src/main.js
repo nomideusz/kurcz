@@ -23,6 +23,7 @@ import Logo from './components/Logo.js';
 import AppLayout from './components/AppLayout.js';
 import { emailConfig } from './config.js';
 import { initRouter } from './js/router.js';
+import { initUmamiFromConsent } from './js/umami.js';
 import { isLandingRoute, isStaticRoute } from './seo/routes.js';
 
 document.addEventListener('alpine:init', () => {
@@ -94,6 +95,7 @@ function renderLandingApp() {
 
 document.addEventListener('DOMContentLoaded', () => {
   const route = initRouter();
+  initUmamiFromConsent();
 
   window.Alpine = Alpine;
 

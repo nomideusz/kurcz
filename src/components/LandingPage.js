@@ -1,5 +1,7 @@
 import { getLandingPage } from '../content/landing-pages.js';
 import { getRouteByPath } from '../seo/routes.js';
+import { umamiEvents } from '../seo/analytics-config.js';
+import { trackEvent, trackFaqOpen } from '../js/umami.js';
 
 export default function () {
   const path = typeof window.__KURCZ_ROUTE__ === 'string'
@@ -14,7 +16,19 @@ export default function () {
     openFaqIndex: null,
 
     toggleFaq(index) {
+      const willOpen = this.openFaqIndex !== index;
       this.openFaqIndex = this.openFaqIndex === index ? null : index;
+      if (willOpen && this.page?.faq?.[index]) {
+        trackFaqOpen('landing', this.page.faq[index].question);
+      }
+    },
+
+    trackRelatedClick(link) {
+      trackEvent(umamiEvents.relatedTopicClick, {
+        path: link.path,
+        label: link.label,
+        from: window.location.pathname,
+      });
     },
 
     template: `
@@ -90,7 +104,7 @@ export default function () {
                   <h2 class="font-heading text-lg font-bold text-gray-900 mb-4">Powiązane tematy</h2>
                   <div class="flex flex-wrap gap-3">
                     <template x-for="(link, li) in page.relatedLinks" :key="li">
-                      <a :href="link.path" class="inline-flex items-center px-4 py-2 rounded-full bg-primary-50 text-primary-700 hover:bg-primary-100 text-sm font-medium no-underline transition-colors" x-text="link.label"></a>
+                      <a :href="link.path" @click="trackRelatedClick(link)" class="inline-flex items-center px-4 py-2 rounded-full bg-primary-50 text-primary-700 hover:bg-primary-100 text-sm font-medium no-underline transition-colors" x-text="link.label"></a>
                     </template>
                   </div>
                 </section>
