@@ -9,7 +9,10 @@ export function buildOrganizationSchema() {
     name: SITE_NAME,
     url: SITE_URL,
     logo: `${SITE_URL}/img/logo.webp`,
-    sameAs: ['https://www.facebook.com/profile.php?id=61575552422497'],
+    sameAs: [
+      'https://www.facebook.com/profile.php?id=61575552422497',
+      'https://instagram.com/kurcz.pl',
+    ],
     description: 'Kompendium wiedzy o kurczach mięśniowych — przyczyny, leczenie i profilaktyka.',
   };
 }
