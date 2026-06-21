@@ -1,0 +1,14 @@
+---
+import Header from './Header.astro';
+import Footer from './Footer.astro';
+import CookieConsent from './CookieConsent.astro';
+
+const { currentPath = '/' } = Astro.props;
+---
+
+<Header currentPath={currentPath} />
+<main class="flex-1">
+  <slot />
+</main>
+<Footer />
+<CookieConsent />

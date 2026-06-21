@@ -1,0 +1,32 @@
+---
+const { route } = Astro.props;
+
+const crumbs = [{ path: '/', label: 'Strona główna' }];
+if (route.hubPath && route.hubLabel) {
+  crumbs.push({ path: route.hubPath, label: route.hubLabel });
+}
+crumbs.push({ path: route.path, label: route.breadcrumbLabel ?? route.h1, current: true });
+---
+
+{
+  route.path !== '/' && (
+    <nav aria-label="Ścieżka okruszków" class="mx-auto max-w-3xl px-4 pt-8 sm:px-6">
+      <ol class="flex flex-wrap items-center gap-1.5 text-sm text-slate-500">
+        {crumbs.map((c, i) => (
+          <li class="flex items-center gap-1.5">
+            {i > 0 && <span class="text-slate-300" aria-hidden="true">/</span>}
+            {c.current ? (
+              <span class="text-slate-700" aria-current="page">
+                {c.label}
+              </span>
+            ) : (
+              <a href={c.path} class="hover:text-brand-700">
+                {c.label}
+              </a>
+            )}
+          </li>
+        ))}
+      </ol>
+    </nav>
+  )
+}

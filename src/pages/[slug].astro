@@ -1,0 +1,67 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Shell from '../components/Shell.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import PageHeader from '../components/PageHeader.astro';
+import ContentSections from '../components/ContentSections.astro';
+import FaqAccordion from '../components/FaqAccordion.astro';
+import RelatedLinks from '../components/RelatedLinks.astro';
+
+import { topicRoutes, staticRoutes } from '../seo/routes.js';
+import { landingRoutes, getLandingPage } from '../content/landing-pages.js';
+import { getStaticPage } from '../content/static-pages.js';
+import { getTopicPageContent } from '../content/topic-pages.js';
+import { getTopicFaq } from '../seo/topic-faq.js';
+
+export function getStaticPaths() {
+  const topicContentRoutes = topicRoutes.filter(
+    (r) => !['/', '/faq', '/kontakt'].includes(r.path)
+  );
+
+  const entries = [
+    ...topicContentRoutes.map((route) => ({ route, kind: 'topic' })),
+    ...landingRoutes.map((route) => ({ route, kind: 'landing' })),
+    ...staticRoutes.map((route) => ({ route, kind: 'static' })),
+  ];
+
+  return entries.map(({ route, kind }) => ({
+    params: { slug: route.path.slice(1) },
+    props: { route, kind },
+  }));
+}
+
+const { route, kind } = Astro.props;
+
+let intro = '';
+let sections = [];
+let faq = [];
+let relatedLinks = [];
+
+if (kind === 'topic') {
+  const content = getTopicPageContent(route.path);
+  intro = content?.intro ?? '';
+  sections = content?.sections ?? [];
+  faq = getTopicFaq(route.path) ?? [];
+} else if (kind === 'landing') {
+  const page = getLandingPage(route.path);
+  intro = page?.intro ?? '';
+  sections = page?.sections ?? [];
+  faq = page?.faq ?? [];
+  relatedLinks = page?.relatedLinks ?? [];
+} else if (kind === 'static') {
+  const page = getStaticPage(route.path);
+  sections = page?.sections ?? [];
+}
+---
+
+<Layout route={route}>
+  <Shell currentPath={route.path}>
+    <Breadcrumbs route={route} />
+    <PageHeader title={route.h1} intro={intro} />
+    <article class="mx-auto max-w-3xl px-4 py-6 sm:px-6">
+      <ContentSections sections={sections} />
+    </article>
+    <FaqAccordion items={faq} />
+    <RelatedLinks links={relatedLinks} />
+  </Shell>
+</Layout>

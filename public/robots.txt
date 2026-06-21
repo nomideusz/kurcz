@@ -1,7 +1,4 @@
 User-agent: *
 Allow: /
 
-Disallow: /debug.html
-Disallow: /assets/
-
-Sitemap: https://kurcz.pl/sitemap_index.xml
+Sitemap: https://kurcz.pl/sitemap-index.xml

@@ -1,0 +1,154 @@
+---
+import Logo from './Logo.astro';
+import { footerLegalLinks } from '../seo/routes.js';
+
+const topics = [
+  { path: '/kurcze-miesniowe', label: 'Kurcze mięśniowe' },
+  { path: '/pierwsza-pomoc', label: 'Pierwsza pomoc' },
+  { path: '/profilaktyka', label: 'Profilaktyka' },
+  { path: '/kurcz-vs-skurcz', label: 'Kurcz a skurcz' },
+  { path: '/wibroakustyka', label: 'Wibroakustyka' },
+  { path: '/joga-a-kurcze', label: 'Joga a kurcze' },
+];
+
+const guides = [
+  { path: '/poradniki', label: 'Wszystkie poradniki' },
+  { path: '/kurcze-lydek', label: 'Kurcze łydek' },
+  { path: '/kurcze-nocne', label: 'Kurcze nocne' },
+  { path: '/niedobor-magnezu', label: 'Niedobór magnezu' },
+  { path: '/suplementacja-magnezem', label: 'Suplementacja magnezem' },
+];
+
+const partners = [
+  { url: 'https://wibroakustyka.ai', label: 'Wibroakustyka.ai' },
+  { url: 'https://kompi.pl', label: 'Kompi.pl' },
+  { url: 'https://intertechpoland.pl', label: 'Intertech Poland' },
+  { url: 'https://szkolyjogi.pl', label: 'Szkoły Jogi' },
+];
+
+const facebookUrl = 'https://www.facebook.com/profile.php?id=61575552422497';
+const year = new Date().getFullYear();
+---
+
+<footer class="mt-20 border-t border-slate-200 bg-slate-50">
+  <div class="mx-auto max-w-6xl px-4 py-12 sm:px-6">
+    <div class="grid gap-10 md:grid-cols-2 lg:grid-cols-6">
+      <div class="lg:col-span-2">
+        <a href="/" class="inline-flex items-center" aria-label="Kurcz.pl — strona główna">
+          <Logo markClass="h-9 w-9" textClass="text-2xl" />
+        </a>
+        <p class="mt-3 max-w-md text-sm leading-relaxed text-slate-500">
+          Rzetelna, edukacyjna wiedza o kurczach mięśniowych — przyczyny, pierwsza pomoc
+          i profilaktyka.
+        </p>
+      </div>
+
+      <nav aria-label="Tematy">
+        <h2 class="text-sm font-semibold text-slate-900">Tematy</h2>
+        <ul class="mt-3 space-y-2">
+          {
+            topics.map((l) => (
+              <li>
+                <a href={l.path} class="text-sm text-slate-600 hover:text-brand-700">
+                  {l.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <nav aria-label="Poradniki">
+        <h2 class="text-sm font-semibold text-slate-900">Poradniki</h2>
+        <ul class="mt-3 space-y-2">
+          {
+            guides.map((l) => (
+              <li>
+                <a href={l.path} class="text-sm text-slate-600 hover:text-brand-700">
+                  {l.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <nav aria-label="Partnerzy">
+        <h2 class="text-sm font-semibold text-slate-900">Partnerzy</h2>
+        <ul class="mt-3 space-y-2">
+          {
+            partners.map((p) => (
+              <li>
+                <a
+                  href={p.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-outbound={p.label}
+                  class="text-sm text-slate-600 hover:text-brand-700"
+                >
+                  {p.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <nav aria-label="Informacje">
+        <h2 class="text-sm font-semibold text-slate-900">Informacje</h2>
+        <ul class="mt-3 space-y-2">
+          {
+            footerLegalLinks.map((l) => (
+              <li>
+                <a href={l.path} class="text-sm text-slate-600 hover:text-brand-700">
+                  {l.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+    </div>
+
+    <div class="mt-10 border-t border-slate-200 pt-6">
+      <p class="text-xs leading-relaxed text-slate-500">
+        Treści w serwisie mają charakter wyłącznie edukacyjny i nie zastępują porady
+        lekarskiej. W przypadku problemów zdrowotnych skonsultuj się z lekarzem.
+        Zobacz <a href="/disclaimer-medyczny" class="underline hover:text-brand-700">disclaimer medyczny</a>.
+      </p>
+      <div class="mt-4 flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <p class="text-xs text-slate-400">© {year} Kurcz.pl — wszelkie prawa zastrzeżone.</p>
+        <a
+          href={facebookUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-outbound="Facebook"
+          aria-label="Facebook"
+          class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-slate-300 text-slate-500 transition-colors hover:border-brand-300 hover:bg-white hover:text-brand-700"
+        >
+          <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              fill-rule="evenodd"
+              d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
+              clip-rule="evenodd"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script is:inline>
+  // Track outbound clicks (footer partners + social) via consent-gated Umami.
+  document.querySelectorAll('footer a[data-outbound]').forEach(function (a) {
+    a.addEventListener('click', function () {
+      if (typeof window.kurczTrack === 'function') {
+        window.kurczTrack('outbound_click', {
+          url: a.getAttribute('href'),
+          label: a.getAttribute('data-outbound'),
+          source: 'footer',
+        });
+      }
+    });
+  });
+</script>

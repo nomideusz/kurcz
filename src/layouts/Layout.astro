@@ -1,0 +1,104 @@
+---
+import '../styles/global.css';
+import { SITE_URL, getOgImage } from '../seo/routes.js';
+import { buildPageSchema, schemaToJsonLd } from '../seo/schema.js';
+
+const { route } = Astro.props;
+
+const canonical = `${SITE_URL}${route.path === '/' ? '' : route.path}`;
+const ogTitle = route.ogTitle ?? route.title;
+const ogImage = getOgImage(route);
+const ogType = route.path === '/' ? 'website' : 'article';
+const jsonLd = schemaToJsonLd(buildPageSchema(route));
+---
+
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Google Consent Mode v2 (default: denied until user accepts) -->
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('consent', 'default', {
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        analytics_storage: 'denied',
+        functionality_storage: 'granted',
+        security_storage: 'granted',
+        wait_for_update: 500,
+      });
+      gtag('set', 'ads_data_redaction', true);
+      try {
+        if (localStorage.getItem('kurcz_cookie_consent') === 'granted') {
+          gtag('consent', 'update', {
+            ad_storage: 'granted',
+            ad_user_data: 'granted',
+            ad_personalization: 'granted',
+            analytics_storage: 'granted',
+          });
+        }
+      } catch (e) {}
+    </script>
+    <!-- Google Tag Manager -->
+    <script is:inline>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, 'script', 'dataLayer', 'GTM-P7N9JKMT');
+    </script>
+    <!-- End Google Tag Manager -->
+
+    <title>{route.title}</title>
+    <meta name="description" content={route.description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph / Twitter -->
+    <meta property="og:title" content={ogTitle} />
+    <meta property="og:description" content={route.description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:locale" content="pl_PL" />
+    <meta property="og:site_name" content="Kurcz.pl" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={ogTitle} />
+    <meta name="twitter:description" content={route.description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Favicons / manifest -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta name="theme-color" content="#0d9488" />
+
+    <!-- Structured data -->
+    <script type="application/ld+json" is:inline set:html={jsonLd} />
+
+    <slot name="head" />
+  </head>
+  <body class="flex min-h-screen flex-col">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-P7N9JKMT"
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"></iframe></noscript
+    >
+    <slot />
+  </body>
+</html>

@@ -1,0 +1,89 @@
+@import 'tailwindcss';
+
+/* Self-hosted variable font — no render-blocking external request */
+@import '@fontsource-variable/inter';
+
+/*
+  Design system — simple, professional, calm.
+  One restrained accent (teal) on a neutral slate base. No gradients,
+  glassmorphism, glows or decorative animation. Generous whitespace,
+  subtle borders, strong typographic hierarchy.
+*/
+@theme {
+  --font-sans:
+    'Inter Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
+    sans-serif;
+
+  --color-brand-50: #f0fdfa;
+  --color-brand-100: #ccfbf1;
+  --color-brand-200: #99f6e4;
+  --color-brand-300: #5eead4;
+  --color-brand-400: #2dd4bf;
+  --color-brand-500: #14b8a6;
+  --color-brand-600: #0d9488;
+  --color-brand-700: #0f766e;
+  --color-brand-800: #115e59;
+  --color-brand-900: #134e4a;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-white text-slate-700 antialiased;
+    font-feature-settings: 'cv11', 'ss01';
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply text-slate-900 font-semibold tracking-tight text-balance;
+  }
+
+  a {
+    @apply transition-colors;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-brand-600;
+  }
+}
+
+/*
+  Article prose — used for rendered content sections.
+  Comfortable measure, clear hierarchy, accessible links.
+*/
+@layer components {
+  .prose-content {
+    @apply text-slate-700 leading-relaxed;
+  }
+  .prose-content h2 {
+    @apply text-2xl md:text-3xl mt-12 mb-4 first:mt-0;
+  }
+  .prose-content h3 {
+    @apply text-xl mt-8 mb-3;
+  }
+  .prose-content p {
+    @apply my-4 text-[1.0625rem] leading-7;
+  }
+  .prose-content ul {
+    @apply my-4 space-y-2 pl-1;
+  }
+  .prose-content ul li {
+    @apply relative pl-6;
+  }
+  .prose-content ul li::before {
+    content: '';
+    @apply absolute left-0 top-[0.65rem] h-1.5 w-1.5 rounded-full bg-brand-500;
+  }
+  .prose-content a {
+    @apply text-brand-700 underline underline-offset-2 hover:text-brand-800;
+  }
+  .prose-content strong {
+    @apply text-slate-900 font-semibold;
+  }
+}

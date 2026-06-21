@@ -1,0 +1,92 @@
+---
+import Logo from './Logo.astro';
+
+const { currentPath = '/' } = Astro.props;
+
+const nav = [
+  { path: '/kurcze-miesniowe', label: 'Kurcze mięśniowe' },
+  { path: '/pierwsza-pomoc', label: 'Pierwsza pomoc' },
+  { path: '/profilaktyka', label: 'Profilaktyka' },
+  { path: '/poradniki', label: 'Poradniki' },
+  { path: '/faq', label: 'FAQ' },
+  { path: '/kontakt', label: 'Kontakt' },
+];
+
+const isActive = (path) =>
+  path === '/' ? currentPath === '/' : currentPath.startsWith(path);
+---
+
+<header class="sticky top-0 z-40 border-b border-slate-200 bg-white/90 backdrop-blur">
+  <div class="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
+    <a href="/" class="flex items-center" aria-label="Kurcz.pl — strona główna">
+      <Logo />
+    </a>
+
+    <nav class="hidden items-center gap-1 md:flex" aria-label="Główna nawigacja">
+      {
+        nav.map((item) => (
+          <a
+            href={item.path}
+            class:list={[
+              'rounded-md px-3 py-2 text-sm font-medium transition-colors',
+              isActive(item.path)
+                ? 'text-brand-700'
+                : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900',
+            ]}
+            aria-current={isActive(item.path) ? 'page' : undefined}
+          >
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <button
+      type="button"
+      id="menu-toggle"
+      class="inline-flex items-center justify-center rounded-md p-2 text-slate-600 hover:bg-slate-50 md:hidden"
+      aria-label="Otwórz menu"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
+      <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+  </div>
+
+  <nav
+    id="mobile-menu"
+    class="hidden border-t border-slate-200 bg-white px-4 pb-4 md:hidden"
+    aria-label="Nawigacja mobilna"
+  >
+    {
+      nav.map((item) => (
+        <a
+          href={item.path}
+          class:list={[
+            'block rounded-md px-3 py-2.5 text-base font-medium',
+            isActive(item.path)
+              ? 'bg-brand-50 text-brand-700'
+              : 'text-slate-700 hover:bg-slate-50',
+          ]}
+          aria-current={isActive(item.path) ? 'page' : undefined}
+        >
+          {item.label}
+        </a>
+      ))
+    }
+  </nav>
+</header>
+
+<script is:inline>
+  (function () {
+    var btn = document.getElementById('menu-toggle');
+    var menu = document.getElementById('mobile-menu');
+    if (!btn || !menu) return;
+    btn.addEventListener('click', function () {
+      var open = menu.classList.toggle('hidden') === false;
+      btn.setAttribute('aria-expanded', String(open));
+    });
+  })();
+</script>

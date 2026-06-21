@@ -1,0 +1,112 @@
+---
+// Cookie consent banner — gates Google Consent Mode v2 AND consent-loaded Umami.
+// Hidden by default; the inline script reveals it only when no choice is stored.
+import { analyticsConfig } from '../seo/analytics-config.js';
+const { umami } = analyticsConfig;
+---
+
+<div
+  id="cookie-consent"
+  hidden
+  class="fixed inset-x-0 bottom-0 z-50 border-t border-slate-200 bg-white shadow-[0_-1px_3px_rgba(0,0,0,0.06)]"
+>
+  <div class="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6">
+    <p class="text-sm leading-relaxed text-slate-600">
+      Używamy plików cookies do analizy ruchu i poprawy jakości serwisu. Szczegóły w
+      <a href="/polityka-prywatnosci" class="underline hover:text-brand-700">polityce prywatności</a>.
+    </p>
+    <div class="flex flex-shrink-0 gap-3">
+      <button
+        type="button"
+        id="cookie-reject"
+        class="rounded-md border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
+      >
+        Odrzuć
+      </button>
+      <button
+        type="button"
+        id="cookie-accept"
+        class="rounded-md bg-brand-600 px-4 py-2 text-sm font-medium text-white hover:bg-brand-700"
+      >
+        Akceptuję
+      </button>
+    </div>
+  </div>
+</div>
+
+<script is:inline define:vars={{ umami }}>
+  (function () {
+    var KEY = 'kurcz_cookie_consent';
+
+    function getConsent() {
+      try {
+        return localStorage.getItem(KEY);
+      } catch (e) {
+        return null;
+      }
+    }
+
+    function gtagSafe() {
+      if (typeof gtag === 'function') gtag.apply(null, arguments);
+    }
+
+    // --- Umami (loaded only after consent) ---
+    var umamiRequested = false;
+    function loadUmami() {
+      if (!umami || !umami.enabled || umamiRequested) return;
+      if (location.pathname.indexOf('debug') !== -1) return;
+      umamiRequested = true;
+      var s = document.createElement('script');
+      s.defer = true;
+      s.src = umami.scriptUrl;
+      s.setAttribute('data-website-id', umami.websiteId);
+      s.setAttribute('data-do-not-track', 'true');
+      s.setAttribute('data-exclude-hash', 'true');
+      s.setAttribute('data-exclude-search', 'true');
+      s.setAttribute('data-performance', 'true');
+      s.setAttribute('data-domains', (umami.domains || []).join(','));
+      document.head.appendChild(s);
+    }
+
+    // Expose a safe tracker for custom events (no-op until Umami is loaded).
+    window.kurczTrack = function (name, data) {
+      if (getConsent() !== 'granted') return;
+      if (window.umami && typeof window.umami.track === 'function') {
+        window.umami.track(name, data);
+      }
+    };
+
+    // On every page load: honour an existing "granted" choice.
+    if (getConsent() === 'granted') loadUmami();
+
+    // Banner interactions.
+    var banner = document.getElementById('cookie-consent');
+    if (!banner) return;
+    if (!getConsent()) banner.hidden = false;
+
+    function choose(value) {
+      try {
+        localStorage.setItem(KEY, value);
+      } catch (e) {}
+      if (value === 'granted') {
+        gtagSafe('consent', 'update', {
+          ad_storage: 'granted',
+          ad_user_data: 'granted',
+          ad_personalization: 'granted',
+          analytics_storage: 'granted',
+        });
+        loadUmami();
+        // give the script a beat to attach, then record the choice
+        setTimeout(function () {
+          window.kurczTrack('cookie_consent', { choice: 'granted' });
+        }, 800);
+      }
+      banner.hidden = true;
+    }
+
+    var accept = document.getElementById('cookie-accept');
+    var reject = document.getElementById('cookie-reject');
+    if (accept) accept.addEventListener('click', function () { choose('granted'); });
+    if (reject) reject.addEventListener('click', function () { choose('denied'); });
+  })();
+</script>

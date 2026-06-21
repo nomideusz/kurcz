@@ -1,0 +1,22 @@
+---
+// Renders an array of { heading, body, bullets? } as clean article prose.
+const { sections = [] } = Astro.props;
+---
+
+<div class="prose-content">
+  {
+    sections.map((s) => (
+      <section>
+        {s.heading && <h2>{s.heading}</h2>}
+        {s.body && <p>{s.body}</p>}
+        {s.bullets && s.bullets.length > 0 && (
+          <ul>
+            {s.bullets.map((b) => (
+              <li>{b}</li>
+            ))}
+          </ul>
+        )}
+      </section>
+    ))
+  }
+</div>

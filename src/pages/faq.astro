@@ -1,0 +1,22 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Shell from '../components/Shell.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import PageHeader from '../components/PageHeader.astro';
+import FaqAccordion from '../components/FaqAccordion.astro';
+import { getRouteByPath } from '../seo/routes.js';
+import { faqItems } from '../seo/faq-data.js';
+
+const route = getRouteByPath('/faq');
+---
+
+<Layout route={route}>
+  <Shell currentPath="/faq">
+    <Breadcrumbs route={route} />
+    <PageHeader
+      title={route.h1}
+      intro="Zebraliśmy odpowiedzi na najczęstsze pytania o kurcze mięśniowe — od różnic terminologicznych po sygnały, które wymagają konsultacji z lekarzem."
+    />
+    <FaqAccordion items={faqItems} heading="Pytania i odpowiedzi" />
+  </Shell>
+</Layout>

@@ -1,0 +1,23 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Shell from '../components/Shell.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import PageHeader from '../components/PageHeader.astro';
+import ContactForm from '../components/ContactForm.astro';
+import { getRouteByPath } from '../seo/routes.js';
+
+const route = getRouteByPath('/kontakt');
+---
+
+<Layout route={route}>
+  <Shell currentPath="/kontakt">
+    <Breadcrumbs route={route} />
+    <PageHeader
+      title={route.h1}
+      intro="Masz pytania o kurcze mięśniowe lub propozycję współpracy? Napisz do nas — odpowiemy najszybciej, jak to możliwe."
+    />
+    <div class="mx-auto max-w-2xl px-4 py-8 sm:px-6">
+      <ContactForm />
+    </div>
+  </Shell>
+</Layout>
