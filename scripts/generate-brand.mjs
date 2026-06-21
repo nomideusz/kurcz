@@ -11,7 +11,7 @@ const pub = join(__dirname, '..', 'public');
 const SERIF = 'DejaVu Serif';
 const PAPER = '#F4EFE6';
 const INK = '#182438';
-const ACCENT = '#DC4B2E';
+const ACCENT = '#9C3A6B';
 
 // Square icon — accent ground, cream serif "k" with a paper dot (echoes the .pl accent).
 const icon = (size) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">

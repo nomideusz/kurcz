@@ -77,7 +77,7 @@ const eyebrow = (route.breadcrumbLabel ?? route.h1).toLowerCase();
   <Shell currentPath={route.path}>
     <!-- ARTICLE HEADER -->
     <section class="border-b border-line">
-      <div class="mx-auto max-w-6xl px-5 py-12 sm:px-8">
+      <div class="mx-auto max-w-7xl px-5 py-12 sm:px-14">
         <nav aria-label="Ścieżka okruszków" class="mb-7 font-mono text-[12.5px] text-faint">
           {
             crumbs.map((c) => (
@@ -108,7 +108,7 @@ const eyebrow = (route.breadcrumbLabel ?? route.h1).toLowerCase();
     <!-- BODY: TOC + ARTICLE -->
     <section
       class:list={[
-        'mx-auto max-w-6xl gap-14 px-5 py-12 sm:px-8',
+        'mx-auto max-w-7xl gap-14 px-5 py-12 sm:px-14',
         hasToc ? 'lg:grid lg:grid-cols-[240px_1fr]' : '',
       ]}
     >
@@ -125,7 +125,7 @@ const eyebrow = (route.breadcrumbLabel ?? route.h1).toLowerCase();
 
     {
       faq.length > 0 && (
-        <section class="mx-auto max-w-6xl px-5 pb-12 sm:px-8">
+        <section class="mx-auto max-w-7xl px-5 pb-12 sm:px-14">
           <div class="grid gap-12 lg:grid-cols-[0.7fr_1.3fr]">
             <h2 class="text-3xl text-ink sm:text-[34px]">Najczęstsze pytania</h2>
             <FaqAccordion items={faq} bare />

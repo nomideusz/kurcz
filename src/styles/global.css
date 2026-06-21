@@ -1,18 +1,18 @@
 @import 'tailwindcss';
 
 /* Self-hosted fonts — no render-blocking external requests */
-@import '@fontsource-variable/newsreader/standard.css';
-@import '@fontsource-variable/newsreader/standard-italic.css';
+@import '@fontsource-variable/source-serif-4/standard.css';
+@import '@fontsource-variable/source-serif-4/standard-italic.css';
 @import '@fontsource-variable/geist';
 @import '@fontsource-variable/geist-mono';
 
 /*
   Design system — "warm paper" editorial.
-  Cream paper background, terracotta accent, deep-navy dark sections.
-  Serif display (Newsreader) + Geist body + Geist Mono labels.
+  Cream paper background, plum accent, deep-navy dark sections.
+  Serif display (Source Serif 4) + Geist body + Geist Mono labels.
 */
 @theme {
-  --font-serif: 'Newsreader Variable', Georgia, 'Times New Roman', serif;
+  --font-serif: 'Source Serif 4 Variable', Georgia, 'Times New Roman', serif;
   --font-sans: 'Geist Variable', ui-sans-serif, system-ui, -apple-system, sans-serif;
   --font-mono: 'Geist Mono Variable', ui-monospace, 'SFMono-Regular', monospace;
 
@@ -27,10 +27,10 @@
   --color-navy: #182438;
   --color-navy-deep: #13202f;
 
-  --color-accent: #dc4b2e;
-  --color-accent-light: #e8835f;
-  --color-accent-bg: #fbede8;
-  --color-accent-border: #f0c9bc;
+  --color-accent: #9c3a6b;
+  --color-accent-light: #c57396;
+  --color-accent-bg: #f2e3eb;
+  --color-accent-border: #dfbed0;
 }
 
 @layer base {

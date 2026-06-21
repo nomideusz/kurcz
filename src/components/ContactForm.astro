@@ -1,16 +1,8 @@
 ---
-import { emailConfig } from '../config.js';
-const { publicKey, serviceId, templateId } = emailConfig.emailjs;
+// Posts to /api/contact (Node endpoint → Stalwart SMTP). No client-side mail SDK.
 ---
 
-<form
-  id="contact-form"
-  class="space-y-5"
-  data-public-key={publicKey}
-  data-service-id={serviceId}
-  data-template-id={templateId}
-  novalidate
->
+<form id="contact-form" class="space-y-5" novalidate>
   <div>
     <label for="cf-name" class="block text-sm font-medium text-ink">Imię</label>
     <input
@@ -43,6 +35,12 @@ const { publicKey, serviceId, templateId } = emailConfig.emailjs;
       class="mt-1.5 block w-full rounded-md border border-line bg-card px-3.5 py-2.5 text-ink focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
     ></textarea>
   </div>
+
+  <!-- Honeypot: hidden from humans, bots fill it -->
+  <div class="absolute -left-[5000px]" aria-hidden="true">
+    <label>Nie wypełniaj tego pola<input type="text" name="company" tabindex="-1" autocomplete="off" /></label>
+  </div>
+
   <button
     type="submit"
     id="cf-submit"
@@ -54,17 +52,10 @@ const { publicKey, serviceId, templateId } = emailConfig.emailjs;
 </form>
 
 <script>
-  import emailjs from '@emailjs/browser';
-
   const form = document.getElementById('contact-form') as HTMLFormElement | null;
   if (form) {
     const status = document.getElementById('cf-status')!;
     const submit = document.getElementById('cf-submit') as HTMLButtonElement;
-    const publicKey = form.dataset.publicKey!;
-    const serviceId = form.dataset.serviceId!;
-    const templateId = form.dataset.templateId!;
-
-    emailjs.init({ publicKey });
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -75,15 +66,29 @@ const { publicKey, serviceId, templateId } = emailConfig.emailjs;
       submit.disabled = true;
       status.textContent = 'Wysyłanie…';
       status.className = 'text-sm text-muted';
+
+      const payload = Object.fromEntries(new FormData(form).entries());
+
       try {
-        await emailjs.sendForm(serviceId, templateId, form);
-        status.textContent = 'Dziękujemy! Twoja wiadomość została wysłana.';
-        status.className = 'text-sm text-accent';
-        (window as any).kurczTrack?.('contact_form_submit', { path: location.pathname });
-        form.reset();
-      } catch (err) {
-        status.textContent =
-          'Nie udało się wysłać wiadomości. Spróbuj ponownie lub napisz bezpośrednio na e-mail.';
+        const res = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        const data = await res.json().catch(() => ({}));
+        if (res.ok && data.ok) {
+          status.textContent = 'Dziękujemy! Twoja wiadomość została wysłana.';
+          status.className = 'text-sm text-accent';
+          (window as any).kurczTrack?.('contact_form_submit', { path: location.pathname });
+          form.reset();
+        } else {
+          status.textContent =
+            data.error ?? 'Nie udało się wysłać wiadomości. Spróbuj ponownie.';
+          status.className = 'text-sm text-red-600';
+          (window as any).kurczTrack?.('contact_form_error', { path: location.pathname });
+        }
+      } catch {
+        status.textContent = 'Błąd połączenia. Spróbuj ponownie za chwilę.';
         status.className = 'text-sm text-red-600';
         (window as any).kurczTrack?.('contact_form_error', { path: location.pathname });
       } finally {

@@ -13,7 +13,7 @@ const SERIF = 'DejaVu Serif';
 const SANS = 'DejaVu Sans';
 const PAPER = '#F4EFE6';
 const INK = '#182438';
-const ACCENT = '#DC4B2E';
+const ACCENT = '#9C3A6B';
 const FAINT = '#8A7F6E';
 const LINE = '#E0D7C7';
 

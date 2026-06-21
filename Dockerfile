@@ -7,15 +7,21 @@ WORKDIR /app
 COPY package.json package-lock.json* ./
 RUN npm ci || npm install
 
-# Copy source and build static output
+# Copy source and build (static pages + Node server entry for /api/contact)
 COPY . .
 RUN npm run build
 
-# Production stage — serve static files with nginx
-FROM nginx:alpine
+# Production stage — Node server (serves prerendered static + the contact endpoint)
+FROM node:22-alpine
 
-COPY --from=build /app/dist /usr/share/nginx/html
-COPY ./nginx.conf /etc/nginx/conf.d/default.conf
+WORKDIR /app
+ENV NODE_ENV=production \
+    HOST=0.0.0.0 \
+    PORT=80
+
+COPY --from=build /app/dist ./dist
+COPY --from=build /app/node_modules ./node_modules
+COPY --from=build /app/package.json ./package.json
 
 EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["node", "./dist/server/entry.mjs"]
