@@ -1,89 +1,113 @@
 @import 'tailwindcss';
 
-/* Self-hosted variable font — no render-blocking external request */
-@import '@fontsource-variable/inter';
+/* Self-hosted fonts — no render-blocking external requests */
+@import '@fontsource-variable/newsreader/standard.css';
+@import '@fontsource-variable/newsreader/standard-italic.css';
+@import '@fontsource-variable/geist';
+@import '@fontsource-variable/geist-mono';
 
 /*
-  Design system — simple, professional, calm.
-  One restrained accent (teal) on a neutral slate base. No gradients,
-  glassmorphism, glows or decorative animation. Generous whitespace,
-  subtle borders, strong typographic hierarchy.
+  Design system — "warm paper" editorial.
+  Cream paper background, terracotta accent, deep-navy dark sections.
+  Serif display (Newsreader) + Geist body + Geist Mono labels.
 */
 @theme {
-  --font-sans:
-    'Inter Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
-    sans-serif;
+  --font-serif: 'Newsreader Variable', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Geist Variable', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: 'Geist Mono Variable', ui-monospace, 'SFMono-Regular', monospace;
 
-  --color-brand-50: #f0fdfa;
-  --color-brand-100: #ccfbf1;
-  --color-brand-200: #99f6e4;
-  --color-brand-300: #5eead4;
-  --color-brand-400: #2dd4bf;
-  --color-brand-500: #14b8a6;
-  --color-brand-600: #0d9488;
-  --color-brand-700: #0f766e;
-  --color-brand-800: #115e59;
-  --color-brand-900: #134e4a;
+  --color-paper: #f4efe6;
+  --color-card: #fbf8f2;
+  --color-ink: #182438;
+  --color-body: #3d4759;
+  --color-muted: #6b7486;
+  --color-faint: #8a7f6e;
+  --color-line: #e0d7c7;
+  --color-line-soft: #ece4d5;
+  --color-navy: #182438;
+  --color-navy-deep: #13202f;
+
+  --color-accent: #dc4b2e;
+  --color-accent-light: #e8835f;
+  --color-accent-bg: #fbede8;
+  --color-accent-border: #f0c9bc;
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 90px;
     -webkit-text-size-adjust: 100%;
   }
 
   body {
-    @apply bg-white text-slate-700 antialiased;
-    font-feature-settings: 'cv11', 'ss01';
+    @apply bg-paper text-body antialiased;
+    font-family: var(--font-sans);
+    text-rendering: optimizeLegibility;
   }
 
   h1,
   h2,
   h3,
   h4 {
-    @apply text-slate-900 font-semibold tracking-tight text-balance;
+    @apply text-ink;
+    font-family: var(--font-serif);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
   }
 
   a {
     @apply transition-colors;
   }
 
+  ::selection {
+    background: var(--color-accent);
+    color: #fbf8f2;
+  }
+
   :focus-visible {
-    @apply outline-2 outline-offset-2 outline-brand-600;
+    @apply outline-2 outline-offset-2;
+    outline-color: var(--color-accent);
   }
 }
 
-/*
-  Article prose — used for rendered content sections.
-  Comfortable measure, clear hierarchy, accessible links.
-*/
 @layer components {
+  /* Mono eyebrow / meta label */
+  .eyebrow {
+    @apply font-mono text-xs uppercase tracking-[0.14em] text-faint;
+  }
+
+  /* Article prose */
   .prose-content {
-    @apply text-slate-700 leading-relaxed;
+    @apply text-body;
   }
   .prose-content h2 {
-    @apply text-2xl md:text-3xl mt-12 mb-4 first:mt-0;
+    font-family: var(--font-serif);
+    font-weight: 400;
+    @apply mt-12 mb-3 text-3xl leading-tight text-ink first:mt-0;
   }
   .prose-content h3 {
-    @apply text-xl mt-8 mb-3;
+    font-family: var(--font-sans);
+    @apply mt-8 mb-2 text-lg font-semibold text-ink;
   }
   .prose-content p {
-    @apply my-4 text-[1.0625rem] leading-7;
+    @apply my-4 text-[1.0625rem] leading-[1.75] text-body;
   }
   .prose-content ul {
-    @apply my-4 space-y-2 pl-1;
+    @apply my-5 flex flex-col;
   }
   .prose-content ul li {
-    @apply relative pl-6;
+    @apply relative border-t border-line py-3.5 pl-6 text-[1.0625rem] leading-relaxed text-body last:border-b;
   }
   .prose-content ul li::before {
-    content: '';
-    @apply absolute left-0 top-[0.65rem] h-1.5 w-1.5 rounded-full bg-brand-500;
+    content: '·';
+    @apply absolute left-1 top-3 font-bold text-accent;
   }
   .prose-content a {
-    @apply text-brand-700 underline underline-offset-2 hover:text-brand-800;
+    @apply font-medium text-accent underline underline-offset-2 hover:text-accent-light;
   }
   .prose-content strong {
-    @apply text-slate-900 font-semibold;
+    @apply font-semibold text-ink;
   }
 }

@@ -1,32 +1,26 @@
 ---
 const { route } = Astro.props;
 
-const crumbs = [{ path: '/', label: 'Strona główna' }];
+const crumbs = [{ path: '/', label: 'strona główna' }];
 if (route.hubPath && route.hubLabel) {
-  crumbs.push({ path: route.hubPath, label: route.hubLabel });
+  crumbs.push({ path: route.hubPath, label: route.hubLabel.toLowerCase() });
 }
-crumbs.push({ path: route.path, label: route.breadcrumbLabel ?? route.h1, current: true });
+const current = (route.breadcrumbLabel ?? route.h1).toLowerCase();
 ---
 
 {
   route.path !== '/' && (
-    <nav aria-label="Ścieżka okruszków" class="mx-auto max-w-3xl px-4 pt-8 sm:px-6">
-      <ol class="flex flex-wrap items-center gap-1.5 text-sm text-slate-500">
-        {crumbs.map((c, i) => (
-          <li class="flex items-center gap-1.5">
-            {i > 0 && <span class="text-slate-300" aria-hidden="true">/</span>}
-            {c.current ? (
-              <span class="text-slate-700" aria-current="page">
-                {c.label}
-              </span>
-            ) : (
-              <a href={c.path} class="hover:text-brand-700">
-                {c.label}
-              </a>
-            )}
-          </li>
-        ))}
-      </ol>
+    <nav
+      aria-label="Ścieżka okruszków"
+      class="mx-auto max-w-6xl px-5 pt-10 font-mono text-[12.5px] text-faint sm:px-8"
+    >
+      {crumbs.map((c) => (
+        <>
+          <a href={c.path} class="text-faint hover:text-ink">{c.label}</a>
+          <span class="mx-1.5 text-[#c3b7a2]">/</span>
+        </>
+      ))}
+      <span class="text-accent" aria-current="page">{current}</span>
     </nav>
   )
 }

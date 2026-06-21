@@ -14,25 +14,24 @@ const { categories } = poradnikiHub;
     <Breadcrumbs route={route} />
     <PageHeader title={poradnikiHub.h1} intro={poradnikiHub.intro} />
 
-    <div class="mx-auto max-w-5xl px-4 py-8 sm:px-6">
+    <div class="mx-auto max-w-6xl px-5 py-12 sm:px-8">
       {
         categories.map((category) => (
-          <section class="mb-12">
-            <h2 class="text-xl font-semibold text-slate-900">{category.title}</h2>
-            <p class="mt-2 text-slate-600">{category.description}</p>
-            <ul class="mt-6 grid gap-4 sm:grid-cols-2">
+          <section class="mb-14">
+            <h2 class="text-2xl text-ink sm:text-[28px]">{category.title}</h2>
+            <p class="mt-2 max-w-[680px] text-muted">{category.description}</p>
+            <ul class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {category.guides.map((guide) => (
                 <li>
                   <a
                     href={guide.path}
-                    class="group flex h-full flex-col rounded-lg border border-slate-200 bg-white p-5 transition-colors hover:border-brand-300 hover:bg-brand-50/40"
+                    class="group flex h-full flex-col rounded-[9px] border border-line bg-card p-6 transition-[border-color,transform] hover:-translate-y-0.5 hover:border-accent-border"
                   >
-                    <span class="font-semibold text-slate-900 group-hover:text-brand-700">
-                      {guide.title}
-                    </span>
-                    <span class="mt-2 text-sm leading-relaxed text-slate-600">
+                    <h3 class="text-xl text-ink">{guide.title}</h3>
+                    <span class="mt-2 mb-auto text-sm leading-relaxed text-muted">
                       {guide.description}
                     </span>
+                    <span class="mt-4 text-sm text-accent">czytaj →</span>
                   </a>
                 </li>
               ))}

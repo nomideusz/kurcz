@@ -3,20 +3,19 @@ import Logo from './Logo.astro';
 import { footerLegalLinks } from '../seo/routes.js';
 
 const topics = [
-  { path: '/kurcze-miesniowe', label: 'Kurcze mięśniowe' },
-  { path: '/pierwsza-pomoc', label: 'Pierwsza pomoc' },
-  { path: '/profilaktyka', label: 'Profilaktyka' },
-  { path: '/kurcz-vs-skurcz', label: 'Kurcz a skurcz' },
-  { path: '/wibroakustyka', label: 'Wibroakustyka' },
-  { path: '/joga-a-kurcze', label: 'Joga a kurcze' },
+  { path: '/kurcze-miesniowe', label: 'przyczyny' },
+  { path: '/pierwsza-pomoc', label: 'pierwsza pomoc' },
+  { path: '/profilaktyka', label: 'profilaktyka' },
+  { path: '/kurcz-vs-skurcz', label: 'kurcz vs skurcz' },
+  { path: '/wibroakustyka', label: 'wibroakustyka' },
+  { path: '/joga-a-kurcze', label: 'joga a kurcze' },
 ];
 
-const guides = [
-  { path: '/poradniki', label: 'Wszystkie poradniki' },
-  { path: '/kurcze-lydek', label: 'Kurcze łydek' },
-  { path: '/kurcze-nocne', label: 'Kurcze nocne' },
-  { path: '/niedobor-magnezu', label: 'Niedobór magnezu' },
-  { path: '/suplementacja-magnezem', label: 'Suplementacja magnezem' },
+const serwis = [
+  { path: '/poradniki', label: 'poradniki' },
+  { path: '/faq', label: 'faq' },
+  { path: '/kontakt', label: 'kontakt' },
+  { path: '/o-nas', label: 'o nas' },
 ];
 
 const partners = [
@@ -30,26 +29,26 @@ const facebookUrl = 'https://www.facebook.com/profile.php?id=61575552422497';
 const year = new Date().getFullYear();
 ---
 
-<footer class="mt-20 border-t border-slate-200 bg-slate-50">
-  <div class="mx-auto max-w-6xl px-4 py-12 sm:px-6">
-    <div class="grid gap-10 md:grid-cols-2 lg:grid-cols-6">
-      <div class="lg:col-span-2">
-        <a href="/" class="inline-flex items-center" aria-label="Kurcz.pl — strona główna">
-          <Logo markClass="h-9 w-9" textClass="text-2xl" />
+<footer class="mt-20 bg-navy-deep text-[#a9b0bd]">
+  <div class="mx-auto max-w-6xl px-5 py-14 sm:px-8">
+    <div class="grid gap-10 border-b border-[#243248] pb-9 md:grid-cols-2 lg:grid-cols-4">
+      <div>
+        <a href="/" aria-label="Kurcz.pl — strona główna">
+          <Logo class="text-[26px] text-[#f4efe6]" />
         </a>
-        <p class="mt-3 max-w-md text-sm leading-relaxed text-slate-500">
-          Rzetelna, edukacyjna wiedza o kurczach mięśniowych — przyczyny, pierwsza pomoc
+        <p class="mt-3.5 max-w-[300px] text-sm leading-relaxed text-[#8b93a1]">
+          Statyczna strona edukacyjna o kurczach mięśniowych — przyczyny, pierwsza pomoc
           i profilaktyka.
         </p>
       </div>
 
       <nav aria-label="Tematy">
-        <h2 class="text-sm font-semibold text-slate-900">Tematy</h2>
-        <ul class="mt-3 space-y-2">
+        <div class="eyebrow mb-4 text-[#5e6878]">tematy</div>
+        <ul class="flex flex-col gap-2.5 text-sm">
           {
             topics.map((l) => (
               <li>
-                <a href={l.path} class="text-sm text-slate-600 hover:text-brand-700">
+                <a href={l.path} class="text-[#c2c8d2] hover:text-white">
                   {l.label}
                 </a>
               </li>
@@ -58,24 +57,35 @@ const year = new Date().getFullYear();
         </ul>
       </nav>
 
-      <nav aria-label="Poradniki">
-        <h2 class="text-sm font-semibold text-slate-900">Poradniki</h2>
-        <ul class="mt-3 space-y-2">
+      <nav aria-label="Serwis">
+        <div class="eyebrow mb-4 text-[#5e6878]">serwis</div>
+        <ul class="flex flex-col gap-2.5 text-sm">
           {
-            guides.map((l) => (
+            serwis.map((l) => (
               <li>
-                <a href={l.path} class="text-sm text-slate-600 hover:text-brand-700">
+                <a href={l.path} class="text-[#c2c8d2] hover:text-white">
                   {l.label}
                 </a>
               </li>
             ))
+          }
+          {
+            footerLegalLinks
+              .filter((l) => ['/regulamin', '/polityka-prywatnosci', '/disclaimer-medyczny'].includes(l.path))
+              .map((l) => (
+                <li>
+                  <a href={l.path} class="text-[#c2c8d2] hover:text-white">
+                    {l.label.toLowerCase()}
+                  </a>
+                </li>
+              ))
           }
         </ul>
       </nav>
 
       <nav aria-label="Partnerzy">
-        <h2 class="text-sm font-semibold text-slate-900">Partnerzy</h2>
-        <ul class="mt-3 space-y-2">
+        <div class="eyebrow mb-4 text-[#5e6878]">partnerzy</div>
+        <ul class="flex flex-col gap-2.5 text-sm">
           {
             partners.map((p) => (
               <li>
@@ -84,56 +94,35 @@ const year = new Date().getFullYear();
                   target="_blank"
                   rel="noopener noreferrer"
                   data-outbound={p.label}
-                  class="text-sm text-slate-600 hover:text-brand-700"
+                  class="text-[#c2c8d2] hover:text-white"
                 >
                   {p.label}
                 </a>
               </li>
             ))
           }
-        </ul>
-      </nav>
-
-      <nav aria-label="Informacje">
-        <h2 class="text-sm font-semibold text-slate-900">Informacje</h2>
-        <ul class="mt-3 space-y-2">
-          {
-            footerLegalLinks.map((l) => (
-              <li>
-                <a href={l.path} class="text-sm text-slate-600 hover:text-brand-700">
-                  {l.label}
-                </a>
-              </li>
-            ))
-          }
+          <li>
+            <a
+              href={facebookUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-outbound="Facebook"
+              class="text-[#c2c8d2] hover:text-white"
+            >
+              Facebook
+            </a>
+          </li>
         </ul>
       </nav>
     </div>
 
-    <div class="mt-10 border-t border-slate-200 pt-6">
-      <p class="text-xs leading-relaxed text-slate-500">
-        Treści w serwisie mają charakter wyłącznie edukacyjny i nie zastępują porady
-        lekarskiej. W przypadku problemów zdrowotnych skonsultuj się z lekarzem.
-        Zobacz <a href="/disclaimer-medyczny" class="underline hover:text-brand-700">disclaimer medyczny</a>.
+    <div class="flex flex-col items-start justify-between gap-5 pt-6 sm:flex-row">
+      <p class="max-w-[620px] text-[12.5px] leading-relaxed text-[#6b7484]">
+        Zastrzeżenie medyczne: informacje na tej stronie mają charakter edukacyjny i nie
+        zastępują profesjonalnej konsultacji medycznej. W razie poważnych dolegliwości
+        skonsultuj się z lekarzem.
       </p>
-      <div class="mt-4 flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <p class="text-xs text-slate-400">© {year} Kurcz.pl — wszelkie prawa zastrzeżone.</p>
-        <a
-          href={facebookUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          data-outbound="Facebook"
-          aria-label="Facebook"
-          class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-slate-300 text-slate-500 transition-colors hover:border-brand-300 hover:bg-white hover:text-brand-700"
-        >
-          <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-            <path
-              fill-rule="evenodd"
-              d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
-              clip-rule="evenodd"></path>
-          </svg>
-        </a>
-      </div>
+      <span class="font-mono text-xs whitespace-nowrap text-[#5e6878]">© {year} kurcz.pl</span>
     </div>
   </div>
 </footer>

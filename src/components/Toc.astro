@@ -1,0 +1,27 @@
+---
+// Sticky in-article table of contents, built from section headings.
+import { slugify } from '../utils/slug.js';
+const { sections = [] } = Astro.props;
+const items = sections.filter((s) => s.heading).map((s) => ({ id: slugify(s.heading), label: s.heading }));
+---
+
+{
+  items.length >= 3 && (
+    <aside class="sticky top-[90px] hidden self-start lg:block">
+      <div class="eyebrow mb-4">spis treści</div>
+      <nav class="flex flex-col border-l border-line text-sm">
+        {items.map((it, i) => (
+          <a
+            href={`#${it.id}`}
+            class:list={[
+              '-ml-px py-2.5 pl-4 transition-colors hover:text-ink',
+              i === 0 ? 'border-l-2 border-accent text-ink' : 'text-muted',
+            ]}
+          >
+            {it.label}
+          </a>
+        ))}
+      </nav>
+    </aside>
+  )
+}

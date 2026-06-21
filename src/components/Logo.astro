@@ -1,34 +1,12 @@
 ---
-// Inline-SVG brand logo: teal "pulse" mark + wordmark. Crisp at any size, themeable, zero requests.
+// Brand wordmark — serif "kurcz.pl" with terracotta ".pl" (per design).
 interface Props {
   class?: string;
-  markClass?: string;
-  textClass?: string;
 }
-const {
-  class: className = '',
-  markClass = 'h-8 w-8',
-  textClass = 'text-xl',
-} = Astro.props;
+const { class: className = 'text-2xl' } = Astro.props;
 ---
 
-<span class:list={['inline-flex items-center gap-2.5', className]}>
-  <svg
-    viewBox="0 0 36 36"
-    class:list={[markClass, 'flex-shrink-0']}
-    role="img"
-    aria-label="Kurcz.pl"
-  >
-    <rect width="36" height="36" rx="10" class="fill-brand-600"></rect>
-    <path
-      d="M5 20 H11 L14 9 L20 28 L24 14 H31"
-      fill="none"
-      class="stroke-white"
-      stroke-width="2.6"
-      stroke-linecap="round"
-      stroke-linejoin="round"></path>
-  </svg>
-  <span class:list={['font-bold tracking-tight text-slate-900', textClass]}>
-    kurcz<span class="text-brand-700">.pl</span>
-  </span>
-</span>
+<span
+  class:list={['inline-flex items-baseline font-serif font-medium tracking-tight text-ink', className]}
+  >kurcz<span class="text-accent">.pl</span></span
+>

@@ -14,20 +14,18 @@ const route = {
 
 <Layout route={route}>
   <Shell currentPath="/404">
-    <section class="mx-auto max-w-2xl px-4 py-24 text-center sm:px-6">
-      <p class="text-sm font-semibold uppercase tracking-wide text-brand-700">Błąd 404</p>
-      <h1 class="mt-3 text-3xl font-bold text-slate-900 sm:text-4xl">
-        Strona nie została znaleziona
-      </h1>
-      <p class="mt-5 text-lg leading-relaxed text-slate-600">
+    <section class="mx-auto max-w-2xl px-5 py-28 text-center sm:px-8">
+      <p class="eyebrow text-accent">błąd 404</p>
+      <h1 class="mt-4 text-4xl text-ink sm:text-5xl">Strona nie została znaleziona</h1>
+      <p class="mt-5 text-lg leading-relaxed text-body">
         Strona, której szukasz, nie istnieje lub została przeniesiona.
       </p>
-      <div class="mt-8 flex flex-wrap justify-center gap-3">
-        <a href="/" class="rounded-md bg-brand-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-brand-700">
-          Strona główna
+      <div class="mt-8 flex flex-wrap justify-center gap-3.5">
+        <a href="/" class="rounded-md bg-accent px-[26px] py-[15px] text-[15px] font-medium text-paper hover:bg-accent-light">
+          strona główna
         </a>
-        <a href="/poradniki" class="rounded-md border border-slate-300 bg-white px-5 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50">
-          Poradniki
+        <a href="/poradniki" class="rounded-md border border-[#cfc6b5] px-[22px] py-[15px] text-[15px] font-medium text-ink hover:border-ink">
+          poradniki
         </a>
       </div>
     </section>

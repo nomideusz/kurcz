@@ -1,122 +1,152 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Shell from '../components/Shell.astro';
+import FaqAccordion from '../components/FaqAccordion.astro';
 import { getRouteByPath } from '../seo/routes.js';
+import { faqItems } from '../seo/faq-data.js';
 
 const route = getRouteByPath('/');
 
-const topics = [
-  {
-    path: '/kurcze-miesniowe',
-    title: 'Kurcze mięśniowe',
-    desc: 'Czym są kurcze, najczęstsze przyczyny, objawy i czynniki ryzyka.',
-  },
-  {
-    path: '/pierwsza-pomoc',
-    title: 'Pierwsza pomoc',
-    desc: 'Co robić w trakcie bolesnego kurczu — rozciąganie, masaż, nawodnienie.',
-  },
-  {
-    path: '/profilaktyka',
-    title: 'Profilaktyka',
-    desc: 'Jak zapobiegać nawrotom: nawodnienie, dieta, rozciąganie i nawyki.',
-  },
-  {
-    path: '/kurcz-vs-skurcz',
-    title: 'Kurcz a skurcz',
-    desc: 'Różnice terminologiczne i medyczne między kurczem a skurczem mięśni.',
-  },
-  {
-    path: '/poradniki',
-    title: 'Poradniki',
-    desc: 'Praktyczne artykuły: kurcze łydek, nocne, niedobór magnezu i więcej.',
-  },
-  {
-    path: '/faq',
-    title: 'Najczęstsze pytania',
-    desc: 'Odpowiedzi na pytania o leki, kurcze nocne, witaminy i konsultacje.',
-  },
+const reliefSteps = [
+  { n: 1, title: 'Rozciągnij mięsień', body: 'Delikatnie wyprostuj kończynę i przytrzymaj 20–30 sekund, oddychając głęboko.' },
+  { n: 2, title: 'Nawodnij się', body: 'Uzupełnij elektrolity — woda z solą mineralną lub napój izotoniczny.' },
+  { n: 3, title: 'Rozmasuj', body: 'Okrężne, delikatne ruchy z rosnącym naciskiem aż do rozluźnienia.' },
 ];
+
+const topics = [
+  { n: '01', path: '/kurcze-miesniowe', title: 'Przyczyny kurczy', desc: 'Odwodnienie, niedobory minerałów i przeciążenie — co naprawdę wywołuje kurcze.' },
+  { n: '02', path: '/pierwsza-pomoc', title: 'Pierwsza pomoc', desc: 'Trzy kroki natychmiastowej ulgi, rozciąganie, masaż oraz terapia ciepłem i zimnem.' },
+  { n: '03', path: '/profilaktyka', title: 'Profilaktyka', desc: 'Nawodnienie, dieta bogata w elektrolity i rozciąganie, które zapobiegają nawrotom.' },
+  { n: '04', path: '/kurcz-vs-skurcz', title: 'Kurcz vs skurcz', desc: 'Czym różnią się te dwa terminy — i dlaczego nie znaczą tego samego.' },
+  { n: '05', path: '/wibroakustyka', title: 'Wibroakustyka', desc: 'Terapia częstotliwościami dźwięku jako uzupełnienie profilaktyki kurczy.' },
+  { n: '06', path: '/joga-a-kurcze', title: 'Joga a kurcze', desc: 'Asany, świadomy oddech i lepsze ukrwienie w służbie elastycznych mięśni.' },
+];
+
+const doctorSigns = [
+  'Kurcze utrzymujące się ponad 10 minut',
+  'Częste, nawracające mimo profilaktyki',
+  'Obrzęk, zaczerwienienie lub silny ból',
+  'Kurcze po urazie lub z innymi objawami',
+];
+
+const homeFaq = faqItems.slice(0, 4);
 ---
 
 <Layout route={route}>
   <Shell currentPath="/">
-    <!-- Hero -->
-    <section class="border-b border-slate-200 bg-slate-50">
-      <div class="mx-auto grid max-w-6xl items-center gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:gap-14 lg:py-24">
-        <div>
-          <p class="mb-4 text-sm font-semibold uppercase tracking-wide text-brand-700">
-            Wiedza o kurczach mięśniowych
-          </p>
-          <h1 class="text-4xl font-bold leading-tight text-slate-900 sm:text-5xl">
-            Zrozumieć kurcze mięśniowe
-          </h1>
-          <p class="mt-6 max-w-xl text-lg leading-relaxed text-slate-600">
-            Rzetelna, edukacyjna wiedza w jednym miejscu. Poznaj przyczyny bolesnych
-            kurczy nóg i mięśni, dowiedz się, jak szybko znaleźć ulgę oraz skutecznie
-            zapobiegać ich nawrotom.
-          </p>
-          <div class="mt-8 flex flex-wrap gap-3">
-            <a
-              href="/pierwsza-pomoc"
-              class="rounded-md bg-brand-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-brand-700"
-            >
-              Pierwsza pomoc przy kurczu
-            </a>
-            <a
-              href="/poradniki"
-              class="rounded-md border border-slate-300 bg-white px-5 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50"
-            >
-              Przeglądaj poradniki
-            </a>
-          </div>
+    <!-- HERO -->
+    <section class="mx-auto grid max-w-6xl items-center gap-12 px-5 py-16 sm:px-8 lg:grid-cols-[1.15fr_0.85fr] lg:gap-14 lg:py-[72px]">
+      <div>
+        <div class="eyebrow mb-5 flex items-center gap-2.5 text-[#8a7f6e]">
+          <span class="h-px w-[22px] bg-[#c9b79b]"></span>poradnik zdrowia · mięśnie
         </div>
-        <div>
-          <img
-            src="/img/hero.webp"
-            width="1400"
-            height="1049"
-            alt="Rozluźnianie napiętego mięśnia łydki rollerem — ulga przy kurczach"
-            fetchpriority="high"
-            class="w-full rounded-xl border border-slate-200 object-cover shadow-sm"
-          />
+        <h1 class="text-5xl leading-[1.02] text-ink sm:text-6xl lg:text-[70px] lg:leading-[1.02]">
+          Co robić, gdy złapie&nbsp;<em class="text-accent not-italic [font-style:italic]">kurcz</em> mięśnia.
+        </h1>
+        <p class="mt-6 max-w-[480px] text-lg leading-relaxed text-body">
+          Rzetelne i proste informacje o przyczynach, natychmiastowej uldze oraz
+          zapobieganiu bolesnym kurczom mięśniowym — zgodne z aktualną wiedzą medyczną.
+        </p>
+        <div class="mt-8 flex flex-wrap items-center gap-3.5">
+          <a
+            href="/pierwsza-pomoc"
+            class="inline-flex items-center gap-2 rounded-md bg-accent px-[26px] py-[15px] text-[15px] font-medium text-paper transition-colors hover:bg-accent-light"
+          >
+            pierwsza pomoc <span class="text-[17px]">→</span>
+          </a>
+          <a
+            href="/kurcze-miesniowe"
+            class="rounded-md border border-[#cfc6b5] px-[22px] py-[15px] text-[15px] font-medium text-ink transition-colors hover:border-ink"
+          >
+            poznaj przyczyny
+          </a>
+        </div>
+      </div>
+
+      <!-- Quick relief card -->
+      <div class="rounded-[10px] border border-line bg-card p-[30px] shadow-[0_1px_2px_rgba(24,36,56,.04),0_12px_30px_rgba(24,36,56,.06)]">
+        <div class="mb-5 flex items-center justify-between">
+          <span class="eyebrow text-accent">szybka ulga</span>
+          <span class="font-mono text-[11.5px] text-faint">3 kroki</span>
+        </div>
+        <div class="flex flex-col">
+          {
+            reliefSteps.map((s) => (
+              <div class="flex gap-4 border-t border-line-soft py-4">
+                <span class="w-[26px] flex-none font-serif text-2xl leading-none text-accent">{s.n}</span>
+                <div>
+                  <div class="mb-1 text-[15px] font-semibold text-ink">{s.title}</div>
+                  <div class="text-[13.5px] leading-relaxed text-muted">{s.body}</div>
+                </div>
+              </div>
+            ))
+          }
         </div>
       </div>
     </section>
 
-    <!-- Topic grid -->
-    <section class="mx-auto max-w-5xl px-4 py-16 sm:px-6">
-      <h2 class="text-2xl font-semibold text-slate-900 sm:text-3xl">Od czego zacząć</h2>
-      <p class="mt-2 text-slate-600">Wybierz temat, który Cię interesuje.</p>
-      <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    <!-- TOPICS -->
+    <section class="mx-auto max-w-6xl px-5 pb-[72px] sm:px-8">
+      <div class="mb-7 flex items-end justify-between">
+        <h2 class="text-3xl text-ink sm:text-[34px]">Tematy</h2>
+        <span class="font-mono text-xs text-faint">06 zagadnień</span>
+      </div>
+      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {
           topics.map((t) => (
             <a
               href={t.path}
-              class="group flex h-full flex-col rounded-lg border border-slate-200 bg-white p-6 transition-colors hover:border-brand-300 hover:bg-brand-50/40"
+              class="group flex min-h-[172px] flex-col rounded-[9px] border border-line bg-card p-6 transition-[border-color,transform] hover:-translate-y-0.5 hover:border-accent-border"
             >
-              <span class="text-lg font-semibold text-slate-900 group-hover:text-brand-700">
-                {t.title}
-              </span>
-              <span class="mt-2 text-sm leading-relaxed text-slate-600">{t.desc}</span>
+              <span class="font-mono text-xs text-[#b5a992]">{t.n}</span>
+              <h3 class="mt-3.5 mb-2 text-2xl text-ink">{t.title}</h3>
+              <p class="mb-auto text-sm leading-relaxed text-muted">{t.desc}</p>
+              <span class="mt-3.5 text-sm text-accent">czytaj →</span>
             </a>
           ))
         }
       </div>
     </section>
 
-    <!-- Medical note -->
-    <section class="mx-auto max-w-5xl px-4 pb-16 sm:px-6">
-      <div class="rounded-lg border border-brand-200 bg-brand-50/60 p-6">
-        <h2 class="text-base font-semibold text-slate-900">
-          Kiedy skonsultować się z lekarzem
-        </h2>
-        <p class="mt-2 text-sm leading-relaxed text-slate-600">
-          Pojedyncze, krótkotrwałe kurcze zwykle nie są groźne. Jeśli jednak kurcze
-          nawracają, są bardzo bolesne, długotrwałe lub towarzyszą im inne objawy —
-          skonsultuj się z lekarzem. Treści w serwisie mają charakter edukacyjny i nie
-          zastępują porady medycznej.
-        </p>
+    <!-- WHEN TO SEE A DOCTOR -->
+    <section class="mx-auto max-w-6xl px-5 pb-[72px] sm:px-8">
+      <div class="grid items-center gap-12 rounded-xl bg-navy px-8 py-12 sm:px-13 md:grid-cols-2">
+        <div>
+          <div class="eyebrow mb-4 text-accent-light">uwaga</div>
+          <h2 class="mb-3 text-3xl leading-tight text-[#f4efe6] sm:text-4xl">
+            Kiedy skontaktować się z lekarzem?
+          </h2>
+          <p class="text-[15.5px] leading-relaxed text-[#a9b0bd]">
+            Większość kurczy mija samoistnie. Są jednak sytuacje, w których warto zgłosić
+            się po pomoc specjalisty.
+          </p>
+        </div>
+        <ul class="flex flex-col">
+          {
+            doctorSigns.map((s) => (
+              <li class="flex gap-3.5 border-t border-[#2c3a52] py-3.5 text-[15px] text-[#d9dce2]">
+                <span class="font-semibold text-accent">·</span>
+                {s}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="mx-auto max-w-6xl px-5 pb-[76px] sm:px-8">
+      <div class="grid gap-12 lg:grid-cols-[0.7fr_1.3fr]">
+        <div>
+          <h2 class="mb-3 text-3xl text-ink sm:text-[34px]">Najczęstsze pytania</h2>
+          <p class="text-[15px] leading-relaxed text-muted">
+            Krótkie odpowiedzi na to, o co pytacie najczęściej.
+          </p>
+          <a href="/faq" class="mt-5 inline-block text-sm text-accent hover:text-accent-light">
+            zobacz wszystkie pytania →
+          </a>
+        </div>
+        <FaqAccordion items={homeFaq} bare />
       </div>
     </section>
   </Shell>

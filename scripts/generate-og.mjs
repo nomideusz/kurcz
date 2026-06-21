@@ -8,10 +8,14 @@ import sharp from 'sharp';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const publicDir = join(__dirname, '..', 'public');
 
-const FONT = 'DejaVu Sans';
-const BRAND = '#0d9488';
-const INK = '#0f172a';
-const MUTED = '#64748b';
+// Warm-paper editorial brand. DejaVu Serif approximates Newsreader for raster output.
+const SERIF = 'DejaVu Serif';
+const SANS = 'DejaVu Sans';
+const PAPER = '#F4EFE6';
+const INK = '#182438';
+const ACCENT = '#DC4B2E';
+const FAINT = '#8A7F6E';
+const LINE = '#E0D7C7';
 
 const cards = [
   { file: 'og-image.jpg', title: 'Kurcze mięśniowe — przyczyny, ulga i profilaktyka' },
@@ -24,8 +28,7 @@ const cards = [
   { file: 'og/faq.jpg', title: 'Najczęstsze pytania o kurcze' },
 ];
 
-const esc = (s) =>
-  s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
 function wrap(text, maxChars) {
   const words = text.split(' ');
@@ -44,36 +47,30 @@ function wrap(text, maxChars) {
 }
 
 function svg(title) {
-  const lines = wrap(title, 20);
-  const fontSize = lines.length > 2 ? 64 : 76;
-  const lineHeight = fontSize * 1.18;
+  const lines = wrap(title, 22);
+  const fontSize = lines.length > 2 ? 62 : 74;
+  const lineHeight = fontSize * 1.16;
   const blockHeight = lines.length * lineHeight;
   const startY = 340 - blockHeight / 2 + fontSize;
   const tspans = lines
-    .map(
-      (l, i) =>
-        `<tspan x="90" y="${Math.round(startY + i * lineHeight)}">${esc(l)}</tspan>`
-    )
+    .map((l, i) => `<tspan x="90" y="${Math.round(startY + i * lineHeight)}">${esc(l)}</tspan>`)
     .join('');
 
   return `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
-  <rect width="1200" height="630" fill="#ffffff"/>
-  <rect width="1200" height="12" fill="${BRAND}"/>
-  <g font-family="${FONT}">
-    <circle cx="98" cy="92" r="11" fill="${BRAND}"/>
-    <text x="120" y="104" font-size="38" font-weight="bold" fill="${INK}">Kurcz<tspan fill="${BRAND}">.pl</tspan></text>
-    <text font-size="${fontSize}" font-weight="bold" fill="${INK}">${tspans}</text>
-    <text x="90" y="560" font-size="30" fill="${MUTED}">Rzetelna wiedza o kurczach mięśniowych</text>
-  </g>
+  <rect width="1200" height="630" fill="${PAPER}"/>
+  <rect width="1200" height="10" fill="${ACCENT}"/>
+  <text x="90" y="104" font-family="${SERIF}" font-size="40" font-weight="bold" fill="${INK}">kurcz<tspan fill="${ACCENT}">.pl</tspan></text>
+  <text x="90" y="150" font-family="${SANS}" font-size="20" letter-spacing="2" fill="${FAINT}">PORADNIK ZDROWIA · MIĘŚNIE</text>
+  <text font-family="${SERIF}" font-size="${fontSize}" fill="${INK}">${tspans}</text>
+  <rect x="90" y="520" width="40" height="3" fill="${ACCENT}"/>
+  <text x="90" y="560" font-family="${SANS}" font-size="28" fill="${FAINT}">Rzetelna wiedza o kurczach mięśniowych</text>
 </svg>`;
 }
 
 for (const card of cards) {
   const out = join(publicDir, card.file);
   mkdirSync(dirname(out), { recursive: true });
-  await sharp(Buffer.from(svg(card.title)))
-    .jpeg({ quality: 88 })
-    .toFile(out);
+  await sharp(Buffer.from(svg(card.title))).jpeg({ quality: 88 }).toFile(out);
   console.log('✓', card.file);
 }
 console.log(`Generated ${cards.length} OG images.`);
