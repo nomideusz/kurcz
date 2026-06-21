@@ -1,0 +1,135 @@
+---
+// Temps analytics (rzeka.live) — vanilla reimplementation of @temps-sdk/react-analytics.
+// No React, no rrweb. Sends page_view / page_leave / web-vitals + [temps-event-name] clicks
+// to same-origin /api/_temps/*, which the Temps platform intercepts for hosted apps.
+// Active only on Temps-hosted hosts (the ingest doesn't exist on CapRover) and after consent.
+---
+
+<script>
+  const ALLOWED_HOST_SUFFIXES = ['rzeka.live']; // add 'kurcz.pl' here if it's served by Temps
+  const REQUIRE_CONSENT = true; // matches Umami/GTM; set false if Temps runs cookieless
+  const BASE = '/api/_temps';
+
+  const hostAllowed = () =>
+    ALLOWED_HOST_SUFFIXES.some(
+      (h) => location.hostname === h || location.hostname.endsWith('.' + h)
+    );
+
+  const consentOk = () => {
+    if (!REQUIRE_CONSENT) return true;
+    try {
+      return localStorage.getItem('kurcz_cookie_consent') === 'granted';
+    } catch {
+      return false;
+    }
+  };
+
+  function sessionId() {
+    try {
+      let s = localStorage.getItem('session_id');
+      if (!s) {
+        s =
+          (crypto.randomUUID && crypto.randomUUID()) ||
+          Date.now().toString(36) + Math.random().toString(16).slice(2);
+        localStorage.setItem('session_id', s);
+      }
+      return s;
+    } catch {
+      return undefined;
+    }
+  }
+
+  function requestId() {
+    const m = document.querySelector('meta[name="temps-metadata"]');
+    if (!m) return undefined;
+    try {
+      return JSON.parse(m.getAttribute('content') || '{}').request_id;
+    } catch {
+      return undefined;
+    }
+  }
+
+  function send(endpoint, data, beacon) {
+    const body = JSON.stringify({ ...data, request_id: requestId(), session_id: sessionId() });
+    const url = BASE + '/' + endpoint;
+    try {
+      if (beacon && navigator.sendBeacon) {
+        navigator.sendBeacon(url, new Blob([body], { type: 'application/json' }));
+        return;
+      }
+      fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body,
+        keepalive: !!beacon,
+      }).catch(() => {});
+    } catch {}
+  }
+
+  function event(name, data, beacon) {
+    send(
+      'event',
+      {
+        event_name: name,
+        request_query: location.search,
+        request_path: location.pathname,
+        domain: location.hostname,
+        event_data: data || {},
+      },
+      beacon
+    );
+  }
+
+  function init() {
+    // Pageview
+    event('page_view', {
+      referrer: document.referrer,
+      userAgent: navigator.userAgent,
+      timestamp: new Date().toISOString(),
+    });
+
+    // Time-on-page / leave
+    let left = false;
+    const leave = () => {
+      if (left) return;
+      left = true;
+      event('page_leave', { url: location.href, referrer: document.referrer }, true);
+    };
+    addEventListener('pagehide', leave);
+    addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'hidden') leave();
+    });
+
+    // Declarative events: <button temps-event-name="..." temps-data-foo="bar">
+    addEventListener('click', (e) => {
+      const t = e.target;
+      const el = t && t.closest && t.closest('[temps-event-name]');
+      if (!el) return;
+      const name = el.getAttribute('temps-event-name');
+      if (!name) return;
+      const props = {};
+      for (const a of Array.from(el.attributes)) {
+        if (a.name.indexOf('temps-data-') === 0) props[a.name.slice(11)] = a.value;
+      }
+      event(name, props);
+    });
+
+    // Programmatic custom events
+    (window as any).tempsTrack = (name, data) => event(name, data);
+
+    // Web Vitals (separate chunk, loaded only here)
+    import('web-vitals')
+      .then((wv) => {
+        const report = (m) =>
+          send('speed', { [m.name.toLowerCase()]: m.value, path: location.pathname, query: location.search });
+        wv.onLCP?.(report);
+        wv.onCLS?.(report);
+        wv.onINP?.(report);
+        wv.onTTFB?.(report);
+        wv.onFCP?.(report);
+      })
+      .catch(() => {});
+  }
+
+  if (hostAllowed() && consentOk()) init();
+</script>
