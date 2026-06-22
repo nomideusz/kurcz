@@ -1,0 +1,90 @@
+---
+// Temps error tracking (Sentry-compatible). Captures uncaught errors + unhandled
+// promise rejections and posts them to the project DSN's /store/ endpoint.
+// The DSN public key is client-safe by design (like a Sentry DSN).
+// Active only on Temps-hosted hosts (*.rzeka.live); dormant on kurcz.pl/CapRover.
+---
+
+<script>
+  const ALLOWED_HOST_SUFFIXES = ['rzeka.live'];
+  const PUBLIC_KEY = '4aec97a91a11723edd381851af4ede760dc230be336180d1c26f4fd8676f03ca';
+  const STORE = `https://rzeka.live/api/1/store/?sentry_key=${PUBLIC_KEY}&sentry_version=7`;
+  const MAX_PER_PAGE = 10;
+
+  const hostAllowed = () =>
+    ALLOWED_HOST_SUFFIXES.some(
+      (h) => location.hostname === h || location.hostname.endsWith('.' + h)
+    );
+
+  if (hostAllowed()) {
+    let sent = 0;
+    const seen = new Set();
+
+    const eventId = () =>
+      (crypto.randomUUID ? crypto.randomUUID() : Date.now().toString(16) + Math.random().toString(16).slice(2)).replace(/-/g, '');
+
+    const parseFrames = (stack) => {
+      if (!stack) return [];
+      return stack
+        .split('\n')
+        .slice(1, 21)
+        .map((line) => {
+          const m =
+            line.match(/at\s+(.*?)\s+\(?(https?:\/\/[^\s)]+):(\d+):(\d+)\)?/) ||
+            line.match(/(https?:\/\/[^\s)]+):(\d+):(\d+)/);
+          if (!m) return { function: line.trim() };
+          return m.length === 5
+            ? { function: m[1], filename: m[2], lineno: +m[3], colno: +m[4] }
+            : { filename: m[1], lineno: +m[2], colno: +m[3] };
+        });
+    };
+
+    function report(err, level) {
+      if (sent >= MAX_PER_PAGE) return;
+      const type = (err && err.name) || 'Error';
+      const value = (err && err.message) || String(err);
+      const key = type + ':' + value;
+      if (seen.has(key)) return;
+      seen.add(key);
+      sent++;
+
+      const event = {
+        event_id: eventId(),
+        timestamp: Date.now(),
+        level: level || 'error',
+        platform: 'javascript',
+        environment: 'production',
+        sdk: { name: 'kurcz-web', version: '1.0.0' },
+        message: value,
+        exception: {
+          values: [{ type, value, stacktrace: { frames: parseFrames(err && err.stack) } }],
+        },
+        request: { url: location.href },
+        tags: { path: location.pathname },
+      };
+
+      try {
+        fetch(STORE, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(event),
+          keepalive: true,
+          mode: 'cors',
+        }).catch(() => {});
+      } catch {}
+    }
+
+    addEventListener('error', (ev) => {
+      if (ev.error) report(ev.error, 'error');
+      else if (ev.message) report({ name: 'Error', message: ev.message }, 'error');
+    });
+
+    addEventListener('unhandledrejection', (ev) => {
+      const r = ev.reason;
+      report(r instanceof Error ? r : { name: 'UnhandledRejection', message: String(r) }, 'error');
+    });
+
+    // Manual reporting hook
+    (window as any).reportError = (err) => report(err instanceof Error ? err : new Error(String(err)), 'error');
+  }
+</script>

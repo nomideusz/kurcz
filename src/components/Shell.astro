@@ -3,6 +3,7 @@ import Header from './Header.astro';
 import Footer from './Footer.astro';
 import CookieConsent from './CookieConsent.astro';
 import TempsAnalytics from './TempsAnalytics.astro';
+import ErrorTracking from './ErrorTracking.astro';
 
 const { currentPath = '/' } = Astro.props;
 ---
@@ -14,3 +15,4 @@ const { currentPath = '/' } = Astro.props;
 <Footer />
 <CookieConsent />
 <TempsAnalytics />
+<ErrorTracking />
