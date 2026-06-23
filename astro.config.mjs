@@ -1,7 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
-import node from '@astrojs/node';
+import netlify from '@astrojs/netlify';
 import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
@@ -9,10 +9,10 @@ export default defineConfig({
   site: 'https://kurcz.pl',
   // Canonical URLs have no trailing slash — keep the sitemap consistent.
   trailingSlash: 'never',
-  // Static-first: every page is prerendered. The Node adapter exists only so the
-  // contact endpoint (src/pages/api/contact.ts, prerender = false) can run on-demand.
+  // Static-first: every page is prerendered. The Netlify adapter exists only so the
+  // contact endpoint (src/pages/api/contact.ts, prerender = false) runs as a function.
   output: 'static',
-  adapter: node({ mode: 'standalone' }),
+  adapter: netlify(),
   build: {
     format: 'directory',
   },
