@@ -38,6 +38,11 @@ export const topicPagesContent = {
         body: `Poniżej znajdziesz specjalistyczne informacje o przyczynach, pierwszej pomocy oraz długoterminowej profilaktyce kurczy. Zastosuj te metody, aby szybko uzyskać ulgę i zapobiegać nawrotom w przyszłości.`,
       },
     ],
+    relatedLinks: [
+      { path: '/kurcze-nog', label: 'Kurcze nóg' },
+      { path: '/pierwsza-pomoc', label: 'Pierwsza pomoc' },
+      { path: '/profilaktyka', label: 'Profilaktyka' },
+    ],
   },
 
   '/pierwsza-pomoc': {
@@ -91,6 +96,11 @@ export const topicPagesContent = {
         body: `Informacje zawarte na tej stronie mają charakter edukacyjny i nie zastępują profesjonalnej konsultacji medycznej. W przypadku poważnych problemów zdrowotnych zawsze skonsultuj się z wykwalifikowanym lekarzem.`,
       },
     ],
+    relatedLinks: [
+      { path: '/kurcze-nog', label: 'Kurcze nóg' },
+      { path: '/rozciaganie-przy-kurczach', label: 'Rozciąganie przy kurczach' },
+      { path: '/masaz-przy-kurczach', label: 'Masaż przy kurczach' },
+    ],
   },
 
   '/profilaktyka': {
@@ -143,6 +153,11 @@ export const topicPagesContent = {
         body: `Informacje zawarte na tej stronie mają charakter edukacyjny i nie zastępują profesjonalnej konsultacji medycznej. W przypadku poważnych problemów zdrowotnych skonsultuj się z lekarzem.`,
       },
     ],
+    relatedLinks: [
+      { path: '/niedobor-magnezu', label: 'Niedobór magnezu' },
+      { path: '/suplementacja-magnezem', label: 'Suplementacja magnezem' },
+      { path: '/kurcze-a-odwodnienie', label: 'Kurcze a odwodnienie' },
+    ],
   },
 
   '/kurcz-vs-skurcz': {
@@ -190,6 +205,11 @@ export const topicPagesContent = {
         body: `W kontekście medycznym często używane są frazy takie jak „zapobiegać kurczom” (celownik, l.mn.), „doświadczać kurczy” (dopełniacz, l.mn.) czy „borykać się z kurczami” (narzędnik, l.mn.).`,
       },
     ],
+    relatedLinks: [
+      { path: '/kurcze-miesniowe', label: 'Kurcze mięśniowe' },
+      { path: '/kurcze-nog', label: 'Kurcze nóg' },
+      { path: '/faq', label: 'FAQ' },
+    ],
   },
 
   '/wibroakustyka': {
@@ -222,6 +242,11 @@ export const topicPagesContent = {
         body: `Odkryj więcej szczegółów na temat innowacyjnego zastosowania wibroakustyki w terapii kurczy mięśniowych i innych dolegliwości.`,
       },
     ],
+    relatedLinks: [
+      { path: '/masaz-przy-kurczach', label: 'Masaż przy kurczach' },
+      { path: '/rozciaganie-przy-kurczach', label: 'Rozciąganie przy kurczach' },
+      { path: '/profilaktyka', label: 'Profilaktyka' },
+    ],
   },
 
   '/joga-a-kurcze': {
@@ -243,6 +268,11 @@ export const topicPagesContent = {
         heading: `Znajdź idealne studio jogi`,
         body: `Niezależnie od tego, czy dopiero zaczynasz swoją przygodę, czy szukasz zaawansowanych praktyk - odkryj najlepsze szkoły jogi w swojej okolicy i zacznij dbać o swoje ciało już dziś.`,
       },
+    ],
+    relatedLinks: [
+      { path: '/rozciaganie-przy-kurczach', label: 'Rozciąganie przy kurczach' },
+      { path: '/kurcze-nocne', label: 'Kurcze nocne' },
+      { path: '/profilaktyka', label: 'Profilaktyka' },
     ],
   },
 };

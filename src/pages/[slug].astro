@@ -41,6 +41,7 @@ if (kind === 'topic') {
   intro = content?.intro ?? '';
   sections = content?.sections ?? [];
   faq = getTopicFaq(route.path) ?? [];
+  relatedLinks = content?.relatedLinks ?? [];
 } else if (kind === 'landing') {
   const page = getLandingPage(route.path);
   intro = page?.intro ?? '';

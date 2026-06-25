@@ -11,6 +11,7 @@ const categoryDefinitions = [
     title: 'Kurcze według lokalizacji i sytuacji',
     description: 'Dolegliwości w konkretnych partiach ciała oraz w charakterystycznych okolicznościach — noc, sport, ciąża, starzenie.',
     paths: [
+      '/kurcze-nog',
       '/kurcze-lydek',
       '/kurcze-stop',
       '/kurcze-nocne',

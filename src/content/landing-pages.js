@@ -18,6 +18,50 @@
 /** @type {LandingPage[]} */
 export const landingPages = [
   {
+    path: '/kurcze-nog',
+    hub: { path: '/kurcze-miesniowe', label: 'Kurcze mięśniowe' },
+    h1: 'Kurcze nóg — przyczyny, pierwsza pomoc i profilaktyka',
+    title: 'Kurcze nóg — przyczyny i szybkie sposoby na ulgę | Kurcz.pl',
+    description: 'Kurcze nóg — co je wywołuje i jak szybko przerwać bolesny skurcz. Przyczyny, pierwsza pomoc, profilaktyka oraz porady dla łydek, stóp i kurczy nocnych.',
+    intro: 'Kurcze nóg to nagłe, mimowolne i bolesne skurcze mięśni kończyn dolnych — najczęściej łydek i stóp, ale także ud. W większości przypadków są niegroźne i szybko mijają, choć potrafią obudzić w nocy lub przerwać trening. Poniżej znajdziesz przyczyny, sprawdzoną pierwszą pomoc i profilaktykę, a także odnośniki do bardziej szczegółowych poradników.',
+    sections: [
+      {
+        heading: 'Najczęstsze przyczyny kurczy nóg',
+        body: 'Kurcze nóg najczęściej wynikają z odwodnienia i zaburzeń elektrolitowych, niedoboru minerałów oraz przeciążenia mięśni. Sprzyjają im też długa statyczna pozycja, ciąża, starszy wiek, niektóre leki i choroby przewlekłe, takie jak cukrzyca czy niewydolność żylna.',
+        bullets: ['Odwodnienie i utrata elektrolitów', 'Niedobór magnezu, potasu, wapnia lub sodu', 'Przeciążenie i intensywny wysiłek bez rozgrzewki', 'Długie stanie lub siedzenie w jednej pozycji'],
+      },
+      {
+        heading: 'Pierwsza pomoc — jak przerwać kurcz nogi',
+        body: 'Przy ostrym kurczu powoli rozciągnij napięty mięsień w kierunku przeciwnym do skurczu, a następnie delikatnie go rozmasuj. Obciążenie nogi i kilka kroków często przyspiesza ustąpienie bólu. Po wszystkim uzupełnij płyny i minerały.',
+        bullets: ['Rozciągnij mięsień powoli i bez gwałtownych ruchów', 'Rozmasuj bolesne miejsce', 'Wstań i delikatnie obciąż nogę', 'Nawodnij się wodą z elektrolitami'],
+      },
+      {
+        heading: 'Kurcze nóg według lokalizacji i pory',
+        body: 'Objawy i postępowanie zależą od tego, którego mięśnia dotyczy kurcz. Najczęściej skurcz obejmuje łydki, rzadziej stopy lub uda, a osobnym problemem są bolesne kurcze pojawiające się w nocy. Szczegółowe instrukcje znajdziesz w dedykowanych poradnikach.',
+      },
+      {
+        heading: 'Profilaktyka — jak zapobiegać kurczom nóg',
+        body: 'Regularne nawodnienie, dieta bogata w magnez i potas oraz codzienne rozciąganie mięśni nóg znacząco ograniczają nawroty. Wprowadzaj wysiłek stopniowo, zadbaj o wygodne obuwie i unikaj długiego bezruchu.',
+        bullets: ['Pij wodę regularnie przez cały dzień', 'Jedz produkty bogate w magnez i potas', 'Rozciągaj łydki i stopy przed snem i po treningu', 'Stopniowo zwiększaj intensywność ćwiczeń'],
+      },
+      {
+        heading: 'Kiedy zgłosić się do lekarza',
+        body: 'Pojedyncze kurcze nóg zwykle nie są groźne. Skonsultuj się z lekarzem, gdy są bardzo częste lub silne, towarzyszy im osłabienie, drętwienie albo obrzęk, nie mają związku z wysiłkiem lub utrzymują się mimo profilaktyki — mogą wtedy wskazywać na zaburzenia elektrolitowe, neurologiczne lub krążeniowe.',
+      },
+    ],
+    faq: [
+      { question: 'Jak szybko pozbyć się kurczu w nodze?', answer: 'Powoli rozciągnij napięty mięsień w kierunku przeciwnym do skurczu, rozmasuj go i delikatnie obciąż nogę, stając na niej. Kurcz zwykle ustępuje w ciągu kilkudziesięciu sekund do kilku minut.' },
+      { question: 'Czego brakuje organizmowi, gdy łapią kurcze nóg?', answer: 'Najczęściej wymienia się niedobór magnezu, potasu, wapnia lub sodu oraz odwodnienie. Nie zawsze jednak przyczyną jest niedobór — warto omówić nawracające kurcze z lekarzem.' },
+      { question: 'Czy kurcze nóg mogą być objawem choroby?', answer: 'Zwykle są niegroźne, ale częste, silne lub niezwiązane z wysiłkiem kurcze, zwłaszcza z drętwieniem lub obrzękiem, wymagają konsultacji lekarskiej w celu wykluczenia chorób metabolicznych, neurologicznych lub żylnych.' },
+    ],
+    relatedLinks: [
+      { path: '/kurcze-lydek', label: 'Kurcze łydek' },
+      { path: '/kurcze-nocne', label: 'Kurcze nocne' },
+      { path: '/niedobor-magnezu', label: 'Niedobór magnezu' },
+      { path: '/pierwsza-pomoc', label: 'Pierwsza pomoc' },
+    ],
+  },
+  {
     path: '/kurcze-lydek',
     hub: { path: '/kurcze-miesniowe', label: 'Kurcze mięśniowe' },
     h1: 'Kurcze łydek — przyczyny, pierwsza pomoc i profilaktyka',
@@ -44,6 +88,7 @@ export const landingPages = [
       { question: 'Jak rozciągać mięsień łydki po kurczu?', answer: 'W pozycji stojącej oprzyj dłonie o ścianę, cofnij bolącą nogę do tyłu i zepnij piętę w podłoże. Utrzymuj rozciągnięcie 20–30 sekund bez gwałtownych ruchów.' },
     ],
     relatedLinks: [
+      { path: '/kurcze-nog', label: 'Kurcze nóg' },
       { path: '/kurcze-nocne', label: 'Kurcze nocne' },
       { path: '/rozciaganie-przy-kurczach', label: 'Rozciąganie przy kurczach' },
       { path: '/pierwsza-pomoc', label: 'Pierwsza pomoc' },
@@ -71,6 +116,7 @@ export const landingPages = [
       { question: 'Czy kurcze stóp mogą wskazywać na chorobę?', answer: 'Pojedyncze kurcze stóp zwykle nie są niepokojące. Nawracające epizody, drętwienie lub obrzęk wymagają konsultacji lekarskiej w celu wykluczenia neuropatii lub zaburzeń krążenia.' },
     ],
     relatedLinks: [
+      { path: '/kurcze-nog', label: 'Kurcze nóg' },
       { path: '/kurcze-lydek', label: 'Kurcze łydek' },
       { path: '/masaz-przy-kurczach', label: 'Masaż przy kurczach' },
     ],
