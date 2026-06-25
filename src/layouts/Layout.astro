@@ -118,6 +118,11 @@ const jsonLd = schemaToJsonLd(buildPageSchema(route));
     <!-- Structured data -->
     <script type="application/ld+json" is:inline set:html={jsonLd} />
 
+    <!-- Load non-critical fonts (Geist, Geist Mono) asynchronously to avoid critical path latency -->
+    <script>
+      import('../styles/fonts.css');
+    </script>
+
     <slot name="head" />
   </head>
   <body class="flex min-h-screen flex-col">

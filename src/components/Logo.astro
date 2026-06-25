@@ -5,9 +5,15 @@ interface Props {
   accentClass?: string;
 }
 const { class: className = 'text-2xl', accentClass = 'text-accent' } = Astro.props;
+
+const hasColor = /\btext-(?:(?!xs|sm|base|lg|xl|2xl|3xl|4xl|5xl|6xl|7xl|8xl|9xl|\d|\[\d)[a-z#\[])/.test(className);
 ---
 
 <span
-  class:list={['inline-flex items-baseline font-serif font-medium tracking-tight text-ink', className]}
+  class:list={[
+    'inline-flex items-baseline font-serif font-medium tracking-tight',
+    { 'text-ink': !hasColor },
+    className
+  ]}
   >kurcz<span class:list={[accentClass]}>.pl</span></span
 >
