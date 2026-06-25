@@ -15,6 +15,7 @@ export default defineConfig({
   adapter: netlify(),
   build: {
     format: 'directory',
+    inlineStylesheets: 'always',
   },
   integrations: [
     sitemap({

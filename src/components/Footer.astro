@@ -46,7 +46,7 @@ const year = new Date().getFullYear();
     <div class="grid gap-10 border-b border-[#243248] pb-9 md:grid-cols-2 lg:grid-cols-4">
       <div>
         <a href="/" aria-label="Kurcz.pl — strona główna">
-          <Logo class="text-[26px] text-[#f4efe6]" />
+          <Logo class="text-[26px] text-[#f4efe6]" accentClass="text-accent-light" />
         </a>
         <p class="mt-3.5 max-w-[300px] text-sm leading-relaxed text-[#8b93a1]">
           Statyczna strona edukacyjna o kurczach mięśniowych — przyczyny, pierwsza pomoc
@@ -55,7 +55,7 @@ const year = new Date().getFullYear();
       </div>
 
       <nav aria-label="Tematy">
-        <div class="eyebrow mb-4 text-[#5e6878]">tematy</div>
+        <div class="eyebrow mb-4 text-[#8b96a5]">tematy</div>
         <ul class="flex flex-col gap-2.5 text-sm">
           {
             topics.map((l) => (
@@ -70,7 +70,7 @@ const year = new Date().getFullYear();
       </nav>
 
       <nav aria-label="Serwis">
-        <div class="eyebrow mb-4 text-[#5e6878]">serwis</div>
+        <div class="eyebrow mb-4 text-[#8b96a5]">serwis</div>
         <ul class="flex flex-col gap-2.5 text-sm">
           {
             serwis.map((l) => (
@@ -96,7 +96,7 @@ const year = new Date().getFullYear();
       </nav>
 
       <nav aria-label="Partnerzy">
-        <div class="eyebrow mb-4 text-[#5e6878]">partnerzy</div>
+        <div class="eyebrow mb-4 text-[#8b96a5]">partnerzy</div>
         <ul class="flex flex-col gap-2.5 text-sm">
           {
             partners.map((p) => (
@@ -118,7 +118,7 @@ const year = new Date().getFullYear();
     </div>
 
     <div class="flex flex-col items-start justify-between gap-5 pt-6 sm:flex-row sm:items-center">
-      <p class="max-w-[560px] text-[12.5px] leading-relaxed text-[#6b7484]">
+      <p class="max-w-[560px] text-[12.5px] leading-relaxed text-[#8b96a5]">
         Zastrzeżenie medyczne: informacje na tej stronie mają charakter edukacyjny i nie
         zastępują profesjonalnej konsultacji medycznej. W razie poważnych dolegliwości
         skonsultuj się z lekarzem.
@@ -142,7 +142,7 @@ const year = new Date().getFullYear();
             ))
           }
         </div>
-        <span class="font-mono text-xs whitespace-nowrap text-[#5e6878]">© {year} kurcz.pl</span>
+        <span class="font-mono text-xs whitespace-nowrap text-[#8b96a5]">© {year} kurcz.pl</span>
       </div>
     </div>
   </div>

@@ -3,6 +3,14 @@ import '../styles/global.css';
 import { SITE_URL, getOgImage } from '../seo/routes.js';
 import { buildPageSchema, schemaToJsonLd } from '../seo/schema.js';
 
+// Font preloads
+import sourceSerifNormal from '@fontsource-variable/source-serif-4/files/source-serif-4-latin-standard-normal.woff2?url';
+import sourceSerifExtNormal from '@fontsource-variable/source-serif-4/files/source-serif-4-latin-ext-standard-normal.woff2?url';
+import geistNormal from '@fontsource-variable/geist/files/geist-latin-wght-normal.woff2?url';
+import geistExtNormal from '@fontsource-variable/geist/files/geist-latin-ext-wght-normal.woff2?url';
+import geistMonoNormal from '@fontsource-variable/geist-mono/files/geist-mono-latin-wght-normal.woff2?url';
+import geistMonoExtNormal from '@fontsource-variable/geist-mono/files/geist-mono-latin-ext-wght-normal.woff2?url';
+
 const { route } = Astro.props;
 
 const canonical = `${SITE_URL}${route.path === '/' ? '' : route.path}`;
@@ -45,18 +53,35 @@ const jsonLd = schemaToJsonLd(buildPageSchema(route));
         }
       } catch (e) {}
     </script>
-    <!-- Google Tag Manager -->
+    <!-- Preload critical fonts above the fold -->
+    <link rel="preload" href={sourceSerifNormal} as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href={sourceSerifExtNormal} as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href={geistNormal} as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href={geistExtNormal} as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href={geistMonoNormal} as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href={geistMonoExtNormal} as="font" type="font/woff2" crossorigin="anonymous" />
+
+    <!-- Google Tag Manager (Deferred to Load + Idle) -->
     <script is:inline>
-      (function (w, d, s, l, i) {
-        w[l] = w[l] || [];
-        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
-        var f = d.getElementsByTagName(s)[0],
-          j = d.createElement(s),
-          dl = l != 'dataLayer' ? '&l=' + l : '';
-        j.async = true;
-        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-        f.parentNode.insertBefore(j, f);
-      })(window, document, 'script', 'dataLayer', 'GTM-P7N9JKMT');
+      window.addEventListener('load', function () {
+        var loadGtm = function () {
+          (function (w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+            var f = d.getElementsByTagName(s)[0],
+              j = d.createElement(s),
+              dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+          })(window, document, 'script', 'dataLayer', 'GTM-P7N9JKMT');
+        };
+        if ('requestIdleCallback' in window) {
+          requestIdleCallback(loadGtm);
+        } else {
+          setTimeout(loadGtm, 1);
+        }
+      });
     </script>
     <!-- End Google Tag Manager -->
 

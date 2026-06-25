@@ -6,6 +6,8 @@ import TempsAnalytics from './TempsAnalytics.astro';
 import ErrorTracking from './ErrorTracking.astro';
 
 const { currentPath = '/' } = Astro.props;
+
+const isTempsHost = Astro.site?.hostname.endsWith('rzeka.live') || false;
 ---
 
 <Header currentPath={currentPath} />
@@ -14,5 +16,5 @@ const { currentPath = '/' } = Astro.props;
 </main>
 <Footer />
 <CookieConsent />
-<TempsAnalytics />
-<ErrorTracking />
+{isTempsHost && <TempsAnalytics />}
+{isTempsHost && <ErrorTracking />}
