@@ -1,11 +1,15 @@
 ---
 import '../styles/global.css';
+import '../styles/fonts.css';
 import { SITE_URL, getOgImage } from '../seo/routes.js';
 import { buildPageSchema, schemaToJsonLd } from '../seo/schema.js';
 
-// Font preloads (Only preload Source Serif 4 as it is required for the LCP h1 display font)
+// Font preloads (Preload Source Serif 4 for H1 display, and Geist / Geist Mono for layout to prevent CLS layout shifts)
 import sourceSerifNormal from '@fontsource-variable/source-serif-4/files/source-serif-4-latin-standard-normal.woff2?url';
 import sourceSerifExtNormal from '@fontsource-variable/source-serif-4/files/source-serif-4-latin-ext-standard-normal.woff2?url';
+import geistNormal from '@fontsource-variable/geist/files/geist-latin-wght-normal.woff2?url';
+import geistExtNormal from '@fontsource-variable/geist/files/geist-latin-ext-wght-normal.woff2?url';
+import geistMonoNormal from '@fontsource-variable/geist-mono/files/geist-mono-latin-wght-normal.woff2?url';
 
 const { route } = Astro.props;
 
@@ -49,9 +53,12 @@ const jsonLd = schemaToJsonLd(buildPageSchema(route));
         }
       } catch (e) {}
     </script>
-    <!-- Preload critical fonts for the LCP element (H1 Display) -->
+    <!-- Preload critical fonts for the LCP element (H1 Display) and layout to prevent CLS layout shifts -->
     <link rel="preload" href={sourceSerifNormal} as="font" type="font/woff2" crossorigin="anonymous" />
     <link rel="preload" href={sourceSerifExtNormal} as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href={geistNormal} as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href={geistExtNormal} as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href={geistMonoNormal} as="font" type="font/woff2" crossorigin="anonymous" />
 
     <!-- Google Tag Manager (Deferred to First User Interaction or Idle fallback) -->
     <script is:inline>
@@ -73,18 +80,9 @@ const jsonLd = schemaToJsonLd(buildPageSchema(route));
         }
 
         // Trigger loading on first user interaction
-        var events = ['click', 'mousedown', 'keydown', 'touchstart', 'scroll'];
+        var events = ['click', 'mousedown', 'mousemove', 'keydown', 'touchstart', 'scroll'];
         events.forEach(function (e) {
           window.addEventListener(e, loadGtm, { passive: true, once: true });
-        });
-
-        // Fail-safe load after window load event + idle/timeout
-        window.addEventListener('load', function () {
-          if ('requestIdleCallback' in window) {
-            requestIdleCallback(function () { setTimeout(loadGtm, 1000); });
-          } else {
-            setTimeout(loadGtm, 3000);
-          }
         });
       })();
     </script>
@@ -117,11 +115,6 @@ const jsonLd = schemaToJsonLd(buildPageSchema(route));
 
     <!-- Structured data -->
     <script type="application/ld+json" is:inline set:html={jsonLd} />
-
-    <!-- Load non-critical fonts (Geist, Geist Mono) asynchronously to avoid critical path latency -->
-    <script>
-      import('../styles/fonts.css');
-    </script>
 
     <slot name="head" />
   </head>
