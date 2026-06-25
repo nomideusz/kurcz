@@ -1,15 +1,15 @@
 @import 'tailwindcss';
 
-/* Self-hosted fonts — no render-blocking external requests */
-@import '@fontsource-variable/source-serif-4/standard.css';
-@import '@fontsource-variable/source-serif-4/standard-italic.css';
+/* Source Serif 4 is self-hosted + subset via Astro's fonts API (see astro.config.mjs);
+   it injects the @font-face rules and sets --font-serif (with a metric-matched fallback). */
 
 /*
   Design system — "warm paper" editorial.
   Cream paper background, plum accent, deep-navy dark sections.
 */
 @theme {
-  --font-serif: 'Source Serif 4 Variable', Georgia, 'Times New Roman', serif;
+  /* Astro's fonts API sets --font-serif-src to the subsetted face + metric fallback. */
+  --font-serif: var(--font-serif-src), Georgia, 'Times New Roman', serif;
   --font-sans: Seravek, 'Gill Sans Nova', Ubuntu, Calibri, 'DejaVu Sans', source-sans-pro, sans-serif;
   --font-mono: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
 
