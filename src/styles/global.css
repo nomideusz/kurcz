@@ -1,18 +1,13 @@
 @import 'tailwindcss';
 
-/* Self-hosted fonts — no render-blocking external requests */
-@import '@fontsource-variable/source-serif-4/standard.css';
-@import '@fontsource-variable/source-serif-4/standard-italic.css';
-
 /*
   Design system — "warm paper" editorial.
   Cream paper background, plum accent, deep-navy dark sections.
-  Serif display (Source Serif 4) + Geist body + Geist Mono labels.
 */
 @theme {
-  --font-serif: 'Source Serif 4 Variable', Georgia, 'Times New Roman', serif;
-  --font-sans: 'Geist Variable', ui-sans-serif, system-ui, -apple-system, sans-serif;
-  --font-mono: 'Geist Mono Variable', ui-monospace, 'SFMono-Regular', monospace;
+  --font-serif: Rockwell, 'Rockwell Nova', 'Roboto Slab', 'DejaVu Serif', 'Sitka Small', serif;
+  --font-sans: Seravek, 'Gill Sans Nova', Ubuntu, Calibri, 'DejaVu Sans', source-sans-pro, sans-serif;
+  --font-mono: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
 
   --color-paper: #f4efe6;
   --color-card: #fbf8f2;
