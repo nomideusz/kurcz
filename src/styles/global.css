@@ -1,13 +1,23 @@
 @import 'tailwindcss';
 
+/* Self-hosted fonts — no render-blocking external requests */
+@import '@fontsource-variable/source-serif-4/standard.css';
+@import '@fontsource-variable/source-serif-4/standard-italic.css';
+
 /*
   Design system — "warm paper" editorial.
   Cream paper background, plum accent, deep-navy dark sections.
 */
 @theme {
-  --font-serif: Rockwell, 'Rockwell Nova', 'Roboto Slab', 'DejaVu Serif', 'Sitka Small', serif;
+  --font-serif: 'Source Serif 4 Variable', Georgia, 'Times New Roman', serif;
   --font-sans: Seravek, 'Gill Sans Nova', Ubuntu, Calibri, 'DejaVu Sans', source-sans-pro, sans-serif;
   --font-mono: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
+
+  /* Slightly larger default sizes for sans-serif UI elements */
+  --text-xs: 0.8rem;
+  --text-sm: 0.92rem;
+  --text-base: 1.04rem;
+  --text-lg: 1.16rem;
 
   --color-paper: #f4efe6;
   --color-card: #fbf8f2;
@@ -54,6 +64,13 @@
     @apply transition-colors;
   }
 
+  /* Prevent text subpixel jitter on card hover transitions */
+  a.group {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform: translate3d(0, 0, 0);
+  }
+
   ::selection {
     background: var(--color-accent);
     color: #fbf8f2;
@@ -85,13 +102,13 @@
     @apply mt-8 mb-2 text-lg font-semibold text-ink;
   }
   .prose-content p {
-    @apply my-4 text-[1.0625rem] leading-[1.75] text-body;
+    @apply my-4 text-[1.1rem] leading-[1.75] text-body;
   }
   .prose-content ul {
     @apply my-5 flex flex-col;
   }
   .prose-content ul li {
-    @apply relative border-t border-line py-3.5 pl-6 text-[1.0625rem] leading-relaxed text-body last:border-b;
+    @apply relative border-t border-line py-3.5 pl-6 text-[1.1rem] leading-relaxed text-body last:border-b;
   }
   .prose-content ul li::before {
     content: '·';
