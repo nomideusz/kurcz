@@ -46,8 +46,9 @@ const jsonLd = schemaToJsonLd(buildPageSchema(route));
         }
       } catch (e) {}
     </script>
-    <!-- Subsetted, self-hosted Source Serif 4 (H1/LCP) with preload + metric-matched fallback -->
-    <Font cssVariable="--font-serif-src" preload />
+    <!-- Subsetted, self-hosted Source Serif 4. No preload: the metric-matched fallback paints
+         the H1 shift-free, so preloading would only steal critical bandwidth at first paint. -->
+    <Font cssVariable="--font-serif-src" />
 
     <!-- Google Tag Manager (Deferred to First User Interaction or Idle fallback) -->
     <script is:inline>
