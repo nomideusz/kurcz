@@ -76,7 +76,7 @@ const effectiveLocale = lang ?? locale;
         return;
       }
       submit.disabled = true;
-      status.textContent = '…';
+      status.textContent = isEn ? 'Sending…' : 'Wysyłanie…';
       status.className = 'text-sm text-muted';
 
       const payload = Object.fromEntries(new FormData(form).entries());
