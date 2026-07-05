@@ -1,14 +1,24 @@
 ---
 // Sticky in-article table of contents, built from section headings.
+import { extractLocale, routing, t, type SupportedLocale } from '../i18n/config.ts';
 import { slugify } from '../utils/slug.js';
-const { sections = [] } = Astro.props;
+
+const { sections = [], currentPath = Astro.url.pathname, lang } = Astro.props as {
+  sections?: any[];
+  currentPath?: string;
+  lang?: SupportedLocale;
+};
+const { locale } = extractLocale(currentPath, routing);
+const effectiveLang = lang ?? locale;
+
 const items = sections.filter((s) => s.heading).map((s) => ({ id: slugify(s.heading), label: s.heading }));
+const heading = t(effectiveLang, 'toc.heading');
 ---
 
 {
   items.length >= 3 && (
     <aside class="sticky top-[90px] hidden self-start lg:block">
-      <div class="eyebrow mb-4">spis treści</div>
+      <div class="eyebrow mb-4">{heading}</div>
       <nav class="flex flex-col border-l border-line text-sm">
         {items.map((it, i) => (
           <a

@@ -42,5 +42,7 @@
   "cookie.text": "We use cookies to analyze traffic and improve service quality. Details in ",
   "cookie.link": "privacy policy",
   "cookie.accept": "Accept",
-  "cookie.reject": "Decline"
+  "cookie.reject": "Decline",
+  "toc.heading": "table of contents",
+  "related_links.heading": "Related topics"
 }
