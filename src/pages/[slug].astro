@@ -5,12 +5,14 @@ import ContentSections from '../components/ContentSections.astro';
 import FaqAccordion from '../components/FaqAccordion.astro';
 import RelatedLinks from '../components/RelatedLinks.astro';
 import Toc from '../components/Toc.astro';
+import GeometrizedPhoto from '../components/GeometrizedPhoto.svelte';
 
 import { topicRoutes, staticRoutes } from '../seo/routes.js';
 import { landingRoutes, getLandingPage } from '../content/landing-pages.js';
 import { getStaticPage } from '../content/static-pages.js';
 import { getTopicPageContent } from '../content/topic-pages.js';
 import { getTopicFaq } from '../seo/topic-faq.js';
+import { getPagePhoto } from '../content/page-photos.ts';
 
 export function getStaticPaths() {
   const topicContentRoutes = topicRoutes.filter(
@@ -52,6 +54,8 @@ if (kind === 'topic') {
   const page = getStaticPage(route.path);
   sections = page?.sections ?? [];
 }
+
+const pagePhoto = getPagePhoto(route.path);
 
 // Crumbs (mono style)
 const crumbs = [{ path: '/', label: 'strona główna' }];
@@ -115,6 +119,24 @@ const eyebrow = (route.breadcrumbLabel ?? route.h1).toLowerCase();
     >
       {hasToc && <Toc sections={sections} />}
       <article class="max-w-[720px]">
+        {
+          pagePhoto && (
+            <figure class="mb-8 overflow-hidden rounded-xl border border-line bg-card shadow-sm">
+              <div class="aspect-[16/9] overflow-hidden bg-navy">
+                <GeometrizedPhoto
+                  client:visible
+                  imageKey={pagePhoto.key as any}
+                  src={pagePhoto.src}
+                  alt={pagePhoto.altPl}
+                  class="h-full w-full object-cover"
+                />
+              </div>
+              <figcaption class="border-t border-line px-5 py-3.5 text-xs leading-relaxed text-muted bg-card">
+                {pagePhoto.captionPl}
+              </figcaption>
+            </figure>
+          )
+        }
         <ContentSections sections={sections} />
         <p class="mt-12 border-t border-line pt-6 font-serif text-[13px] leading-relaxed text-faint italic">
           Zastrzeżenie medyczne: informacje mają charakter edukacyjny i nie zastępują
