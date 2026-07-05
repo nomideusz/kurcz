@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import Shell from '../../components/Shell.astro';
 import FaqAccordion from '../../components/FaqAccordion.astro';
+import GeometrizedPhoto from '../../components/GeometrizedPhoto.svelte';
 import { getRouteByPath } from '../../seo/routes.js';
 import { faqItems } from '../../seo/faq-data.js';
 import { LOCALES, DEFAULT_LOCALE, t, localizeHref, routing, type SupportedLocale } from '../../i18n/config.ts';
@@ -24,24 +25,28 @@ const homeFaq = faqItems.slice(0, 4);
 
 const galleryItems = [
   {
+    key: 'runner_stretching_calf.png',
     image: '/img/runner_stretching_calf.png',
     title: lang === 'en' ? 'Activity & Stretching' : 'Aktywność i rozciąganie',
     desc: lang === 'en' ? 'Proper muscle stretching after exercise and before bed reduces sudden painful cramps.' : 'Prawidłowe rozciąganie mięśni po treningu i przed snem ogranicza ryzyko nagłych bolesnych skurczów.',
     link: localizeHref('/rozciaganie-przy-kurczach', lang, routing),
   },
   {
+    key: 'magnesium_rich_foods.png',
     image: '/img/magnesium_rich_foods.png',
     title: lang === 'en' ? 'Diet & Minerals' : 'Dieta i minerały',
     desc: lang === 'en' ? 'Nuts, pumpkin seeds, dark chocolate, and spinach — natural magnesium sources supporting muscles.' : 'Orzechy, pestki dyni, ciemna czekolada i szpinak — naturalne źródła magnezu wspierające mięśnie.',
     link: localizeHref('/niedobor-magnezu', lang, routing),
   },
   {
+    key: 'leg_massage_relief.png',
     image: '/img/leg_massage_relief.png',
     title: lang === 'en' ? 'Massage & Physical Therapy' : 'Masaż i terapia fizyczna',
     desc: lang === 'en' ? 'Targeted myofascial massage and manual therapy promote fast recovery after acute cramps.' : 'Okrężny masaż powięziowy i terapia manualna wspomagają szybki powrót do sprawności po ostrym kurczu.',
     link: localizeHref('/masaz-przy-kurczach', lang, routing),
   },
   {
+    key: 'vibroacoustic_therapy.png',
     image: '/img/vibroacoustic_therapy.png',
     title: lang === 'en' ? 'Modern Vibroacoustics' : 'Nowoczesna wibroakustyka',
     desc: lang === 'en' ? 'Low-frequency sound waves stimulate microcirculation and relax deep muscle tissues.' : 'Fale dźwiękowe o niskich częstotliwościach stymulują mikrokrążenie i rozluźniają głębokie partie mięśni.',
@@ -121,10 +126,11 @@ const galleryItems = [
               class="group flex flex-col overflow-hidden rounded-[10px] border border-line bg-card transition-all duration-200 hover:-translate-y-1 hover:border-accent-border hover:shadow-lg"
             >
               <div class="aspect-[4/3] overflow-hidden bg-navy">
-                <img
+                <GeometrizedPhoto
+                  client:visible
+                  imageKey={item.key as any}
                   src={item.image}
                   alt={item.title}
-                  loading="lazy"
                   class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
                 />
               </div>

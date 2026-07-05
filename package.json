@@ -15,6 +15,7 @@
     "@astrojs/sitemap": "^3.7.3",
     "@astrojs/svelte": "^7.2.5",
     "@fontsource-variable/source-serif-4": "^5.2.9",
+    "@nomideusz/svelte-geometrize": "link:/home/nom/dev/apps/asini/packages/svelte-geometrize",
     "@nomideusz/svelte-i18n": "link:/home/nom/dev/apps/asini/packages/svelte-i18n",
     "astro": "^5.18.2",
     "nodemailer": "^9.0.1",

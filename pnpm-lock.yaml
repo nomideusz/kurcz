@@ -20,6 +20,9 @@ importers:
       '@fontsource-variable/source-serif-4':
         specifier: ^5.2.9
         version: 5.2.9
+      '@nomideusz/svelte-geometrize':
+        specifier: link:/home/nom/dev/apps/asini/packages/svelte-geometrize
+        version: link:../asini/packages/svelte-geometrize
       '@nomideusz/svelte-i18n':
         specifier: link:/home/nom/dev/apps/asini/packages/svelte-i18n
         version: link:../asini/packages/svelte-i18n
