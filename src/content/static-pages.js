@@ -79,7 +79,7 @@ export const staticPages = {
       },
       {
         heading: 'Konsultacja lekarska',
-        body: 'W przypadku problemów zdrowotnych, nawracających kurczy mięśniowych, silnego bólu lub objawów towarzyszących zawsze skonsultuj się z lekarzem lub fizjoterapeutą. Nie stosuj informacji ze strony jako substytutu profesjonalnej opieki medycznej.',
+        body: 'W przypadku problemów zdrowotnych, nawracających kurczy mięśniowych, silnego ból lub objawów towarzyszących zawsze skonsultuj się z lekarzem lub fizjoterapeutą. Nie stosuj informacji ze strony jako substytutu profesjonalnej opieki medycznej.',
       },
       {
         heading: 'Leki i suplementy',
@@ -93,6 +93,84 @@ export const staticPages = {
   },
 };
 
-export function getStaticPage(path) {
+export const staticPagesEn = {
+  '/o-nas': {
+    h1: 'About Us — Kurcz.pl',
+    title: 'About Us — Kurcz.pl',
+    description: 'Learn about the mission of Kurcz.pl — an educational portal dedicated to muscle cramp prevention and treatment.',
+    breadcrumbLabel: 'About Us',
+    sections: [
+      {
+        heading: 'Our Mission',
+        body: 'Kurcz.pl is an educational hub on muscle cramps — their causes, symptoms, first aid, and long-term prevention. Our goal is to provide evidence-based, easily understandable information.',
+      },
+      {
+        heading: 'Who We Write For',
+        body: 'We create content for anyone affected by muscle cramps — athletes, physical workers, seniors, pregnant women, and health-conscious individuals.',
+      },
+      {
+        heading: 'Partners & Collaboration',
+        body: 'We collaborate with experts in physiotherapy, vibroacoustics, and yoga. Check out our partner links: Vibroacoustics.ai, Kompi.pl, Intertech Poland, and Yoga Schools.',
+      },
+    ],
+  },
+  '/regulamin': {
+    h1: 'Terms of Service — Kurcz.pl',
+    title: 'Terms of Service — Kurcz.pl',
+    description: 'Terms of Service for Kurcz.pl — terms of use, liabilities, and user rights.',
+    breadcrumbLabel: 'Terms of Service',
+    sections: [
+      {
+        heading: 'General Terms',
+        body: 'Kurcz.pl provides educational materials regarding muscle cramps. Using the website implies acceptance of these Terms.',
+      },
+      {
+        heading: 'Educational Purpose',
+        body: 'All content published on the site is strictly for informational purposes and does not constitute medical advice or diagnosis.',
+      },
+      {
+        heading: 'Copyright',
+        body: 'All content and graphics are protected by copyright laws.',
+      },
+    ],
+  },
+  '/polityka-prywatnosci': {
+    h1: 'Privacy Policy — Kurcz.pl',
+    title: 'Privacy Policy — Kurcz.pl',
+    description: 'Privacy Policy of Kurcz.pl — information on personal data processing and cookies.',
+    breadcrumbLabel: 'Privacy Policy',
+    sections: [
+      {
+        heading: 'Data Administrator',
+        body: 'Personal data submitted via the contact form is processed solely to respond to user inquiries.',
+      },
+      {
+        heading: 'Cookies & Analytics',
+        body: 'We use cookies and privacy-respecting analytics to improve user experience.',
+      },
+    ],
+  },
+  '/disclaimer-medyczny': {
+    h1: 'Medical Disclaimer — Kurcz.pl',
+    title: 'Medical Disclaimer — Kurcz.pl',
+    description: 'Medical Disclaimer for Kurcz.pl — educational content does not replace professional medical advice.',
+    breadcrumbLabel: 'Medical Disclaimer',
+    sections: [
+      {
+        heading: 'Educational Nature of Content',
+        body: 'All articles on Kurcz.pl are strictly educational and do not constitute clinical diagnosis or treatment plans.',
+      },
+      {
+        heading: 'Medical Consultation Required',
+        body: 'If you suffer from severe or recurring cramps, consult a doctor or licensed healthcare professional.',
+      },
+    ],
+  },
+};
+
+export function getStaticPage(path, locale = 'pl') {
+  if (locale === 'en') {
+    return staticPagesEn[path] ?? staticPages[path] ?? null;
+  }
   return staticPages[path] ?? null;
 }

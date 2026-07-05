@@ -1,53 +1,65 @@
 ---
 import Logo from './Logo.astro';
+import LanguageSwitcher from './LanguageSwitcher.svelte';
+import { extractLocale, localizeHref, routing, t } from '../i18n/config.ts';
 
 const { currentPath = '/' } = Astro.props;
+const { locale, pathname } = extractLocale(currentPath, routing);
 
 const nav = [
-  { path: '/kurcze-miesniowe', label: 'przyczyny' },
-  { path: '/pierwsza-pomoc', label: 'pierwsza pomoc' },
-  { path: '/profilaktyka', label: 'profilaktyka' },
-  { path: '/poradniki', label: 'poradniki' },
-  { path: '/faq', label: 'faq' },
+  { path: '/kurcze-miesniowe', key: 'nav.causes' },
+  { path: '/pierwsza-pomoc', key: 'nav.first_aid' },
+  { path: '/profilaktyka', key: 'nav.prevention' },
+  { path: '/poradniki', key: 'nav.guides' },
+  { path: '/faq', key: 'nav.faq' },
 ];
 
+const homeHref = localizeHref('/', locale, routing);
+const contactHref = localizeHref('/kontakt', locale, routing);
+
 const isActive = (path) =>
-  path === '/' ? currentPath === '/' : currentPath.startsWith(path);
+  path === '/' ? pathname === '/' : pathname.startsWith(path);
 ---
 
 <header
   class="sticky top-0 z-40 border-b border-line bg-paper/90 backdrop-blur supports-[backdrop-filter]:bg-paper/80"
 >
   <div class="mx-auto flex h-[70px] max-w-7xl items-center justify-between px-5 sm:px-14">
-    <a href="/" aria-label="Kurcz.pl — strona główna">
+    <a href={homeHref} aria-label="Kurcz.pl — strona główna">
       <Logo class="text-[25px]" />
     </a>
 
     <nav class="hidden items-center gap-7 text-[15.5px] md:flex" aria-label="Główna nawigacja">
       {
-        nav.map((item) => (
-          <a
-            href={item.path}
-            class:list={[
-              'transition-colors',
-              isActive(item.path)
-                ? 'border-b-2 border-accent pb-0.5 font-medium text-ink'
-                : 'text-body hover:text-ink',
-            ]}
-            aria-current={isActive(item.path) ? 'page' : undefined}
-          >
-            {item.label}
-          </a>
-        ))
+        nav.map((item) => {
+          const href = localizeHref(item.path, locale, routing);
+          const label = t(locale, item.key);
+          return (
+            <a
+              href={href}
+              class:list={[
+                'transition-colors',
+                isActive(item.path)
+                  ? 'border-b-2 border-accent pb-0.5 font-medium text-ink'
+                  : 'text-body hover:text-ink',
+              ]}
+              aria-current={isActive(item.path) ? 'page' : undefined}
+            >
+              {label}
+            </a>
+          );
+        })
       }
     </nav>
 
     <div class="flex items-center gap-3">
+      <LanguageSwitcher client:load currentPath={currentPath} currentLocale={locale} />
+
       <a
-        href="/kontakt"
-        class="hidden rounded border border-ink px-[18px] py-[9px] text-sm font-medium text-ink transition-colors hover:bg-ink hover:text-paper sm:inline-block"
+        href={contactHref}
+        class="hidden h-[38px] items-center justify-center rounded border border-ink px-[18px] text-sm font-medium leading-none text-ink transition-colors hover:bg-ink hover:text-paper sm:inline-flex"
       >
-        kontakt
+        {t(locale, 'nav.contact')}
       </a>
 
       <button
@@ -71,18 +83,22 @@ const isActive = (path) =>
     aria-label="Nawigacja mobilna"
   >
     {
-      [...nav, { path: '/kontakt', label: 'kontakt' }].map((item) => (
-        <a
-          href={item.path}
-          class:list={[
-            'block border-b border-line-soft py-3 text-base last:border-b-0',
-            isActive(item.path) ? 'font-medium text-accent' : 'text-body',
-          ]}
-          aria-current={isActive(item.path) ? 'page' : undefined}
-        >
-          {item.label}
-        </a>
-      ))
+      [...nav, { path: '/kontakt', key: 'nav.contact' }].map((item) => {
+        const href = localizeHref(item.path, locale, routing);
+        const label = t(locale, item.key);
+        return (
+          <a
+            href={href}
+            class:list={[
+              'block border-b border-line-soft py-3 text-base last:border-b-0',
+              isActive(item.path) ? 'font-medium text-accent' : 'text-body',
+            ]}
+            aria-current={isActive(item.path) ? 'page' : undefined}
+          >
+            {label}
+          </a>
+        );
+      })
     }
   </nav>
 </header>

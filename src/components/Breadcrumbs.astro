@@ -1,9 +1,16 @@
 ---
-const { route } = Astro.props;
+import { extractLocale, localizeHref, routing, t } from '../i18n/config.ts';
 
-const crumbs = [{ path: '/', label: 'strona główna' }];
+const { route, currentPath = route?.path ?? '/' } = Astro.props;
+const { locale } = extractLocale(currentPath, routing);
+
+const homeHref = localizeHref('/', locale, routing);
+const homeLabel = t(locale, 'nav.home');
+
+const crumbs = [{ path: homeHref, label: homeLabel }];
 if (route.hubPath && route.hubLabel) {
-  crumbs.push({ path: route.hubPath, label: route.hubLabel.toLowerCase() });
+  const hubHref = localizeHref(route.hubPath, locale, routing);
+  crumbs.push({ path: hubHref, label: route.hubLabel.toLowerCase() });
 }
 const current = (route.breadcrumbLabel ?? route.h1).toLowerCase();
 ---
@@ -11,7 +18,7 @@ const current = (route.breadcrumbLabel ?? route.h1).toLowerCase();
 {
   route.path !== '/' && (
     <nav
-      aria-label="Ścieżka okruszków"
+      aria-label={locale === 'en' ? 'Breadcrumb navigation' : 'Ścieżka okruszków'}
       class="mx-auto max-w-7xl px-5 pt-10 font-mono text-[12.5px] text-faint sm:px-14"
     >
       {crumbs.map((c) => (

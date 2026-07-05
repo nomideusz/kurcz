@@ -1,0 +1,34 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Shell from '../../components/Shell.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import FaqAccordion from '../../components/FaqAccordion.astro';
+import { getRouteByPath } from '../../seo/routes.js';
+import { getFaqItems } from '../../seo/faq-data.js';
+import { LOCALES, DEFAULT_LOCALE, t, type SupportedLocale } from '../../i18n/config.ts';
+import { getLocalizedRoute } from '../../i18n/content.ts';
+
+export function getStaticPaths() {
+  const secondaryLocales = LOCALES.filter((l) => l !== DEFAULT_LOCALE);
+  return secondaryLocales.map((lang) => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params as { lang: SupportedLocale };
+const currentPath = `/${lang}/faq`;
+const rawRoute = getRouteByPath('/faq');
+const route = getLocalizedRoute(rawRoute, lang);
+
+const localizedFaqItems = getFaqItems(lang);
+---
+
+<Layout route={route} lang={lang}>
+  <Shell currentPath={currentPath}>
+    <Breadcrumbs route={route} currentPath={currentPath} />
+    <PageHeader
+      title={route.h1}
+      intro={t(lang, 'faq.intro')}
+    />
+    <FaqAccordion items={localizedFaqItems} heading={t(lang, 'faq.title')} />
+  </Shell>
+</Layout>

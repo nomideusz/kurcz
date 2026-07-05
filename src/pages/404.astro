@@ -1,31 +1,34 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Shell from '../components/Shell.astro';
+import { extractLocale, localizeHref, routing, t } from '../i18n/config.ts';
+
+const { locale } = extractLocale(Astro.url.pathname, routing);
 
 const route = {
   path: '/404',
   type: 'static',
-  h1: 'Strona nie została znaleziona',
+  h1: t(locale, '404.title'),
   breadcrumbLabel: '404',
-  title: 'Strona nie znaleziona (404) | Kurcz.pl',
-  description: 'Nie znaleźliśmy tej strony. Wróć na stronę główną lub przejrzyj poradniki o kurczach mięśniowych.',
+  title: `${t(locale, '404.title')} (404) | Kurcz.pl`,
+  description: t(locale, '404.p'),
 };
 ---
 
 <Layout route={route}>
   <Shell currentPath="/404">
     <section class="mx-auto max-w-2xl px-5 py-28 text-center sm:px-14">
-      <p class="eyebrow text-accent">błąd 404</p>
-      <h1 class="mt-4 text-4xl text-ink sm:text-5xl">Strona nie została znaleziona</h1>
+      <p class="eyebrow text-accent">błąd 404 / error 404</p>
+      <h1 class="mt-4 text-4xl text-ink sm:text-5xl">{t(locale, '404.title')}</h1>
       <p class="mt-5 text-lg leading-relaxed text-body">
-        Strona, której szukasz, nie istnieje lub została przeniesiona.
+        {t(locale, '404.p')}
       </p>
       <div class="mt-8 flex flex-wrap justify-center gap-3.5">
-        <a href="/" class="rounded-md bg-accent px-[26px] py-[15px] text-[15px] font-medium text-paper hover:bg-accent-light">
-          strona główna
+        <a href={localizeHref('/', locale, routing)} class="rounded-md bg-accent px-[26px] py-[15px] text-[15px] font-medium text-paper hover:bg-accent-light">
+          {t(locale, '404.home_btn')}
         </a>
-        <a href="/poradniki" class="rounded-md border border-[#cfc6b5] px-[22px] py-[15px] text-[15px] font-medium text-ink hover:border-ink">
-          poradniki
+        <a href={localizeHref('/poradniki', locale, routing)} class="rounded-md border border-[#cfc6b5] px-[22px] py-[15px] text-[15px] font-medium text-ink hover:border-ink">
+          {t(locale, '404.guides_btn')}
         </a>
       </div>
     </section>

@@ -1,0 +1,163 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Shell from '../../components/Shell.astro';
+import ContentSections from '../../components/ContentSections.astro';
+import FaqAccordion from '../../components/FaqAccordion.astro';
+import RelatedLinks from '../../components/RelatedLinks.astro';
+import Toc from '../../components/Toc.astro';
+
+import { topicRoutes, staticRoutes } from '../../seo/routes.js';
+import { landingRoutes, getLandingPage } from '../../content/landing-pages.js';
+import { getStaticPage } from '../../content/static-pages.js';
+import { getTopicPageContent } from '../../content/topic-pages.js';
+import { getTopicFaq } from '../../seo/topic-faq.js';
+import { LOCALES, DEFAULT_LOCALE, t, localizeHref, routing, type SupportedLocale } from '../../i18n/config.ts';
+import { getLocalizedRoute } from '../../i18n/content.ts';
+
+export function getStaticPaths() {
+  const secondaryLocales = LOCALES.filter((l) => l !== DEFAULT_LOCALE);
+  const topicContentRoutes = topicRoutes.filter(
+    (r) => !['/', '/faq', '/kontakt'].includes(r.path)
+  );
+
+  const entries = [
+    ...topicContentRoutes.map((route) => ({ route, kind: 'topic' })),
+    ...landingRoutes.map((route) => ({ route, kind: 'landing' })),
+    ...staticRoutes.map((route) => ({ route, kind: 'static' })),
+  ];
+
+  return secondaryLocales.flatMap((lang) =>
+    entries.map(({ route, kind }) => ({
+      params: { lang, slug: route.path.slice(1) },
+      props: { route, kind, lang },
+    }))
+  );
+}
+
+const { route: rawRoute, kind, lang } = Astro.props as { route: any; kind: string; lang: SupportedLocale };
+const route = getLocalizedRoute(rawRoute, lang);
+const currentPath = `/${lang}${route.path}`;
+
+let intro = '';
+let sections: any[] = [];
+let faq: any[] = [];
+let relatedLinks: any[] = [];
+
+if (kind === 'topic') {
+  const content = getTopicPageContent(route.path, lang);
+  intro = content?.intro ?? '';
+  sections = content?.sections ?? [];
+  faq = getTopicFaq(route.path, lang) ?? [];
+  relatedLinks = content?.relatedLinks ?? [];
+} else if (kind === 'landing') {
+  const page = getLandingPage(route.path, lang);
+  if (page) {
+    route.h1 = page.h1;
+    route.title = page.title;
+    route.description = page.description;
+    route.breadcrumbLabel = page.h1.split(' — ')[0] ?? page.h1;
+    intro = page.intro ?? '';
+    sections = page.sections ?? [];
+    faq = page.faq ?? [];
+    relatedLinks = page.relatedLinks ?? [];
+  }
+} else if (kind === 'static') {
+  const page = getStaticPage(route.path, lang);
+  if (page) {
+    route.h1 = page.h1;
+    route.title = page.title;
+    route.description = page.description;
+    route.breadcrumbLabel = page.breadcrumbLabel ?? route.breadcrumbLabel;
+    sections = page.sections ?? [];
+  }
+}
+
+// Localize links in related links
+const localizedRelatedLinks = relatedLinks.map((link) => ({
+  ...link,
+  path: localizeHref(link.path, lang, routing),
+}));
+
+// Crumbs
+const crumbs = [{ path: localizeHref('/', lang, routing), label: t(lang, 'nav.home') }];
+if (route.hubPath && route.hubLabel) {
+  crumbs.push({ path: localizeHref(route.hubPath, lang, routing), label: route.hubLabel.toLowerCase() });
+}
+
+// Reading-time estimate
+const wordCount = (
+  intro +
+  ' ' +
+  sections.map((s: any) => `${s.heading ?? ''} ${s.body ?? ''} ${(s.bullets ?? []).join(' ')}`).join(' ')
+)
+  .trim()
+  .split(/\s+/)
+  .filter(Boolean).length;
+const readMin = Math.max(2, Math.round(wordCount / 200));
+
+const hasToc = sections.filter((s: any) => s.heading).length >= 3;
+const eyebrow = (route.breadcrumbLabel ?? route.h1).toLowerCase();
+---
+
+<Layout route={route} lang={lang}>
+  <Shell currentPath={currentPath}>
+    <!-- ARTICLE HEADER -->
+    <section class="border-b border-line">
+      <div class="mx-auto max-w-7xl px-5 py-12 sm:px-14">
+        <nav aria-label="Breadcrumb navigation" class="mb-7 font-mono text-[12.5px] text-faint">
+          {
+            crumbs.map((c) => (
+              <>
+                <a href={c.path} class="text-faint hover:text-ink">{c.label}</a>
+                <span class="mx-1.5 text-[#c3b7a2]">/</span>
+              </>
+            ))
+          }
+          <span class="text-accent">{eyebrow}</span>
+        </nav>
+
+        <div class="max-w-[760px]">
+          <div class="eyebrow mb-4 text-accent">{eyebrow}</div>
+          <h1 class="text-4xl leading-[1.05] text-ink sm:text-5xl lg:text-[58px] lg:leading-[1.04]">
+            {route.h1}
+          </h1>
+          {intro && <p class="mt-5 text-lg leading-relaxed text-body sm:text-[19px]">{intro}</p>}
+        </div>
+        <div class="mt-7 flex gap-7 font-mono text-[12.5px] text-faint">
+          <span>{t(lang, 'reading_time', { min: readMin })}</span>
+          <span class="text-[#c3b7a2]">·</span>
+          <span>{t(lang, 'last_updated', { year: '2026' })}</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- BODY: TOC + ARTICLE -->
+    <section
+      class:list={[
+        'mx-auto max-w-7xl gap-14 px-5 py-12 sm:px-14',
+        hasToc ? 'lg:grid lg:grid-cols-[240px_1fr]' : '',
+      ]}
+    >
+      {hasToc && <Toc sections={sections} />}
+      <article class="max-w-[720px]">
+        <ContentSections sections={sections} />
+        <p class="mt-12 border-t border-line pt-6 font-serif text-[13px] leading-relaxed text-faint italic">
+          {t(lang, 'disclaimer.text')}
+        </p>
+      </article>
+    </section>
+
+    {
+      faq.length > 0 && (
+        <section class="mx-auto max-w-7xl px-5 pb-12 sm:px-14">
+          <div class="grid gap-12 lg:grid-cols-[0.7fr_1.3fr]">
+            <h2 class="text-3xl text-ink sm:text-[34px]">{t(lang, 'faq.title')}</h2>
+            <FaqAccordion items={faq} bare />
+          </div>
+        </section>
+      )
+    }
+
+    <RelatedLinks links={localizedRelatedLinks} />
+  </Shell>
+</Layout>

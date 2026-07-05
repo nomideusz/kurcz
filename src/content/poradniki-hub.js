@@ -1,15 +1,14 @@
-import { landingPages } from './landing-pages.js';
-
-/** @typedef {{ path: string, title: string, description: string }} GuideCard */
-/** @typedef {{ title: string, description: string, guides: GuideCard[] }} GuideCategory */
+import { getLandingPage } from './landing-pages.js';
 
 export const poradnikiHubPath = '/poradniki';
 
-/** @type {{ title: string, description: string, paths: string[] }[]} */
 const categoryDefinitions = [
   {
-    title: 'Kurcze według lokalizacji i sytuacji',
-    description: 'Dolegliwości w konkretnych partiach ciała oraz w charakterystycznych okolicznościach — noc, sport, ciąża, starzenie.',
+    title: { pl: 'Kurcze według lokalizacji i sytuacji', en: 'Cramps by Location & Context' },
+    description: {
+      pl: 'Dolegliwości w konkretnych partiach ciała oraz w charakterystycznych okolicznościach — noc, sport, ciąża, starzenie.',
+      en: 'Muscle cramps in specific body areas and situations — night, sports, pregnancy, aging.',
+    },
     paths: [
       '/kurcze-nog',
       '/kurcze-lydek',
@@ -22,19 +21,25 @@ const categoryDefinitions = [
     ],
   },
   {
-    title: 'Przyczyny i czynniki ryzyka',
-    description: 'Co może wywoływać kurcze mięśniowe — niedobory minerałów, odwodnienie i wpływ leków.',
+    title: { pl: 'Przyczyny i czynniki ryzyka', en: 'Causes & Risk Factors' },
+    description: {
+      pl: 'Co może wywoływać kurcze mięśniowe — niedobory minerałów, odwodnienie i wpływ leków.',
+      en: 'What causes muscle cramps — mineral deficiencies, dehydration, and medication side effects.',
+    },
     paths: ['/niedobor-magnezu', '/kurcze-a-odwodnienie', '/kurcze-a-leki'],
   },
   {
-    title: 'Metody ulgi i profilaktyki',
-    description: 'Praktyczne techniki rozciągania, masażu oraz bezpieczna suplementacja magnezem.',
+    title: { pl: 'Metody ulgi i profilaktyki', en: 'Relief & Prevention Methods' },
+    description: {
+      pl: 'Praktyczne techniki rozciągania, masażu oraz bezpieczna suplementacja magnezem.',
+      en: 'Practical stretching techniques, therapeutic massage, and magnesium supplementation.',
+    },
     paths: ['/rozciaganie-przy-kurczach', '/masaz-przy-kurczach', '/suplementacja-magnezem'],
   },
 ];
 
-function toGuideCard(path) {
-  const page = landingPages.find((entry) => entry.path === path);
+function toGuideCard(path, locale = 'pl') {
+  const page = getLandingPage(path, locale);
   if (!page) {
     return null;
   }
@@ -46,12 +51,13 @@ function toGuideCard(path) {
   };
 }
 
-/** @type {GuideCategory[]} */
-export const poradnikiCategories = categoryDefinitions.map((category) => ({
-  title: category.title,
-  description: category.description,
-  guides: category.paths.map(toGuideCard).filter(Boolean),
-}));
+export function getPoradnikiCategories(locale = 'pl') {
+  return categoryDefinitions.map((category) => ({
+    title: category.title[locale] ?? category.title.pl,
+    description: category.description[locale] ?? category.description.pl,
+    guides: category.paths.map((p) => toGuideCard(p, locale)).filter(Boolean),
+  }));
+}
 
 export const poradnikiHub = {
   path: poradnikiHubPath,
@@ -60,12 +66,32 @@ export const poradnikiHub = {
   description: 'Przegląd poradników Kurcz.pl: kurcze łydek i stóp, kurcze nocne, niedobór magnezu, rozciąganie, masaż i profilaktyka dla sportowców, kobiet w ciąży i seniorów.',
   breadcrumbLabel: 'Poradniki',
   intro:
-    'Zebraliśmy praktyczne artykuły pod konkretne pytania o kurcze mięśniowe — od bolesnych skurczów łydek w nocy po profilaktykę u sportowców. Wybierz temat i poznaj przyczyny, pierwszą pomoc oraz sposoby zapobiegania nawrotom.',
-  categories: poradnikiCategories,
+    'Zebraliśmy practical artykuły pod konkretne pytania o kurcze mięśniowe — od bolesnych skurczów łydek w nocy po profilaktykę u sportowców. Wybierz temat i poznaj przyczyny, pierwszą pomoc oraz sposoby zapobiegania nawrotom.',
+  categories: getPoradnikiCategories('pl'),
 };
 
-export function getPoradnikiHub() {
-  return poradnikiHub;
+export const poradnikiHubEn = {
+  path: poradnikiHubPath,
+  h1: 'Muscle Cramp Guides',
+  title: 'Muscle Cramp Guides — Practical Articles | Kurcz.pl',
+  description: 'Overview of Kurcz.pl guides: leg and foot cramps, night cramps, magnesium deficiency, stretching, massage, and prevention.',
+  breadcrumbLabel: 'Guides',
+  intro:
+    'Practical guides answering common questions about muscle cramps — from painful nighttime calf cramps to athletic prevention. Choose a topic below to discover causes, first aid, and prevention.',
+  categories: getPoradnikiCategories('en'),
+};
+
+export function getPoradnikiHub(locale = 'pl') {
+  if (locale === 'en') {
+    return {
+      ...poradnikiHubEn,
+      categories: getPoradnikiCategories('en'),
+    };
+  }
+  return {
+    ...poradnikiHub,
+    categories: getPoradnikiCategories('pl'),
+  };
 }
 
 export const poradnikiHubRoute = {

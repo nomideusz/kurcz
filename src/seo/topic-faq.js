@@ -44,6 +44,54 @@ export const topicFaqByPath = {
   ],
 };
 
-export function getTopicFaq(path) {
+export const topicFaqEnByPath = {
+  '/kurcze-miesniowe': [
+    {
+      question: 'What are muscle cramps?',
+      answer: 'Muscle cramps are sudden, involuntary, and usually painful muscle contractions. They can affect any muscle group, most commonly calves, feet, thighs, or back.',
+    },
+    {
+      question: 'What are the most common causes of cramps?',
+      answer: 'Common causes include dehydration, electrolyte imbalances (magnesium, potassium, calcium), muscle strain, prolonged static posture, and certain medications.',
+    },
+    {
+      question: 'Are muscle cramps dangerous?',
+      answer: 'Isolated, brief cramps are usually harmless. Regular, severe, or persistent cramps warrant medical evaluation to rule out systemic conditions.',
+    },
+  ],
+  '/pierwsza-pomoc': [
+    {
+      question: 'What should you do first during a muscle cramp?',
+      answer: 'Stop physical activity, gently stretch the muscle in the opposite direction of the contraction, massage the area, and rehydrate with electrolyte water.',
+    },
+    {
+      question: 'Should you apply heat or cold to a cramp?',
+      answer: 'For acute, severe pain, cold application for 10–15 minutes can help. Use heat after the acute pain subsides or for recurrent muscle tightness.',
+    },
+    {
+      question: 'How long does a typical muscle cramp last?',
+      answer: 'Most cramps last from a few seconds to a few minutes. If a cramp persists for longer than 10 minutes despite stretching, seek medical care.',
+    },
+  ],
+  '/profilaktyka': [
+    {
+      question: 'How to prevent muscle cramps daily?',
+      answer: 'Maintain proper hydration, eat a diet rich in magnesium and potassium, stretch daily, avoid prolonged static postures, and exercise moderately.',
+    },
+    {
+      question: 'Does magnesium supplementation prevent cramps?',
+      answer: 'Magnesium supplements help individuals with a documented deficiency, but should be discussed with a doctor and do not replace a balanced diet.',
+    },
+    {
+      question: 'How to prevent night cramps?',
+      answer: 'Perform calf stretches before sleep, ensure loose bedding that does not compress feet, and maintain consistent daytime hydration.',
+    },
+  ],
+};
+
+export function getTopicFaq(path, locale = 'pl') {
+  if (locale === 'en') {
+    return topicFaqEnByPath[path] ?? null;
+  }
   return topicFaqByPath[path] ?? null;
 }

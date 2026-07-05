@@ -28,3 +28,39 @@ export const faqItems = [
     answer: 'Tak, do grup zawodowych o podwyższonym ryzyku kurczy mięśniowych należą: pracownicy fizyczni wykonujący powtarzalne ruchy (np. operatorzy maszyn, kasjerzy), osoby pracujące w pozycji statycznej przez długi czas (programiści, kierowcy, pracownicy biurowi), zawodnicy sportów wytrzymałościowych, muzycy (szczególnie instrumentaliści), pracownicy pracujący w wysokich temperaturach (hutnicy, piekarze, kucharze) oraz osoby narażone na silny stres (menedżerowie, pracownicy służb ratunkowych). Dla każdej z tych grup istnieją dedykowane strategie profilaktyczne.',
   },
 ];
+
+export const faqItemsEn = [
+  {
+    question: 'What is the difference between a muscle cramp and a muscle spasm?',
+    answer: 'While used interchangeably in casual speech, they differ medically. A cramp is a sudden, involuntary, and painful muscle contraction (e.g. calf or foot cramp). A spasm is a broader physiological term for any muscle contraction, whether voluntary or involuntary. All cramps are spasms, but not all spasms are cramps.',
+  },
+  {
+    question: 'When do muscle cramps require medical consultation?',
+    answer: 'Seek medical advice if cramps last longer than 10 minutes despite stretching, occur multiple times a week, cause severe pain or swelling, affect multiple muscle groups simultaneously, or are accompanied by numbness, tingling, or weakness.',
+  },
+  {
+    question: 'Which medications can cause muscle cramps as a side effect?',
+    answer: 'Common medications linked to muscle cramps include statins (cholesterol-lowering), diuretics, beta-blockers, oral contraceptives, steroids, and certain psychiatric medications. Consult your doctor before altering your prescription.',
+  },
+  {
+    question: 'Can nighttime cramps be effectively eliminated?',
+    answer: 'Yes. Nighttime cramps can often be managed by bedtime stretching (calves and feet), sleeping with loose bedding to avoid foot plantar flexion, staying hydrated during the day, and supplementing magnesium under medical guidance.',
+  },
+  {
+    question: 'How are muscle cramps linked to vitamin deficiencies?',
+    answer: 'Deficiencies in B-complex vitamins (especially B6 and B12), vitamin D, and vitamin E can increase neural excitability and muscle cramps. Blood panels can identify specific vitamin deficiencies.',
+  },
+  {
+    question: 'How does vibroacoustic therapy help with muscle cramps?',
+    answer: 'Vibroacoustic therapy uses low-frequency soundwaves (20–120 Hz) to produce deep micro-vibrations in tissue. This enhances microcirculation, promotes muscle relaxation, speeds up metabolic waste removal, and reduces pain sensitivity.',
+  },
+  {
+    question: 'Are certain occupations at higher risk for muscle cramps?',
+    answer: 'Yes. Physically demanding jobs with repetitive movements, static desk jobs, endurance sports, musicians, and outdoor workers in high heat have elevated cramp risks due to muscle strain and fluid loss.',
+  },
+];
+
+export function getFaqItems(locale = 'pl') {
+  if (locale === 'en') return faqItemsEn;
+  return faqItems;
+}

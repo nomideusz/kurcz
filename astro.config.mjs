@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig, fontProviders } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
+import svelte from '@astrojs/svelte';
 import netlify from '@astrojs/netlify';
 import tailwindcss from '@tailwindcss/vite';
 
@@ -21,7 +22,15 @@ export default defineConfig({
     sitemap({
       changefreq: 'weekly',
       lastmod: new Date(),
+      i18n: {
+        defaultLocale: 'pl',
+        locales: {
+          pl: 'pl',
+          en: 'en',
+        },
+      },
     }),
+    svelte(),
   ],
   // Self-host Source Serif 4, subset to glyphs we actually use (Latin + Polish, weight
   // 400 only). Drops ~222 KB of variable font to a few KB so the H1 (LCP) no longer

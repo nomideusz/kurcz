@@ -277,6 +277,248 @@ export const topicPagesContent = {
   },
 };
 
-export function getTopicPageContent(path) {
+export const topicPagesContentEn = {
+  '/kurcze-miesniowe': {
+    intro: `Muscle cramps are involuntary, often painful muscle contractions that can affect anyone. Discover their medical causes, risk factors, and proven prevention and treatment methods.`,
+    sections: [
+      {
+        heading: `Causes of Muscle Cramps`,
+        body: ``,
+        bullets: [
+          `Dehydration and electrolyte imbalances`,
+          `Mineral deficiencies (magnesium, potassium, calcium, sodium)`,
+          `Excessive muscle fatigue and strain`,
+          `Prolonged static body postures`,
+        ],
+      },
+      {
+        heading: `Recognizing Symptoms`,
+        body: ``,
+        bullets: [
+          `Sudden, sharp muscle pain`,
+          `Visible hardening and tightness of the muscle`,
+          `Short-term restriction of mobility`,
+          `Residual soreness after the cramp subsides`,
+        ],
+      },
+      {
+        heading: `High-Risk Groups`,
+        body: ``,
+        bullets: [
+          `Athletes and physically active individuals`,
+          `Seniors over 65 years old`,
+          `Pregnant women (especially third trimester)`,
+          `Patients with metabolic conditions (diabetes)`,
+        ],
+      },
+      {
+        heading: `Experiencing Painful Muscle Cramps?`,
+        body: `Below you will find expert information on causes, first aid, and long-term cramp prevention. Apply these techniques for fast relief and to avoid future recurrences.`,
+      },
+    ],
+    relatedLinks: [
+      { path: '/kurcze-nog', label: 'Leg Cramps' },
+      { path: '/pierwsza-pomoc', label: 'First Aid' },
+      { path: '/profilaktyka', label: 'Prevention' },
+    ],
+  },
+
+  '/pierwsza-pomoc': {
+    intro: `Discover proven quick relief techniques to immediately ease pain and discomfort during a muscle cramp. A swift response is key to managing cramps effectively.`,
+    sections: [
+      {
+        heading: `Immediate Pain Relief`,
+        body: `Follow these 3 steps to rapidly interrupt a painful muscle cramp:`,
+        bullets: [
+          `Stretching techniques: Gently stretch the muscle by extending the limb and holding for 20-30 seconds while breathing deeply.`,
+          `Proper hydration: Replenish electrolytes by drinking water with mineral salts or an isotonic drink.`,
+          `Therapeutic massage: Perform gentle circular massage movements over the affected muscle, gradually increasing pressure until relaxed.`,
+        ],
+      },
+      {
+        heading: `Immediate Medical Consultation`,
+        body: `Seek medical attention if cramps last longer than 10 minutes, are severely painful, recur regularly, or present with swelling and redness.`,
+      },
+      {
+        heading: `Stretching Techniques`,
+        body: `Different stretching techniques apply depending on cramp location. For calf cramps: straighten leg and pull toes towards knee using a towel or strap. For thigh cramps: lie on back and pull knee to chest. For foot cramps: gently pull toes upwards. Stretching should be slow and gradual — never forceful.`,
+      },
+      {
+        heading: `Effective Massage`,
+        body: `When massaging a cramped muscle, start with light surface strokes before applying deeper pressure. Use thumbs for small circular motions around the tightest spot. Warm oil or muscle lotion can aid relaxation. Always stroke upwards towards the heart.`,
+      },
+      {
+        heading: `Heat and Cold Therapy`,
+        body: `Heat (37-40°C) works best for chronic tension and post-cramp recovery — apply for 15-20 minutes every 2-3 hours. Cold ice packs (wrapped in cloth) help acute inflammation — apply for 10-15 minutes with 1-hour breaks.`,
+      },
+      {
+        heading: `Proper Hydration`,
+        body: `For dehydration-related cramps, electrolyte-enriched beverages work fastest. Homemade isotonic recipe: 1L water, 1/2 tsp salt, 6 tsp sugar, lemon juice. Consume potassium-rich foods like bananas, nuts, and dairy.`,
+      },
+      {
+        heading: `Post-Cramp Recovery Exercises`,
+        body: `Once the acute cramp subsides, practice mild mobility exercises: foot alphabet tracing in air, slow wall squats, and toe flexion against resistance.`,
+      },
+      {
+        heading: `When to Contact a Doctor?`,
+        body: ``,
+        bullets: [
+          `Frequent, recurring cramps despite preventive measures`,
+          `Cramps lasting longer than 10 minutes`,
+          `Swelling, redness, or muscle weakness`,
+          `Cramps occurring after injury or accompanied by nerve symptoms`,
+        ],
+      },
+      {
+        heading: `Medical Disclaimer`,
+        body: `The information provided is for educational purposes only and does not replace professional medical consultation.`,
+      },
+    ],
+    relatedLinks: [
+      { path: '/kurcze-nog', label: 'Leg Cramps' },
+      { path: '/rozciaganie-przy-kurczach', label: 'Stretching for Cramps' },
+      { path: '/masaz-przy-kurczach', label: 'Massage for Cramps' },
+    ],
+  },
+
+  '/profilaktyka': {
+    intro: `Learn proven preventive strategies to avoid recurring muscle cramps. A complete approach combines healthy nutrition with regular stretching.`,
+    sections: [
+      {
+        heading: `Regular Hydration`,
+        body: `Drink at least 2 liters of water daily, increasing intake in hot weather or during exercise. Isotonic drinks help during intense physical strain.`,
+        bullets: [
+          `Drink small amounts throughout the day`,
+          `Monitor urine color — pale yellow indicates proper hydration`,
+        ],
+      },
+      {
+        heading: `Electrolyte-Rich Diet`,
+        body: `Include foods high in magnesium (dark chocolate, nuts, seeds), potassium (bananas, potatoes), and calcium (dairy, leafy greens).`,
+        bullets: [
+          `Eat regular, balanced meals`,
+          `Consider magnesium supplements after consulting a doctor`,
+        ],
+      },
+      {
+        heading: `Stretching Exercises`,
+        body: `Perform a 5-10 minute warm-up before workouts and 10-15 minutes of stretching afterward, focusing on calves, thighs, and feet.`,
+        bullets: [
+          `Hold each stretch for 20-30 seconds`,
+          `Stretch at least 3 times per week`,
+        ],
+      },
+      {
+        heading: `Proper Training Progression`,
+        body: `Increase training intensity by no more than 10% per week. Allow muscle recovery by scheduling rest days.`,
+        bullets: [
+          `Include 1-2 recovery days per week`,
+          `Listen to your body's fatigue signals`,
+        ],
+      },
+      {
+        heading: `Additional Preventive Tips`,
+        body: ``,
+        bullets: [
+          `Blood tests: Check electrolyte and mineral levels regularly (potassium, magnesium, calcium).`,
+          `Sleep hygiene: Ensure 7-8 hours of sleep. Elevating feet at night can prevent nocturnal calf cramps.`,
+          `Proper footwear: Supportive shoes reduce foot arch fatigue and cramp risk.`,
+          `Limit stimulants: Reduce alcohol, caffeine, and nicotine intake.`,
+        ],
+      },
+    ],
+    relatedLinks: [
+      { path: '/niedobor-magnezu', label: 'Magnesium Deficiency' },
+      { path: '/suplementacja-magnezem', label: 'Magnesium Supplementation' },
+      { path: '/kurcze-a-odwodnienie', label: 'Cramps and Dehydration' },
+    ],
+  },
+
+  '/kurcz-vs-skurcz': {
+    intro: `Many people use 'cramp' and 'spasm' interchangeably, but medically they represent distinct muscle contraction types.`,
+    sections: [
+      {
+        heading: `Muscle Cramp`,
+        body: ``,
+        bullets: [
+          `Sudden, involuntary, and painful muscle contraction`,
+          `Always involuntary and localized`,
+          `Common examples: calf cramp, foot cramp`,
+        ],
+      },
+      {
+        heading: `Muscle Spasm`,
+        body: ``,
+        bullets: [
+          `General physiological muscle contraction process`,
+          `Can be voluntary or involuntary`,
+          `Broader medical term including normal cardiac or uterine contractions`,
+        ],
+      },
+      {
+        heading: `Summary`,
+        body: `Every cramp is a type of spasm, but not every spasm is a cramp. Cramp specifically refers to involuntary, painful skeletal muscle contractions.`,
+      },
+    ],
+    relatedLinks: [
+      { path: '/kurcze-miesniowe', label: 'Muscle Cramps' },
+      { path: '/kurcze-nog', label: 'Leg Cramps' },
+      { path: '/faq', label: 'FAQ' },
+    ],
+  },
+
+  '/wibroakustyka': {
+    intro: `Discover a modern approach to cramp prevention and muscle recovery using advanced vibroacoustic soundwave therapy.`,
+    sections: [
+      {
+        heading: `How Vibroacoustic Therapy Works`,
+        body: `Vibroacoustics is an innovative therapeutic method utilizing calibrated sound frequencies and gentle vibrations to improve muscle function by:`,
+        bullets: [
+          `Increasing muscle tissue elasticity`,
+          `Reducing tension and preventing painful cramps`,
+          `Improving microcirculation in cramp-prone areas`,
+          `Accelerating post-exercise muscle recovery`,
+        ],
+      },
+      {
+        heading: `Clinical Effectiveness`,
+        body: `Clinical studies support sound frequency therapy as an effective complement to conventional cramp prevention routines.`,
+      },
+    ],
+    relatedLinks: [
+      { path: '/masaz-przy-kurczach', label: 'Massage for Cramps' },
+      { path: '/rozciaganie-przy-kurczach', label: 'Stretching for Cramps' },
+      { path: '/profilaktyka', label: 'Prevention' },
+    ],
+  },
+
+  '/joga-a-kurcze': {
+    intro: `Regular yoga practice improves muscle flexibility, conscious breathing, and circulation, helping prevent painful muscle cramps.`,
+    sections: [
+      {
+        heading: `Enhanced Flexibility`,
+        body: `Asanas gently lengthen muscle fibers, lowering susceptibility to sudden muscle spasms.`,
+      },
+      {
+        heading: `Better Blood Flow & Oxygenation`,
+        body: `Conscious Pranayama breathing increases tissue oxygenation and prevents muscle hypoxia.`,
+      },
+      {
+        heading: `Stress Reduction`,
+        body: `Lowering systemic nervous tension reduces the frequency of nighttime leg cramps.`,
+      },
+    ],
+    relatedLinks: [
+      { path: '/rozciaganie-przy-kurczach', label: 'Stretching for Cramps' },
+      { path: '/kurcze-nocne', label: 'Night Cramps' },
+      { path: '/profilaktyka', label: 'Prevention' },
+    ],
+  },
+};
+
+export function getTopicPageContent(path, locale = 'pl') {
+  if (locale === 'en') {
+    return topicPagesContentEn[path] ?? topicPagesContent[path] ?? null;
+  }
   return topicPagesContent[path] ?? null;
 }

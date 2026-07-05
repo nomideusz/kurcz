@@ -1,22 +1,42 @@
 ---
 import Logo from './Logo.astro';
+import LanguageSwitcher from './LanguageSwitcher.svelte';
 import { footerLegalLinks } from '../seo/routes.js';
+import { extractLocale, localizeHref, routing, t } from '../i18n/config.ts';
+
+const { currentPath = '/' } = Astro.props;
+const { locale } = extractLocale(currentPath, routing);
 
 const topics = [
-  { path: '/kurcze-miesniowe', label: 'przyczyny' },
-  { path: '/pierwsza-pomoc', label: 'pierwsza pomoc' },
-  { path: '/profilaktyka', label: 'profilaktyka' },
-  { path: '/kurcz-vs-skurcz', label: 'kurcz vs skurcz' },
-  { path: '/wibroakustyka', label: 'wibroakustyka' },
-  { path: '/joga-a-kurcze', label: 'joga a kurcze' },
+  { path: '/kurcze-miesniowe', key: 'nav.causes' },
+  { path: '/pierwsza-pomoc', key: 'nav.first_aid' },
+  { path: '/profilaktyka', key: 'nav.prevention' },
+  { path: '/kurcz-vs-skurcz', key: 'nav.comparison' },
+  { path: '/wibroakustyka', key: 'nav.wibroakustyka' },
+  { path: '/joga-a-kurcze', key: 'nav.yoga' },
 ];
 
+const topicLabels: Record<string, Record<string, string>> = {
+  pl: { 'nav.causes': 'przyczyny', 'nav.first_aid': 'pierwsza pomoc', 'nav.prevention': 'profilaktyka', 'nav.comparison': 'kurcz vs skurcz', 'nav.wibroakustyka': 'wibroakustyka', 'nav.yoga': 'joga a kurcze' },
+  en: { 'nav.causes': 'causes', 'nav.first_aid': 'first aid', 'nav.prevention': 'prevention', 'nav.comparison': 'cramp vs spasm', 'nav.wibroakustyka': 'vibroacoustics', 'nav.yoga': 'yoga & cramps' },
+};
+
 const serwis = [
-  { path: '/poradniki', label: 'poradniki' },
-  { path: '/faq', label: 'faq' },
-  { path: '/kontakt', label: 'kontakt' },
-  { path: '/o-nas', label: 'o nas' },
+  { path: '/poradniki', key: 'nav.guides' },
+  { path: '/faq', key: 'nav.faq' },
+  { path: '/kontakt', key: 'nav.contact' },
+  { path: '/o-nas', key: 'nav.about' },
 ];
+
+const serwisLabels: Record<string, Record<string, string>> = {
+  pl: { 'nav.guides': 'poradniki', 'nav.faq': 'faq', 'nav.contact': 'kontakt', 'nav.about': 'o nas' },
+  en: { 'nav.guides': 'guides', 'nav.faq': 'faq', 'nav.contact': 'contact', 'nav.about': 'about us' },
+};
+
+const legalLabels: Record<string, Record<string, string>> = {
+  pl: { '/regulamin': 'regulamin', '/polityka-prywatnosci': 'polityka prywatności', '/disclaimer-medyczny': 'disclaimer medyczny' },
+  en: { '/regulamin': 'terms of service', '/polityka-prywatnosci': 'privacy policy', '/disclaimer-medyczny': 'medical disclaimer' },
+};
 
 const partners = [
   { url: 'https://wibroakustyka.ai', label: 'Wibroakustyka.ai' },
@@ -39,29 +59,34 @@ const socials = [
 ];
 
 const year = new Date().getFullYear();
+const homeHref = localizeHref('/', locale, routing);
 ---
 
 <footer class="mt-20 bg-navy-deep text-[#a9b0bd]">
   <div class="mx-auto max-w-7xl px-5 py-14 sm:px-14">
     <div class="grid gap-10 border-b border-[#243248] pb-9 md:grid-cols-2 lg:grid-cols-4">
       <div>
-        <a href="/" aria-label="Kurcz.pl — strona główna">
+        <a href={homeHref} aria-label="Kurcz.pl — strona główna">
           <Logo class="text-[26px] text-[#f4efe6]" accentClass="text-accent-light" />
         </a>
         <p class="mt-3.5 max-w-[300px] text-sm leading-relaxed text-[#8b93a1]">
-          Statyczna strona edukacyjna o kurczach mięśniowych — przyczyny, pierwsza pomoc
-          i profilaktyka.
+          {t(locale, 'footer.tagline')}
         </p>
+        <div class="mt-4">
+          <LanguageSwitcher client:load currentPath={currentPath} currentLocale={locale} />
+        </div>
       </div>
 
       <nav aria-label="Tematy">
-        <div class="eyebrow mb-4 text-[#8b96a5]">tematy</div>
+        <div class="eyebrow mb-4 text-[#8b96a5]">
+          {locale === 'en' ? 'topics' : 'tematy'}
+        </div>
         <ul class="flex flex-col gap-2.5 text-sm">
           {
             topics.map((l) => (
               <li>
-                <a href={l.path} class="text-[#c2c8d2] hover:text-white">
-                  {l.label}
+                <a href={localizeHref(l.path, locale, routing)} class="text-[#c2c8d2] hover:text-white">
+                  {topicLabels[locale]?.[l.key] ?? l.key}
                 </a>
               </li>
             ))
@@ -70,13 +95,15 @@ const year = new Date().getFullYear();
       </nav>
 
       <nav aria-label="Serwis">
-        <div class="eyebrow mb-4 text-[#8b96a5]">serwis</div>
+        <div class="eyebrow mb-4 text-[#8b96a5]">
+          {locale === 'en' ? 'service' : 'serwis'}
+        </div>
         <ul class="flex flex-col gap-2.5 text-sm">
           {
             serwis.map((l) => (
               <li>
-                <a href={l.path} class="text-[#c2c8d2] hover:text-white">
-                  {l.label}
+                <a href={localizeHref(l.path, locale, routing)} class="text-[#c2c8d2] hover:text-white">
+                  {serwisLabels[locale]?.[l.key] ?? l.key}
                 </a>
               </li>
             ))
@@ -86,8 +113,8 @@ const year = new Date().getFullYear();
               .filter((l) => ['/regulamin', '/polityka-prywatnosci', '/disclaimer-medyczny'].includes(l.path))
               .map((l) => (
                 <li>
-                  <a href={l.path} class="text-[#c2c8d2] hover:text-white">
-                    {l.label.toLowerCase()}
+                  <a href={localizeHref(l.path, locale, routing)} class="text-[#c2c8d2] hover:text-white">
+                    {legalLabels[locale]?.[l.path] ?? l.label.toLowerCase()}
                   </a>
                 </li>
               ))
@@ -96,7 +123,9 @@ const year = new Date().getFullYear();
       </nav>
 
       <nav aria-label="Partnerzy">
-        <div class="eyebrow mb-4 text-[#8b96a5]">partnerzy</div>
+        <div class="eyebrow mb-4 text-[#8b96a5]">
+          {locale === 'en' ? 'partners' : 'partnerzy'}
+        </div>
         <ul class="flex flex-col gap-2.5 text-sm">
           {
             partners.map((p) => (
@@ -119,9 +148,7 @@ const year = new Date().getFullYear();
 
     <div class="flex flex-col items-start justify-between gap-5 pt-6 sm:flex-row sm:items-center">
       <p class="max-w-[560px] text-[12.5px] leading-relaxed text-[#8b96a5]">
-        Zastrzeżenie medyczne: informacje na tej stronie mają charakter edukacyjny i nie
-        zastępują profesjonalnej konsultacji medycznej. W razie poważnych dolegliwości
-        skonsultuj się z lekarzem.
+        {t(locale, 'disclaimer.text')}
       </p>
       <div class="flex items-center gap-5">
         <div class="flex items-center gap-2.5">

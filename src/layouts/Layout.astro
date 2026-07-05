@@ -3,21 +3,38 @@ import '../styles/global.css';
 import { Font } from 'astro:assets';
 import { SITE_URL, getOgImage } from '../seo/routes.js';
 import { buildPageSchema, schemaToJsonLd } from '../seo/schema.js';
+import { extractLocale, alternates, routing, DEFAULT_LOCALE } from '../i18n/config.ts';
 
-const { route } = Astro.props;
+const { route, lang } = Astro.props;
 
-const canonical = `${SITE_URL}${route.path === '/' ? '' : route.path}`;
+const currentPath = route.path ?? Astro.url.pathname;
+const { locale, pathname } = extractLocale(currentPath, routing);
+const effectiveLang = lang ?? locale ?? DEFAULT_LOCALE;
+
+const localizedPath = effectiveLang === DEFAULT_LOCALE ? (pathname === '/' ? '' : pathname) : `/${effectiveLang}${pathname === '/' ? '' : pathname}`;
+const canonical = `${SITE_URL}${localizedPath}`;
 const ogTitle = route.ogTitle ?? route.title;
 const ogImage = getOgImage(route);
 const ogType = route.path === '/' ? 'website' : 'article';
 const jsonLd = schemaToJsonLd(buildPageSchema(route));
+
+const alternateLinks = alternates(pathname, routing, SITE_URL);
+const ogLocaleMap = { pl: 'pl_PL', en: 'en_US' };
+const ogLocale = ogLocaleMap[effectiveLang] ?? 'pl_PL';
 ---
 
 <!doctype html>
-<html lang="pl">
+<html lang={effectiveLang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Alternate language links for SEO -->
+    {
+      alternateLinks.map(({ hreflang, href }) => (
+        <link rel="alternate" hreflang={hreflang} href={href} />
+      ))
+    }
 
     <!-- Google Consent Mode v2 (default: denied until user accepts) -->
     <script is:inline>
@@ -96,7 +113,7 @@ const jsonLd = schemaToJsonLd(buildPageSchema(route));
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogImage} />
     <meta property="og:type" content={ogType} />
-    <meta property="og:locale" content="pl_PL" />
+    <meta property="og:locale" content={ogLocale} />
     <meta property="og:site_name" content="Kurcz.pl" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={ogTitle} />

@@ -14,7 +14,7 @@ const isTempsHost = Astro.site?.hostname.endsWith('rzeka.live') || false;
 <main class="flex-1">
   <slot />
 </main>
-<Footer />
+<Footer currentPath={currentPath} />
 <CookieConsent />
 {isTempsHost && <TempsAnalytics />}
 {isTempsHost && <ErrorTracking />}
