@@ -21,11 +21,11 @@ importers:
         specifier: ^5.2.9
         version: 5.2.9
       '@nomideusz/svelte-geometrize':
-        specifier: link:/home/nom/dev/apps/asini/packages/svelte-geometrize
-        version: link:../asini/packages/svelte-geometrize
+        specifier: ^0.4.2
+        version: 0.4.2(svelte@5.56.4(@typescript-eslint/types@8.62.0))
       '@nomideusz/svelte-i18n':
-        specifier: link:/home/nom/dev/apps/asini/packages/svelte-i18n
-        version: link:../asini/packages/svelte-i18n
+        specifier: ^0.3.2
+        version: 0.3.2(svelte@5.56.4(@typescript-eslint/types@8.62.0))
       astro:
         specifier: ^5.18.2
         version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.2)(typescript@5.9.3)(yaml@2.9.0)
@@ -1092,6 +1092,16 @@ packages:
   '@nodelib/fs.walk@1.2.8':
     resolution: {integrity: sha512-oGB+UxlgWcgQkgwo8GcEGwemoTFt3FIO9ababBmaGwXIoBKZ+GTy0pP185beGg7Llih/NSHSV2XAs1lnznocSg==}
     engines: {node: '>= 8'}
+
+  '@nomideusz/svelte-geometrize@0.4.2':
+    resolution: {integrity: sha512-IaXIONvIw1JSC7NaQN0/8xhFjlxoITiKDSlIdVXbKLdVHuyhIL4z7k1oUjVycqVc/JZI78FaZI9x8jSv3xY2dw==}
+    peerDependencies:
+      svelte: ^5.0.0
+
+  '@nomideusz/svelte-i18n@0.3.2':
+    resolution: {integrity: sha512-a4nh3PzOWpBjLnNP9FCsv+yvfzzhUWxAU4TDU+BXGPVBskap5CWDd3ZefhxdwTfwuNcD7gwg5LpU4jWgqrpMsA==}
+    peerDependencies:
+      svelte: ^5.0.0
 
   '@opentelemetry/api-logs@0.217.0':
     resolution: {integrity: sha512-Cdq0jW2lknrNfrAm92MyEAvpe2cRsKjdnQLHUL6xRA4IVUnsWx6P65E7NcUO0Y+L4w1Aee5iV8FvjSwd+lrs9A==}
@@ -2510,6 +2520,9 @@ packages:
   generator-function@2.0.1:
     resolution: {integrity: sha512-SFdFmIJi+ybC0vjlHN0ZGVGHc3lgE0DxPAT0djjVg+kjOnSqclqmj0KQ7ykTOLP6YxoqOvuAODGdcHJn+43q3g==}
     engines: {node: '>= 0.4'}
+
+  geometrizejs@0.0.19:
+    resolution: {integrity: sha512-YRZRub22/do3Vpo2/JzqRo/cHS8FcYg5DXd38xZz7D5avsCqlwxBbLXK6AjBHulDnuVpbNtvtzgL2wcKXd4xpQ==}
 
   get-amd-module-type@6.0.2:
     resolution: {integrity: sha512-7zShVYAYtMnj9S65CfN+hvpBCByfuB1OY8xID01nZEzXTZbx4YyysAfi+nMl95JSR6odt4q8TCj2W63KAoyVLQ==}
@@ -5424,6 +5437,16 @@ snapshots:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.20.1
 
+  '@nomideusz/svelte-geometrize@0.4.2(svelte@5.56.4(@typescript-eslint/types@8.62.0))':
+    dependencies:
+      geometrizejs: 0.0.19
+      sharp: 0.34.5
+      svelte: 5.56.4(@typescript-eslint/types@8.62.0)
+
+  '@nomideusz/svelte-i18n@0.3.2(svelte@5.56.4(@typescript-eslint/types@8.62.0))':
+    dependencies:
+      svelte: 5.56.4(@typescript-eslint/types@8.62.0)
+
   '@opentelemetry/api-logs@0.217.0':
     dependencies:
       '@opentelemetry/api': 1.9.0
@@ -6981,6 +7004,8 @@ snapshots:
   functions-have-names@1.2.3: {}
 
   generator-function@2.0.1: {}
+
+  geometrizejs@0.0.19: {}
 
   get-amd-module-type@6.0.2:
     dependencies:
