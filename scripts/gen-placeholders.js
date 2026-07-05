@@ -1,4 +1,5 @@
 import { generatePlaceholder } from '@nomideusz/svelte-geometrize/node';
+import sharp from 'sharp';
 import fs from 'fs';
 import path from 'path';
 
@@ -16,11 +17,17 @@ const images = [
 const imgDir = '/home/nom/dev/apps/kurcz/public/img';
 const outputMap = {};
 
-console.log('Generating geometrize shape placeholders for all images...');
+console.log('Generating geometrize placeholders & converting images to WebP via Sharp...');
 
 for (const img of images) {
   const fullPath = path.join(imgDir, img);
-  console.log(`Processing ${img}...`);
+  const webpName = img.replace(/\.png$/, '.webp');
+  const webpPath = path.join(imgDir, webpName);
+
+  console.log(`Converting ${img} -> ${webpName} (Sharp)...`);
+  await sharp(fullPath).webp({ quality: 85 }).toFile(webpPath);
+
+  console.log(`Geometrizing ${img}...`);
   try {
     const placeholder = await generatePlaceholder(fullPath, { shapeCount: 40 });
     outputMap[img] = placeholder;
@@ -34,4 +41,4 @@ fs.writeFileSync(
   JSON.stringify(outputMap, null, 2)
 );
 
-console.log('All placeholders successfully saved to src/content/image-placeholders.json!');
+console.log('All WebP conversions & geometrize placeholders successfully saved!');
