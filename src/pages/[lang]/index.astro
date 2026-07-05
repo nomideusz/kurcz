@@ -4,7 +4,7 @@ import Shell from '../../components/Shell.astro';
 import FaqAccordion from '../../components/FaqAccordion.astro';
 import GeometrizedPhoto from '../../components/GeometrizedPhoto.svelte';
 import { getRouteByPath } from '../../seo/routes.js';
-import { faqItems } from '../../seo/faq-data.js';
+import { getFaqItems } from '../../seo/faq-data.js';
 import { LOCALES, DEFAULT_LOCALE, t, localizeHref, routing, type SupportedLocale } from '../../i18n/config.ts';
 import { getLocalizedRoute, getLocalizedReliefSteps, getLocalizedTopics, getLocalizedDoctorSigns } from '../../i18n/content.ts';
 
@@ -21,7 +21,7 @@ const route = getLocalizedRoute(rawRoute, lang);
 const reliefSteps = getLocalizedReliefSteps(lang);
 const topics = getLocalizedTopics(lang);
 const doctorSigns = getLocalizedDoctorSigns(lang);
-const homeFaq = faqItems.slice(0, 4);
+const homeFaq = getFaqItems(lang).slice(0, 4);
 
 const galleryItems = [
   {

@@ -38,5 +38,9 @@
   "404.home_btn": "home page",
   "404.guides_btn": "guides",
   "reading_time": "reading time ~{min} min",
-  "last_updated": "updated: {year}"
+  "last_updated": "updated: {year}",
+  "cookie.text": "We use cookies to analyze traffic and improve service quality. Details in ",
+  "cookie.link": "privacy policy",
+  "cookie.accept": "Accept",
+  "cookie.reject": "Decline"
 }
