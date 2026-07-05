@@ -46,6 +46,13 @@ const jsonLd = schemaToJsonLd(buildPageSchema(route));
         }
       } catch (e) {}
     </script>
+
+    <!-- Rybbit analytics (cookieless, no consent needed) -->
+    <script
+      is:inline
+      defer
+      src="https://rybit.picarro.info/api/script.js"
+      data-site-id="3"></script>
     <!-- Subsetted, self-hosted Source Serif 4. No preload: the metric-matched fallback paints
          the H1 shift-free, so preloading would only steal critical bandwidth at first paint. -->
     <Font cssVariable="--font-serif-src" />
