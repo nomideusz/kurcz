@@ -27,6 +27,7 @@
     {src}
     {sources}
     {alt}
+    reveal="scatter"
     class={className}
     loading="lazy"
   />
