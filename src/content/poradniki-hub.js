@@ -66,7 +66,7 @@ export const poradnikiHub = {
   description: 'Przegląd poradników Kurcz.pl: kurcze łydek i stóp, kurcze nocne, niedobór magnezu, rozciąganie, masaż i profilaktyka dla sportowców, kobiet w ciąży i seniorów.',
   breadcrumbLabel: 'Poradniki',
   intro:
-    'Zebraliśmy practical artykuły pod konkretne pytania o kurcze mięśniowe — od bolesnych skurczów łydek w nocy po profilaktykę u sportowców. Wybierz temat i poznaj przyczyny, pierwszą pomoc oraz sposoby zapobiegania nawrotom.',
+    'Zebraliśmy praktyczne artykuły pod konkretne pytania o kurcze mięśniowe — od bolesnych skurczów łydek w nocy po profilaktykę u sportowców. Wybierz temat i poznaj przyczyny, pierwszą pomoc oraz sposoby zapobiegania nawrotom.',
   categories: getPoradnikiCategories('pl'),
 };
 

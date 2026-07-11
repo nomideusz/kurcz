@@ -1,9 +1,19 @@
 import { getLandingPage } from '../content/landing-pages.js';
-import { faqItems } from './faq-data.js';
+import { getFaqItems } from './faq-data.js';
 import { getTopicFaq } from './topic-faq.js';
 import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from './routes.js';
 
-export function buildOrganizationSchema() {
+function localizedUrl(path, locale = 'pl') {
+  const prefix = locale === 'en' ? '/en' : '';
+  const normalizedPath = path === '/' ? '' : `/${path.replace(/^\/+|\/+$/g, '')}`;
+  return `${SITE_URL}${prefix}${normalizedPath}/`;
+}
+
+function languageTag(locale) {
+  return locale === 'en' ? 'en-US' : 'pl-PL';
+}
+
+export function buildOrganizationSchema(locale = 'pl') {
   return {
     '@type': 'Organization',
     name: SITE_NAME,
@@ -13,16 +23,23 @@ export function buildOrganizationSchema() {
       'https://www.facebook.com/profile.php?id=61575552422497',
       'https://instagram.com/kurcz.pl',
     ],
-    description: 'Kompendium wiedzy o kurczach mięśniowych — przyczyny, leczenie i profilaktyka.',
+    description:
+      locale === 'en'
+        ? 'An educational guide to muscle cramps — causes, relief, and prevention.'
+        : 'Kompendium wiedzy o kurczach mięśniowych — przyczyny, leczenie i profilaktyka.',
   };
 }
 
-export function buildWebSiteSchema() {
+export function buildWebSiteSchema(locale = 'pl') {
   return {
     '@type': 'WebSite',
     name: SITE_NAME,
-    url: SITE_URL,
-    description: 'Rzetelne informacje edukacyjne o kurczach mięśniowych.',
+    url: localizedUrl('/', locale),
+    inLanguage: languageTag(locale),
+    description:
+      locale === 'en'
+        ? 'Reliable educational information about muscle cramps.'
+        : 'Rzetelne informacje edukacyjne o kurczach mięśniowych.',
     publisher: {
       '@type': 'Organization',
       name: SITE_NAME,
@@ -31,7 +48,7 @@ export function buildWebSiteSchema() {
   };
 }
 
-export function buildBreadcrumbSchema(route) {
+export function buildBreadcrumbSchema(route, { locale = 'pl', canonicalUrl } = {}) {
   if (route.path === '/') {
     return null;
   }
@@ -40,32 +57,26 @@ export function buildBreadcrumbSchema(route) {
     {
       '@type': 'ListItem',
       position: 1,
-      name: 'Strona główna',
-      item: SITE_URL,
+      name: locale === 'en' ? 'Home' : 'Strona główna',
+      item: localizedUrl('/', locale),
     },
   ];
 
-  if (route.hubPath && route.hubLabel) {
+  const hasHub = route.hubPath && route.hubLabel;
+  if (hasHub) {
     items.push({
       '@type': 'ListItem',
       position: 2,
       name: route.hubLabel,
-      item: `${SITE_URL}${route.hubPath}`,
-    });
-    items.push({
-      '@type': 'ListItem',
-      position: 3,
-      name: route.breadcrumbLabel ?? route.h1,
-      item: `${SITE_URL}${route.path}`,
-    });
-  } else {
-    items.push({
-      '@type': 'ListItem',
-      position: 2,
-      name: route.breadcrumbLabel ?? route.h1,
-      item: `${SITE_URL}${route.path}`,
+      item: localizedUrl(route.hubPath, locale),
     });
   }
+  items.push({
+    '@type': 'ListItem',
+    position: hasHub ? 3 : 2,
+    name: route.breadcrumbLabel ?? route.h1,
+    item: canonicalUrl ?? localizedUrl(route.path, locale),
+  });
 
   return {
     '@type': 'BreadcrumbList',
@@ -87,64 +98,72 @@ export function buildFAQPageSchema(items) {
   };
 }
 
-export function buildMedicalWebPageSchema(route) {
+export function buildMedicalWebPageSchema(route, { locale = 'pl', canonicalUrl } = {}) {
   return {
     '@type': 'MedicalWebPage',
     name: route.title,
     headline: route.h1,
     description: route.description,
-    url: `${SITE_URL}${route.path}`,
-    inLanguage: 'pl-PL',
+    url: canonicalUrl ?? localizedUrl(route.path, locale),
+    inLanguage: languageTag(locale),
+    author: {
+      '@type': 'Organization',
+      name: SITE_NAME,
+      url: SITE_URL,
+    },
     isPartOf: {
       '@type': 'WebSite',
       name: SITE_NAME,
-      url: SITE_URL,
+      url: localizedUrl('/', locale),
     },
   };
 }
 
-export function buildWebPageSchema(route) {
+export function buildWebPageSchema(route, { locale = 'pl', canonicalUrl } = {}) {
   return {
     '@type': 'WebPage',
     name: route.title,
     headline: route.h1,
     description: route.description,
-    url: `${SITE_URL}${route.path}`,
-    inLanguage: 'pl-PL',
+    url: canonicalUrl ?? localizedUrl(route.path, locale),
+    inLanguage: languageTag(locale),
     isPartOf: {
       '@type': 'WebSite',
       name: SITE_NAME,
-      url: SITE_URL,
+      url: localizedUrl('/', locale),
     },
   };
 }
 
-export function buildPageSchema(route) {
-  const graphs = [buildOrganizationSchema(), buildWebSiteSchema()];
+export function buildPageSchema(route, { locale = 'pl', canonicalUrl } = {}) {
+  const options = { locale, canonicalUrl };
+  const graphs = [buildOrganizationSchema(locale), buildWebSiteSchema(locale)];
 
-  const breadcrumb = buildBreadcrumbSchema(route);
+  const breadcrumb = buildBreadcrumbSchema(route, options);
   if (breadcrumb) {
     graphs.push(breadcrumb);
   }
 
-  if (route.path === '/faq') {
-    graphs.push(buildFAQPageSchema(faqItems));
+  if (route.path === '/') {
+    graphs.push(buildFAQPageSchema(getFaqItems(locale).slice(0, 4)));
+  } else if (route.path === '/faq') {
+    graphs.push(buildFAQPageSchema(getFaqItems(locale)));
   } else if (route.type === 'landing') {
-    const landing = getLandingPage(route.path);
+    const landing = getLandingPage(route.path, locale);
     if (landing?.faq?.length) {
       graphs.push(buildFAQPageSchema(landing.faq));
     }
   } else {
-    const topicFaq = getTopicFaq(route.path);
+    const topicFaq = getTopicFaq(route.path, locale);
     if (topicFaq?.length) {
       graphs.push(buildFAQPageSchema(topicFaq));
     }
   }
 
-  if (route.type === 'static' || route.type === 'hub') {
-    graphs.push(buildWebPageSchema(route));
-  } else if (route.path !== '/') {
-    graphs.push(buildMedicalWebPageSchema(route));
+  if (route.path === '/' || route.type === 'static' || route.type === 'hub') {
+    graphs.push(buildWebPageSchema(route, options));
+  } else {
+    graphs.push(buildMedicalWebPageSchema(route, options));
   }
 
   return graphs;

@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "postbuild": "npm run check:seo",
+    "check:seo": "node scripts/check-seo-output.mjs",
     "preview": "astro preview",
     "start": "node ./dist/server/entry.mjs",
     "astro": "astro"

@@ -1,5 +1,11 @@
 ---
-import { extractLocale, routing, t, type SupportedLocale } from '../i18n/config.ts';
+import {
+  extractLocale,
+  routing,
+  t,
+  withTrailingSlash,
+  type SupportedLocale,
+} from '../i18n/config.ts';
 
 const { links = [], heading, currentPath = Astro.url.pathname, lang } = Astro.props as {
   links?: any[];
@@ -21,7 +27,7 @@ const title = heading ?? t(effectiveLang, 'related_links.heading');
         {links.map((l) => (
           <li>
             <a
-              href={l.path}
+              href={withTrailingSlash(l.path)}
               class="inline-flex rounded-full border border-line bg-card px-4 py-2 text-sm font-medium text-body transition-colors hover:border-accent-border hover:text-accent"
             >
               {l.label}

@@ -8,8 +8,9 @@ import tailwindcss from '@tailwindcss/vite';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://kurcz.pl',
-  // Canonical URLs have no trailing slash — keep the sitemap consistent.
-  trailingSlash: 'never',
+  // Netlify serves directory pages with trailing slashes. Generate the same URL
+  // form in HTML, redirects, hreflang, and the sitemap.
+  trailingSlash: 'always',
   // Static-first: every page is prerendered. The Netlify adapter exists only so the
   // contact endpoint (src/pages/api/contact.ts, prerender = false) runs as a function.
   output: 'static',
@@ -20,14 +21,19 @@ export default defineConfig({
   },
   integrations: [
     sitemap({
-      changefreq: 'weekly',
-      lastmod: new Date(),
       i18n: {
         defaultLocale: 'pl',
         locales: {
           pl: 'pl',
           en: 'en',
         },
+      },
+      serialize(item) {
+        const defaultLocaleLink = item.links?.find((link) => link.lang === 'pl');
+        if (defaultLocaleLink) {
+          item.links.push({ lang: 'x-default', url: defaultLocaleLink.url });
+        }
+        return item;
       },
     }),
     svelte(),

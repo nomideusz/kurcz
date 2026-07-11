@@ -18,7 +18,8 @@ Zbudowana w [Astro](https://astro.build) (statyczny HTML, zero JS na stronach tr
 ```bash
 npm install
 npm run dev        # http://localhost:4321
-npm run build      # → dist/ (statyczny HTML)
+npm run build      # → dist/ + automatyczna kontrola SEO
+npm run check:seo  # sprawdza canonical, hreflang, JSON-LD i sitemapę w dist/
 npm run preview
 ```
 
@@ -38,4 +39,5 @@ node scripts/generate-brand.mjs   # generuje favicony / ikony / logo z marki
 
 ## Wdrożenie
 
-Docker + nginx (statyczne pliki z `dist/`). Zobacz `Dockerfile`, `nginx.conf`, `captain-definition` (CapRover).
+Produkcja działa na Netlify. Konfiguracja w `netlify.toml` uruchamia `npm run build`,
+który po kompilacji automatycznie sprawdza SEO wszystkich stron z mapy witryny.

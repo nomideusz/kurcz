@@ -13,6 +13,7 @@ import { getStaticPage } from '../content/static-pages.js';
 import { getTopicPageContent } from '../content/topic-pages.js';
 import { getTopicFaq } from '../seo/topic-faq.js';
 import { getPagePhoto } from '../content/page-photos.ts';
+import { withTrailingSlash } from '../i18n/config.ts';
 
 export function getStaticPaths() {
   const topicContentRoutes = topicRoutes.filter(
@@ -87,7 +88,7 @@ const eyebrow = (route.breadcrumbLabel ?? route.h1).toLowerCase();
           {
             crumbs.map((c) => (
               <>
-                <a href={c.path} class="text-faint hover:text-ink">{c.label}</a>
+                <a href={withTrailingSlash(c.path)} class="text-faint hover:text-ink">{c.label}</a>
                 <span class="mx-1.5 text-[#c3b7a2]">/</span>
               </>
             ))

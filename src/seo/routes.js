@@ -23,7 +23,7 @@ export const topicRoutes = [
     path: '/',
     type: 'topic',
     sectionId: 'home',
-    h1: 'Zrozumieć kurcze mięśniowe',
+    h1: 'Co robić, gdy złapie kurcz mięśnia.',
     breadcrumbLabel: 'Strona główna',
     title: 'Kurcze mięśniowe - przyczyny, objawy i skuteczne leczenie | Kurcz.pl',
     description: 'Dowiedz się wszystkiego o kurczach mięśniowych. Poznaj najczęstsze przyczyny, skuteczne metody leczenia, pierwszą pomoc, wibroakustykę i profilaktykę.',

@@ -58,6 +58,7 @@ if (kind === 'topic') {
     route.title = page.title;
     route.description = page.description;
     route.breadcrumbLabel = page.h1.split(' — ')[0] ?? page.h1;
+    route.hubLabel = t(lang, 'nav.guides');
     intro = page.intro ?? '';
     sections = page.sections ?? [];
     faq = page.faq ?? [];

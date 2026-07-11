@@ -3,14 +3,14 @@ import type { SupportedLocale } from './config.js';
 export const localizedRouteMeta: Record<string, Record<SupportedLocale, { h1?: string; title?: string; description?: string; breadcrumbLabel?: string; ogTitle?: string }>> = {
   '/': {
     pl: {
-      h1: 'Zrozumieć kurcze mięśniowe',
+      h1: 'Co robić, gdy złapie kurcz mięśnia.',
       breadcrumbLabel: 'Strona główna',
       title: 'Kurcze mięśniowe - przyczyny, objawy i skuteczne leczenie | Kurcz.pl',
       description: 'Dowiedz się wszystkiego o kurczach mięśniowych. Poznaj najczęstsze przyczyny, skuteczne metody leczenia, pierwszą pomoc, wibroakustykę i profilaktykę.',
       ogTitle: 'Kurcze mięśniowe - przyczyny i szybka ulga | Kurcz.pl',
     },
     en: {
-      h1: 'Understanding Muscle Cramps',
+      h1: 'What to do when muscle cramp strikes.',
       breadcrumbLabel: 'Home',
       title: 'Muscle Cramps - Causes, Symptoms & Effective Relief | Kurcz.pl',
       description: 'Learn everything about muscle cramps. Discover common causes, effective treatment methods, first aid, vibroacoustics, and prevention.',
@@ -147,7 +147,7 @@ export const localizedRouteMeta: Record<string, Record<SupportedLocale, { h1?: s
 
 export function getLocalizedRoute(route: any, locale: SupportedLocale) {
   const overrides = localizedRouteMeta[route.path]?.[locale];
-  if (!overrides) return route;
+  if (!overrides) return { ...route };
   return {
     ...route,
     ...overrides,

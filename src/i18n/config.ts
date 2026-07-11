@@ -1,5 +1,11 @@
 import type { LocaleRoutingConfig } from '@nomideusz/svelte-i18n';
-import { createI18n, interpolate, extractLocale, localizeHref, alternates } from '@nomideusz/svelte-i18n';
+import {
+  createI18n,
+  interpolate,
+  extractLocale,
+  localizeHref as baseLocalizeHref,
+  alternates,
+} from '@nomideusz/svelte-i18n';
 
 import plMessages from './messages/pl.json';
 import enMessages from './messages/en.json';
@@ -38,4 +44,24 @@ export const i18n = createI18n({
   loader: (loc) => messagesMap[loc as SupportedLocale] ?? plMessages,
 });
 
-export { extractLocale, localizeHref, alternates, interpolate };
+export function withTrailingSlash(path: string): string {
+  if (!path.startsWith('/') || path.startsWith('//')) return path;
+
+  const match = path.match(/^([^?#]*)(.*)$/);
+  const pathname = match?.[1] ?? path;
+  const suffix = match?.[2] ?? '';
+  if (pathname === '/' || pathname.endsWith('/') || /\.[^/]+$/.test(pathname)) {
+    return path;
+  }
+  return `${pathname}/${suffix}`;
+}
+
+export function localizeHref(
+  path: string,
+  locale: string,
+  config: LocaleRoutingConfig = routing,
+): string {
+  return withTrailingSlash(baseLocalizeHref(path, locale, config));
+}
+
+export { extractLocale, alternates, interpolate };
