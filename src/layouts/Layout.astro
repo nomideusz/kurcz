@@ -62,71 +62,9 @@ const alternateOgLocale = effectiveLang === 'en' ? 'pl_PL' : 'en_US';
         ))
     }
 
-    <!-- Google Consent Mode v2 (default: denied until user accepts) -->
-    <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag('consent', 'default', {
-        ad_storage: 'denied',
-        ad_user_data: 'denied',
-        ad_personalization: 'denied',
-        analytics_storage: 'denied',
-        functionality_storage: 'granted',
-        security_storage: 'granted',
-        wait_for_update: 500,
-      });
-      gtag('set', 'ads_data_redaction', true);
-      try {
-        if (localStorage.getItem('kurcz_cookie_consent') === 'granted') {
-          gtag('consent', 'update', {
-            ad_storage: 'granted',
-            ad_user_data: 'granted',
-            ad_personalization: 'granted',
-            analytics_storage: 'granted',
-          });
-        }
-      } catch (e) {}
-    </script>
-
-    <!-- Rybbit analytics (cookieless, no consent needed) -->
-    <script
-      is:inline
-      defer
-      src="https://rybit.picarro.info/api/script.js"
-      data-site-id="3"></script>
     <!-- Subsetted, self-hosted Source Serif 4. No preload: the metric-matched fallback paints
          the H1 shift-free, so preloading would only steal critical bandwidth at first paint. -->
     <Font cssVariable="--font-serif-src" />
-
-    <!-- Google Tag Manager (Deferred to First User Interaction or Idle fallback) -->
-    <script is:inline>
-      (function () {
-        var gtmLoaded = false;
-        function loadGtm() {
-          if (gtmLoaded) return;
-          gtmLoaded = true;
-          (function (w, d, s, l, i) {
-            w[l] = w[l] || [];
-            w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
-            var f = d.getElementsByTagName(s)[0],
-              j = d.createElement(s),
-              dl = l != 'dataLayer' ? '&l=' + l : '';
-            j.async = true;
-            j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-            f.parentNode.insertBefore(j, f);
-          })(window, document, 'script', 'dataLayer', 'GTM-P7N9JKMT');
-        }
-
-        // Trigger loading on first user interaction
-        var events = ['click', 'mousedown', 'mousemove', 'keydown', 'touchstart', 'scroll'];
-        events.forEach(function (e) {
-          window.addEventListener(e, loadGtm, { passive: true, once: true });
-        });
-      })();
-    </script>
-    <!-- End Google Tag Manager -->
 
     <title>{route.title}</title>
     <meta name="description" content={route.description} />
@@ -160,14 +98,6 @@ const alternateOgLocale = effectiveLang === 'en' ? 'pl_PL' : 'en_US';
     <slot name="head" />
   </head>
   <body class="flex min-h-screen flex-col">
-    <!-- Google Tag Manager (noscript) -->
-    <noscript
-      ><iframe
-        src="https://www.googletagmanager.com/ns.html?id=GTM-P7N9JKMT"
-        height="0"
-        width="0"
-        style="display:none;visibility:hidden"></iframe></noscript
-    >
     <slot />
   </body>
 </html>

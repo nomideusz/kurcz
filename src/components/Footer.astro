@@ -175,17 +175,3 @@ const homeHref = localizeHref('/', locale, routing);
   </div>
 </footer>
 
-<script is:inline>
-  // Track outbound clicks (footer partners + social) via consent-gated Umami.
-  document.querySelectorAll('footer a[data-outbound]').forEach(function (a) {
-    a.addEventListener('click', function () {
-      if (typeof window.kurczTrack === 'function') {
-        window.kurczTrack('outbound_click', {
-          url: a.getAttribute('href'),
-          label: a.getAttribute('data-outbound'),
-          source: 'footer',
-        });
-      }
-    });
-  });
-</script>

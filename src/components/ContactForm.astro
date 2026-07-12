@@ -94,7 +94,6 @@ const effectiveLocale = lang ?? locale;
             ? 'Thank you! Your message has been sent.'
             : 'Dziękujemy! Twoja wiadomość została wysłana.';
           status.className = 'text-sm text-accent';
-          (window as any).kurczTrack?.('contact_form_submit', { path: location.pathname });
           form.reset();
         } else {
           status.textContent =
@@ -103,12 +102,10 @@ const effectiveLocale = lang ?? locale;
               ? 'An error occurred while sending your message. Please try again.'
               : 'Wystąpił błąd podczas wysyłania wiadomości. Spróbuj ponownie.');
           status.className = 'text-sm text-red-600';
-          (window as any).kurczTrack?.('contact_form_error', { path: location.pathname });
         }
       } catch {
         status.textContent = isEn ? 'Connection error.' : 'Błąd połączenia.';
         status.className = 'text-sm text-red-600';
-        (window as any).kurczTrack?.('contact_form_error', { path: location.pathname });
       } finally {
         submit.disabled = false;
       }
