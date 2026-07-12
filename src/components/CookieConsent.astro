@@ -1,0 +1,79 @@
+---
+// Cookie consent banner — gates Google Consent Mode v2 (GTM/GA4).
+// Hidden by default; the inline script reveals it only when no choice is stored.
+import { t, localizeHref, routing, type SupportedLocale } from '../i18n/config.ts';
+
+const { lang = 'pl' } = Astro.props as { lang?: SupportedLocale };
+const privacyHref = localizeHref('/polityka-prywatnosci', lang, routing);
+---
+
+<div
+  id="cookie-consent"
+  hidden
+  class="fixed inset-x-0 bottom-0 z-50 border-t border-line bg-card shadow-[0_-1px_3px_rgba(24,36,56,0.06)]"
+>
+  <div class="mx-auto flex max-w-7xl flex-col gap-4 px-5 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-14">
+    <p class="text-sm leading-relaxed text-muted">
+      {t(lang, 'cookie.text')}<a href={privacyHref} class="underline hover:text-accent">{t(lang, 'cookie.link')}</a>.
+    </p>
+    <div class="flex flex-shrink-0 gap-3">
+      <button
+        type="button"
+        id="cookie-reject"
+        class="rounded-md border border-line px-4 py-2 text-sm font-medium text-ink hover:bg-paper"
+      >
+        {t(lang, 'cookie.reject')}
+      </button>
+      <button
+        type="button"
+        id="cookie-accept"
+        class="rounded-md bg-accent px-4 py-2 text-sm font-medium text-paper hover:bg-accent-light"
+      >
+        {t(lang, 'cookie.accept')}
+      </button>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  (function () {
+    var KEY = 'kurcz_cookie_consent';
+
+    function getConsent() {
+      try {
+        return localStorage.getItem(KEY);
+      } catch (e) {
+        return null;
+      }
+    }
+
+    function gtagSafe() {
+      if (typeof gtag === 'function') gtag.apply(null, arguments);
+    }
+
+    // Banner interactions.
+    var banner = document.getElementById('cookie-consent');
+    if (!banner) return;
+    if (!getConsent()) banner.hidden = false;
+
+    function choose(value) {
+      try {
+        localStorage.setItem(KEY, value);
+      } catch (e) {}
+      if (value === 'granted') {
+        gtagSafe('consent', 'update', {
+          ad_storage: 'granted',
+          ad_user_data: 'granted',
+          ad_personalization: 'granted',
+          analytics_storage: 'granted',
+        });
+      }
+      banner.hidden = true;
+    }
+
+    var accept = document.getElementById('cookie-accept');
+    var reject = document.getElementById('cookie-reject');
+    if (accept) accept.addEventListener('click', function () { choose('granted'); });
+    if (reject) reject.addEventListener('click', function () { choose('denied'); });
+  })();
+</script>

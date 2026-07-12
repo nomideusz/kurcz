@@ -1,9 +1,12 @@
 ---
 import Header from './Header.astro';
 import Footer from './Footer.astro';
+import CookieConsent from './CookieConsent.astro';
 import ErrorTracking from './ErrorTracking.astro';
+import type { SupportedLocale } from '../i18n/config.ts';
 
 const { currentPath = '/' } = Astro.props;
+const lang: SupportedLocale = currentPath.startsWith('/en') ? 'en' : 'pl';
 
 const isTempsHost = Astro.site?.hostname.endsWith('rzeka.live') || false;
 ---
@@ -13,4 +16,5 @@ const isTempsHost = Astro.site?.hostname.endsWith('rzeka.live') || false;
   <slot />
 </main>
 <Footer currentPath={currentPath} />
+<CookieConsent lang={lang} />
 {isTempsHost && <ErrorTracking />}
