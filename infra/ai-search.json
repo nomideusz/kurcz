@@ -1,0 +1,77 @@
+{
+  "id": "kurczozaur",
+  "type": "web-crawler",
+  "source": "kurcz.pl",
+  "enable": true,
+  "source_params": {
+    "r2_jurisdiction": "default",
+    "web_crawler": {
+      "parse_type": "sitemap",
+      "parse_options": {
+        "include_images": false,
+        "use_browser_rendering": false,
+        "content_selector": [
+          {
+            "path": "**",
+            "selector": "main"
+          }
+        ]
+      },
+      "crawl_options": {
+        "limit": 100000,
+        "depth": 1000,
+        "source": "all",
+        "max_age": 0,
+        "include_external_links": false,
+        "include_subdomains": true
+      }
+    }
+  },
+  "indexing_options": {
+    "keyword_tokenizer": "trigram"
+  },
+  "retrieval_options": {
+    "keyword_match_mode": "or"
+  },
+  "index_method": {
+    "vector": true,
+    "keyword": true
+  },
+  "hybrid_search_enabled": true,
+  "fusion_method": "rrf",
+  "embedding_model": "@cf/qwen/qwen3-embedding-0.6b",
+  "reranking": true,
+  "reranking_model": "",
+  "rewrite_query": true,
+  "rewrite_model": "",
+  "ai_search_model": "",
+  "system_prompt_ai_search": "You answer questions about muscle cramps using only the retrieved documents from kurcz.pl.\nRules:\n1. Always answer in the same language as the user's question (Polish or English).\n2. Never print URLs, links, or file names in your answer. Do not write phrases like 'document \"https://...\"' — the interface shows the sources separately.\n3. Refer to sources by their topic in prose if needed, not by address.\n4. Be concise: 2-4 short sentences, plain text, no markdown headings.\n5. If the documents do not cover the question, say so briefly in the user's language.\n6. This is health information, not medical advice. For severe, frequent, or persistent cramps, advise consulting a doctor.",
+  "system_prompt_rewrite_query": null,
+  "system_prompt_index_summarization": null,
+  "summarization": false,
+  "summarization_model": "",
+  "chunk": true,
+  "chunk_size": 800,
+  "chunk_overlap": 10,
+  "score_threshold": 0.4,
+  "max_num_results": 10,
+  "cache": true,
+  "cache_threshold": "close_enough",
+  "cache_ttl": 172800,
+  "ai_gateway_id": "default",
+  "public_endpoint_params": {
+    "enabled": true,
+    "default_domain_enabled": true,
+    "rate_limit": {
+      "requests": 600,
+      "period_ms": 60000,
+      "technique": "fixed"
+    },
+    "mcp": {
+      "disabled": false,
+      "description": "Finds exactly what you're looking for"
+    },
+    "custom_domains": []
+  },
+  "sync_interval": 86400
+}

@@ -6,8 +6,10 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "postbuild": "npm run check:seo",
+    "postbuild": "npm run check:seo && npm run check:search",
     "check:seo": "node scripts/check-seo-output.mjs",
+    "check:search": "node scripts/check-search-links.mjs",
+    "infra:ai-search": "node scripts/apply-ai-search.mjs",
     "preview": "astro preview",
     "start": "node ./dist/server/entry.mjs",
     "astro": "astro"

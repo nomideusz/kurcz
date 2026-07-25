@@ -1,6 +1,7 @@
 ---
 import Logo from './Logo.astro';
 import LanguageSwitcher from './LanguageSwitcher.svelte';
+import AiSearch from './AiSearch.svelte';
 import { extractLocale, localizeHref, routing, t } from '../i18n/config.ts';
 
 const { currentPath = '/' } = Astro.props;
@@ -53,6 +54,8 @@ const isActive = (path) =>
     </nav>
 
     <div class="flex items-center gap-3">
+      <AiSearch client:idle locale={locale} />
+
       <LanguageSwitcher client:load currentPath={currentPath} currentLocale={locale} />
 
       <a
