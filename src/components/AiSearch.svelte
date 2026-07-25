@@ -45,7 +45,7 @@
       state = 'idle';
     } catch (e) {
       if ((e as Error).name === 'AbortError') return;
-      rateLimited = /rate limit/i.test((e as Error).message);
+      rateLimited = /rate limit|neuron|allocation/i.test((e as Error).message);
       state = 'error';
     }
   }
@@ -84,11 +84,17 @@
         body: JSON.stringify({ messages: [{ role: 'user', content: q }], stream: true }),
         signal: inflight.signal,
       });
+      // Generation runs on the account's Workers AI allocation; once that is spent the
+      // endpoint answers 429 with a bare {message} instead of the usual {errors:[...]}.
+      if (res.status === 429) {
+        rateLimited = true;
+        throw new Error('rate limited');
+      }
       if (!res.ok || !res.body) throw new Error(String(res.status));
       // Same 200-but-failed case as /search: errors arrive as JSON, not as a stream.
       if (!res.headers.get('content-type')?.includes('event-stream')) {
         const json = await res.json().catch(() => null);
-        throw new Error(json?.errors?.[0]?.message ?? 'ask failed');
+        throw new Error(json?.errors?.[0]?.message ?? json?.message ?? 'ask failed');
       }
 
       const reader = res.body.pipeThrough(new TextDecoderStream()).getReader();
@@ -123,7 +129,7 @@
       state = 'idle';
     } catch (e) {
       if ((e as Error).name === 'AbortError') return;
-      rateLimited = /rate limit/i.test((e as Error).message);
+      rateLimited = /rate limit|neuron|allocation/i.test((e as Error).message);
       state = 'error';
     }
   }
@@ -153,9 +159,19 @@
 
   // The model emits light markdown; strip the emphasis markers rather than pull in a parser.
   const plain = (s: string) => s.replace(/\*\*/g, '').replace(/^#+\s*/gm, '');
+
+  // Retrieval runs before the first token, so an ask sits silent for a second or two.
+  const waitingForFirstToken = $derived(state === 'asking' && answer === '');
 </script>
 
 <svelte:window onkeydown={onWindowKey} />
+
+{#snippet spinner()}
+  <svg class="h-4 w-4 shrink-0 animate-spin text-accent" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" opacity="0.25" />
+    <path d="M22 12a10 10 0 0 0-10-10" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
+  </svg>
+{/snippet}
 
 <button
   type="button"
@@ -204,8 +220,22 @@
       <p class="py-6 text-center text-sm text-muted">{t(locale, rateLimited ? 'search.busy' : 'search.error')}</p>
     {:else if answer || state === 'asking'}
       <p class="mb-2 font-mono text-[11.5px] uppercase tracking-wider text-faint">{t(locale, 'search.answer')}</p>
-      <p class="whitespace-pre-line text-[15.5px] leading-relaxed text-ink" aria-live="polite">
-        {plain(answer)}{#if state === 'asking'}<span class="ml-0.5 inline-block h-4 w-[2px] animate-pulse bg-accent align-middle"></span>{/if}
+
+      {#if waitingForFirstToken}
+        <div class="flex items-center gap-2.5 py-1 text-sm text-muted">
+          {@render spinner()}
+          <span>{t(locale, 'search.thinking')}</span>
+        </div>
+        <!-- skeleton keeps the dialog from collapsing while retrieval runs -->
+        <div class="mt-4 space-y-2.5" aria-hidden="true">
+          <div class="h-3 w-full animate-pulse rounded bg-line-soft"></div>
+          <div class="h-3 w-[92%] animate-pulse rounded bg-line-soft"></div>
+          <div class="h-3 w-[70%] animate-pulse rounded bg-line-soft"></div>
+        </div>
+      {/if}
+
+      <p class="whitespace-pre-line text-[15.5px] leading-relaxed text-ink" aria-live="polite" aria-busy={state === 'asking'}>
+        {plain(answer)}{#if state === 'asking' && answer}<span class="ml-0.5 inline-block h-4 w-[2px] animate-pulse bg-accent align-middle"></span>{/if}
       </p>
 
       {#if sources.length}
@@ -241,7 +271,10 @@
         {/each}
       </ul>
     {:else if state === 'searching'}
-      <p class="py-6 text-center text-sm text-muted">…</p>
+      <div class="flex items-center justify-center gap-2.5 py-6 text-sm text-muted">
+        {@render spinner()}
+        <span>{t(locale, 'search.searching')}</span>
+      </div>
     {:else if query.trim().length >= 3}
       <p class="py-6 text-center text-sm text-muted">{t(locale, 'search.empty')}</p>
     {:else}

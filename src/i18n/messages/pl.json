@@ -55,5 +55,7 @@
   "search.hint": "Wpisz frazę, aby wyszukać. Enter — zadaj pytanie.",
   "search.error": "Coś poszło nie tak. Spróbuj ponownie za chwilę.",
   "search.disclaimer": "Odpowiedź generowana automatycznie na podstawie treści serwisu. Ma charakter informacyjny i nie zastępuje porady lekarskiej.",
-  "search.busy": "Zbyt wiele pytań w tej chwili. Spróbuj ponownie za kilkanaście sekund."
+  "search.busy": "Zbyt wiele pytań w tej chwili. Spróbuj ponownie za kilkanaście sekund.",
+  "search.searching": "Szukam…",
+  "search.thinking": "Szukam odpowiedzi w serwisie…"
 }
