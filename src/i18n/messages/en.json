@@ -44,5 +44,16 @@
   "cookie.accept": "Accept",
   "cookie.reject": "Decline",
   "toc.heading": "table of contents",
-  "related_links.heading": "Related topics"
+  "related_links.heading": "Related topics",
+  "search.open": "search",
+  "search.placeholder": "Search the site or ask a question…",
+  "search.ask": "Ask",
+  "search.pages": "pages",
+  "search.answer": "answer",
+  "search.sources": "sources",
+  "search.empty": "No results.",
+  "search.hint": "Type to search. Press Enter to ask a question.",
+  "search.error": "Something went wrong. Please try again shortly.",
+  "search.disclaimer": "This answer is generated automatically from site content. It is for information only and does not replace medical advice.",
+  "search.busy": "Too many questions right now. Please try again in a few seconds."
 }

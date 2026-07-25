@@ -44,5 +44,16 @@
   "cookie.accept": "Akceptuję",
   "cookie.reject": "Odrzuć",
   "toc.heading": "spis treści",
-  "related_links.heading": "Powiązane tematy"
+  "related_links.heading": "Powiązane tematy",
+  "search.open": "szukaj",
+  "search.placeholder": "Szukaj w serwisie lub zadaj pytanie…",
+  "search.ask": "Zapytaj",
+  "search.pages": "strony",
+  "search.answer": "odpowiedź",
+  "search.sources": "źródła",
+  "search.empty": "Brak wyników.",
+  "search.hint": "Wpisz frazę, aby wyszukać. Enter — zadaj pytanie.",
+  "search.error": "Coś poszło nie tak. Spróbuj ponownie za chwilę.",
+  "search.disclaimer": "Odpowiedź generowana automatycznie na podstawie treści serwisu. Ma charakter informacyjny i nie zastępuje porady lekarskiej.",
+  "search.busy": "Zbyt wiele pytań w tej chwili. Spróbuj ponownie za kilkanaście sekund."
 }

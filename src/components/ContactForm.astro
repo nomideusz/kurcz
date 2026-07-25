@@ -83,7 +83,9 @@ const effectiveLocale = lang ?? locale;
       payload.lang = formLang;
 
       try {
-        const res = await fetch('/api/contact', {
+        // Trailing slash is required: astro.config sets trailingSlash: 'always', so the
+        // Netlify function is registered at /api/contact/ and the bare path 404s to HTML.
+        const res = await fetch('/api/contact/', {
           method: 'POST',
           headers: { 'content-type': 'application/json' },
           body: JSON.stringify(payload),
@@ -96,6 +98,9 @@ const effectiveLocale = lang ?? locale;
           status.className = 'text-sm text-accent';
           form.reset();
         } else {
+          // A non-JSON response (404 HTML, proxy error) leaves data.error undefined and
+          // the visitor sees only the generic string — log enough to name the cause.
+          console.error('[contact] submit failed', res.status, res.statusText, data);
           status.textContent =
             data.error ??
             (isEn
