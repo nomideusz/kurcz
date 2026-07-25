@@ -55,5 +55,7 @@
   "search.hint": "Type to search. Press Enter to ask a question.",
   "search.error": "Something went wrong. Please try again shortly.",
   "search.disclaimer": "This answer is generated automatically from site content. It is for information only and does not replace medical advice.",
-  "search.busy": "Too many questions right now. Please try again in a few seconds."
+  "search.busy": "Too many questions right now. Please try again in a few seconds.",
+  "search.searching": "Searching…",
+  "search.thinking": "Looking for an answer…"
 }
