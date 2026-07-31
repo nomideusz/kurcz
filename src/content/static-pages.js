@@ -17,6 +17,10 @@ export const staticPages = {
         heading: 'Współpraca i partnerzy',
         body: 'Współpracujemy z ekspertami z dziedzin medycyny, fizjoterapii, wibroakustyki i jogi. Na stronie znajdziesz linki do naszych partnerów: Wibroakustyka.ai, Kompi.pl, Intertech Poland oraz Szkoły Jogi.',
       },
+      {
+        heading: 'Standardy redakcyjne',
+        body: 'Treści mają charakter edukacyjny i nie zastępują konsultacji lekarskiej. Opieramy się na uznanych źródłach klinicznych i przeglądach (m.in. wytyczne towarzystw, przeglądy Cochrane, opracowania Mayo Clinic), unikamy obietnic terapeutycznych i zawsze wskazujemy, kiedy zgłosić się do specjalisty. Szczegóły: disclaimer medyczny.',
+      },
     ],
   },
   '/regulamin': {
@@ -111,6 +115,10 @@ export const staticPagesEn = {
       {
         heading: 'Partners & Collaboration',
         body: 'We collaborate with experts in physiotherapy, vibroacoustics, and yoga. Check out our partner links: Vibroacoustics.ai, Kompi.pl, Intertech Poland, and Yoga Schools.',
+      },
+      {
+        heading: 'Editorial Standards',
+        body: 'Content is educational and does not replace medical care. We draw on recognized clinical sources and reviews (society guidance, Cochrane reviews, Mayo Clinic materials), avoid treatment promises, and always note when to see a clinician. See our medical disclaimer for details.',
       },
     ],
   },

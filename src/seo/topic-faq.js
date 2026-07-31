@@ -59,6 +59,34 @@ export const topicFaqByPath = {
       answer: 'Wykonuj ćwiczenia rozciągające łydek przed snem, zadbaj o luźną pościel nie uciskającą stóp i utrzymuj regularne nawodnienie w ciągu dnia.',
     },
   ],
+  '/wibroakustyka': [
+    {
+      question: 'Czym jest wibroakustyka?',
+      answer: 'Wibroakustyka wykorzystuje dźwięk o niskiej częstotliwości i odczuwalne wibracje w celu relaksacji oraz poprawy komfortu. Jest stosowana jako metoda wspierająca, a nie standardowe leczenie kurczy mięśniowych.',
+    },
+    {
+      question: 'Czy wibroakustyka pomaga na kurcze mięśniowe?',
+      answer: 'Dowody dotyczące bezpośredniego zapobiegania kurczom są ograniczone. Terapia może wspierać odprężenie i regenerację, ale nie zastępuje rozciągania, nawodnienia ani diagnostyki przy nawracających objawach.',
+    },
+    {
+      question: 'Czy terapia wibroakustyczna jest bezpieczna?',
+      answer: 'Bezpieczeństwo zależy od urządzenia i stanu zdrowia. Przed rozpoczęciem terapii skonsultuj się z lekarzem lub fizjoterapeutą, szczególnie przy ciąży, chorobach neurologicznych, implantach elektronicznych albo przewlekłym bólu.',
+    },
+  ],
+  '/joga-a-kurcze': [
+    {
+      question: 'Czy joga może zapobiegać kurczom mięśniowym?',
+      answer: 'Regularna, łagodna praktyka może poprawiać ruchomość, kontrolę napięcia i nawyk rozciągania. Nie gwarantuje jednak zapobiegania wszystkim kurczom, zwłaszcza gdy ich przyczyna jest medyczna.',
+    },
+    {
+      question: 'Jakie pozycje jogi są pomocne przy napiętych łydkach?',
+      answer: 'Łagodne pozycje rozciągające łydki i tylną część nóg, wykonywane bez bólu i z podparciem, mogą być dobrym początkiem. Przy ostrym kurczu najpierw rozciągaj mięsień powoli, zamiast forsować pozycję.',
+    },
+    {
+      question: 'Kiedy nie ćwiczyć jogi przy kurczach?',
+      answer: 'Przerwij ćwiczenie przy silnym bólu, obrzęku, zaczerwienieniu, osłabieniu lub drętwieniu nogi. Częste albo niewyjaśnione kurcze omów z lekarzem przed powrotem do intensywnej praktyki.',
+    },
+  ],
 };
 
 export const topicFaqEnByPath = {
@@ -119,6 +147,34 @@ export const topicFaqEnByPath = {
     {
       question: 'How to prevent night cramps?',
       answer: 'Perform calf stretches before sleep, ensure loose bedding that does not compress feet, and maintain consistent daytime hydration.',
+    },
+  ],
+  '/wibroakustyka': [
+    {
+      question: 'What is vibroacoustic therapy?',
+      answer: 'Vibroacoustic therapy uses low-frequency sound and felt vibration to support relaxation and comfort. It is a complementary approach, not a standard treatment for muscle cramps.',
+    },
+    {
+      question: 'Does vibroacoustic therapy help muscle cramps?',
+      answer: 'Evidence for directly preventing cramps remains limited. It may support relaxation and recovery, but does not replace stretching, hydration, or medical assessment for recurring symptoms.',
+    },
+    {
+      question: 'Is vibroacoustic therapy safe?',
+      answer: 'Safety depends on the device and your health status. Speak with a clinician or physiotherapist first, especially during pregnancy or if you have neurological conditions, electronic implants, or chronic pain.',
+    },
+  ],
+  '/joga-a-kurcze': [
+    {
+      question: 'Can yoga help prevent muscle cramps?',
+      answer: 'Gentle, regular practice may improve mobility, awareness of muscle tension, and stretching habits. It cannot guarantee prevention of every cramp, especially when there is an underlying medical cause.',
+    },
+    {
+      question: 'Which yoga poses may help tight calves?',
+      answer: 'Gentle calf and back-of-leg stretches performed without pain and with support can be a useful starting point. During an acute cramp, stretch slowly rather than forcing a yoga pose.',
+    },
+    {
+      question: 'When should I avoid yoga for cramps?',
+      answer: 'Stop exercise for severe pain, swelling, redness, weakness, or numbness. Discuss frequent or unexplained cramps with a clinician before returning to an intense practice.',
     },
   ],
 };

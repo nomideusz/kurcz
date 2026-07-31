@@ -1,21 +1,32 @@
 // Structured content for the main topic pages, extracted from the legacy section components.
 export const topicPagesContent = {
   '/kurcze-miesniowe': {
-    intro: `Kurcze mięśniowe to mimowolne, często bolesne kurcze mięśni, które mogą dotknąć każdego z nas. Poznaj ich medyczne podłoże, czynniki ryzyka oraz sprawdzone metody prewencji i skutecznego leczenia.`,
+    intro: `Kurcze mięśniowe to nagłe, mimowolne i zwykle bolesne napięcia mięśni szkieletowych. Najczęściej dotyczą łydek, stóp i ud; pojedynczy epizod zazwyczaj nie jest groźny, ale częste lub nietypowe kurcze wymagają oceny przyczyny. Ten przewodnik wyjaśnia objawy, czynniki ryzyka, możliwe źródła problemu oraz bezpieczne kolejne kroki — od pierwszej pomocy po konsultację lekarską.`,
     sections: [
       {
-        heading: `Przyczyny kurczy mięśniowych`,
-        body: ``,
+        heading: `Czym są kurcze mięśniowe`,
+        body: `Podczas kurczu mięsień nagle twardnieje i boli, a jego rozluźnienie przez chwilę jest trudne. Epizod zwykle trwa od kilku sekund do kilku minut, choć tkliwość może pozostać dłużej. Kurcz nie jest tym samym co zwykły skurcz mięśnia ani krótkie drżenie włókien — dokładne wyjaśnienie znajdziesz w poradniku „Kurcz czy skurcz?”.`,
+        bullets: [
+          `Nagłe, mimowolne napięcie mięśnia szkieletowego`,
+          `Ból i wyczuwalne stwardnienie mięśnia`,
+          `Najczęstsze lokalizacje: łydka, stopa i udo`,
+          `Przejściowe ograniczenie ruchu oraz tkliwość po epizodzie`,
+        ],
+      },
+      {
+        heading: `Najczęstsze przyczyny i czynniki wyzwalające`,
+        body: `Nie każdy kurcz ma jedną, łatwą do wskazania przyczynę. Często nakładają się na siebie zmęczenie mięśni, niewystarczające nawodnienie, długie utrzymywanie jednej pozycji oraz zmiany związane z wysiłkiem lub snem. Niekiedy znaczenie mają leki albo choroby współistniejące.`,
         bullets: [
           `Odwodnienie i zaburzenia elektrolitowe`,
           `Niedobór minerałów (magnez, potas, wapń, sód)`,
           `Nadmierne obciążenie i przeciążenie mięśni`,
           `Długotrwała statyczna pozycja ciała`,
+          `Niektóre leki i choroby metaboliczne, neurologiczne lub naczyniowe`,
         ],
       },
       {
-        heading: `Rozpoznawanie objawów`,
-        body: ``,
+        heading: `Objawy, które warto obserwować`,
+        body: `Typowy kurcz ma nagły początek i ustępuje po delikatnym rozciągnięciu. Zapisuj, kiedy się pojawia, jak długo trwa, które mięśnie obejmuje oraz czy występuje po wysiłku, w nocy lub po wprowadzeniu nowego leku. Takie informacje pomagają lekarzowi ocenić sytuację.`,
         bullets: [
           `Nagły, przeszywający ból mięśnia`,
           `Widoczne stwardnienie i napięcie mięśnia`,
@@ -25,23 +36,35 @@ export const topicPagesContent = {
       },
       {
         heading: `Grupy podwyższonego ryzyka`,
-        body: ``,
+        body: `Kurcze mogą wystąpić u każdego, ale częściej zgłaszają je osoby o większym obciążeniu mięśni, szczególnych potrzebach fizjologicznych lub chorobach przewlekłych. Ryzyko nie oznacza jednak, że kurcze są nieuniknione albo że ich przyczyną zawsze jest niedobór minerałów.`,
         bullets: [
           `Sportowcy i osoby intensywnie trenujące`,
           `Seniorzy powyżej 65. roku życia`,
           `Kobiety w ciąży (zwłaszcza II i III trymestr)`,
           `Pacjenci z chorobami metabolicznymi (cukrzyca)`,
+          `Osoby przyjmujące leki mogące wpływać na gospodarkę płynów lub mięśnie`,
         ],
       },
       {
-        heading: `Doświadczasz bolesnych kurczy mięśniowych?`,
-        body: `Poniżej znajdziesz specjalistyczne informacje o przyczynach, pierwszej pomocy oraz długoterminowej profilaktyce kurczy. Zastosuj te metody, aby szybko uzyskać ulgę i zapobiegać nawrotom w przyszłości.`,
+        heading: `Leczenie i zapobieganie nawrotom`,
+        body: `Przy ostrym kurczu przerwij aktywność, rozciągnij mięsień powoli w kierunku przeciwnym do jego napięcia i rozważ delikatny masaż po ustąpieniu największego bólu. W dłuższej perspektywie pomocne są regularne nawodnienie, stopniowe zwiększanie obciążeń i rozciąganie dobrane do aktywności. Suplementy i zmiany leków zawsze skonsultuj ze specjalistą.`,
+      },
+      {
+        heading: `Kiedy zgłosić się do lekarza`,
+        body: `Konsultacja jest wskazana, gdy kurcze wracają mimo prostych działań profilaktycznych, są wyjątkowo silne lub długo trwają. Pilnie szukaj pomocy przy jednostronnym obrzęku, zaczerwienieniu albo ociepleniu nogi, nagłej duszności, osłabieniu mięśni, zaburzeniach czucia lub objawach po urazie.`,
+      },
+      {
+        heading: `Przejdź do poradników dopasowanych do problemu`,
+        body: `Pillar wyjaśnia szeroki obraz medyczny. Jeśli potrzebujesz działania tu i teraz, wybierz pierwszą pomoc; jeśli kurcze mają konkretną lokalizację lub pojawiają się w nocy, skorzystaj z bardziej szczegółowych poradników poniżej.`,
       },
     ],
     relatedLinks: [
       { path: '/kurcze-nog', label: 'Kurcze nóg' },
+      { path: '/kurcze-lydek', label: 'Kurcze łydek' },
+      { path: '/kurcze-nocne', label: 'Kurcze nocne' },
       { path: '/pierwsza-pomoc', label: 'Pierwsza pomoc' },
       { path: '/profilaktyka', label: 'Profilaktyka' },
+      { path: '/kurcze-a-leki', label: 'Kurcze a leki' },
     ],
   },
 
@@ -227,33 +250,32 @@ export const topicPagesContent = {
   },
 
   '/wibroakustyka': {
-    intro: `Odkryj nowoczesne podejście do profilaktyki i redukcji ryzyka kurczy mięśniowych przy pomocy zaawansowanej terapii wibroakustycznej.`,
+    intro: `Wibroakustyka wykorzystuje dźwięk o niskiej częstotliwości i odczuwalne wibracje jako formę relaksacji oraz wsparcia komfortu. Może uzupełniać odpoczynek i pracę z napięciem mięśniowym, ale nie zastępuje rozciągania, nawodnienia ani diagnostyki nawracających kurczy.`,
     sections: [
       {
         heading: `Jak działa terapia wibroakustyczna?`,
-        body: `Wibroakustyka to nowatorska metoda terapeutyczna wykorzystująca precyzyjnie dobrane częstotliwości dźwięku i wibracji. Badania kliniczne wykazują jej skuteczność w zakresie poprawy funkcjonowania układu mięśniowego poprzez:`,
+        body: `Wibroakustyka wykorzystuje muzykę lub tony przenoszone przez specjalne leżanki, fotele albo urządzenia. Odczuwane wibracje są zwykle łagodne; celem sesji jest relaks, świadomość ciała i subiektywne zmniejszenie napięcia.`,
         bullets: [
-          `Zwiększenie elastyczności tkanek mięśniowych`,
-          `Redukcję napięcia i zapobieganie kurczom mięśniowym`,
-          `Poprawę mikrokrążenia w obszarach zagrożonych kurczami`,
-          `Przyspieszenie regeneracji po wysiłku fizycznym`,
+          `Dźwięk i drgania odbierane jednocześnie przez słuch i ciało`,
+          `Sesje prowadzone w pozycji odpoczynkowej`,
+          `Metoda stosowana jako uzupełnienie, nie zamiennik opieki medycznej`,
         ],
       },
       {
-        heading: `Ważna informacja`,
-        body: `Terapia wibroakustyczna stanowi uzupełnienie konwencjonalnych metod leczenia i profilaktyki kurczy mięśniowych. Zawsze konsultuj nowe metody terapeutyczne z lekarzem, szczególnie jeśli cierpisz na przewlekłe dolegliwości.`,
+        heading: `Co wiemy o skuteczności`,
+        body: `Badania nad zastosowaniem wibroakustyki są nadal ograniczone i zróżnicowane. Nie ma wystarczających dowodów, by traktować ją jako potwierdzone leczenie lub profilaktykę kurczy mięśniowych. Jeśli przynosi relaks, warto traktować ją jako element szerszego planu ustalonego z lekarzem lub fizjoterapeutą.`,
       },
       {
-        heading: `Potwierdzona skuteczność`,
-        body: `Metoda wibroakustyczna posiada udokumentowane badania kliniczne potwierdzające jej skuteczność w redukcji częstotliwości występowania kurczy mięśniowych i przyspieszeniu regeneracji tkanek.`,
+        heading: `Jak bezpiecznie włączyć terapię do rutyny`,
+        body: `Nie stosuj urządzenia przez ostry ból ani nie opóźniaj konsultacji medycznej. Zwróć uwagę na reakcję organizmu, wybieraj intensywność zgodną z instrukcją producenta i łącz sesje z podstawami: odpowiednim obciążeniem treningowym, snem, nawodnieniem oraz łagodnym rozciąganiem.`,
       },
       {
-        heading: `Dostępność terapii`,
-        body: `Technologia wibroakustyczna jest coraz bardziej dostępna zarówno w ośrodkach medycznych, jak i w formie urządzeń do użytku domowego, co czyni ją przystępną opcją terapeutyczną dla osób cierpiących na nawracające kurcze.`,
+        heading: `Kto powinien najpierw skonsultować się ze specjalistą`,
+        body: `Zapytaj lekarza lub fizjoterapeutę przed rozpoczęciem terapii, jeśli jesteś w ciąży, masz chorobę neurologiczną, wszczepione urządzenie elektroniczne, świeży uraz albo niewyjaśniony przewlekły ból. Przy kurczach z osłabieniem, drętwieniem, obrzękiem lub zaczerwienieniem potrzebna jest ocena przyczyny, a nie samodzielna terapia.`,
       },
       {
-        heading: `Zainteresowany wibroakustyką?`,
-        body: `Odkryj więcej szczegółów na temat innowacyjnego zastosowania wibroakustyki w terapii kurczy mięśniowych i innych dolegliwości.`,
+        heading: `Co wybrać przy samym kurczu`,
+        body: `W trakcie bolesnego kurczu najpierw przerwij aktywność i powoli rozciągnij napięty mięsień. Dalsze działania — masaż, ćwiczenia, profilaktykę lub terapię wspierającą — dobierz dopiero po ustąpieniu ostrego bólu.`,
       },
     ],
     relatedLinks: [
@@ -264,23 +286,32 @@ export const topicPagesContent = {
   },
 
   '/joga-a-kurcze': {
-    intro: `Regularna praktyka jogi to nie tylko wyciszenie umysłu, ale przede wszystkim doskonałe narzędzie do pracy z ciałem. Głębsze rozciąganie, świadomy oddech i poprawa ukrwienia to kluczowe czynniki, które zapobiegają bolesnym kurczom mięśniowym i pomagają w szybkiej regeneracji po ich wystąpieniu.`,
+    intro: `Joga może być łagodnym uzupełnieniem profilaktyki kurczy: wspiera regularne rozciąganie, ruchomość i świadomość napięcia mięśniowego. Nie zastępuje jednak diagnostyki, gdy kurcze są częste, bardzo bolesne lub towarzyszą im inne objawy.`,
     sections: [
       {
-        heading: `Zwiększona elastyczność`,
-        body: `Asany skutecznie wydłużają włókna mięśniowe, zmniejszając ich podatność na nagłe kurcze.`,
+        heading: `Jak joga może wspierać mięśnie`,
+        body: `Spokojna praktyka pomaga wprowadzić regularną pracę nad ruchomością łydek, stóp, ud i tylnej części nóg. Korzyścią jest przede wszystkim systematyczność oraz lepsze rozpoznawanie momentu, w którym mięśnie potrzebują odpoczynku.`,
+        bullets: [
+          `Łagodne rozciąganie bez pogłębiania bólu`,
+          `Ćwiczenie równowagi i kontroli ruchu`,
+          `Przerwy na oddech i relaks po wysiłku`,
+        ],
       },
       {
-        heading: `Lepsze ukrwienie i dotlenienie`,
-        body: `Świadomy oddech (Pranajama) dostarcza więcej tlenu do tkanek, zapobiegając niedotlenieniu mięśni.`,
+        heading: `Pozycje dla łydek, stóp i ud`,
+        body: `Wybieraj proste warianty pozycji stojących i skłonów z podparciem, które pozwalają łagodnie wydłużyć mięśnie nóg. Utrzymuj pozycję komfortowo, oddychaj swobodnie i unikaj sprężynowania. Przy ostrym kurczu stosuj podstawowe, powolne rozciąganie zamiast forsować asanę.`,
       },
       {
-        heading: `Redukcja napięcia stresowego`,
-        body: `Zmniejszenie ogólnego napięcia nerwowego obniża ryzyko nocnych kurczy nóg.`,
+        heading: `Oddech, regeneracja i nocne kurcze`,
+        body: `Ćwiczenia oddechowe i relaksacyjne mogą zmniejszać odczuwane napięcie oraz ułatwiać wieczorne wyciszenie. Nie są jednak leczeniem nocnych kurczy. Jeśli problem budzi Cię regularnie, połącz łagodną praktykę z nawodnieniem, rozciąganiem łydek przed snem i oceną innych przyczyn.`,
       },
       {
-        heading: `Znajdź idealne studio jogi`,
-        body: `Niezależnie od tego, czy dopiero zaczynasz swoją przygodę, czy szukasz zaawansowanych praktyk - odkryj najlepsze szkoły jogi w swojej okolicy i zacznij dbać o swoje ciało już dziś.`,
+        heading: `Bezpieczna praktyka`,
+        body: `Rozpoczynaj od krótkich, spokojnych sesji i zwiększaj zakres ruchu stopniowo. Zrezygnuj z ćwiczenia przy silnym bólu, jednostronnym obrzęku, zaczerwienieniu, osłabieniu lub drętwieniu. W ciąży, po urazie albo przy chorobach przewlekłych dobierz praktykę z lekarzem lub wykwalifikowanym nauczycielem.`,
+      },
+      {
+        heading: `Joga jako część szerszej profilaktyki`,
+        body: `Najlepsze rezultaty daje łączenie praktyki z rozsądną progresją treningu, snem, nawodnieniem i dietą. Jeśli kurcze powracają mimo tych działań, nie zakładaj, że wystarczy częściej ćwiczyć — skonsultuj ich przyczynę.`,
       },
     ],
     relatedLinks: [
@@ -293,21 +324,32 @@ export const topicPagesContent = {
 
 export const topicPagesContentEn = {
   '/kurcze-miesniowe': {
-    intro: `Muscle cramps are involuntary, often painful muscle contractions that can affect anyone. Discover their medical causes, risk factors, and proven prevention and treatment methods.`,
+    intro: `Muscle cramps are sudden, involuntary, and usually painful contractions of skeletal muscle. They most often affect the calves, feet, and thighs. A single episode is usually harmless, but frequent or unusual cramps need a closer look. This guide explains symptoms, risk groups, possible causes, and safe next steps — from first aid to medical care.`,
     sections: [
       {
-        heading: `Causes of Muscle Cramps`,
-        body: ``,
+        heading: `What Are Muscle Cramps?`,
+        body: `During a cramp, a muscle suddenly tightens, hardens, and becomes painful, making relaxation difficult for a short time. Episodes often last seconds to minutes, although soreness can linger. A cramp is not the same as a normal muscle contraction or a brief twitch; see “Cramp vs Spasm” for the distinction.`,
+        bullets: [
+          `Sudden, involuntary contraction of skeletal muscle`,
+          `Pain and a palpable hardening of the muscle`,
+          `Most common in the calves, feet, and thighs`,
+          `Temporary loss of movement and residual soreness`,
+        ],
+      },
+      {
+        heading: `Common Causes and Triggers`,
+        body: `Not every cramp has one clear cause. Muscle fatigue, inadequate hydration, prolonged posture, sleep position, and exercise changes can overlap. In some cases, medications or underlying health conditions play a role.`,
         bullets: [
           `Dehydration and electrolyte imbalances`,
           `Mineral deficiencies (magnesium, potassium, calcium, sodium)`,
           `Excessive muscle fatigue and strain`,
           `Prolonged static body postures`,
+          `Some medications and metabolic, neurological, or vascular conditions`,
         ],
       },
       {
-        heading: `Recognizing Symptoms`,
-        body: ``,
+        heading: `Symptoms Worth Tracking`,
+        body: `A typical cramp begins suddenly and eases with gentle stretching. Note when it occurs, how long it lasts, which muscle is involved, and whether it follows exercise, happens at night, or began after a medication change. This context helps a clinician assess recurring symptoms.`,
         bullets: [
           `Sudden, sharp muscle pain`,
           `Visible hardening and tightness of the muscle`,
@@ -317,23 +359,35 @@ export const topicPagesContentEn = {
       },
       {
         heading: `High-Risk Groups`,
-        body: ``,
+        body: `Anyone can experience a cramp, but they are reported more often by people with higher muscle load, particular physiological needs, or chronic health conditions. Being in a higher-risk group does not mean cramps are inevitable or always caused by low minerals.`,
         bullets: [
           `Athletes and physically active individuals`,
           `Seniors over 65 years old`,
           `Pregnant women (especially second and third trimester)`,
           `Patients with metabolic conditions (diabetes)`,
+          `People taking medicines that can affect fluid balance or muscles`,
         ],
       },
       {
-        heading: `Experiencing Painful Muscle Cramps?`,
-        body: `Below you will find expert information on causes, first aid, and long-term cramp prevention. Apply these techniques for fast relief and to avoid future recurrences.`,
+        heading: `Treatment and Recurrence Prevention`,
+        body: `For an acute cramp, stop the activity and slowly stretch the muscle in the direction opposite to the contraction. Gentle massage may help once the worst pain has eased. Over time, regular hydration, gradual training progression, and activity-appropriate stretching can help. Discuss supplements and medication changes with a clinician.`,
+      },
+      {
+        heading: `When to See a Doctor`,
+        body: `Arrange a medical review if cramps persist despite basic prevention, are unusually severe, or last a long time. Seek urgent help for one-sided leg swelling, redness or warmth, sudden shortness of breath, weakness, sensory changes, or symptoms after an injury.`,
+      },
+      {
+        heading: `Find the Guide That Fits Your Symptoms`,
+        body: `This pillar covers the broad medical picture. For immediate action, see First Aid; for a specific location or timing, use the dedicated guides below.`,
       },
     ],
     relatedLinks: [
       { path: '/kurcze-nog', label: 'Leg Cramps' },
+      { path: '/kurcze-lydek', label: 'Calf Cramps' },
+      { path: '/kurcze-nocne', label: 'Night Cramps' },
       { path: '/pierwsza-pomoc', label: 'First Aid' },
       { path: '/profilaktyka', label: 'Prevention' },
+      { path: '/kurcze-a-leki', label: 'Cramps & Medication' },
     ],
   },
 
@@ -480,8 +534,16 @@ export const topicPagesContentEn = {
         body: `A muscle twitch (fasciculation) is a brief, usually painless flicker of a fiber bundle — eyelid twitching is a classic example. A cramp is a sustained, painful lock of the whole muscle. Twitches are common with fatigue, caffeine, or low magnesium; persistent twitching still deserves medical advice if progressive.`,
       },
       {
+        heading: `How Clinicians Describe Muscle Contractions`,
+        body: `In clinical writing, “contraction” is the neutral term for a muscle shortening or developing tension. It may be normal and voluntary, such as lifting a cup, or involuntary. “Spasm” can describe a broader involuntary contraction, while “cramp” usually signals a painful, sustained skeletal muscle contraction.`,
+      },
+      {
         heading: `Summary`,
         body: `Every cramp is a type of spasm, but not every spasm is a cramp. Use “cramp” for painful involuntary skeletal contractions; use “spasm” when you mean contraction in the wider medical sense.`,
+      },
+      {
+        heading: `Useful Everyday Phrases`,
+        body: `For clear communication, say “I have a calf cramp” or “my foot cramped” when describing sudden painful lock-up. Use “muscle twitch” for brief flickering and “muscle spasm” when a clinician has used that broader term. Describe location, duration, triggers, and associated symptoms when asking for medical advice.`,
       },
     ],
     relatedLinks: [
@@ -493,21 +555,32 @@ export const topicPagesContentEn = {
   },
 
   '/wibroakustyka': {
-    intro: `Discover a modern approach to cramp prevention and muscle recovery using advanced vibroacoustic soundwave therapy.`,
+    intro: `Vibroacoustic therapy uses low-frequency sound and felt vibration to support relaxation and comfort. It may complement rest and work with muscle tension, but it does not replace stretching, hydration, or assessment of recurring cramps.`,
     sections: [
       {
         heading: `How Vibroacoustic Therapy Works`,
-        body: `Vibroacoustics is an innovative therapeutic method utilizing calibrated sound frequencies and gentle vibrations to improve muscle function by:`,
+        body: `Vibroacoustic therapy delivers music or tones through specialist loungers, chairs, or devices. The vibration is usually gentle; sessions aim to support relaxation, body awareness, and perceived reduction in tension.`,
         bullets: [
-          `Increasing muscle tissue elasticity`,
-          `Reducing tension and preventing painful cramps`,
-          `Improving microcirculation in cramp-prone areas`,
-          `Accelerating post-exercise muscle recovery`,
+          `Sound and vibration experienced together`,
+          `Sessions completed in a resting position`,
+          `A complementary approach, not a replacement for medical care`,
         ],
       },
       {
-        heading: `Clinical Effectiveness`,
-        body: `Clinical studies support sound frequency therapy as an effective complement to conventional cramp prevention routines.`,
+        heading: `What the Evidence Shows`,
+        body: `Research into vibroacoustic applications is still limited and varied. There is not enough evidence to consider it a proven treatment or prevention method for muscle cramps. If it helps you relax, use it as one part of a broader plan discussed with a clinician or physiotherapist.`,
+      },
+      {
+        heading: `Using It Safely in Your Routine`,
+        body: `Do not use a device as a response to acute pain or as a reason to delay medical care. Follow the manufacturer’s guidance, notice how your body responds, and pair sessions with gradual training progression, sleep, hydration, and gentle stretching.`,
+      },
+      {
+        heading: `Who Should Seek Advice First`,
+        body: `Speak with a doctor or physiotherapist before starting if you are pregnant, have a neurological condition, an electronic implant, a recent injury, or unexplained chronic pain. Cramps with weakness, numbness, swelling, or redness need an assessment of the cause rather than self-treatment alone.`,
+      },
+      {
+        heading: `What to Do During a Cramp`,
+        body: `For a painful active cramp, stop the activity and slowly stretch the tightened muscle. Consider massage, exercises, prevention routines, or complementary therapy only after the acute pain settles.`,
       },
     ],
     relatedLinks: [
@@ -518,19 +591,32 @@ export const topicPagesContentEn = {
   },
 
   '/joga-a-kurcze': {
-    intro: `Regular yoga practice improves muscle flexibility, conscious breathing, and circulation, helping prevent painful muscle cramps.`,
+    intro: `Yoga can be a gentle addition to cramp prevention by supporting regular stretching, mobility, and awareness of muscle tension. It does not replace medical assessment when cramps are frequent, severe, or accompanied by other symptoms.`,
     sections: [
       {
-        heading: `Enhanced Flexibility`,
-        body: `Asanas gently lengthen muscle fibers, lowering susceptibility to sudden muscle spasms.`,
+        heading: `How Yoga Can Support Muscles`,
+        body: `A calm practice can build a regular routine for the calves, feet, thighs, and back of the legs. Its practical value is consistency and better awareness of when muscles need recovery.`,
+        bullets: [
+          `Gentle stretching without pushing into pain`,
+          `Balance and controlled movement practice`,
+          `Breathing and relaxation breaks after activity`,
+        ],
       },
       {
-        heading: `Better Blood Flow & Oxygenation`,
-        body: `Conscious Pranayama breathing increases tissue oxygenation and prevents muscle hypoxia.`,
+        heading: `Poses for Calves, Feet, and Thighs`,
+        body: `Choose simple supported standing poses and forward folds that allow the leg muscles to lengthen gradually. Hold a comfortable position, breathe freely, and avoid bouncing. During an acute cramp, use slow basic stretching instead of forcing a pose.`,
       },
       {
-        heading: `Stress Reduction`,
-        body: `Lowering systemic nervous tension reduces the frequency of nighttime leg cramps.`,
+        heading: `Breathing, Recovery, and Night Cramps`,
+        body: `Breathing and relaxation practices may lower perceived tension and support a calming evening routine. They do not treat night cramps directly. If cramps wake you regularly, combine gentle yoga with hydration, bedtime calf stretches, and an assessment of other causes.`,
+      },
+      {
+        heading: `Practise Safely`,
+        body: `Start with short, calm sessions and increase range gradually. Stop for severe pain, one-sided swelling, redness, weakness, or numbness. During pregnancy, after an injury, or with a chronic health condition, tailor your practice with a clinician or qualified teacher.`,
+      },
+      {
+        heading: `Yoga as One Part of Prevention`,
+        body: `Yoga works best alongside sensible training progression, sleep, hydration, and nutrition. If cramps continue despite these measures, do not assume that more stretching is the answer — discuss the cause with a clinician.`,
       },
     ],
     relatedLinks: [

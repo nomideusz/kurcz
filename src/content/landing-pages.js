@@ -125,7 +125,7 @@ export const landingPages = [
     path: '/kurcze-nocne',
     hub: { path: '/kurcze-miesniowe', label: 'Kurcze mięśniowe' },
     h1: 'Kurcze nocne — jak je zlikwidować',
-    title: 'Kurcze nocne — przyczyny i skuteczne sposoby | Kurcz.pl',
+    title: 'Kurcze nocne a sen — przyczyny i sposoby | Kurcz.pl',
     description: 'Budzisz się z bolesnym kurczem mięśnia? Poznaj przyczyny kurczy nocnych, techniki ulgi i sprawdzone metody profilaktyki przed snem.',
     intro: 'Kurcze nocne to bolesne, mimowolne skurcze mięśni występujące podczas snu — najczęściej w łydkach, stopach lub udach. Choć trwają zwykle kilkadziesiąt sekund, potrafią znacząco obniżyć jakość snu.',
     sections: [
@@ -180,7 +180,7 @@ export const landingPages = [
     hub: { path: '/kurcze-miesniowe', label: 'Kurcze mięśniowe' },
     h1: 'Skurcze łydek w ciąży — przyczyny i ulga',
     title: 'Skurcze łydek w ciąży — 2. i 3. trymestr | Kurcz.pl',
-    description: 'Skurcze łydek i nóg w ciąży (2. i 3. trymestr): jak często się pojawiają, przyczyny, bezpieczna pierwsza pomoc, magnez i kiedy wezwać lekarza. Także po angielsku: calf cramps in pregnancy.',
+    description: 'Skurcze łydek i nóg w ciąży (2. i 3. trymestr): częste przyczyny, bezpieczna pierwsza pomoc, rola magnezu oraz objawy wymagające kontaktu z lekarzem.',
     intro: 'Skurcze (kurcze) łydek w ciąży to nagłe, bolesne napięcie mięśnia — najczęściej w nocy. Według źródeł klinicznych pojawiają się głównie w drugim i trzecim trymestrze; w III trymestrze zgłasza je nawet około połowy do dwóch trzecich ciężarnych. Dokładna przyczyna nie jest w pełni wyjaśniona, ale rolę odgrywają zmiany krążenia, ucisk rosnącej macicy, obciążenie nóg i gospodarka mineralna.',
     sections: [
       {
@@ -469,6 +469,129 @@ export const landingPages = [
       { path: '/profilaktyka', label: 'Profilaktyka' },
     ],
   },
+  {
+    path: '/kurcze-ud',
+    hub: { path: '/kurcze-miesniowe', label: 'Kurcze mięśniowe' },
+    h1: 'Kurcze ud i mięśni kulszowo-goleniowych',
+    title: 'Kurcze ud i mięśni kulszowo-goleniowych — przyczyny | Kurcz.pl',
+    description: 'Kurcze ud i tylnej części uda: przyczyny, bezpieczne rozciąganie, pierwsza pomoc oraz objawy wymagające konsultacji lekarskiej.',
+    intro: 'Kurcz uda to nagłe, bolesne napięcie mięśni z przodu, po wewnętrznej stronie lub z tyłu uda. Często występuje po wysiłku, przy zmęczeniu mięśni albo w nocy, ale nawracające objawy warto ocenić w szerszym kontekście zdrowotnym.',
+    sections: [
+      { heading: 'Które mięśnie uda mogą kurczyć się bolesnie', body: 'Kurcz może obejmować mięsień czworogłowy z przodu uda, przywodziciele po stronie wewnętrznej albo mięśnie kulszowo-goleniowe z tyłu uda. Miejsce bólu pomaga dobrać pozycję rozciągającą, ale nie rozstrzyga samodzielnie o przyczynie.' },
+      { heading: 'Najczęstsze przyczyny kurczy ud', body: 'Wysiłek większy niż zwykle, niedostateczne przygotowanie do treningu, odwodnienie oraz długie przebywanie w jednej pozycji mogą sprzyjać skurczom. U części osób znaczenie mają też leki, choroby przewlekłe lub zaburzenia gospodarki elektrolitowej.' },
+      { heading: 'Pierwsza pomoc i rozciąganie', body: 'Przerwij aktywność i powoli wydłużaj napięty mięsień bez sprężynowania. Przy kurczu tylnej części uda wyprostuj kolano i pochyl tułów tylko do granicy komfortu; przy kurczu z przodu uda podeprzyj się i ostrożnie przyciągnij piętę do pośladka.' },
+      { heading: 'Powrót do aktywności i profilaktyka', body: 'Po ustąpieniu bólu zrób krótki spacer i wracaj do wysiłku dopiero, gdy ruch jest swobodny. Stopniowanie obciążeń, rozgrzewka, sen i regularne picie płynów są bezpieczniejszą profilaktyką niż doraźne, samodzielne suplementowanie.' },
+      { heading: 'Kiedy potrzebna jest pilna ocena', body: 'Nie zakładaj, że każdy silny ból uda jest kurczem. Nagły obrzęk, zaczerwienienie lub ocieplenie jednej nogi, duszność, uraz, utrzymująca się słabość albo ból nieustępujący po rozciąganiu wymagają pilnej konsultacji medycznej.' },
+    ],
+    faq: [
+      { question: 'Jak rozciągnąć kurcz z tyłu uda?', answer: 'Usiądź lub stań stabilnie, powoli wyprostuj kolano i unieś palce stopy ku sobie. Nie pogłębiaj skłonu przez ból ani nie wykonuj gwałtownych ruchów.' },
+      { question: 'Czy kurcz uda po treningu oznacza naderwanie?', answer: 'Nie zawsze. Kurcz zwykle ustępuje po spokojnym rozciąganiu, choć mięsień może być tkliwy następnego dnia. Siniak, obrzęk, nagłe „strzelenie” lub utrzymujący się ból sugerują potrzebę badania.' },
+      { question: 'Czy można trenować po kurczu uda?', answer: 'Do treningu wróć dopiero po ustąpieniu bólu i odzyskaniu pełnego, swobodnego ruchu. Jeśli kurcze wracają, zmniejsz obciążenie i omów problem z lekarzem lub fizjoterapeutą.' },
+    ],
+    relatedLinks: [
+      { path: '/kurcze-nog', label: 'Kurcze nóg' },
+      { path: '/kurcze-u-sportowcow', label: 'Kurcze u sportowców' },
+      { path: '/rozciaganie-przy-kurczach', label: 'Rozciąganie przy kurczach' },
+      { path: '/pierwsza-pomoc', label: 'Pierwsza pomoc' },
+    ],
+  },
+  {
+    path: '/kurcze-dloni',
+    hub: { path: '/kurcze-miesniowe', label: 'Kurcze mięśniowe' },
+    h1: 'Kurcze dłoni i palców — przyczyny i ulga',
+    title: 'Kurcze dłoni i palców — przyczyny i co robić | Kurcz.pl',
+    description: 'Kurcze dłoni i palców: możliwe przyczyny, prosta pierwsza pomoc, profilaktyka przy pracy rękami i sygnały do konsultacji.',
+    intro: 'Kurcze dłoni lub palców są nagłym, bolesnym zaciskaniem mięśni ręki. Mogą pojawić się po powtarzalnej pracy, wysiłku, wychłodzeniu lub odwodnieniu; gdy nawracają z drętwieniem albo osłabieniem, wymagają oceny lekarskiej.',
+    sections: [
+      { heading: 'Co może wywoływać kurcze dłoni', body: 'Długie pisanie, chwytanie narzędzi, gra na instrumencie i praca w chłodzie mogą przeciążać drobne mięśnie ręki. Zdarzają się też zaburzenia płynów i elektrolitów, działania niepożądane leków oraz podrażnienie nerwów.' },
+      { heading: 'Jak bezpiecznie przerwać skurcz palców', body: 'Przerwij czynność, rozluźnij chwyt i powoli wyprostuj palce drugą ręką. Delikatnie poruszaj nadgarstkiem, ogrzej dłoń, jeśli jest zimna, i unikaj silnego odciągania bolesnego palca.' },
+      { heading: 'Zmiana obciążenia dłoni', body: 'Rób krótkie przerwy w powtarzalnej pracy, zmieniaj ułożenie dłoni i nie zaciskaj narzędzi mocniej niż to konieczne. Ergonomiczne ustawienie klawiatury lub uchwytu może ograniczyć przeciążenie, ale nie zastępuje diagnostyki utrzymujących się objawów.' },
+      { heading: 'Kiedy kurcz może nie być prostym przeciążeniem', body: 'Drętwienie, mrowienie, osłabienie chwytu, ból promieniujący od szyi albo częste skurcze obu dłoni mogą wskazywać na problem nerwowy lub metaboliczny. W takiej sytuacji umów konsultację zamiast samodzielnie zwiększać dawki minerałów.' },
+    ],
+    faq: [
+      { question: 'Dlaczego palce kurczą się podczas pisania?', answer: 'Najczęściej sprzyja temu długotrwały, powtarzalny chwyt i napięcie mięśni dłoni. Warto zrobić przerwę, rozluźnić nadgarstek i sprawdzić ergonomię stanowiska.' },
+      { question: 'Czy kurcze dłoni oznaczają niedobór magnezu?', answer: 'Mogą współistnieć z zaburzeniami mineralnymi, ale sam kurcz dłoni tego nie potwierdza. Przy nawrotach lekarz oceni objawy, leki i ewentualną potrzebę badań.' },
+      { question: 'Kiedy zgłosić kurcze dłoni lekarzowi?', answer: 'Skonsultuj je, jeśli są częste, nasilają się, budzą w nocy lub towarzyszą im drętwienie, słabszy chwyt, obrzęk albo ból po urazie.' },
+    ],
+    relatedLinks: [
+      { path: '/kurcze-a-leki', label: 'Kurcze a leki' },
+      { path: '/elektrolity-a-kurcze', label: 'Elektrolity a kurcze' },
+      { path: '/masaz-przy-kurczach', label: 'Masaż przy kurczach' },
+    ],
+  },
+  {
+    path: '/elektrolity-a-kurcze',
+    hub: { path: '/profilaktyka', label: 'Profilaktyka' },
+    h1: 'Elektrolity a kurcze mięśniowe',
+    title: 'Elektrolity a kurcze — sód, potas, wapń i magnez | Kurcz.pl',
+    description: 'Sód, potas, wapń i magnez a kurcze mięśniowe: co oznaczają zaburzenia elektrolitowe, jak bezpiecznie uzupełniać płyny i kiedy zrobić badania.',
+    intro: 'Elektrolity, w tym sód, potas, wapń i magnez, uczestniczą w przewodzeniu impulsów nerwowych oraz skurczu mięśni. Kurcze mogą występować przy zaburzeniach ich równowagi, ale pojedynczy skurcz nie pozwala rozpoznać konkretnego niedoboru.',
+    sections: [
+      { heading: 'Rola sodu, potasu, wapnia i magnezu', body: 'Sód i potas pomagają utrzymać pracę komórek nerwowych i mięśniowych, a wapń oraz magnez uczestniczą w ich pobudzeniu i rozluźnianiu. Organizm ściśle reguluje ich stężenia, dlatego przypadkowe łączenie preparatów nie jest dobrym sposobem na kurcze.' },
+      { heading: 'Kiedy równowaga elektrolitowa może się zmienić', body: 'Ryzyko wzrasta przy wymiotach, biegunce, obfitym poceniu, wysokiej gorączce, chorobach nerek oraz stosowaniu niektórych leków, zwłaszcza moczopędnych. W tych sytuacjach sposób uzupełniania płynów warto ustalić z lekarzem lub farmaceutą.' },
+      { heading: 'Płyny i dieta zamiast samodzielnego leczenia', body: 'Przy zwykłej aktywności podstawą jest regularne picie i zróżnicowana dieta. Podczas długiego wysiłku lub znacznej utraty płynów przydatny może być odpowiedni płyn nawadniający, ale jego wybór zależy od sytuacji i chorób współistniejących.' },
+      { heading: 'Kiedy potrzebne są badania', body: 'Nawracające kurcze z osłabieniem, kołataniem serca, omdleniami, splątaniem lub utrzymującymi się wymiotami wymagają pilnej oceny. Lekarz może zlecić badania krwi i ocenić nerki oraz leki; nie próbuj wyrównywać podejrzanego potasu na własną rękę.' },
+    ],
+    faq: [
+      { question: 'Który elektrolit najczęściej odpowiada za kurcze?', answer: 'Nie ma jednego elektrolitu odpowiedzialnego za wszystkie kurcze. Znaczenie mogą mieć płyny, obciążenie mięśni, leki i różne zaburzenia mineralne, dlatego objawy warto oceniać całościowo.' },
+      { question: 'Czy napój izotoniczny zawsze pomaga?', answer: 'Może być użyteczny przy długim wysiłku lub obfitym poceniu, lecz nie jest konieczny na co dzień i nie leczy każdej przyczyny kurczy. Osoby z chorobami nerek, serca lub cukrzycą powinny skonsultować wybór napoju.' },
+      { question: 'Czy mogę przyjmować potas na kurcze?', answer: 'Nie bez zalecenia lekarza. Zarówno niedobór, jak i nadmiar potasu może być groźny, zwłaszcza przy chorobach nerek lub lekach wpływających na jego stężenie.' },
+    ],
+    relatedLinks: [
+      { path: '/kurcze-a-odwodnienie', label: 'Kurcze a odwodnienie' },
+      { path: '/niedobor-magnezu', label: 'Niedobór magnezu' },
+      { path: '/kurcze-a-leki', label: 'Kurcze a leki' },
+      { path: '/profilaktyka', label: 'Profilaktyka kurczy' },
+    ],
+  },
+  {
+    path: '/zespol-niespokojnych-nog-a-kurcze',
+    hub: { path: '/kurcze-miesniowe', label: 'Kurcze mięśniowe' },
+    h1: 'Zespół niespokojnych nóg a kurcze',
+    title: 'Zespół niespokojnych nóg a kurcze — różnice | Kurcz.pl',
+    description: 'Zespół niespokojnych nóg a kurcze mięśniowe: najważniejsze różnice w objawach, porze występowania i sytuacjach wymagających diagnozy.',
+    intro: 'Zespół niespokojnych nóg i bolesne kurcze łydek często nasilają się wieczorem, ale nie są tym samym. Rozróżnienie opiera się przede wszystkim na rodzaju odczucia: przymus poruszania nogami różni się od nagłego, twardego skurczu mięśnia.',
+    sections: [
+      { heading: 'Jak wygląda typowy kurcz mięśnia', body: 'Kurcz to nagłe, mimowolne i zwykle bardzo bolesne napięcie konkretnego mięśnia, najczęściej łydki lub stopy. Mięsień staje się twardy, a ulgę przynosi jego powolne rozciągnięcie; po epizodzie może pozostać tkliwość.' },
+      { heading: 'Jak objawia się zespół niespokojnych nóg', body: 'W zespole niespokojnych nóg dominuje nieprzyjemne uczucie w kończynach i silna potrzeba poruszania nimi, zwykle w spoczynku wieczorem lub w nocy. Ruch przynosi przejściową ulgę, ale nie musi występować twardy, bolesny skurcz mięśnia.' },
+      { heading: 'Dlaczego prawidłowe rozróżnienie ma znaczenie', body: 'Postępowanie może być inne niż przy okazjonalnych kurczach. Objawy zgodne z zespołem niespokojnych nóg mogą wymagać rozmowy o śnie, lekach, żelazie i chorobach współistniejących; rozpoznanie powinien postawić lekarz.' },
+      { heading: 'Kiedy umówić konsultację', body: 'Zgłoś się do lekarza, gdy dolegliwości regularnie zaburzają sen, dotyczą obu nóg, narastają albo współistnieją z osłabieniem, utratą czucia czy obrzękiem. Nagły jednostronny ból i obrzęk nogi wymagają pilnej oceny.' },
+    ],
+    faq: [
+      { question: 'Czy zespół niespokojnych nóg boli jak kurcz?', answer: 'Może być bardzo nieprzyjemny, lecz zwykle nie daje nagłego, twardego zaciśnięcia jednego mięśnia typowego dla kurczu. Częściej opisuje się potrzebę poruszania nogami i ulgę po ruchu.' },
+      { question: 'Czy kurcze nocne mogą współistnieć z zespołem niespokojnych nóg?', answer: 'Tak, obie dolegliwości mogą występować u jednej osoby, szczególnie gdy sen jest zaburzony. Nie należy jednak zakładać wspólnej przyczyny bez konsultacji.' },
+      { question: 'Czy magnez leczy zespół niespokojnych nóg?', answer: 'Nie jest standardowym leczeniem tego zespołu. Suplementy należy omówić z lekarzem, który najpierw oceni objawy i możliwe przyczyny.' },
+    ],
+    relatedLinks: [
+      { path: '/kurcze-nocne', label: 'Kurcze nocne' },
+      { path: '/kurcze-lydek', label: 'Kurcze łydek' },
+      { path: '/niedobor-magnezu', label: 'Niedobór magnezu' },
+    ],
+  },
+  {
+    path: '/kurcze-u-dzieci',
+    hub: { path: '/kurcze-miesniowe', label: 'Kurcze mięśniowe' },
+    h1: 'Kurcze mięśniowe u dzieci',
+    title: 'Kurcze u dzieci — przyczyny i kiedy do lekarza | Kurcz.pl',
+    description: 'Kurcze mięśniowe u dzieci: bezpieczna pierwsza pomoc, możliwe przyczyny i objawy, z którymi należy skontaktować się z pediatrą.',
+    intro: 'Pojedynczy kurcz nogi u dziecka po zabawie, wysiłku lub w nocy często szybko ustępuje. U dzieci nie należy jednak samodzielnie rozpoznawać niedoborów ani podawać suplementów — nawracające lub nietypowe objawy warto najpierw omówić z pediatrą.',
+    sections: [
+      { heading: 'Co może sprzyjać kurczom u dzieci', body: 'Dłuższy wysiłek, małe spożycie płynów podczas upału, zmęczenie i napięcie mięśni po aktywności mogą wywołać pojedynczy skurcz. Kurcze mogą też towarzyszyć infekcji z gorączką, wymiotom lub biegunce, kiedy łatwiej o utratę płynów.' },
+      { heading: 'Bezpieczna pierwsza pomoc w domu', body: 'Pomóż dziecku spokojnie rozciągnąć napięty mięsień i zapewnij bezpieczną pozycję. Po ustąpieniu bólu podaj płyn odpowiedni do sytuacji, a jeśli dziecko ma chorobę przewlekłą, leki lub objawy odwodnienia, skontaktuj się z lekarzem.' },
+      { heading: 'Czego nie robić na własną rękę', body: 'Nie podawaj magnezu, potasu ani innych preparatów tylko dlatego, że wystąpił kurcz. Dawkowanie u dzieci zależy od wieku, masy ciała, diety i stanu zdrowia, a nadmiar niektórych składników może być szkodliwy.' },
+      { heading: 'Kiedy kontakt z pediatrą jest potrzebny', body: 'Skontaktuj się z lekarzem, gdy kurcze powtarzają się, wybudzają dziecko, ograniczają chodzenie lub występują z osłabieniem, drętwieniem, gorączką, wymiotami, obrzękiem albo po urazie. Nagła trudność w oddychaniu, omdlenie lub silny ból wymagają pilnej pomocy.' },
+    ],
+    faq: [
+      { question: 'Czy nocne kurcze nóg u dziecka są normalne?', answer: 'Pojedynczy nocny kurcz może się zdarzyć i zwykle nie jest groźny. Jeśli jednak regularnie zaburza sen, jest silny lub towarzyszą mu inne objawy, skonsultuj dziecko z pediatrą.' },
+      { question: 'Czy dziecku można podać magnez na kurcze?', answer: 'Nie bez porady lekarza lub farmaceuty znającego wiek i stan zdrowia dziecka. Najpierw warto ustalić, czy objaw rzeczywiście wymaga suplementacji.' },
+      { question: 'Jak odróżnić kurcz od bólu wzrostowego?', answer: 'Kurcz to zwykle nagłe, wyczuwalne napięcie konkretnego mięśnia. Bóle wzrostowe mają inny charakter i rozpoznaje je lekarz po wykluczeniu innych przyczyn; nie należy opierać się wyłącznie na opisie z internetu.' },
+    ],
+    relatedLinks: [
+      { path: '/kurcze-nog', label: 'Kurcze nóg' },
+      { path: '/kurcze-a-odwodnienie', label: 'Kurcze a odwodnienie' },
+      { path: '/pierwsza-pomoc', label: 'Pierwsza pomoc' },
+    ],
+  },
 ];
 
 export const landingPagesEnMap = {
@@ -572,7 +695,7 @@ export const landingPagesEnMap = {
   },
   '/kurcze-nocne': {
     h1: 'Night Cramps — How to Eliminate Them',
-    title: 'Night Cramps — Causes and Effective Solutions | Kurcz.pl',
+    title: 'Night Cramps and Sleep — Causes and Relief | Kurcz.pl',
     description: 'Waking up with painful muscle cramps? Discover causes of nocturnal cramps and bedtime prevention routines.',
     intro: 'Night cramps are painful involuntary contractions during sleep, most often in calves, feet, or thighs. Though lasting seconds to minutes, they disrupt sleep quality.',
     sections: [
@@ -896,7 +1019,253 @@ export const landingPagesEnMap = {
       { path: '/profilaktyka', label: 'Prevention' },
     ],
   },
+  '/kurcze-ud': {
+    h1: 'Thigh and Hamstring Cramps',
+    title: 'Thigh and Hamstring Cramps — Causes & Relief | Kurcz.pl',
+    description: 'Thigh and hamstring cramps: likely causes, safe stretching, first aid, and warning signs that need medical assessment.',
+    intro: 'A thigh cramp is a sudden, painful tightening in the front, inner, or back of the thigh. It often follows exertion or muscle fatigue, but repeated symptoms deserve a wider health assessment.',
+    sections: [
+      { heading: 'Which thigh muscles can cramp', body: 'Cramps can affect the quadriceps at the front of the thigh, the inner-thigh adductors, or the hamstrings at the back. The location can guide comfortable stretching, but it does not diagnose the cause by itself.' },
+      { heading: 'Common triggers', body: 'A training load that exceeds usual activity, inadequate preparation, fluid loss, and holding one position for a long time can contribute. Medicines, chronic conditions, and electrolyte disturbances are other possibilities.' },
+      { heading: 'First aid and stretching', body: 'Stop the activity and lengthen the affected muscle slowly, without bouncing. For a hamstring cramp, gradually straighten the knee; for a front-thigh cramp, use support and gently bring the heel toward the buttock.' },
+      { heading: 'Prevention and return to activity', body: 'Walk briefly after pain settles and return to exercise only once movement is comfortable. Gradual training progression, warm-ups, adequate sleep, and regular fluids are safer prevention strategies than unsupervised supplements.' },
+      { heading: 'When to seek urgent care', body: 'Do not assume every severe thigh pain is a cramp. One-sided swelling, warmth or redness, breathlessness, injury, persistent weakness, or pain that does not settle after stretching needs prompt medical assessment.' },
+    ],
+    faq: [
+      { question: 'How do I stretch a hamstring cramp?', answer: 'Sit or stand securely, slowly straighten the knee, and bring the toes toward you. Do not force a forward bend or make sudden movements.' },
+      { question: 'Does a post-exercise thigh cramp mean a tear?', answer: 'Not necessarily. A cramp usually settles with gentle stretching, although tenderness can remain the next day. Bruising, swelling, a popping sensation, or persistent pain should be assessed.' },
+      { question: 'Can I exercise after a thigh cramp?', answer: 'Return only when pain has resolved and movement is normal. If cramps recur, reduce the load and discuss them with a clinician or physiotherapist.' },
+    ],
+    relatedLinks: [
+      { path: '/kurcze-nog', label: 'Leg Cramps' },
+      { path: '/kurcze-u-sportowcow', label: 'Cramps in Athletes' },
+      { path: '/rozciaganie-przy-kurczach', label: 'Stretching for Cramps' },
+      { path: '/pierwsza-pomoc', label: 'First Aid' },
+    ],
+  },
+  '/kurcze-dloni': {
+    h1: 'Hand and Finger Cramps — Causes & Relief',
+    title: 'Hand and Finger Cramps — Causes and What to Do | Kurcz.pl',
+    description: 'Hand and finger cramps: possible causes, simple first aid, prevention for repetitive hand use, and when to seek advice.',
+    intro: 'Hand or finger cramps are sudden, painful tightening of the small muscles of the hand. Repetitive work, cold, and strain can trigger them; recurring episodes with numbness or weakness should be medically assessed.',
+    sections: [
+      { heading: 'Possible causes of hand cramps', body: 'Typing, gripping tools, playing an instrument, and working in the cold can overwork the hand muscles. Fluid and electrolyte disturbances, medicine effects, and nerve irritation may also contribute.' },
+      { heading: 'How to ease a finger spasm safely', body: 'Stop the task, relax the grip, and slowly straighten the fingers with the other hand. Move the wrist gently, warm a cold hand, and avoid forcefully pulling a painful finger.' },
+      { heading: 'Reducing hand strain', body: 'Take short breaks from repetitive work, vary hand position, and avoid gripping tools more tightly than necessary. Better workstation or handle ergonomics can reduce overload but does not replace assessment of persistent symptoms.' },
+      { heading: 'When symptoms need evaluation', body: 'Numbness, tingling, weaker grip, pain radiating from the neck, or frequent cramps in both hands can point to a nerve or metabolic issue. Arrange medical advice rather than increasing mineral supplements yourself.' },
+    ],
+    faq: [
+      { question: 'Why do my fingers cramp while typing?', answer: 'Prolonged repetitive gripping and muscle tension are common contributors. Take a break, relax the wrist, and review workstation ergonomics.' },
+      { question: 'Do hand cramps mean magnesium deficiency?', answer: 'They can occur alongside mineral disturbances, but a hand cramp alone does not prove deficiency. A clinician can assess symptoms, medication, and whether tests are needed.' },
+      { question: 'When should I see a doctor for hand cramps?', answer: 'Seek advice if they are frequent, worsening, disturb sleep, or occur with numbness, weak grip, swelling, or pain after injury.' },
+    ],
+    relatedLinks: [
+      { path: '/kurcze-a-leki', label: 'Cramps & Medications' },
+      { path: '/elektrolity-a-kurcze', label: 'Electrolytes & Cramps' },
+      { path: '/masaz-przy-kurczach', label: 'Massage for Cramps' },
+    ],
+  },
+  '/elektrolity-a-kurcze': {
+    h1: 'Electrolytes and Muscle Cramps',
+    title: 'Electrolytes and Cramps — Sodium, Potassium, Calcium & Magnesium | Kurcz.pl',
+    description: 'Sodium, potassium, calcium, and magnesium in muscle cramps: electrolyte balance, safe hydration, and when blood tests are needed.',
+    intro: 'Electrolytes including sodium, potassium, calcium, and magnesium support nerve signaling and muscle contraction. Cramps can occur with electrolyte imbalance, but one cramp cannot identify a specific deficiency.',
+    sections: [
+      { heading: 'What the main electrolytes do', body: 'Sodium and potassium support nerve and muscle cell activity, while calcium and magnesium contribute to contraction and relaxation. Because the body regulates their levels closely, combining supplements at random is not a safe cramp treatment.' },
+      { heading: 'When electrolyte balance can change', body: 'Risk can rise with vomiting, diarrhoea, heavy sweating, high fever, kidney disease, and certain medicines, particularly diuretics. The right fluid-replacement plan depends on the situation and medical history.' },
+      { heading: 'Fluids and food first', body: 'For ordinary daily activity, regular drinking and a varied diet are the foundation. During prolonged exercise or substantial fluid loss, an appropriate rehydration drink may help, but the choice should account for chronic conditions.' },
+      { heading: 'When testing is important', body: 'Recurring cramps with weakness, palpitations, fainting, confusion, or ongoing vomiting need urgent assessment. A clinician may order blood tests and review kidney function and medicines; do not attempt to correct suspected potassium imbalance alone.' },
+    ],
+    faq: [
+      { question: 'Which electrolyte causes cramps most often?', answer: 'There is no single electrolyte responsible for every cramp. Fluids, muscle load, medication, and several mineral disturbances can all contribute.' },
+      { question: 'Does an electrolyte drink always help?', answer: 'It may be useful during prolonged exercise or heavy sweating but is not required every day and does not treat every cause. People with kidney, heart, or diabetes conditions should seek individual advice.' },
+      { question: 'Can I take potassium for cramps?', answer: 'Not without medical guidance. Both low and high potassium can be dangerous, especially with kidney disease or medicines that affect potassium levels.' },
+    ],
+    relatedLinks: [
+      { path: '/kurcze-a-odwodnienie', label: 'Cramps & Dehydration' },
+      { path: '/niedobor-magnezu', label: 'Magnesium Deficiency' },
+      { path: '/kurcze-a-leki', label: 'Cramps & Medications' },
+      { path: '/profilaktyka', label: 'Prevention' },
+    ],
+  },
+  '/zespol-niespokojnych-nog-a-kurcze': {
+    h1: 'Restless Legs Syndrome vs Cramps',
+    title: 'Restless Legs Syndrome vs Cramps — Key Differences | Kurcz.pl',
+    description: 'Restless legs syndrome versus muscle cramps: differences in symptoms, timing, and when a medical diagnosis is needed.',
+    intro: 'Restless legs syndrome and painful calf cramps can both worsen in the evening, but they are not the same. The key distinction is the urge to move the legs versus a sudden, hard contraction of a muscle.',
+    sections: [
+      { heading: 'What a typical muscle cramp feels like', body: 'A cramp is a sudden, involuntary, usually very painful tightening of a specific muscle, often the calf or foot. The muscle feels hard and gentle stretching helps; soreness may remain afterward.' },
+      { heading: 'What restless legs syndrome feels like', body: 'Restless legs syndrome involves uncomfortable sensations and an urge to move the legs, usually at rest in the evening or at night. Movement provides temporary relief, while a hard, painful muscle knot may be absent.' },
+      { heading: 'Why the distinction matters', body: 'Management can differ from that for occasional cramps. Symptoms consistent with restless legs syndrome may need a discussion of sleep, medicines, iron status, and other conditions; a clinician should make the diagnosis.' },
+      { heading: 'When to arrange medical advice', body: 'See a clinician when symptoms regularly disrupt sleep, affect both legs, worsen, or occur with weakness, sensory loss, or swelling. Sudden one-sided leg pain and swelling need urgent assessment.' },
+    ],
+    faq: [
+      { question: 'Does restless legs syndrome hurt like a cramp?', answer: 'It can be very uncomfortable, but it does not usually produce the sudden hard tightening of one muscle typical of a cramp. The urge to move and relief with movement are more characteristic.' },
+      { question: 'Can night cramps and restless legs syndrome occur together?', answer: 'Yes, both can occur in the same person, especially when sleep is poor. A shared cause should not be assumed without an evaluation.' },
+      { question: 'Does magnesium treat restless legs syndrome?', answer: 'It is not standard treatment for the condition. Discuss supplements with a clinician, who can first assess the symptoms and possible causes.' },
+    ],
+    relatedLinks: [
+      { path: '/kurcze-nocne', label: 'Night Cramps' },
+      { path: '/kurcze-lydek', label: 'Calf Cramps' },
+      { path: '/niedobor-magnezu', label: 'Magnesium Deficiency' },
+    ],
+  },
+  '/kurcze-u-dzieci': {
+    h1: 'Muscle Cramps in Children',
+    title: 'Cramps in Children — Causes and When to See a Doctor | Kurcz.pl',
+    description: 'Muscle cramps in children: safe first aid, possible causes, and symptoms that require a paediatrician’s advice.',
+    intro: 'An isolated leg cramp after play, exercise, or at night often settles quickly in a child. Do not diagnose deficiencies or give supplements without advice: recurring or unusual symptoms should first be discussed with a paediatrician.',
+    sections: [
+      { heading: 'What can trigger cramps in children', body: 'Long activity, low fluid intake in hot weather, and muscle fatigue can trigger an isolated cramp. Cramps can also happen with fever, vomiting, or diarrhoea, when fluid losses are more likely.' },
+      { heading: 'Safe first aid at home', body: 'Help the child slowly stretch the tense muscle in a safe position. Once pain settles, offer suitable fluids; contact a clinician if the child has a chronic condition, takes medicines, or has signs of dehydration.' },
+      { heading: 'What not to do without advice', body: 'Do not give magnesium, potassium, or other preparations solely because a cramp occurred. Dosing in children depends on age, weight, diet, and health, and excess supplements can be harmful.' },
+      { heading: 'When to contact a paediatrician', body: 'Seek advice when cramps recur, wake the child, limit walking, or occur with weakness, numbness, fever, vomiting, swelling, or injury. Breathing difficulty, fainting, or severe pain require urgent care.' },
+    ],
+    faq: [
+      { question: 'Are night leg cramps normal in children?', answer: 'An isolated nighttime cramp can occur and is usually not dangerous. If it regularly disrupts sleep, is severe, or comes with other symptoms, consult a paediatrician.' },
+      { question: 'Can I give my child magnesium for cramps?', answer: 'Not without advice from a doctor or pharmacist who knows the child’s age and health. First establish whether supplementation is needed.' },
+      { question: 'How do cramps differ from growing pains?', answer: 'A cramp is usually a sudden, palpable tightening of one muscle. Growing pains have a different pattern and should be diagnosed after other causes are considered.' },
+    ],
+    relatedLinks: [
+      { path: '/kurcze-nog', label: 'Leg Cramps' },
+      { path: '/kurcze-a-odwodnienie', label: 'Cramps & Dehydration' },
+      { path: '/pierwsza-pomoc', label: 'First Aid' },
+    ],
+  },
 };
+
+const section = (heading, body, bullets) => ({ heading, body, ...(bullets ? { bullets } : {}) });
+const faqItem = (question, answer) => ({ question, answer });
+
+const plLandingExpansions = {
+  '/kurcze-lydek': {
+    sections: [section('Kurcze łydki a inne dolegliwości nogi', 'Twardy, nagły skurcz łydki zwykle ustępuje po rozciąganiu. Jednostronny obrzęk, zaczerwienienie, ocieplenie lub ból utrzymujący się w spoczynku nie powinny być traktowane jak zwykły kurcz i wymagają oceny lekarskiej.')],
+    faq: [faqItem('Czy częste kurcze łydek wymagają badań?', 'Tak, zwłaszcza gdy wracają mimo nawodnienia i rozciągania albo towarzyszy im osłabienie, drętwienie czy obrzęk. Lekarz zdecyduje, czy potrzebne są badania lub przegląd leków.')],
+    relatedLinks: [{ path: '/elektrolity-a-kurcze', label: 'Elektrolity a kurcze' }],
+  },
+  '/kurcze-nocne': {
+    sections: [
+      section('Co robić po przebudzeniu z kurczem', 'Usiądź lub stań stabilnie, powoli przyciągnij palce stopy do goleni i rozmasuj mięsień po ustąpieniu największego napięcia. Nie zrywaj się gwałtownie z łóżka, ponieważ łatwo wtedy stracić równowagę.'),
+      section('Sen, pozycja i wieczorna rutyna', 'Pomaga regularna, łagodna aktywność w dzień i krótkie rozciąganie łydek przed snem. Warto też sprawdzić, czy ciężka pościel nie utrzymuje stóp stale w pozycji „na palcach”.'),
+    ],
+    faq: [faqItem('Dlaczego nocne kurcze psują sen?', 'Silny ból wybudza, a obawa przed nawrotem utrudnia ponowne zaśnięcie. Jeśli dzieje się to regularnie, omów objawy z lekarzem zamiast polegać wyłącznie na suplementach.')],
+    relatedLinks: [{ path: '/zespol-niespokojnych-nog-a-kurcze', label: 'Zespół niespokojnych nóg a kurcze' }],
+  },
+  '/kurcze-stop': {
+    sections: [
+      section('Obuwie i przeciążenie stopy', 'Ciasne buty, wysokie obcasy, długie chodzenie lub nagłe zwiększenie aktywności mogą przeciążać mięśnie podeszwy i palców. Wybieraj obuwie z miejscem na palce i zwiększaj obciążenia stopniowo.'),
+      section('Kiedy zbadać nawracające skurcze stopy', 'Kurcze z bólem promieniującym, zaburzeniami czucia, ranami na stopie albo pogorszeniem chodu wymagają konsultacji. Szczególną ostrożność powinny zachować osoby z cukrzycą lub chorobami naczyń.'),
+    ],
+    faq: [faqItem('Czy można masować stopę po kurczu?', 'Tak, delikatny masaż podeszwy po powolnym rozciągnięciu może przynieść ulgę. Nie uciskaj mocno miejsca po urazie ani obrzękniętej, zaczerwienionej stopy.'), faqItem('Dlaczego kurcz stopy zdarza się podczas pływania?', 'Zimno, wysiłek i ustawienie stopy mogą sprzyjać skurczowi. Przerwij pływanie, zabezpiecz się przy brzegu i rozciągnij stopę spokojnie.')],
+    relatedLinks: [{ path: '/kurcze-dloni', label: 'Kurcze dłoni i palców' }],
+  },
+  '/kurcze-u-sportowcow': {
+    sections: [
+      section('Nie tylko elektrolity: zmęczenie mięśni', 'Kurcze wysiłkowe często pojawiają się, gdy tempo lub dystans przekracza przygotowanie organizmu. Same elektrolity nie zastąpią stopniowego treningu, odpowiedniej regeneracji i dopasowania intensywności do warunków.'),
+      section('Plan na zawody i upał', 'Pij zgodnie z pragnieniem i planem dobranym do czasu wysiłku, temperatury oraz własnej tolerancji. Nie próbuj nowych napojów, suplementów ani bardzo dużych ilości płynów po raz pierwszy w dniu startu.'),
+    ],
+    faq: [faqItem('Czy solne tabletki zapobiegają każdemu kurczowi?', 'Nie. Mogą być rozważane w określonych warunkach wysiłku po indywidualnym planie, lecz nadmiar sodu także może szkodzić.'), faqItem('Czy rozciągać przed biegiem?', 'Przed wysiłkiem lepsza jest rozgrzewka dynamiczna; długie statyczne rozciąganie zostaw na czas po treningu lub osobną sesję.')],
+    relatedLinks: [{ path: '/elektrolity-a-kurcze', label: 'Elektrolity a kurcze' }],
+  },
+  '/kurcze-u-osob-starszych': {
+    sections: [
+      section('Leki i choroby współistniejące', 'Kurcze mogą mieć związek z lekami, odwodnieniem albo chorobami nerek, tarczycy czy naczyń, ale nie należy odstawiać terapii samodzielnie. Przygotuj listę leków i moment pojawienia się objawów na wizytę.'),
+      section('Bezpieczny ruch i zapobieganie upadkom', 'Łagodne ćwiczenia równowagi i rozciąganie przy stabilnym podparciu mogą być pomocne. Przy nocnych kurczach wstawaj powoli, włącz światło i korzystaj z pomocy, jeśli równowaga jest niepewna.'),
+    ],
+    faq: [faqItem('Czy senior powinien pić więcej na kurcze?', 'Nawodnienie powinno być regularne, ale jego ilość należy dopasować do chorób serca i nerek oraz zaleceń lekarza.'), faqItem('Czy kurcze mogą być skutkiem leków moczopędnych?', 'Mogą zmieniać gospodarkę płynów i elektrolitów. Nie zmieniaj dawki samodzielnie — zgłoś objawy lekarzowi prowadzącemu.')],
+    relatedLinks: [{ path: '/elektrolity-a-kurcze', label: 'Elektrolity a kurcze' }],
+  },
+  '/kurcze-u-diabetykow': {
+    sections: [
+      section('Kurcz, neuropatia i stopa cukrzycowa', 'Kurcz nie jest równoznaczny z neuropatią, jednak drętwienie, pieczenie, utrata czucia lub rany na stopie wymagają oceny. Codziennie oglądaj stopy i nie stosuj silnego ciepła na miejsca o zaburzonym czuciu.'),
+      section('Nawodnienie i kontrola leczenia', 'Wahania glikemii, infekcje, biegunka i niektóre leki mogą wpływać na gospodarkę płynów. Nawracające kurcze omów z zespołem leczących cukrzycę, nie zmieniając samodzielnie insuliny ani leków.'),
+    ],
+    faq: [faqItem('Czy kurcz może wystąpić przy wysokim cukrze?', 'Może współistnieć z odwodnieniem i zaburzeniami metabolicznymi, ale nie pozwala sam w sobie ocenić glikemii. Kontroluj cukier zgodnie z planem leczenia.'), faqItem('Czy ogrzewanie stóp jest bezpieczne?', 'Przy zaburzeniach czucia istnieje ryzyko oparzenia. Wybieraj łagodne ogrzanie i sprawdzaj temperaturę, najlepiej po konsultacji z lekarzem.')],
+    relatedLinks: [{ path: '/kurcze-stop', label: 'Kurcze stóp' }],
+  },
+  '/kurcze-a-odwodnienie': {
+    sections: [
+      section('Objawy odwodnienia, których nie ignorować', 'Pragnienie, ciemny mocz, suchość w ustach i ból głowy mogą sugerować niedobór płynów, lecz nie są pełną diagnozą. Splątanie, omdlenie, szybkie bicie serca, brak oddawania moczu lub utrzymujące się wymioty wymagają szybkiej pomocy medycznej.'),
+      section('Nawadnianie po biegunce, upale i wysiłku', 'Uzupełniaj płyny stopniowo. Przy większej utracie płynów potrzebny może być płyn nawadniający; osoby z chorobami nerek, serca lub przyjmujące diuretyki powinny zapytać lekarza o bezpieczny plan.'),
+    ],
+    faq: [faqItem('Czy sam kolor moczu wystarczy do oceny nawodnienia?', 'Jest tylko orientacyjną wskazówką i może zmieniać się po lekach lub jedzeniu. Oceniaj też pragnienie, warunki, samopoczucie i zalecenia lekarza.'), faqItem('Czy można wypić za dużo wody?', 'Tak. Bardzo duże ilości wody w krótkim czasie mogą rozcieńczyć sód we krwi. Pij regularnie, a nie „na zapas”.')],
+    relatedLinks: [{ path: '/elektrolity-a-kurcze', label: 'Elektrolity a kurcze' }],
+  },
+  '/kurcze-a-leki': {
+    sections: [
+      section('Jak przygotować rozmowę o lekach', 'Zapisz nazwę, dawkę, datę rozpoczęcia terapii, porę kurczy oraz inne objawy. Taka informacja pomaga lekarzowi ocenić związek czasowy i rozważyć badania bez ryzykownego samodzielnego odstawiania leków.'),
+      section('Interakcje i suplementy', 'Także preparaty bez recepty mogą wpływać na nerki, elektrolity lub wchodzić w interakcje. Przed magnezem, potasem albo „mieszanką na kurcze” zapytaj farmaceutę lub lekarza o cały zestaw przyjmowanych produktów.'),
+    ],
+    faq: [faqItem('Czy każdy ból mięśni po statynie to kurcz?', 'Nie. Ból, sztywność i osłabienie mięśni mogą mieć różne przyczyny. Nowe lub nasilone objawy zgłoś lekarzowi, zwłaszcza gdy towarzyszy im ciemny mocz.'), faqItem('Czy leki można brać o innej porze, aby uniknąć kurczy?', 'Nie zmieniaj pory ani dawki bez konsultacji. Czas przyjmowania zależy od leku i wskazania.')],
+    relatedLinks: [{ path: '/suplementacja-magnezem', label: 'Suplementacja magnezem' }],
+  },
+  '/masaz-przy-kurczach': {
+    sections: [
+      section('Masaż jako uzupełnienie rozciągania', 'Najpierw zmniejsz napięcie przez spokojne wydłużenie mięśnia, a potem stosuj lekki masaż. Mocny ucisk w trakcie ostrego bólu może zwiększyć dyskomfort i nie powinien zastępować oceny po urazie.'),
+      section('Kiedy nie masować bolesnej nogi', 'Nie masuj miejsca z nagłym jednostronnym obrzękiem, zaczerwienieniem, ociepleniem, urazem lub silnym bólem niewiadomego pochodzenia. Takie objawy mogą wymagać pilnej diagnostyki, a nie rozluźniania tkanek.'),
+    ],
+    faq: [faqItem('Czy pistolet do masażu pomaga na kurcz?', 'Nie stosuj intensywnej perkusji na świeżo bolesnym, napiętym mięśniu. Bezpieczniejsze jest spokojne rozciąganie i delikatny masaż ręczny po ustąpieniu ostrego bólu.'), faqItem('Czy masaż może zapobiegać kurczom?', 'Może poprawić komfort niektórym osobom, lecz podstawą są stopniowanie wysiłku, nawodnienie i wyjaśnienie przyczyny nawrotów.')],
+    relatedLinks: [{ path: '/kurcze-a-leki', label: 'Kurcze a leki' }],
+  },
+  '/suplementacja-magnezem': {
+    sections: [
+      section('Dowody i realistyczne oczekiwania', 'Magnez nie jest uniwersalnym lekiem na kurcze. Może mieć znaczenie przy potwierdzonym niedoborze, natomiast przy kurczach idiopatycznych skuteczność suplementacji nie jest pewna.'),
+      section('Badania, dieta i interakcje', 'Lekarz może ocenić dietę, objawy, nerki i przyjmowane leki przed zaleceniem preparatu. Magnez może osłabiać wchłanianie niektórych leków, dlatego odstępy i wybór produktu ustala się indywidualnie.'),
+    ],
+    faq: [faqItem('Czy magnez można brać w ciąży?', 'Tylko po konsultacji z lekarzem prowadzącym ciążę. Bezpieczeństwo i wskazanie zależą od całego stanu zdrowia, a nie wyłącznie od kurczy.'), faqItem('Czy biegunka po magnezie jest normalna?', 'Jest częstym działaniem niepożądanym niektórych preparatów. Skontaktuj się z lekarzem lub farmaceutą zamiast zwiększać albo kontynuować dawkę mimo objawów.')],
+    relatedLinks: [{ path: '/elektrolity-a-kurcze', label: 'Elektrolity a kurcze' }],
+  },
+  '/rozciaganie-przy-kurczach': {
+    sections: [section('Pozycja, oddech i bezpieczeństwo', 'Wybierz stabilne podparcie, oddychaj spokojnie i zwiększaj zakres tylko do uczucia łagodnego ciągnięcia. Zatrzymaj się, jeśli pojawia się ostry ból, zawroty głowy lub podejrzenie urazu.')],
+    faq: [faqItem('Czy rozciąganie zapobiega kurczom?', 'Regularne, łagodne rozciąganie może pomóc części osób, zwłaszcza przy nocnych kurczach łydek. Nie gwarantuje jednak zapobiegania wszystkim nawrotom.'), faqItem('Czy rozciągać mięsień, jeśli jest obolały następnego dnia?', 'Możesz wykonywać łagodne ruchy w bezbolesnym zakresie. Przy narastającym bólu, obrzęku, siniaku lub podejrzeniu urazu skonsultuj się z lekarzem lub fizjoterapeutą.')],
+    relatedLinks: [{ path: '/kurcze-ud', label: 'Kurcze ud' }],
+  },
+  '/niedobor-magnezu': {
+    sections: [section('Co potwierdza niedobór magnezu', 'Objawy są nieswoiste, a pojedynczy wynik magnezu w surowicy nie zawsze odzwierciedla całe zasoby organizmu. Lekarz interpretuje wynik razem z dietą, lekami, pracą nerek i innymi objawami.')],
+    faq: [faqItem('Czy dieta wystarczy, aby uzupełnić magnez?', 'U wielu osób zwiększenie udziału produktów bogatych w magnez jest rozsądnym pierwszym krokiem. Przy potwierdzonym niedoborze lub chorobach współistniejących plan leczenia ustala lekarz.')],
+    relatedLinks: [{ path: '/elektrolity-a-kurcze', label: 'Elektrolity a kurcze' }],
+  },
+};
+
+const enLandingExpansions = {
+  '/kurcze-lydek': { sections: [section('Calf cramps versus other leg pain', 'A sudden, hard calf spasm usually settles with stretching. One-sided swelling, redness, warmth, or pain that persists at rest should not be assumed to be an ordinary cramp and needs medical assessment.')], faq: [faqItem('Do frequent calf cramps need tests?', 'Yes, particularly if they persist despite hydration and stretching or come with weakness, numbness, or swelling. A clinician can decide whether tests or a medication review are appropriate.')], relatedLinks: [{ path: '/elektrolity-a-kurcze', label: 'Electrolytes & Cramps' }] },
+  '/kurcze-nocne': { sections: [section('What to do after waking with a cramp', 'Sit or stand securely, draw the toes toward the shin slowly, and massage the muscle once the tightest contraction has eased. Avoid jumping out of bed, as this can increase the risk of a fall.'), section('Sleep position and an evening routine', 'Gentle daytime activity and a short calf stretch before bed can help. Check that heavy bedding is not holding the feet in a pointed position all night.')], faq: [faqItem('Why do night cramps disrupt sleep?', 'Severe pain wakes you, and fear of recurrence can make it hard to fall asleep again. Discuss regular episodes with a clinician instead of relying solely on supplements.')], relatedLinks: [{ path: '/zespol-niespokojnych-nog-a-kurcze', label: 'Restless Legs Syndrome vs Cramps' }] },
+  '/kurcze-stop': { sections: [section('Footwear and foot overload', 'Tight shoes, high heels, prolonged walking, and sudden activity increases can overload the sole and toe muscles. Choose shoes with toe room and increase load gradually.'), section('When recurring foot cramps need review', 'Cramps with radiating pain, sensory changes, foot wounds, or worsening gait need clinical advice. People with diabetes or vascular conditions should be particularly cautious.')], faq: [faqItem('Can I massage my foot after a cramp?', 'Yes, gentle sole massage after slow stretching can help. Do not press firmly on an injured, swollen, or red foot.'), faqItem('Why can a foot cramp happen while swimming?', 'Cold, exertion, and foot position can contribute. Stop swimming, get safely to the edge, and stretch the foot gradually.')], relatedLinks: [{ path: '/kurcze-dloni', label: 'Hand and Finger Cramps' }] },
+  '/kurcze-u-sportowcow': { sections: [section('Muscle fatigue, not only electrolytes', 'Exercise-associated cramps often occur when pace or distance exceeds conditioning. Electrolytes alone cannot replace gradual training, recovery, and an intensity suited to the conditions.'), section('A plan for racing and heat', 'Drink according to thirst and a plan suited to exercise duration, heat, and your own tolerance. Do not trial new drinks, supplements, or very large fluid volumes for the first time on race day.')], faq: [faqItem('Do salt tablets prevent every cramp?', 'No. They may be considered in specific endurance settings as part of an individual plan, but excess sodium can also be harmful.'), faqItem('Should I stretch before a run?', 'Dynamic warm-up is usually more appropriate before exercise; save prolonged static stretching for after training or a separate session.')], relatedLinks: [{ path: '/elektrolity-a-kurcze', label: 'Electrolytes & Cramps' }] },
+  '/kurcze-u-osob-starszych': { sections: [section('Medicines and coexisting conditions', 'Cramps may relate to medicines, fluid balance, kidney disease, thyroid disease, or vascular conditions, but treatment should never be stopped independently. Bring a medication list and symptom timeline to the appointment.'), section('Safe movement and fall prevention', 'Gentle balance exercise and supported stretching can help. If a night cramp occurs, get up slowly, use a light, and seek support if balance is uncertain.')], faq: [faqItem('Should an older adult drink more for cramps?', 'Fluid intake should be regular but tailored to heart or kidney conditions and the clinician’s advice.'), faqItem('Can diuretics contribute to cramps?', 'They can affect fluid and electrolyte balance. Do not change the dose yourself; report symptoms to the prescriber.')], relatedLinks: [{ path: '/elektrolity-a-kurcze', label: 'Electrolytes & Cramps' }] },
+  '/kurcze-u-diabetykow': { sections: [section('Cramps, neuropathy, and diabetic feet', 'A cramp is not the same as neuropathy, but numbness, burning, reduced sensation, or foot wounds need assessment. Inspect feet daily and avoid intense heat on areas with reduced sensation.'), section('Hydration and treatment review', 'Glucose variation, infection, diarrhoea, and some medicines can affect fluid balance. Discuss recurring cramps with the diabetes care team rather than changing insulin or medicines yourself.')], faq: [faqItem('Can a cramp occur with high blood sugar?', 'It may coexist with dehydration or metabolic changes, but it cannot assess blood glucose on its own. Follow your usual glucose-monitoring plan.'), faqItem('Is warming the feet safe?', 'Reduced sensation increases burn risk. Use only gentle warmth and discuss safe options with your clinician.')], relatedLinks: [{ path: '/kurcze-stop', label: 'Foot Cramps' }] },
+  '/kurcze-a-odwodnienie': { sections: [section('Dehydration signs not to ignore', 'Thirst, dark urine, dry mouth, and headache can suggest low fluid intake but do not provide a complete diagnosis. Confusion, fainting, rapid heartbeat, very low urine output, or persistent vomiting need prompt care.'), section('Rehydration after illness, heat, or exercise', 'Replace fluids gradually. Major fluid losses may require an oral rehydration solution; people with kidney or heart conditions or diuretic use should ask a clinician for an individual plan.')], faq: [faqItem('Is urine colour enough to assess hydration?', 'It is only a rough clue and can be affected by food or medicines. Consider thirst, conditions, wellbeing, and medical advice as well.'), faqItem('Can you drink too much water?', 'Yes. Very large volumes in a short time can dilute blood sodium. Drink regularly rather than trying to “catch up” all at once.')], relatedLinks: [{ path: '/elektrolity-a-kurcze', label: 'Electrolytes & Cramps' }] },
+  '/kurcze-a-leki': { sections: [section('Preparing a medication discussion', 'Record the medicine name, dose, start date, timing of cramps, and other symptoms. This helps a clinician assess timing and consider testing without risky self-discontinuation.'), section('Interactions and supplements', 'Over-the-counter products can also affect kidneys, electrolytes, or drug absorption. Ask a clinician or pharmacist about your full medication list before adding magnesium, potassium, or a “cramp” product.')], faq: [faqItem('Is every muscle pain on a statin a cramp?', 'No. Pain, stiffness, and weakness have several possible causes. Report new or worsening symptoms, especially with dark urine.'), faqItem('Can I change the time I take a medicine?', 'Do not change timing or dose without advice. The best schedule depends on the medicine and its indication.')], relatedLinks: [{ path: '/suplementacja-magnezem', label: 'Magnesium Supplementation' }] },
+  '/masaz-przy-kurczach': { sections: [section('Massage after stretching', 'First reduce tension by slowly lengthening the muscle, then use light massage. Firm pressure during severe pain can increase discomfort and should not replace assessment after injury.'), section('When not to massage a painful leg', 'Do not massage sudden one-sided swelling, redness, warmth, injury, or severe pain of unknown cause. These signs may need urgent diagnosis rather than tissue relaxation.')], faq: [faqItem('Does a massage gun help a cramp?', 'Avoid intense percussion on a freshly painful, tight muscle. Slow stretching and gentle manual massage after acute pain settles are safer.'), faqItem('Can massage prevent cramps?', 'It may improve comfort for some people, but gradual training, hydration, and finding the cause of recurring cramps remain central.')], relatedLinks: [{ path: '/kurcze-a-leki', label: 'Cramps & Medications' }] },
+  '/suplementacja-magnezem': { sections: [section('Evidence and realistic expectations', 'Magnesium is not a universal cramp remedy. It can matter when deficiency is confirmed, while benefit for idiopathic cramps remains uncertain.'), section('Testing, diet, and interactions', 'A clinician can review diet, symptoms, kidney function, and medicines before recommending a product. Magnesium can reduce absorption of some medicines, so timing and formulation need individual advice.')], faq: [faqItem('Can I take magnesium in pregnancy?', 'Only after discussing it with the clinician managing the pregnancy. Safety and indication depend on overall health, not cramps alone.'), faqItem('Is diarrhoea from magnesium normal?', 'It is a common adverse effect of some products. Ask a clinician or pharmacist rather than increasing or continuing a dose despite symptoms.')], relatedLinks: [{ path: '/elektrolity-a-kurcze', label: 'Electrolytes & Cramps' }] },
+  '/rozciaganie-przy-kurczach': { sections: [section('Position, breathing, and safety', 'Use stable support, breathe calmly, and increase range only to a mild pulling sensation. Stop for sharp pain, dizziness, or suspected injury.')], faq: [faqItem('Does stretching prevent cramps?', 'Regular gentle stretching can help some people, especially with nighttime calf cramps, but it cannot guarantee prevention of every recurrence.'), faqItem('Should I stretch a muscle that is sore the next day?', 'Gentle movement within a pain-free range can be reasonable. Increasing pain, swelling, bruising, or suspected injury should be assessed by a clinician or physiotherapist.')], relatedLinks: [{ path: '/kurcze-ud', label: 'Thigh and Hamstring Cramps' }] },
+  '/niedobor-magnezu': { sections: [section('What confirms magnesium deficiency', 'Symptoms are non-specific, and a single serum result does not always reflect total body stores. A clinician interprets it alongside diet, medicines, kidney function, and other symptoms.')], faq: [faqItem('Can diet alone restore magnesium?', 'For many people, increasing magnesium-rich foods is a sensible first step. Confirmed deficiency or coexisting illness needs a clinician-led plan.')], relatedLinks: [{ path: '/elektrolity-a-kurcze', label: 'Electrolytes & Cramps' }] },
+};
+
+function appendLandingContent(pages, expansions) {
+  for (const page of pages) {
+    const expansion = expansions[page.path];
+    if (expansion) {
+      page.sections = [...page.sections, ...expansion.sections];
+      page.faq = [...page.faq, ...expansion.faq];
+      page.relatedLinks = [...page.relatedLinks, ...expansion.relatedLinks];
+    }
+  }
+}
+
+function appendEnLandingContent(overrides, expansions) {
+  for (const [path, page] of Object.entries(overrides)) {
+    const expansion = expansions[path];
+    if (expansion) {
+      page.sections = [...page.sections, ...expansion.sections];
+      page.faq = [...page.faq, ...expansion.faq];
+      page.relatedLinks = [...page.relatedLinks, ...expansion.relatedLinks];
+    }
+  }
+}
+
+appendLandingContent(landingPages, plLandingExpansions);
+appendEnLandingContent(landingPagesEnMap, enLandingExpansions);
 
 export function getLandingPage(path, locale = 'pl') {
   const page = landingPages.find((p) => p.path === path);

@@ -14,7 +14,7 @@ export function getStaticPaths() {
 }
 
 const { lang } = Astro.params as { lang: SupportedLocale };
-const currentPath = `/${lang}/kontakt`;
+const currentPath = `/${lang}/contact`;
 const rawRoute = getRouteByPath('/kontakt');
 const route = getLocalizedRoute(rawRoute, lang);
 ---

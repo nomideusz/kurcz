@@ -33,6 +33,14 @@ const serwisLabels: Record<string, Record<string, string>> = {
   en: { 'nav.guides': 'guides', 'nav.faq': 'faq', 'nav.contact': 'contact', 'nav.about': 'about us' },
 };
 
+const guides = [
+  { path: '/kurcze-lydek', pl: 'kurcze łydek', en: 'calf cramps' },
+  { path: '/kurcze-nocne', pl: 'kurcze nocne', en: 'night cramps' },
+  { path: '/kurcze-u-kobiet-w-ciazy', pl: 'kurcze w ciąży', en: 'pregnancy cramps' },
+  { path: '/niedobor-magnezu', pl: 'niedobór magnezu', en: 'magnesium deficiency' },
+  { path: '/poradniki', pl: 'wszystkie poradniki', en: 'all guides' },
+];
+
 const legalLabels: Record<string, Record<string, string>> = {
   pl: { '/regulamin': 'regulamin', '/polityka-prywatnosci': 'polityka prywatności', '/disclaimer-medyczny': 'disclaimer medyczny' },
   en: { '/regulamin': 'terms of service', '/polityka-prywatnosci': 'privacy policy', '/disclaimer-medyczny': 'medical disclaimer' },
@@ -64,7 +72,7 @@ const homeHref = localizeHref('/', locale, routing);
 
 <footer class="mt-20 bg-navy-deep text-[#a9b0bd]">
   <div class="mx-auto max-w-7xl px-5 py-14 sm:px-14">
-    <div class="grid gap-10 border-b border-[#243248] pb-9 md:grid-cols-2 lg:grid-cols-4">
+    <div class="grid gap-10 border-b border-[#243248] pb-9 md:grid-cols-2 lg:grid-cols-5">
       <div>
         <a href={homeHref} aria-label="Kurcz.pl — strona główna">
           <Logo class="text-[26px] text-[#f4efe6]" accentClass="text-accent-light" />
@@ -73,7 +81,7 @@ const homeHref = localizeHref('/', locale, routing);
           {t(locale, 'footer.tagline')}
         </p>
         <div class="mt-4">
-          <LanguageSwitcher client:load currentPath={currentPath} currentLocale={locale} />
+          <LanguageSwitcher client:load currentPath={currentPath} currentLocale={locale} variant="dark" />
         </div>
       </div>
 
@@ -118,6 +126,23 @@ const homeHref = localizeHref('/', locale, routing);
                   </a>
                 </li>
               ))
+          }
+        </ul>
+      </nav>
+
+      <nav aria-label={locale === 'en' ? 'Guides' : 'Poradniki'}>
+        <div class="eyebrow mb-4 text-[#8b96a5]">
+          {locale === 'en' ? 'guides' : 'poradniki'}
+        </div>
+        <ul class="flex flex-col gap-2.5 text-sm">
+          {
+            guides.map((guide) => (
+              <li>
+                <a href={localizeHref(guide.path, locale, routing)} class="text-[#c2c8d2] hover:text-white">
+                  {locale === 'en' ? guide.en : guide.pl}
+                </a>
+              </li>
+            ))
           }
         </ul>
       </nav>

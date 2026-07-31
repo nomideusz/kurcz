@@ -4,10 +4,24 @@ import sitemap from '@astrojs/sitemap';
 import svelte from '@astrojs/svelte';
 import netlify from '@astrojs/netlify';
 import tailwindcss from '@tailwindcss/vite';
+import { absoluteLocaleUrl, toLogicalPath } from './src/i18n/paths.js';
+
+const SITE = 'https://kurcz.pl';
+
+function logicalPathFromSitemapUrl(urlString) {
+  const pathname = new URL(urlString).pathname;
+  const bare =
+    pathname === '/en' || pathname === '/en/'
+      ? '/'
+      : pathname.startsWith('/en/')
+        ? pathname.slice(3).replace(/\/$/, '') || '/'
+        : pathname.replace(/\/$/, '') || '/';
+  return toLogicalPath(bare);
+}
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://kurcz.pl',
+  site: SITE,
   // Netlify serves directory pages with trailing slashes. Generate the same URL
   // form in HTML, redirects, hreflang, and the sitemap.
   trailingSlash: 'always',
@@ -21,18 +35,15 @@ export default defineConfig({
   },
   integrations: [
     sitemap({
-      i18n: {
-        defaultLocale: 'pl',
-        locales: {
-          pl: 'pl',
-          en: 'en',
-        },
-      },
+      // EN uses different slugs than PL, so we build hreflang pairs ourselves.
       serialize(item) {
-        const defaultLocaleLink = item.links?.find((link) => link.lang === 'pl');
-        if (defaultLocaleLink) {
-          item.links.push({ lang: 'x-default', url: defaultLocaleLink.url });
-        }
+        const logical = logicalPathFromSitemapUrl(item.url);
+        item.links = [
+          { lang: 'pl', url: absoluteLocaleUrl(SITE, logical, 'pl') },
+          { lang: 'en', url: absoluteLocaleUrl(SITE, logical, 'en') },
+          { lang: 'x-default', url: absoluteLocaleUrl(SITE, logical, 'pl') },
+        ];
+        item.lastmod = new Date().toISOString();
         return item;
       },
     }),

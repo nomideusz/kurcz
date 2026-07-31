@@ -1,12 +1,13 @@
 import { getLandingPage } from '../content/landing-pages.js';
+import { localizeHref, routing } from '../i18n/config.ts';
 import { getFaqItems } from './faq-data.js';
 import { getTopicFaq } from './topic-faq.js';
 import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from './routes.js';
 
 function localizedUrl(path, locale = 'pl') {
-  const prefix = locale === 'en' ? '/en' : '';
-  const normalizedPath = path === '/' ? '' : `/${path.replace(/^\/+|\/+$/g, '')}`;
-  return `${SITE_URL}${prefix}${normalizedPath}/`;
+  const localized = localizeHref(path, locale, routing);
+  if (localized === '/') return `${SITE_URL}/`;
+  return `${SITE_URL}${localized.endsWith('/') ? localized : `${localized}/`}`;
 }
 
 function languageTag(locale) {
@@ -17,7 +18,7 @@ export function buildOrganizationSchema(locale = 'pl') {
   return {
     '@type': 'Organization',
     name: SITE_NAME,
-    url: SITE_URL,
+    url: `${SITE_URL}/`,
     logo: `${SITE_URL}/img/logo.webp`,
     sameAs: [
       'https://www.facebook.com/profile.php?id=61575552422497',
@@ -27,6 +28,11 @@ export function buildOrganizationSchema(locale = 'pl') {
       locale === 'en'
         ? 'An educational guide to muscle cramps — causes, relief, and prevention.'
         : 'Kompendium wiedzy o kurczach mięśniowych — przyczyny, leczenie i profilaktyka.',
+    publishingPrinciples: localizedUrl('/disclaimer-medyczny', locale),
+    knowsAbout:
+      locale === 'en'
+        ? ['Muscle cramps', 'Calf cramps', 'Night cramps', 'Magnesium deficiency', 'Pregnancy leg cramps']
+        : ['Kurcze mięśniowe', 'Kurcze łydek', 'Kurcze nocne', 'Niedobór magnezu', 'Skurcze łydek w ciąży'],
   };
 }
 
@@ -109,7 +115,20 @@ export function buildMedicalWebPageSchema(route, { locale = 'pl', canonicalUrl }
     author: {
       '@type': 'Organization',
       name: SITE_NAME,
-      url: SITE_URL,
+      url: `${SITE_URL}/`,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: SITE_NAME,
+      url: `${SITE_URL}/`,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${SITE_URL}/img/logo.webp`,
+      },
+    },
+    about: {
+      '@type': 'MedicalCondition',
+      name: locale === 'en' ? 'Muscle cramp' : 'Kurcz mięśniowy',
     },
     isPartOf: {
       '@type': 'WebSite',

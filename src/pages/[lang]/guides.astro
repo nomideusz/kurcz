@@ -13,7 +13,7 @@ export function getStaticPaths() {
 }
 
 const { lang } = Astro.params as { lang: SupportedLocale };
-const currentPath = `/${lang}/poradniki`;
+const currentPath = `/${lang}/guides`;
 const route = getLocalizedRoute(poradnikiHubRoute, lang);
 
 const hubData = getPoradnikiHub(lang);

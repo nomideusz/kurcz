@@ -1,11 +1,12 @@
 import assert from 'node:assert/strict';
 import { localizeUrl, cleanTitle, toHits } from '../src/utils/search-links.js';
 
-// --- localizeUrl: PL is the unprefixed default, EN lives under /en/ -------------------
+// --- localizeUrl: PL is the unprefixed default; EN uses English slugs under /en/ -------
 assert.equal(localizeUrl('https://kurcz.pl/kurcze-lydek/', 'pl'), '/kurcze-lydek/');
-assert.equal(localizeUrl('https://kurcz.pl/en/kurcze-lydek/', 'pl'), '/kurcze-lydek/');
-assert.equal(localizeUrl('https://kurcz.pl/kurcze-lydek/', 'en'), '/en/kurcze-lydek/');
-assert.equal(localizeUrl('https://kurcz.pl/en/kurcze-lydek/', 'en'), '/en/kurcze-lydek/');
+assert.equal(localizeUrl('https://kurcz.pl/en/calf-cramps/', 'pl'), '/kurcze-lydek/');
+assert.equal(localizeUrl('https://kurcz.pl/kurcze-lydek/', 'en'), '/en/calf-cramps/');
+assert.equal(localizeUrl('https://kurcz.pl/en/kurcze-lydek/', 'en'), '/en/calf-cramps/');
+assert.equal(localizeUrl('https://kurcz.pl/en/calf-cramps/', 'en'), '/en/calf-cramps/');
 
 // homepage in both directions
 assert.equal(localizeUrl('https://kurcz.pl/', 'pl'), '/');
@@ -35,7 +36,7 @@ const chunk = (key, language, title, score) => ({
 // the same page indexed in both languages collapses to ONE row for the reader
 const mixed = toHits(
   [
-    chunk('https://kurcz.pl/en/kurcze-lydek/', 'en', 'Leg Cramps | Kurcz.pl', 0.98),
+    chunk('https://kurcz.pl/en/calf-cramps/', 'en', 'Calf Cramps | Kurcz.pl', 0.98),
     chunk('https://kurcz.pl/kurcze-lydek/', 'pl', 'Kurcze łydek | Kurcz.pl', 0.91),
   ],
   'pl',
@@ -46,7 +47,7 @@ assert.equal(mixed[0].title, 'Kurcze łydek', 'reader-language title must win');
 assert.equal(mixed[0].description, 'd:pl');
 
 // when only the other language is available, its metadata is still shown
-const enOnly = toHits([chunk('https://kurcz.pl/en/kurcze-nog/', 'en', 'Leg Cramps | Kurcz.pl', 0.9)], 'pl');
+const enOnly = toHits([chunk('https://kurcz.pl/en/leg-cramps/', 'en', 'Leg Cramps | Kurcz.pl', 0.9)], 'pl');
 assert.equal(enOnly.length, 1);
 assert.equal(enOnly[0].url, '/kurcze-nog/', 'link must still point at the PL page');
 assert.equal(enOnly[0].title, 'Leg Cramps');

@@ -19,16 +19,16 @@ export const localizedRouteMeta: Record<string, Record<SupportedLocale, { h1?: s
   },
   '/kurcze-miesniowe': {
     pl: {
-      h1: 'Kurcze mięśniowe — przyczyny, objawy i leczenie',
+      h1: 'Kurcze mięśniowe — przyczyny, objawy, grupy ryzyka i leczenie',
       breadcrumbLabel: 'Kurcze mięśniowe',
-      title: 'Kurcze mięśniowe — przyczyny, objawy i leczenie | Kurcz.pl',
-      description: 'Poznaj medyczne podłoże kurczy mięśniowych: najczęstsze przyczyny, objawy, czynniki ryzyka oraz sprawdzone metody leczenia i prewencji.',
+      title: 'Kurcze mięśniowe — przyczyny, grupy ryzyka i leczenie | Kurcz.pl',
+      description: 'Medyczny przewodnik po kurczach mięśniowych: przyczyny, objawy, grupy ryzyka, leczenie oraz sygnały, kiedy skonsultować się z lekarzem.',
     },
     en: {
-      h1: 'Muscle Cramps — Causes, Symptoms & Treatment',
+      h1: 'Muscle Cramps — Causes, Risk Groups & Treatment',
       breadcrumbLabel: 'Muscle Cramps',
-      title: 'Muscle Cramps — Causes, Symptoms & Treatment | Kurcz.pl',
-      description: 'Explore the medical background of muscle cramps: common causes, symptoms, risk factors, and proven treatment and prevention methods.',
+      title: 'Muscle Cramps — Causes, Risk Groups & Treatment | Kurcz.pl',
+      description: 'A medical overview of muscle cramps: causes, symptoms, risk groups, treatment, and signs that warrant a clinician’s assessment.',
     },
   },
   '/pierwsza-pomoc': {

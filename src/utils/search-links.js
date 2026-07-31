@@ -2,10 +2,11 @@
  * Helpers for turning AI Search results into links for the reader's language.
  *
  * The index holds PL and EN pages in one namespace and retrieval mixes them freely —
- * a Polish question regularly ranks an /en/ page first. Since both languages share
- * identical slugs (/kurcze-lydek/ ↔ /en/kurcze-lydek/), every source can be rewritten
- * to the language of the page the reader is on.
+ * a Polish question regularly ranks an /en/ page first. PL logical paths and EN English
+ * slugs are paired via src/i18n/paths.ts.
  */
+
+import { toLogicalPath, toLocalePath } from '../i18n/paths.js';
 
 /** Rewrite an indexed source URL to `locale`, returning a site-relative path. */
 export function localizeUrl(raw, locale) {
@@ -16,8 +17,12 @@ export function localizeUrl(raw, locale) {
     return raw;
   }
   const bare = path.replace(/^\/en(?=\/|$)/, '') || '/';
-  if (locale !== 'en') return bare;
-  return bare === '/' ? '/en/' : `/en${bare}`;
+  const logical = toLogicalPath(bare);
+  const localized = toLocalePath(logical, locale === 'en' ? 'en' : 'pl');
+  if (locale !== 'en') {
+    return localized === '/' ? '/' : `${localized}/`;
+  }
+  return localized === '/' ? '/en/' : `/en${localized}/`;
 }
 
 /** Page titles are indexed with the site suffix; strip it for compact result rows. */

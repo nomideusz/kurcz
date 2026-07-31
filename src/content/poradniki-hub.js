@@ -6,27 +6,31 @@ const categoryDefinitions = [
   {
     title: { pl: 'Kurcze według lokalizacji i sytuacji', en: 'Cramps by Location & Context' },
     description: {
-      pl: 'Dolegliwości w konkretnych partiach ciała oraz w charakterystycznych okolicznościach — noc, sport, ciąża, starzenie.',
-      en: 'Muscle cramps in specific body areas and situations — night, sports, pregnancy, aging.',
+      pl: 'Dolegliwości w konkretnych partiach ciała oraz w charakterystycznych okolicznościach — noc, sport, ciąża, dzieci i starzenie.',
+      en: 'Muscle cramps in specific body areas and situations — night, sports, pregnancy, children, and aging.',
     },
     paths: [
       '/kurcze-nog',
       '/kurcze-lydek',
       '/kurcze-stop',
+      '/kurcze-ud',
+      '/kurcze-dloni',
       '/kurcze-nocne',
+      '/zespol-niespokojnych-nog-a-kurcze',
       '/kurcze-u-sportowcow',
       '/kurcze-u-kobiet-w-ciazy',
       '/kurcze-u-osob-starszych',
       '/kurcze-u-diabetykow',
+      '/kurcze-u-dzieci',
     ],
   },
   {
     title: { pl: 'Przyczyny i czynniki ryzyka', en: 'Causes & Risk Factors' },
     description: {
-      pl: 'Co może wywoływać kurcze mięśniowe — niedobory minerałów, odwodnienie i wpływ leków.',
-      en: 'What causes muscle cramps — mineral deficiencies, dehydration, and medication side effects.',
+      pl: 'Co może wywoływać kurcze mięśniowe — elektrolity, niedobory minerałów, odwodnienie i wpływ leków.',
+      en: 'What causes muscle cramps — electrolytes, mineral deficiencies, dehydration, and medication side effects.',
     },
-    paths: ['/niedobor-magnezu', '/kurcze-a-odwodnienie', '/kurcze-a-leki'],
+    paths: ['/niedobor-magnezu', '/elektrolity-a-kurcze', '/kurcze-a-odwodnienie', '/kurcze-a-leki'],
   },
   {
     title: { pl: 'Metody ulgi i profilaktyki', en: 'Relief & Prevention Methods' },

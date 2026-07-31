@@ -1,7 +1,16 @@
 <script lang="ts">
   import { routing, localeLabels, extractLocale, localizeHref, type SupportedLocale, LOCALES } from '../i18n/config';
 
-  let { currentPath = '/', currentLocale = 'pl' }: { currentPath?: string; currentLocale?: SupportedLocale } = $props();
+  let {
+    currentPath = '/',
+    currentLocale = 'pl',
+    variant = 'light',
+  }: {
+    currentPath?: string;
+    currentLocale?: SupportedLocale;
+    /** `light` = dark ink on paper (header). `dark` = light controls on navy (footer). */
+    variant?: 'light' | 'dark';
+  } = $props();
 
   let isOpen = $state(false);
   const { pathname } = extractLocale(currentPath, routing);
@@ -22,6 +31,27 @@
       isOpen = false;
     }
   }
+
+  const buttonClass =
+    variant === 'dark'
+      ? 'inline-flex h-[38px] items-center justify-center gap-1.5 rounded border border-[#5a6a82] px-[14px] text-sm font-medium leading-none text-[#f4efe6] transition-colors hover:border-accent hover:bg-[#243248] hover:text-white focus:outline-none focus:ring-1 focus:ring-accent'
+      : 'inline-flex h-[38px] items-center justify-center gap-1.5 rounded border border-ink px-[14px] text-sm font-medium leading-none text-ink transition-colors hover:bg-ink hover:text-paper focus:outline-none focus:ring-1 focus:ring-accent';
+
+  const menuClass =
+    variant === 'dark'
+      ? 'absolute right-0 mt-1.5 w-24 rounded border border-[#2c3a52] bg-[#182438] py-1 shadow-md z-50'
+      : 'absolute right-0 mt-1.5 w-24 rounded border border-ink bg-paper py-1 shadow-md z-50';
+
+  function optionClass(loc: SupportedLocale) {
+    if (variant === 'dark') {
+      return `flex w-full items-center justify-between px-3 py-1.5 text-xs font-mono font-medium transition-colors hover:bg-[#243248] hover:text-white text-left ${
+        loc === currentLocale ? 'font-bold text-accent-light' : 'text-[#d9dce2]'
+      }`;
+    }
+    return `flex w-full items-center justify-between px-3 py-1.5 text-xs font-mono font-medium transition-colors hover:bg-ink hover:text-paper text-left ${
+      loc === currentLocale ? 'font-bold text-accent' : 'text-ink'
+    }`;
+  }
 </script>
 
 <svelte:window
@@ -41,7 +71,7 @@
     aria-haspopup="listbox"
     aria-expanded={isOpen}
     aria-label="Wybierz język / Select language"
-    class="inline-flex h-[38px] items-center justify-center gap-1.5 rounded border border-ink px-[14px] text-sm font-medium leading-none text-ink transition-colors hover:bg-ink hover:text-paper focus:outline-none focus:ring-1 focus:ring-accent"
+    class={buttonClass}
   >
     <span class="font-mono text-xs uppercase tracking-wider leading-none">{currentLocale}</span>
     <svg
@@ -57,21 +87,18 @@
   </button>
 
   {#if isOpen}
-    <div
-      role="listbox"
-      class="absolute right-0 mt-1.5 w-24 rounded border border-ink bg-paper py-1 shadow-md z-50"
-    >
+    <div role="listbox" class={menuClass}>
       {#each LOCALES as loc}
         <button
           type="button"
           role="option"
           aria-selected={loc === currentLocale}
           onclick={() => selectLocale(loc)}
-          class="flex w-full items-center justify-between px-3 py-1.5 text-xs font-mono font-medium transition-colors hover:bg-ink hover:text-paper text-left {loc === currentLocale ? 'font-bold text-accent' : 'text-ink'}"
+          class={optionClass(loc)}
         >
           <span>{localeLabels[loc] ?? loc.toUpperCase()}</span>
           {#if loc === currentLocale}
-            <span class="text-accent">✓</span>
+            <span class={variant === 'dark' ? 'text-accent-light' : 'text-accent'}>✓</span>
           {/if}
         </button>
       {/each}

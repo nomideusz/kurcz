@@ -3,7 +3,7 @@ import '../styles/global.css';
 import { Font } from 'astro:assets';
 import { SITE_URL, getOgImage } from '../seo/routes.js';
 import { buildPageSchema, schemaToJsonLd } from '../seo/schema.js';
-import { extractLocale, alternates, routing, DEFAULT_LOCALE } from '../i18n/config.ts';
+import { extractLocale, alternates, routing, DEFAULT_LOCALE, localizeHref, toLogicalPath } from '../i18n/config.ts';
 
 const {
   route,
@@ -15,6 +15,7 @@ const {
 const currentPath = route.path ?? Astro.url.pathname;
 const { locale, pathname } = extractLocale(currentPath, routing);
 const effectiveLang = lang ?? locale ?? DEFAULT_LOCALE;
+const logicalPath = toLogicalPath(pathname === '/' ? '/' : route.path ?? pathname);
 
 function withTrailingSlash(href) {
   const url = new URL(href);
@@ -24,9 +25,8 @@ function withTrailingSlash(href) {
   return url.href;
 }
 
-const localePrefix = effectiveLang === DEFAULT_LOCALE ? '' : `/${effectiveLang}`;
-const pagePath = pathname === '/' ? '' : pathname;
-const canonical = withTrailingSlash(`${SITE_URL}${localePrefix}${pagePath}`);
+const localizedPath = localizeHref(logicalPath, effectiveLang, routing);
+const canonical = withTrailingSlash(`${SITE_URL}${localizedPath === '/' ? '/' : localizedPath}`);
 const ogTitle = route.ogTitle ?? route.title;
 const ogImage = getOgImage(route);
 const ogType = route.path === '/' ? 'website' : 'article';
@@ -39,7 +39,7 @@ const jsonLd = includeCanonical
     )
   : '';
 
-const alternateLinks = alternates(pathname, routing, SITE_URL).map((link) => ({
+const alternateLinks = alternates(logicalPath, routing, SITE_URL).map((link) => ({
   ...link,
   href: withTrailingSlash(link.href),
 }));

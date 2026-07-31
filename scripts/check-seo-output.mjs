@@ -2,9 +2,19 @@ import { readFileSync } from 'node:fs';
 import { landingPages, getLandingPage } from '../src/content/landing-pages.js';
 import { getStaticPage } from '../src/content/static-pages.js';
 import { getLocalizedRoute } from '../src/i18n/content.ts';
+import { toLocalePath, toLogicalPath, normalizePath } from '../src/i18n/paths.js';
 import { getFaqItems } from '../src/seo/faq-data.js';
 import { getTopicFaq } from '../src/seo/topic-faq.js';
 import { SITE_URL, routes, staticRoutes } from '../src/seo/routes.js';
+
+function localizeHrefForCheck(logicalPath, locale) {
+  const path = normalizePath(logicalPath);
+  const localized = toLocalePath(path, locale);
+  if (locale === 'en') {
+    return localized === '/' ? '/en/' : `/en${localized}/`;
+  }
+  return localized === '/' ? '/' : `${localized}/`;
+}
 
 const DIST = new URL('../dist/', import.meta.url);
 const errors = [];
@@ -38,8 +48,16 @@ function match(html, pattern, label, outputPath) {
 }
 
 function canonicalUrl(routePath, locale) {
-  const prefix = locale === 'en' ? '/en' : '';
-  return `${SITE_URL}${prefix}${routePath === '/' ? '' : routePath}/`;
+  const logical = toLogicalPath(routePath);
+  return `${SITE_URL}${localizeHrefForCheck(logical, locale)}`;
+}
+
+function logicalPathFromLoc(loc) {
+  const pathname = new URL(loc).pathname;
+  const bare = pathname.startsWith('/en/')
+    ? pathname.replace(/^\/en(?=\/)/, '').replace(/\/$/, '') || '/'
+    : pathname.replace(/\/$/, '') || '/';
+  return toLogicalPath(bare);
 }
 
 function addExpectedMetadata(routePath, locale, expected) {
@@ -50,9 +68,8 @@ function checkPage(loc) {
   const url = new URL(loc);
   const outputPath = outputPathFor(url.pathname);
   const html = readOutput(outputPath);
-  const locale = url.pathname.startsWith('/en/') ? 'en' : 'pl';
-  const routePath =
-    locale === 'en' ? url.pathname.replace(/^\/en(?=\/)/, '').replace(/\/$/, '') || '/' : url.pathname.replace(/\/$/, '') || '/';
+  const locale = url.pathname.startsWith('/en/') || url.pathname === '/en/' ? 'en' : 'pl';
+  const routePath = logicalPathFromLoc(loc);
   const expected = expectedMetadata.get(loc);
 
   const htmlLang = match(html, /<html[^>]+lang="([^"]+)"/, 'html lang', outputPath);
@@ -259,16 +276,13 @@ for (const entry of sitemap.matchAll(/<url>(.*?)<\/url>/gs)) {
   const loc = entry[1].match(/<loc>([^<]+)<\/loc>/)?.[1];
   if (!loc) continue;
 
-  const pathname = new URL(loc).pathname;
-  const routePath = pathname.startsWith('/en/')
-    ? pathname.replace(/^\/en(?=\/)/, '').replace(/\/$/, '') || '/'
-    : pathname.replace(/\/$/, '') || '/';
-  const alternateMap = new Map(
-    [...entry[1].matchAll(/hreflang="([^"]+)" href="([^"]+)"/g)].map((link) => [
-      link[1],
-      link[2],
-    ]),
-  );
+  const routePath = logicalPathFromLoc(loc);
+  const alternateEntries = [...entry[1].matchAll(/hreflang="([^"]+)" href="([^"]+)"/g)];
+  const alternateMap = new Map(alternateEntries.map((link) => [link[1], link[2]]));
+  const xDefaultCount = alternateEntries.filter((link) => link[1] === 'x-default').length;
+  if (xDefaultCount !== 1) {
+    errors.push(`sitemap: ${loc} has ${xDefaultCount} x-default links (expected 1)`);
+  }
   const expectedAlternates = new Map([
     ['pl', canonicalUrl(routePath, 'pl')],
     ['en', canonicalUrl(routePath, 'en')],
@@ -276,7 +290,7 @@ for (const entry of sitemap.matchAll(/<url>(.*?)<\/url>/gs)) {
   ]);
   for (const [language, expectedUrl] of expectedAlternates) {
     if (alternateMap.get(language) !== expectedUrl) {
-      errors.push(`sitemap: ${loc} has incorrect ${language} alternate`);
+      errors.push(`sitemap: ${loc} has incorrect ${language} alternate (got ${alternateMap.get(language)}, expected ${expectedUrl})`);
     }
   }
 }

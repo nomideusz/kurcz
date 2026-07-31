@@ -13,7 +13,7 @@ import { getStaticPage } from '../../content/static-pages.js';
 import { getTopicPageContent } from '../../content/topic-pages.js';
 import { getTopicFaq } from '../../seo/topic-faq.js';
 import { getPagePhoto } from '../../content/page-photos.ts';
-import { LOCALES, DEFAULT_LOCALE, t, localizeHref, routing, type SupportedLocale } from '../../i18n/config.ts';
+import { LOCALES, DEFAULT_LOCALE, t, localizeHref, routing, toLocalePath, type SupportedLocale } from '../../i18n/config.ts';
 import { getLocalizedRoute } from '../../i18n/content.ts';
 
 export function getStaticPaths() {
@@ -29,10 +29,13 @@ export function getStaticPaths() {
   ];
 
   return secondaryLocales.flatMap((lang) =>
-    entries.map(({ route, kind }) => ({
-      params: { lang, slug: route.path.slice(1) },
-      props: { route, kind, lang },
-    }))
+    entries.map(({ route, kind }) => {
+      const localePath = toLocalePath(route.path, lang);
+      return {
+        params: { lang, slug: localePath.slice(1) },
+        props: { route, kind, lang },
+      };
+    })
   );
 }
 
