@@ -61,16 +61,16 @@ export const localizedRouteMeta: Record<string, Record<SupportedLocale, { h1?: s
   },
   '/kurcz-vs-skurcz': {
     pl: {
-      h1: 'Kurcz a skurcz — kluczowe różnice',
+      h1: 'Kurcz czy skurcz — na czym polega różnica?',
       breadcrumbLabel: 'Kurcz vs. skurcz',
-      title: 'Kurcz a skurcz mięśni — różnice medyczne | Kurcz.pl',
-      description: 'Czym różni się kurcz od skurczu mięśni? Wyjaśniamy terminologię medyczną i potoczną oraz kiedy mówimy o patologicznym kurczu mięśnia.',
+      title: 'Kurcz czy skurcz? Różnica wyjaśniona prosto | Kurcz.pl',
+      description: 'Kurcz czy skurcz — to nie to samo. Kurcz to bolesne, mimowolne napięcie mięśnia (np. łydki). Skurcz to szersze pojęcie medyczne. Sprawdź różnicę i tłumaczenie po angielsku.',
     },
     en: {
-      h1: 'Cramp vs Spasm — Key Differences',
+      h1: 'Cramp vs Spasm — What Is the Difference?',
       breadcrumbLabel: 'Cramp vs. Spasm',
-      title: 'Muscle Cramp vs Muscle Spasm — Medical Differences | Kurcz.pl',
-      description: 'What is the difference between a muscle cramp and a muscle spasm? Medical terminology explained.',
+      title: 'Cramp vs Spasm: Muscle Difference Explained | Kurcz.pl',
+      description: 'Cramp vs spasm — not the same. A cramp is a sudden, painful involuntary contraction (e.g. calf). A spasm is the broader medical term. Also: cramp vs twitch.',
     },
   },
   '/wibroakustyka': {
@@ -175,7 +175,7 @@ export function getLocalizedTopics(locale: SupportedLocale) {
       { n: '01', path: '/kurcze-miesniowe', title: 'Causes of Cramps', desc: 'Dehydration, mineral deficiencies, and strain — what really causes cramps.' },
       { n: '02', path: '/pierwsza-pomoc', title: 'First Aid', desc: 'Three steps of immediate relief, stretching, massage, and heat/cold therapy.' },
       { n: '03', path: '/profilaktyka', title: 'Prevention', desc: 'Hydration, electrolyte-rich diet, and stretching to prevent recurrence.' },
-      { n: '04', path: '/kurcz-vs-skurcz', title: 'Cramp vs Spasm', desc: 'How these two terms differ and why they do not mean the same thing.' },
+      { n: '04', path: '/kurcz-vs-skurcz', title: 'Cramp vs Spasm', desc: 'Quick answer: not synonyms — a cramp is painful lock-up; spasm is the broader medical term.' },
       { n: '05', path: '/wibroakustyka', title: 'Vibroacoustics', desc: 'Sound frequency therapy as a modern complement to cramp prevention.' },
       { n: '06', path: '/joga-a-kurcze', title: 'Yoga & Cramps', desc: 'Asanas, conscious breathing, and improved circulation for flexible muscles.' },
     ];
@@ -184,7 +184,7 @@ export function getLocalizedTopics(locale: SupportedLocale) {
     { n: '01', path: '/kurcze-miesniowe', title: 'Przyczyny kurczy', desc: 'Odwodnienie, niedobory minerałów i przeciążenie — co naprawdę wywołuje kurcze.' },
     { n: '02', path: '/pierwsza-pomoc', title: 'Pierwsza pomoc', desc: 'Trzy kroki natychmiastowej ulgi, rozciąganie, masaż oraz terapia ciepłem i zimnem.' },
     { n: '03', path: '/profilaktyka', title: 'Profilaktyka', desc: 'Nawodnienie, dieta bogata w elektrolity i rozciąganie, które zapobiegają nawrotom.' },
-    { n: '04', path: '/kurcz-vs-skurcz', title: 'Kurcz vs skurcz', desc: 'Czym różnią się te dwa terminy — i dlaczego nie znaczą tego samego.' },
+    { n: '04', path: '/kurcz-vs-skurcz', title: 'Kurcz czy skurcz?', desc: 'Szybka odpowiedź: to nie synonimy — kurcz to bolesne napięcie, skurcz szersze pojęcie medyczne.' },
     { n: '05', path: '/wibroakustyka', title: 'Wibroakustyka', desc: 'Terapia częstotliwościami dźwięku jako uzupełnienie profilaktyki kurczy.' },
     { n: '06', path: '/joga-a-kurcze', title: 'Joga a kurcze', desc: 'Asany, świadomy oddech i lepsze ukrwienie w służbie elastycznych mięśni.' },
   ];

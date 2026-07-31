@@ -1,5 +1,22 @@
 /** FAQ specyficzne dla podstron tematycznych (schema FAQPage + treść na stronie) */
 export const topicFaqByPath = {
+  '/kurcz-vs-skurcz': [
+    {
+      question: 'Kurcz czy skurcz — co jest poprawne?',
+      answer:
+        'Oba słowa są poprawne, ale znaczą co innego. Kurcz to bolesne, mimowolne napięcie mięśnia (np. kurcz łydki). Skurcz to szersze pojęcie medyczne — każde napięcie mięśnia, także prawidłowe. W potocznej rozmowie o bólu łydki zwykle chodzi o kurcz.',
+    },
+    {
+      question: 'Czy skurcz i kurcz to to samo?',
+      answer:
+        'Nie. Każdy kurcz jest rodzajem skurczu, ale nie każdy skurcz jest kurczem. Skurcz serca czy skurcz macicy to nie to samo co bolesny kurcz mięśnia łydki.',
+    },
+    {
+      question: 'Jak powiedzieć skurcz po angielsku?',
+      answer:
+        'Bolesny kurcz mięśnia to zwykle „muscle cramp” (np. calf cramp). Ogólny skurcz to „(muscle) spasm” lub „contraction”. Krótkie drżenie to „muscle twitch”, nie pełny cramp.',
+    },
+  ],
   '/kurcze-miesniowe': [
     {
       question: 'Co to są kurcze mięśniowe?',
@@ -45,6 +62,23 @@ export const topicFaqByPath = {
 };
 
 export const topicFaqEnByPath = {
+  '/kurcz-vs-skurcz': [
+    {
+      question: 'What is the difference between a cramp and a spasm?',
+      answer:
+        'A cramp is a sudden, usually painful involuntary contraction of skeletal muscle (e.g. a calf cramp). A spasm is the broader term for muscle contraction, including normal ones. Every cramp is a kind of spasm, but not every spasm is a cramp.',
+    },
+    {
+      question: 'Is a muscle spasm the same as a cramp?',
+      answer:
+        'Not exactly. Everyday speech often mixes them, but clinically “cramp” points to painful skeletal lock-up, while “spasm” can mean any contraction — painful or not.',
+    },
+    {
+      question: 'Cramp vs twitch — what is the difference?',
+      answer:
+        'A twitch is a brief, usually painless flicker of muscle fibers. A cramp is a sustained, painful contraction of the whole muscle. Twitches can relate to fatigue, caffeine, or low magnesium; see a clinician if twitching is progressive or with weakness.',
+    },
+  ],
   '/kurcze-miesniowe': [
     {
       question: 'What are muscle cramps?',

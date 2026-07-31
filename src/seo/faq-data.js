@@ -1,7 +1,7 @@
 export const faqItems = [
   {
-    question: 'Jaka jest różnica między kurczem a skurczem mięśni?',
-    answer: 'Choć w języku potocznym terminy te bywają używane zamiennie, mają różne znaczenia medyczne. Kurcz to nagłe, mimowolne i zazwyczaj bolesne napięcie mięśnia, zawsze nieświadome i patologiczne (np. kurcz łydki, stopy). Skurcz natomiast to szersze pojęcie — fizjologiczny proces napinania się mięśnia, który może być świadomy lub mimowolny. W terminologii medycznej preferowany jest termin „skurcz”, natomiast w mowie potocznej częściej używa się określenia „kurcz” dla bolesnych, nagłych napięć mięśniowych. Można powiedzieć, że każdy kurcz jest rodzajem skurczu, ale nie każdy skurcz jest kurczem.',
+    question: 'Kurcz czy skurcz — jaka jest różnica?',
+    answer: 'Choć w języku potocznym terminy te bywają używane zamiennie, mają różne znaczenia medyczne. Kurcz to nagłe, mimowolne i zazwyczaj bolesne napięcie mięśnia, zawsze nieświadome i patologiczne (np. kurcz łydki, stopy). Skurcz natomiast to szersze pojęcie — fizjologiczny proces napinania się mięśnia, który może być świadomy lub mimowolny. W terminologii medycznej preferowany jest termin „skurcz”, natomiast w mowie potocznej częściej używa się określenia „kurcz” dla bolesnych, nagłych napięć mięśniowych. Można powiedzieć, że każdy kurcz jest rodzajem skurczu, ale nie każdy skurcz jest kurczem. Szczegóły: /kurcz-vs-skurcz/.',
   },
   {
     question: 'Kiedy kurcze mięśniowe wymagają konsultacji z lekarzem?',
@@ -31,8 +31,8 @@ export const faqItems = [
 
 export const faqItemsEn = [
   {
-    question: 'What is the difference between a muscle cramp and a muscle spasm?',
-    answer: 'While used interchangeably in casual speech, they differ medically. A cramp is a sudden, involuntary, and painful muscle contraction (e.g. calf or foot cramp). A spasm is a broader physiological term for any muscle contraction, whether voluntary or involuntary. All cramps are spasms, but not all spasms are cramps.',
+    question: 'Cramp vs spasm — what is the difference?',
+    answer: 'While used interchangeably in casual speech, they differ medically. A cramp is a sudden, involuntary, and painful muscle contraction (e.g. calf or foot cramp). A spasm is a broader physiological term for any muscle contraction, whether voluntary or involuntary. All cramps are spasms, but not all spasms are cramps. Full guide: /en/kurcz-vs-skurcz/.',
   },
   {
     question: 'When do muscle cramps require medical consultation?',

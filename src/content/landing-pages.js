@@ -178,26 +178,84 @@ export const landingPages = [
   {
     path: '/kurcze-u-kobiet-w-ciazy',
     hub: { path: '/kurcze-miesniowe', label: 'Kurcze mięśniowe' },
-    h1: 'Kurcze mięśniowe w ciąży',
-    title: 'Kurcze w ciąży — przyczyny i bezpieczna ulga | Kurcz.pl',
-    description: 'Kurcze łydek i nóg w ciąży: dlaczego się pojawiają, jak bezpiecznie sobie pomóc i kiedy skonsultować się z lekarzem prowadzącym.',
-    intro: 'Kurcze mięśniowe w ciąży dotykają nawet połowy kobiet, głównie w trymestrze trzecim. Zmiany hormonalne, zwiększona masa ciała i ucisk na naczynia krwionośne sprzyjają ich występowaniu.',
+    h1: 'Skurcze łydek w ciąży — przyczyny i ulga',
+    title: 'Skurcze łydek w ciąży — 2. i 3. trymestr | Kurcz.pl',
+    description: 'Skurcze łydek i nóg w ciąży (2. i 3. trymestr): jak często się pojawiają, przyczyny, bezpieczna pierwsza pomoc, magnez i kiedy wezwać lekarza. Także po angielsku: calf cramps in pregnancy.',
+    intro: 'Skurcze (kurcze) łydek w ciąży to nagłe, bolesne napięcie mięśnia — najczęściej w nocy. Według źródeł klinicznych pojawiają się głównie w drugim i trzecim trymestrze; w III trymestrze zgłasza je nawet około połowy do dwóch trzecich ciężarnych. Dokładna przyczyna nie jest w pełni wyjaśniona, ale rolę odgrywają zmiany krążenia, ucisk rosnącej macicy, obciążenie nóg i gospodarka mineralna.',
     sections: [
       {
-        heading: 'Przyczyny kurczy w ciąży',
-        body: 'Do czynników ryzyka należą niedobór magnezu i wapnia, ucisk na nerwy w miednicy, odwodnienie oraz zwiększone obciążenie mięśni nóg.',
+        heading: 'Skurcze łydek w ciąży w 2. trymestrze',
+        body: 'W drugim trymestrze skurcze łydek stają się zauważalnie częstsze niż na początku ciąży — w części badań odsetek kobiet z kurczami rośnie z około jednej piątej w I trymestrze do ok. 25–48% w II. Macica jest już wyraźnie powiększona, zmienia się postawa i sposób chodzenia, a zapotrzebowanie na płyny i minerały wzrasta. Kurcze często budzą w nocy, gdy stopa pozostaje w zgięciu podeszwowym.',
+        bullets: [
+          'Częstsze niż w I trymestrze, zwykle nadal łagodne',
+          'Typowo łydka lub stopa, często w nocy',
+          'Pomaga wieczorne rozciąganie łydek i dobre nawodnienie w ciągu dnia',
+        ],
       },
       {
-        heading: 'Bezpieczna pierwsza pomoc',
-        body: 'Delikatnie rozciągnij mięsień łydki, masuj bolące miejsce i odpocznij z uniesionymi nogami. Unikaj suplementów bez zgody lekarza prowadzącego ciążę.',
+        heading: 'Skurcze łydek w ciąży w 3. trymestrze',
+        body: 'Trzeci trymestr to szczyt dolegliwości: badania z USA, Iranu, Indii i innych krajów szacują częstość kurczy nóg na ok. 48–65%. Większa masa ciała, silniejszy ucisk na naczynia i nerwy w miednicy, obrzęki oraz mniejsza aktywność dodatkowo obciążają mięśnie łydek. Skurcze bywają silniejsze i bardziej nawracające niż wcześniej — nadal jednak w większości przypadków są nieszkodliwe, jeśli nie towarzyszą im niepokojące objawy opisane poniżej.',
+        bullets: [
+          'Najwyższa częstość w całej ciąży (ok. połowy–⅔ kobiet w badaniach)',
+          'Częste nocne nawroty, czasem bolesność mięśnia jeszcze następnego dnia',
+          'Unoszenie nóg, komfortowe obuwie i krótki spacer po kurczu zmniejszają ryzyko powtórki',
+        ],
+      },
+      {
+        heading: 'Skurcze nóg w ciąży — nie tylko łydki',
+        body: 'Najczęściej boli łydka, ale skurcze w ciąży mogą dotyczyć też stopy, uda albo obu nóg naprzemiennie. Mechanizm jest podobny: obciążenie, krążenie i minerały. Osobno warto odróżnić bolesny skurcz mięśnia od drętwienia nóg — mrowienie bez twardego „kamienia” w mięśniu częściej wiąże się z uciskiem nerwu lub obrzękiem i też warto omówić z lekarzem prowadzącym, zwłaszcza gdy jest jednostronne lub narasta.',
+      },
+      {
+        heading: 'Przyczyny skurczy łydek w ciąży',
+        body: 'Nie ma jednej potwierdzonej przyczyny. W praktyce klinicznej wymienia się splot czynników fizjologicznych ciąży — nie każdy musi występować u danej osoby. Po angielsku te same dolegliwości wyszukuje się jako calf cramps in pregnancy lub muscle cramps when pregnant.',
+        bullets: [
+          'Zmiany krążenia i zatrzymywanie płynów w nogach',
+          'Ucisk rosnącej macicy na nerwy i naczynia miednicy',
+          'Większe obciążenie mięśni łydek i zmiana chodu',
+          'Większe zapotrzebowanie na wapń i magnez; możliwe zaburzenia elektrolitowe',
+          'Odwodnienie i długotrwałe stanie lub siedzenie',
+        ],
+      },
+      {
+        heading: 'Bezpieczna pierwsza pomoc przy kurczu łydki',
+        body: 'Przy ostrym skurczu powoli rozciągnij mięsień łydki: usiądź lub stań, chwyć palce stopy i przyciągnij je w kierunku goleni (pięta w dół). Następnie delikatnie rozmasuj bolące miejsce. Krótki spacer i uniesienie nóg mogą ograniczyć nawrót. Ciepły prysznic, ciepła kąpiel lub zimny okład też bywają pomocne — wybierz to, co przynosi ulgę.',
+        bullets: [
+          'Powolne rozciągnięcie łydki 20–30 sekund, bez gwałtownych ruchów',
+          'Delikatny masaż i kilka kroków',
+          'Odpoczynek z uniesionymi nogami',
+          'Nie bierz suplementów ani leków na własną rękę',
+        ],
+      },
+      {
+        heading: 'Profilaktyka w II i III trymestrze',
+        body: 'Mayo Clinic i inne źródła kliniczne zalecają przede wszystkim metody niefarmakologiczne. Dowody na skuteczność magnezu i wapnia w leczeniu kurczy w ciąży są ograniczone i niejednoznaczne (przeglądy Cochrane) — suplementację zawsze ustal z lekarzem prowadzącym.',
+        bullets: [
+          'Rozciąganie łydek przed snem (ok. 30 sekund na nogę)',
+          'Regularna aktywność zaakceptowana przez lekarza (np. spacer)',
+          'Odpowiednie nawodnienie — jasny mocz zwykle oznacza dobry poziom płynów',
+          'Dieta z wapniem (zalecenie ACOG: ok. 1000 mg/dobę u dorosłych) oraz produktami bogatymi w magnez',
+          'Wygodne, stabilne obuwie; unikaj długiego bezruchu',
+        ],
+      },
+      {
+        heading: 'Kiedy zgłosić się do lekarza',
+        body: 'Typowe kurcze łydek w ciąży są częste i zwykle niegroźne. Skontaktuj się z ginekologiem lub położną, gdy skurcze są bardzo silne albo nawracają mimo profilaktyki, albo gdy bólowi towarzyszy obrzęk, zaczerwienienie, ocieplenie jednej łydki, duszność albo nagły silny ból — wtedy trzeba wykluczyć m.in. zakrzepicę żył głębokich lub inne powikłania.',
       },
     ],
     faq: [
-      { question: 'Czy kurcze w ciąży są normalne?', answer: 'Tak, kurcze łydek w ciąży są częste i zwykle niegroźne. Jeśli jednak są bardzo silne, utrzymują się długo lub towarzyszy im obrzęk — skontaktuj się z ginekologiem.' },
+      { question: 'Czy skurcze łydek w ciąży są normalne?', answer: 'Tak — skurcze łydek w ciąży są częste, zwłaszcza w II i III trymestrze, i zwykle nie oznaczają choroby. Przy silnym, jednostronnym bólu z obrzękiem lub zaczerwienieniem skontaktuj się z lekarzem.' },
+      { question: 'Dlaczego skurcze łydek w ciąży 3 trymestr są najczęstsze?', answer: 'W III trymestrze największe są masa ciała, ucisk macicy na naczynia i nerwy oraz obciążenie łydek; w badaniach częstość kurczy nóg sięga wtedy często ok. 48–65%. Dlatego nocne skurcze bywają najczęstsze właśnie przed porodem.' },
+      { question: 'Czy skurcze łydek w ciąży w 2. trymestrze to powód do niepokoju?', answer: 'W drugim trymestrze kurcze łydek też są typowe i zwykle łagodne. Warto wdrożyć rozciąganie, nawodnienie i wygodne obuwie. Niepokojące są objawy zakrzepowe (obrzęk, zaczerwienienie, ocieplenie jednej nogi) — wtedy nie czekaj do wizyty kontrolnej.' },
+      { question: 'Czy magnez pomaga na skurcze łydek w ciąży?', answer: 'Dowody naukowe są mieszane: niektóre kobiety odczuwają ulgę, ale przeglądy Cochrane nie potwierdzają jednoznacznej skuteczności. Nie zaczynaj suplementacji bez konsultacji z lekarzem prowadzącym ciążę; bezpieczniej zacząć od diety bogatej w magnez i rozciągania.' },
+      { question: 'Czym różnią się skurcze łydek od skurczów macicy?', answer: 'Kurcz (skurcz) łydki to bolesne, twarde napięcie mięśnia nogi — zwykle krótkotrwałe. Skurcze macicy odczuwa się w brzuchu lub spodzie brzucha. Przy regularnych, bolesnych skurczach brzucha w ciąży zawsze skonsultuj się z lekarzem lub położną.' },
+      { question: 'Czy drętwienie nóg w ciąży to to samo co skurcz łydki?', answer: 'Nie. Skurcz to twarde, bolesne napięcie mięśnia. Drętwienie i mrowienie bez takiego „kamienia” częściej wynikają z ucisku nerwu, obrzęku lub pozycji. Oba objawy omów z lekarzem, jeśli są nasilone, jednostronne albo łączą się z obrzękiem i zaczerwienieniem.' },
     ],
     relatedLinks: [
       { path: '/kurcze-lydek', label: 'Kurcze łydek' },
+      { path: '/kurcze-nocne', label: 'Kurcze nocne' },
       { path: '/niedobor-magnezu', label: 'Niedobór magnezu' },
+      { path: '/rozciaganie-przy-kurczach', label: 'Rozciąganie przy kurczach' },
+      { path: '/kurcz-vs-skurcz', label: 'Kurcz czy skurcz?' },
     ],
   },
   {
@@ -254,14 +312,18 @@ export const landingPages = [
     path: '/niedobor-magnezu',
     hub: { path: '/profilaktyka', label: 'Profilaktyka' },
     h1: 'Niedobór magnezu a kurcze mięśniowe',
-    title: 'Niedobór magnezu — kurcze mięśni i objawy | Kurcz.pl',
-    description: 'Czy niedobór magnezu powoduje kurcze mięśni? Poznaj objawy, źródła magnezu w diecie i kiedy rozważyć suplementację po konsultacji z lekarzem.',
-    intro: 'Magnez odgrywa kluczową rolę w prawidłowym skurczu i rozluźnieniu mięśni. Jego niedobór to jedna z najczęściej wymienianych przyczyn kurczy mięśniowych.',
+    title: 'Niedobór magnezu — kurcze, drżenie mięśni | Kurcz.pl',
+    description: 'Niedobór magnezu a kurcze mięśni i drżenie (twitching): objawy, dieta, kiedy zbadać poziom Mg i kiedy rozważyć suplementację z lekarzem.',
+    intro: 'Magnez odgrywa kluczową rolę w prawidłowym skurczu i rozluźnieniu mięśni. Jego niedobór to jedna z najczęściej wymienianych przyczyn kurczy mięśniowych — a także drżenia powiek czy drobnych fascykulacji.',
     sections: [
       {
         heading: 'Objawy niedoboru magnezu',
-        body: 'Oprócz kurczy mięśni mogą wystąpić drżenie, zmęczenie, kołatanie serca, bezsenność i wzmożone napięcie mięśniowe.',
-        bullets: ['Kurcze łydek i stóp', 'Drżenie powiek', 'Trudności ze snem', 'Drażliwość i zmęczenie'],
+        body: 'Oprócz kurczy mięśni mogą wystąpić drżenie (muscle twitching), zmęczenie, kołatanie serca, bezsenność i wzmożone napięcie mięśniowe. Drżenie powieki bywa wczesnym, łagodnym sygnałem; bolesne kurcze łydek — sygnałem silniejszym.',
+        bullets: ['Kurcze łydek i stóp', 'Drżenie powiek i drobne fascykulacje', 'Trudności ze snem', 'Drażliwość i zmęczenie'],
+      },
+      {
+        heading: 'Kurcze a drżenie przy niskim magnezie',
+        body: 'Kurcz to bolesne, twarde napięcie całego mięśnia. Drżenie (twitching) to krótkie, zwykle niebolesne „pociągnięcie” włókien. Oba mogą współwystępować przy niedoborze magnezu, ale nie każdy tik powieki oznacza ciężki niedobór — przy nasilonych, nawracających objawach warto zrobić badania i omówić dietę z lekarzem.',
       },
       {
         heading: 'Źródła magnezu w diecie',
@@ -270,6 +332,7 @@ export const landingPages = [
     ],
     faq: [
       { question: 'Jak sprawdzić niedobór magnezu?', answer: 'Poziom magnezu we krwi można zbadać laboratoryjnie. Warto skonsultować wynik z lekarzem — objawy kliniczne i dieta też mają znaczenie.' },
+      { question: 'Czy niedobór magnezu powoduje drżenie mięśni?', answer: 'Może — zwłaszcza drżenie powiek i drobne fascykulacje. To nie to samo co bolesny kurcz, ale mechanizm nerwowo-mięśniowy bywa powiązany. Przy utrzymującym się drżeniu lub osłabieniu zgłoś się do lekarza.' },
     ],
     relatedLinks: [
       { path: '/suplementacja-magnezem', label: 'Suplementacja magnezem' },
@@ -558,26 +621,84 @@ export const landingPagesEnMap = {
     ],
   },
   '/kurcze-u-kobiet-w-ciazy': {
-    h1: 'Muscle Cramps During Pregnancy',
-    title: 'Pregnancy Cramps — Causes & Safe Relief | Kurcz.pl',
-    description: 'Calf and leg cramps in pregnancy: why they occur, safe self-care, and when to consult your obstetrician.',
-    intro: 'Muscle cramps affect up to 50% of pregnant women, mostly in the third trimester due to weight shift, nerve pressure, and fluid demands.',
+    h1: 'Calf Cramps During Pregnancy',
+    title: 'Calf Cramps in Pregnancy — 2nd & 3rd Trimester | Kurcz.pl',
+    description: 'Calf and leg cramps when pregnant (2nd & 3rd trimester): how common they are, what causes them, safe first aid, magnesium evidence, and when to call your doctor.',
+    intro: 'Calf cramps in pregnancy are sudden, painful muscle spasms — often at night. Clinical sources note they are common in the second and third trimesters; in the third trimester, studies report roughly half to two-thirds of pregnant women experience them. The exact cause is unclear, but circulation changes, pressure from the growing uterus, leg muscle load, and mineral balance all play a role.',
     sections: [
       {
-        heading: 'Causes in Pregnancy',
-        body: 'Increased magnesium and calcium demand, pelvic nerve pressure, dehydration, and leg muscle workload contribute to pregnancy cramps.',
+        heading: 'Calf Cramps in the Second Trimester',
+        body: 'In the second trimester, calf cramps become clearly more common than early in pregnancy — some studies show rates rising from about one in five women in the first trimester to roughly 25–48% in the second. The uterus is larger, posture and gait change, and fluid and mineral needs increase. Cramps often wake you at night when the foot sits in a pointed (plantar-flexed) position.',
+        bullets: [
+          'More frequent than in the first trimester, usually still mild',
+          'Typically calf or foot, often at night',
+          'Evening calf stretches and daytime hydration help many women',
+        ],
       },
       {
-        heading: 'Safe First Aid',
-        body: 'Gently stretch calf muscles, massage the area, and rest with feet elevated. Avoid taking supplements without your obstetrician approval.',
+        heading: 'Calf Cramps in the Third Trimester',
+        body: 'The third trimester is the peak: studies from the USA, Iran, India and elsewhere estimate leg-cramp prevalence at about 48–65%. Greater body weight, stronger pressure on pelvic vessels and nerves, swelling, and lower activity further stress the calves. Spasms may be stronger and more recurrent than earlier — still usually harmless when the warning signs below are absent.',
+        bullets: [
+          'Highest frequency in pregnancy (about half to two-thirds in studies)',
+          'Frequent night episodes; muscle tenderness can linger the next day',
+          'Elevating legs, supportive shoes, and a short walk after a cramp may limit repeats',
+        ],
+      },
+      {
+        heading: 'Leg Cramps in Pregnancy — Not Only Calves',
+        body: 'The calf is most common, but pregnancy muscle cramps can also hit the foot or thigh. The drivers are similar: load, circulation, and minerals. Separately, leg numbness or tingling without a hard muscle “knot” is more often nerve pressure or swelling — still worth mentioning to your clinician if it is one-sided or worsening.',
+      },
+      {
+        heading: 'Why Pregnancy Causes Calf Cramps',
+        body: 'There is no single proven cause. Clinicians describe a mix of normal pregnancy changes — not every factor applies to every person.',
+        bullets: [
+          'Circulation changes and fluid retention in the legs',
+          'Pressure from the growing uterus on pelvic nerves and vessels',
+          'Extra load on calf muscles and altered gait',
+          'Higher calcium and magnesium demand; possible electrolyte shifts',
+          'Dehydration and long periods of standing or sitting',
+        ],
+      },
+      {
+        heading: 'Safe First Aid for a Calf Cramp',
+        body: 'During a cramp, slowly stretch the calf: sit or stand, pull the toes toward the shin with the heel down. Then gently massage the area. A short walk and elevating the legs may reduce recurrence. A warm shower, warm bath, or ice massage can also help — use whatever eases the pain.',
+        bullets: [
+          'Slow calf stretch for 20–30 seconds, no sudden jerks',
+          'Gentle massage and a few steps',
+          'Rest with legs elevated',
+          'Do not start supplements or medicines on your own',
+        ],
+      },
+      {
+        heading: 'Prevention in the 2nd and 3rd Trimesters',
+        body: 'Mayo Clinic and other clinical sources emphasize non-drug measures first. Evidence that magnesium or calcium treats pregnancy leg cramps is limited and mixed (Cochrane reviews) — always discuss supplements with your obstetrician.',
+        bullets: [
+          'Stretch calves before bed (about 30 seconds per leg)',
+          'Stay active with exercise cleared by your clinician (e.g. walking)',
+          'Drink enough fluids — pale urine usually means good hydration',
+          'Calcium-rich diet (ACOG: about 1,000 mg/day for most adults) plus magnesium-rich foods',
+          'Supportive shoes; avoid long immobility',
+        ],
+      },
+      {
+        heading: 'When to Call Your Doctor',
+        body: 'Typical pregnancy calf cramps are common and usually benign. Contact your obstetrician or midwife if cramps are severe or keep returning despite self-care, or if pain comes with swelling, redness, warmth in one calf, shortness of breath, or sudden severe pain — those signs need urgent assessment to rule out deep vein thrombosis or other complications.',
       },
     ],
     faq: [
-      { question: 'Are leg cramps normal in pregnancy?', answer: 'Yes, pregnancy leg cramps are common and usually benign. Contact your doctor if cramps are severe, prolonged, or accompanied by swelling or redness.' },
+      { question: 'Are calf cramps normal in pregnancy?', answer: 'Yes — pregnancy calf cramps are common, especially in the second and third trimesters, and usually do not mean disease. Seek care for severe one-sided pain with swelling or redness.' },
+      { question: 'Why do calf cramps get worse in the third trimester?', answer: 'In the third trimester, body weight, uterine pressure on vessels and nerves, and calf load are greatest; studies often find leg-cramp rates around 48–65%. That is why night cramps peak late in pregnancy.' },
+      { question: 'Should I worry about calf cramps in the second trimester?', answer: 'Second-trimester calf cramps are also typical and usually mild. Prioritize stretching, hydration, and comfortable shoes. Do not wait if you have clot-like signs (swelling, redness, warmth in one leg).' },
+      { question: 'Does magnesium help pregnancy leg cramps?', answer: 'Evidence is mixed: some women feel better, but Cochrane reviews do not show clear benefit. Do not start supplements without your prenatal clinician; begin with magnesium-rich foods and stretching.' },
+      { question: 'How do leg cramps differ from uterine contractions?', answer: 'A calf cramp is a hard, painful tightening in the leg muscle — usually brief. Uterine contractions are felt in the belly or lower abdomen. Regular, painful abdominal contractions in pregnancy always warrant contacting your clinician.' },
+      { question: 'Is leg numbness in pregnancy the same as a calf cramp?', answer: 'No. A cramp is a hard, painful muscle lock. Numbness or tingling without that knot often comes from nerve pressure or swelling. Mention either symptom to your clinician if it is severe, one-sided, or paired with swelling and redness.' },
     ],
     relatedLinks: [
       { path: '/kurcze-lydek', label: 'Calf Cramps' },
+      { path: '/kurcze-nocne', label: 'Night Cramps' },
       { path: '/niedobor-magnezu', label: 'Magnesium Deficiency' },
+      { path: '/rozciaganie-przy-kurczach', label: 'Stretching for Cramps' },
+      { path: '/kurcz-vs-skurcz', label: 'Cramp vs Spasm' },
     ],
   },
   '/kurcze-u-osob-starszych': {
@@ -628,14 +749,18 @@ export const landingPagesEnMap = {
   },
   '/niedobor-magnezu': {
     h1: 'Magnesium Deficiency & Muscle Cramps',
-    title: 'Magnesium Deficiency — Cramps and Symptoms | Kurcz.pl',
-    description: 'Does magnesium deficiency cause muscle cramps? Learn dietary sources, signs, and supplement guidance.',
-    intro: 'Magnesium plays a central role in neuromuscular signaling and muscle relaxation. Low magnesium levels are a key cramp factor.',
+    title: 'Magnesium Deficiency — Cramps & Twitching | Kurcz.pl',
+    description: 'Magnesium deficiency muscle cramps and twitching: signs, food sources, when to test, and when to discuss supplements with a doctor.',
+    intro: 'Magnesium plays a central role in neuromuscular signaling and muscle relaxation. Low magnesium is often linked to muscle cramps — and to eyelid or muscle twitching.',
     sections: [
       {
         heading: 'Signs of Low Magnesium',
-        body: 'Beyond muscle cramps, low magnesium can manifest as eyelid twitching, fatigue, sleep disturbances, and irritability.',
-        bullets: ['Calf and foot cramps', 'Eyelid twitching', 'Sleep difficulties', 'Irritability and fatigue'],
+        body: 'Beyond muscle cramps, low magnesium can show up as twitching, fatigue, sleep issues, and irritability. Eyelid twitching is a common mild clue; painful calf cramps are a stronger one.',
+        bullets: ['Calf and foot cramps', 'Eyelid twitching and fasciculations', 'Sleep difficulties', 'Irritability and fatigue'],
+      },
+      {
+        heading: 'Cramps vs Twitching with Low Magnesium',
+        body: 'A cramp is a painful, hard lock of the whole muscle. A twitch is a brief, usually painless fiber flicker. Both can appear with low magnesium, but an eyelid tic alone does not prove severe deficiency — get checked if symptoms are frequent, progressive, or come with weakness.',
       },
       {
         heading: 'Dietary Sources of Magnesium',
@@ -644,6 +769,7 @@ export const landingPagesEnMap = {
     ],
     faq: [
       { question: 'How to test for magnesium deficiency?', answer: 'Serum magnesium tests can be performed. Discuss clinical symptoms and dietary intake with your physician for complete evaluation.' },
+      { question: 'Can magnesium deficiency cause muscle twitching?', answer: 'Yes — especially eyelid twitching and small fasciculations. That is not the same as a painful cramp, though the neuromuscular mechanism can overlap. See a doctor for persistent twitching or weakness.' },
     ],
     relatedLinks: [
       { path: '/suplementacja-magnezem', label: 'Magnesium Supplementation' },

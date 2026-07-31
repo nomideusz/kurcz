@@ -51,8 +51,8 @@ export const pagePhotosMap: Record<string, PagePhotoConfig> = {
   '/kurcze-u-kobiet-w-ciazy': {
     key: 'pregnancy_leg_cramps.png',
     src: '/img/pregnancy_leg_cramps.png',
-    altPl: 'Odpoczynek i uniesienie nóg w ciąży',
-    altEn: 'Resting and elevating legs during pregnancy',
+    altPl: 'Odpoczynek i uniesienie nóg przy kurczach łydek w ciąży',
+    altEn: 'Resting and elevating legs for pregnancy calf cramps',
     captionPl: 'Unoszenie nóg podczas odpoczynku zmniejsza nacisk naczyń krwionośnych i łagodzi zmęczenie łydek.',
     captionEn: 'Elevating legs during rest reduces venous pressure and alleviates calf muscle fatigue.',
   },
