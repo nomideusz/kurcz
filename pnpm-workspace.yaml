@@ -5,3 +5,4 @@ allowBuilds:
 minimumReleaseAgeExclude:
   - '@nomideusz/svelte-geometrize@0.5.0'
   - '@nomideusz/svelte-i18n@0.3.2'
+  - '@nomideusz/svelte-geometrize@0.6.0'

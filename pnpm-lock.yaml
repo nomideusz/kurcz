@@ -21,8 +21,8 @@ importers:
         specifier: ^5.2.9
         version: 5.2.9
       '@nomideusz/svelte-geometrize':
-        specifier: ^0.5.0
-        version: 0.5.0(svelte@5.56.4(@typescript-eslint/types@8.62.0))
+        specifier: ^0.6.0
+        version: 0.6.0(sharp@0.35.2)(svelte@5.56.4(@typescript-eslint/types@8.62.0))
       '@nomideusz/svelte-i18n':
         specifier: ^0.3.2
         version: 0.3.2(svelte@5.56.4(@typescript-eslint/types@8.62.0))
@@ -1093,10 +1093,15 @@ packages:
     resolution: {integrity: sha512-oGB+UxlgWcgQkgwo8GcEGwemoTFt3FIO9ababBmaGwXIoBKZ+GTy0pP185beGg7Llih/NSHSV2XAs1lnznocSg==}
     engines: {node: '>= 8'}
 
-  '@nomideusz/svelte-geometrize@0.5.0':
-    resolution: {integrity: sha512-ne+JO8Y8XlLTjNzhRUKKFW21r6ALnmK4eI6ZSHZxR2XhSnny4GmgQ1c6If+bbJcJY4zXHnCqKdEDWYzCsb5KAA==}
+  '@nomideusz/svelte-geometrize@0.6.0':
+    resolution: {integrity: sha512-lLI5zNUBTGqYwxNIdUMTKM0DXX5+EBIpzTzfFt9zmN8RENK2bk3tiFq/aKRXmdG6R0vd9sTp7C0gbugSjygwdg==}
+    hasBin: true
     peerDependencies:
+      sharp: '>=0.33.0'
       svelte: ^5.0.0
+    peerDependenciesMeta:
+      sharp:
+        optional: true
 
   '@nomideusz/svelte-i18n@0.3.2':
     resolution: {integrity: sha512-a4nh3PzOWpBjLnNP9FCsv+yvfzzhUWxAU4TDU+BXGPVBskap5CWDd3ZefhxdwTfwuNcD7gwg5LpU4jWgqrpMsA==}
@@ -5437,11 +5442,12 @@ snapshots:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.20.1
 
-  '@nomideusz/svelte-geometrize@0.5.0(svelte@5.56.4(@typescript-eslint/types@8.62.0))':
+  '@nomideusz/svelte-geometrize@0.6.0(sharp@0.35.2)(svelte@5.56.4(@typescript-eslint/types@8.62.0))':
     dependencies:
       geometrizejs: 0.0.19
-      sharp: 0.34.5
       svelte: 5.56.4(@typescript-eslint/types@8.62.0)
+    optionalDependencies:
+      sharp: 0.35.2
 
   '@nomideusz/svelte-i18n@0.3.2(svelte@5.56.4(@typescript-eslint/types@8.62.0))':
     dependencies:
