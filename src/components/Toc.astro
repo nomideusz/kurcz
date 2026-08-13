@@ -79,25 +79,69 @@ const heading = t(effectiveLang, 'toc.heading');
     }
 
     function getActiveHeadingId() {
-      var headerOffset = 140;
+      var viewportHeight = window.innerHeight || document.documentElement.clientHeight;
       var scrollPosition = window.scrollY || document.documentElement.scrollTop;
-      var windowHeight = window.innerHeight;
       var documentHeight = document.documentElement.scrollHeight;
+      var readingLine = 150;
 
-      if (scrollPosition + windowHeight >= documentHeight - 60) {
+      if (headings.length === 0) return null;
+
+      // At very top of article before first heading
+      if (headings[0].element.getBoundingClientRect().top > readingLine && scrollPosition < 200) {
+        return headings[0].id;
+      }
+
+      var articleEl = document.querySelector('article') || document.querySelector('.prose-content');
+      var articleBottom = articleEl ? articleEl.getBoundingClientRect().bottom : documentHeight;
+
+      // Reached near bottom of page or entire article content is ending
+      if (scrollPosition + viewportHeight >= documentHeight - 50 || articleBottom <= viewportHeight * 0.7) {
         return headings[headings.length - 1].id;
       }
 
-      var currentId = headings[0].id;
+      // Check which section spans across the reading line [top, nextTop]
+      var activeId = headings[0].id;
+      var foundSpan = false;
+
       for (var i = 0; i < headings.length; i++) {
-        var rect = headings[i].element.getBoundingClientRect();
-        if (rect.top <= headerOffset) {
-          currentId = headings[i].id;
-        } else {
+        var top = headings[i].element.getBoundingClientRect().top;
+        var nextTop = (i < headings.length - 1)
+          ? headings[i + 1].element.getBoundingClientRect().top
+          : articleBottom;
+
+        if (top <= readingLine && nextTop > readingLine) {
+          activeId = headings[i].id;
+          foundSpan = true;
           break;
         }
       }
-      return currentId;
+
+      // Fallback for short sections at the end of article that might not reach readingLine
+      if (!foundSpan) {
+        var candidateId = null;
+        var minDistance = Infinity;
+
+        for (var j = 0; j < headings.length; j++) {
+          var hTop = headings[j].element.getBoundingClientRect().top;
+          if (hTop >= 0 && hTop < viewportHeight * 0.65) {
+            var dist = Math.abs(hTop - readingLine);
+            if (dist < minDistance) {
+              minDistance = dist;
+              candidateId = headings[j].id;
+            }
+          }
+        }
+
+        if (candidateId) {
+          return candidateId;
+        }
+
+        if (headings[headings.length - 1].element.getBoundingClientRect().top <= viewportHeight * 0.75) {
+          return headings[headings.length - 1].id;
+        }
+      }
+
+      return activeId;
     }
 
     var ticking = false;
