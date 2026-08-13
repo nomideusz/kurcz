@@ -30,26 +30,52 @@ const categories = hubData.categories.map((cat) => ({
 <Layout route={route} lang={lang}>
   <Shell currentPath={currentPath}>
     <Breadcrumbs route={route} currentPath={currentPath} />
-    <PageHeader title={route.h1} intro={hubData.intro} />
+    <PageHeader title={route.h1} intro={hubData.intro} eyebrow={lang === 'en' ? 'knowledge compendium' : 'kompendium wiedzy'} />
 
     <div class="mx-auto max-w-7xl px-5 py-12 sm:px-14">
+      <!-- Quick category jump pills -->
+      <nav aria-label={lang === 'en' ? 'Guide categories' : 'Kategorie poradników'} class="mb-12 flex flex-wrap gap-2.5 border-b border-line-soft pb-6">
+        <span class="font-mono text-xs uppercase tracking-wider text-faint self-center mr-2">{lang === 'en' ? 'Sections:' : 'Działy:'}</span>
+        {
+          categories.map((category, idx) => (
+            <a
+              href={`#kat-${idx}`}
+              class="inline-flex items-center gap-1.5 rounded-lg border border-line bg-card px-3.5 py-2 text-xs font-medium text-ink transition-all hover:border-accent-border hover:bg-accent-bg hover:text-accent"
+            >
+              <span>{category.title}</span>
+              <span class="text-accent font-mono text-[11px]">({category.guides.length})</span>
+            </a>
+          ))
+        }
+      </nav>
+
       {
-        categories.map((category) => (
-          <section class="mb-14">
-            <h2 class="text-2xl text-ink sm:text-[28px]">{category.title}</h2>
-            <p class="mt-2 max-w-[680px] text-muted">{category.description}</p>
-            <ul class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        categories.map((category, idx) => (
+          <section id={`kat-${idx}`} class="mb-16 scroll-mt-24">
+            <div class="mb-6 max-w-[720px]">
+              <span class="font-serif text-sm font-semibold text-accent">0{idx + 1}</span>
+              <h2 class="mt-1 text-2xl text-ink sm:text-[30px]">{category.title}</h2>
+              <p class="mt-2 text-[15.5px] leading-relaxed text-muted">{category.description}</p>
+            </div>
+            <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {category.guides.map((guide) => (
                 <li>
                   <a
                     href={guide.path}
-                    class="group flex h-full flex-col rounded-[9px] border border-line bg-card p-6 transition-[border-color,transform] hover:-translate-y-0.5 hover:border-accent-border"
+                    class="group flex h-full flex-col justify-between rounded-xl border border-line bg-card p-6 transition-all duration-200 hover:-translate-y-1 hover:border-accent-border hover:bg-card-elevated hover:shadow-md"
                   >
-                    <h3 class="text-xl leading-snug text-ink">{guide.title}</h3>
-                    <span class="mt-2 mb-auto text-sm leading-relaxed text-muted">
-                      {guide.description}
-                    </span>
-                    <span class="mt-4 text-sm text-accent">{t(lang, 'topics.read_more')}</span>
+                    <div>
+                      <h3 class="text-xl leading-snug text-ink group-hover:text-accent transition-colors">
+                        {guide.title}
+                      </h3>
+                      <p class="mt-2.5 text-sm leading-relaxed text-muted">
+                        {guide.description}
+                      </p>
+                    </div>
+                    <div class="mt-6 flex items-center justify-between border-t border-line-soft pt-3 text-xs font-medium text-accent">
+                      <span>{lang === 'en' ? 'read guide' : 'czytaj artykuł'}</span>
+                      <span class="transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">→</span>
+                    </div>
                   </a>
                 </li>
               ))}
@@ -60,3 +86,4 @@ const categories = hubData.categories.map((cat) => ({
     </div>
   </Shell>
 </Layout>
+

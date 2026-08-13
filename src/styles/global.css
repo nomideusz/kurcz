@@ -4,8 +4,8 @@
    it injects the @font-face rules and sets --font-serif (with a metric-matched fallback). */
 
 /*
-  Design system — "warm paper" editorial.
-  Cream paper background, plum accent, deep-navy dark sections.
+  Design system — "warm paper" editorial & modern medical precision.
+  Warm cream paper background, plum/terracotta accent, deep-navy authority sections.
 */
 @theme {
   /* Astro's fonts API sets --font-serif-src to the subsetted face + metric fallback. */
@@ -13,27 +13,35 @@
   --font-sans: Seravek, 'Gill Sans Nova', Ubuntu, Calibri, 'DejaVu Sans', source-sans-pro, sans-serif;
   --font-mono: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
 
-  /* Slightly larger default sizes for sans-serif UI elements */
+  /* Refined default sizes for sans-serif UI elements */
   --text-xs: 0.8rem;
   --text-sm: 0.92rem;
   --text-base: 1.04rem;
   --text-lg: 1.16rem;
 
-  --color-paper: #f4efe6;
-  --color-card: #fbf8f2;
-  --color-ink: #182438;
-  --color-body: #3d4759;
-  --color-muted: #5c6779;
-  --color-faint: #726756;
-  --color-line: #e0d7c7;
-  --color-line-soft: #ece4d5;
-  --color-navy: #182438;
-  --color-navy-deep: #13202f;
+  --color-paper: #f7f3eb;
+  --color-card: #fdfbf7;
+  --color-card-elevated: #ffffff;
+  --color-ink: #162234;
+  --color-body: #374357;
+  --color-muted: #5c687a;
+  --color-faint: #7d7261;
+  --color-line: #e3dbce;
+  --color-line-soft: #eee7dc;
+  --color-navy: #152233;
+  --color-navy-deep: #0f1926;
+  --color-navy-card: #1c2b40;
+  --color-navy-border: #283a54;
 
-  --color-accent: #9c3a6b;
-  --color-accent-light: #c57396;
-  --color-accent-bg: #f2e3eb;
+  --color-accent: #9b3769;
+  --color-accent-hover: #822954;
+  --color-accent-light: #c26992;
+  --color-accent-bg: #f5e7ee;
   --color-accent-border: #dfbed0;
+
+  --color-amber-badge: #d97706;
+  --color-amber-bg: #fef3c7;
+  --color-amber-border: #fde68a;
 }
 
 @layer base {
@@ -56,8 +64,20 @@
     @apply text-ink;
     font-family: var(--font-serif);
     font-weight: 400;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.012em;
     text-wrap: balance;
+  }
+
+  a,
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  summary {
+    cursor: pointer;
+  }
+
+  button:disabled,
+  [aria-disabled="true"] {
+    cursor: not-allowed;
   }
 
   a {
@@ -71,21 +91,52 @@
     transform: translate3d(0, 0, 0);
   }
 
+
   ::selection {
     background: var(--color-accent);
-    color: #fbf8f2;
+    color: #fcfaf6;
   }
 
   :focus-visible {
     @apply outline-2 outline-offset-2;
     outline-color: var(--color-accent);
   }
+
+  /* Custom subtle scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #ede7dc;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #cfc5b4;
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #b5a995;
+  }
 }
 
 @layer components {
   /* Mono eyebrow / meta label */
   .eyebrow {
-    @apply font-mono text-xs uppercase tracking-[0.14em] text-faint;
+    @apply font-mono text-[11.5px] uppercase tracking-[0.14em] text-faint;
+  }
+
+  /* Tag chip */
+  .tag-chip {
+    @apply inline-flex items-center gap-1 rounded-full border border-line bg-card px-3 py-1 text-xs font-medium text-body transition-all hover:border-accent-border hover:bg-accent-bg hover:text-accent;
+  }
+
+  /* Key takeaway / summary box */
+  .takeaway-box {
+    @apply relative overflow-hidden rounded-xl border border-accent-border bg-accent-bg/40 p-6 sm:p-7;
+  }
+  .takeaway-box::before {
+    content: '';
+    @apply absolute left-0 top-0 bottom-0 w-1.5 bg-accent;
   }
 
   /* Article prose */
@@ -95,29 +146,30 @@
   .prose-content h2 {
     font-family: var(--font-serif);
     font-weight: 400;
-    @apply mt-12 mb-3 text-3xl leading-tight text-ink first:mt-0;
+    @apply mt-14 mb-4 text-3xl leading-tight text-ink first:mt-0 sm:text-[34px];
   }
   .prose-content h3 {
     font-family: var(--font-sans);
-    @apply mt-8 mb-2 text-lg font-semibold text-ink;
+    @apply mt-9 mb-3 text-xl font-semibold text-ink;
   }
   .prose-content p {
-    @apply my-4 text-[1.1rem] leading-[1.75] text-body;
+    @apply my-5 text-[1.08rem] leading-[1.78] text-body;
   }
   .prose-content ul {
-    @apply my-5 flex flex-col;
+    @apply my-6 flex flex-col;
   }
   .prose-content ul li {
-    @apply relative border-t border-line py-3.5 pl-6 text-[1.1rem] leading-relaxed text-body last:border-b;
+    @apply relative border-t border-line py-3.5 pl-6 text-[1.08rem] leading-relaxed text-body last:border-b;
   }
   .prose-content ul li::before {
     content: '·';
-    @apply absolute left-1 top-3 font-bold text-accent;
+    @apply absolute left-1 top-3 text-lg font-bold text-accent;
   }
   .prose-content a {
-    @apply font-medium text-accent underline underline-offset-2 hover:text-accent-light;
+    @apply font-medium text-accent underline underline-offset-4 decoration-accent/40 transition-colors hover:text-accent-hover hover:decoration-accent;
   }
   .prose-content strong {
     @apply font-semibold text-ink;
   }
 }
+

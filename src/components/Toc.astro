@@ -1,7 +1,8 @@
 ---
-// Sticky in-article table of contents, built from section headings.
+// Sticky in-article table of contents, built from section headings with dynamic scroll-spy.
 import { extractLocale, routing, t, type SupportedLocale } from '../i18n/config.ts';
 import { slugify } from '../utils/slug.js';
+import Icon from './Icon.astro';
 
 const { sections = [], currentPath = Astro.url.pathname, lang } = Astro.props as {
   sections?: any[];
@@ -17,21 +18,67 @@ const heading = t(effectiveLang, 'toc.heading');
 
 {
   items.length >= 3 && (
-    <aside class="sticky top-[90px] hidden self-start lg:block">
-      <div class="eyebrow mb-4">{heading}</div>
-      <nav class="flex flex-col border-l border-line text-sm">
-        {items.map((it, i) => (
-          <a
-            href={`#${it.id}`}
-            class:list={[
-              '-ml-px py-2.5 pl-4 transition-colors hover:text-ink',
-              i === 0 ? 'border-l-2 border-accent text-ink' : 'text-muted',
-            ]}
-          >
-            {it.label}
-          </a>
-        ))}
-      </nav>
+    <aside class="sticky top-[96px] hidden self-start lg:block w-[240px] pr-4">
+      <div class="rounded-xl border border-line-soft bg-card/60 p-4 shadow-xs">
+        <div class="eyebrow mb-3 flex items-center gap-1.5 text-accent font-semibold">
+          <Icon name="toc" class="h-3.5 w-3.5" />
+          <span>{heading}</span>
+        </div>
+        <nav class="flex flex-col border-l border-line text-[13.5px] leading-snug" id="article-toc">
+          {items.map((it, i) => (
+            <a
+              href={`#${it.id}`}
+              data-toc-id={it.id}
+              class:list={[
+                'toc-link -ml-px py-2 pl-3.5 transition-all text-muted hover:text-ink hover:border-l-2 hover:border-accent-border',
+                i === 0 ? 'border-l-2 border-accent font-medium text-ink' : '',
+              ]}
+            >
+              {it.label}
+            </a>
+          ))}
+        </nav>
+      </div>
     </aside>
   )
 }
+
+<script is:inline>
+  (function () {
+    var links = document.querySelectorAll('#article-toc .toc-link');
+    if (!links.length) return;
+
+    var headings = [];
+    links.forEach(function (link) {
+      var id = link.getAttribute('data-toc-id');
+      var el = id ? document.getElementById(id) : null;
+      if (el) headings.push({ id: id, element: el, link: link });
+    });
+
+    if (!headings.length) return;
+
+    var observer = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            var activeId = entry.target.id;
+            links.forEach(function (l) {
+              var match = l.getAttribute('data-toc-id') === activeId;
+              l.classList.toggle('border-l-2', match);
+              l.classList.toggle('border-accent', match);
+              l.classList.toggle('font-medium', match);
+              l.classList.toggle('text-ink', match);
+              l.classList.toggle('text-muted', !match);
+            });
+          }
+        });
+      },
+      { rootMargin: '-80px 0px -70% 0px', threshold: 0 }
+    );
+
+    headings.forEach(function (h) {
+      observer.observe(h.element);
+    });
+  })();
+</script>
+

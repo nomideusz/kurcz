@@ -70,17 +70,17 @@ const year = new Date().getFullYear();
 const homeHref = localizeHref('/', locale, routing);
 ---
 
-<footer class="mt-20 bg-navy-deep text-[#a9b0bd]">
-  <div class="mx-auto max-w-7xl px-5 py-14 sm:px-14">
-    <div class="grid gap-10 border-b border-[#243248] pb-9 md:grid-cols-2 lg:grid-cols-5">
+<footer class="mt-20 border-t border-[#1e2d42] bg-navy-deep text-[#a9b0bd]">
+  <div class="mx-auto max-w-7xl px-5 py-16 sm:px-14">
+    <div class="grid gap-10 border-b border-[#243248] pb-12 md:grid-cols-2 lg:grid-cols-5">
       <div>
-        <a href={homeHref} aria-label="Kurcz.pl — strona główna">
-          <Logo class="text-[26px] text-[#f4efe6]" accentClass="text-accent-light" />
+        <a href={homeHref} class="group inline-block" aria-label="Kurcz.pl — strona główna">
+          <Logo class="text-[27px] text-[#f4efe6] transition-transform duration-200 group-hover:scale-[1.02]" accentClass="text-accent-light" />
         </a>
-        <p class="mt-3.5 max-w-[300px] text-sm leading-relaxed text-[#8b93a1]">
+        <p class="mt-3.5 max-w-[280px] text-[13.5px] leading-relaxed text-[#8b93a1]">
           {t(locale, 'footer.tagline')}
         </p>
-        <div class="mt-4">
+        <div class="mt-5">
           <LanguageSwitcher client:load currentPath={currentPath} currentLocale={locale} variant="dark" />
         </div>
       </div>
@@ -93,7 +93,7 @@ const homeHref = localizeHref('/', locale, routing);
           {
             topics.map((l) => (
               <li>
-                <a href={localizeHref(l.path, locale, routing)} class="text-[#c2c8d2] hover:text-white">
+                <a href={localizeHref(l.path, locale, routing)} class="text-[#c2c8d2] transition-colors hover:text-white hover:underline underline-offset-4">
                   {topicLabels[locale]?.[l.key] ?? l.key}
                 </a>
               </li>
@@ -110,7 +110,7 @@ const homeHref = localizeHref('/', locale, routing);
           {
             serwis.map((l) => (
               <li>
-                <a href={localizeHref(l.path, locale, routing)} class="text-[#c2c8d2] hover:text-white">
+                <a href={localizeHref(l.path, locale, routing)} class="text-[#c2c8d2] transition-colors hover:text-white hover:underline underline-offset-4">
                   {serwisLabels[locale]?.[l.key] ?? l.key}
                 </a>
               </li>
@@ -121,7 +121,7 @@ const homeHref = localizeHref('/', locale, routing);
               .filter((l) => ['/regulamin', '/polityka-prywatnosci', '/disclaimer-medyczny'].includes(l.path))
               .map((l) => (
                 <li>
-                  <a href={localizeHref(l.path, locale, routing)} class="text-[#c2c8d2] hover:text-white">
+                  <a href={localizeHref(l.path, locale, routing)} class="text-[#c2c8d2] transition-colors hover:text-white hover:underline underline-offset-4">
                     {legalLabels[locale]?.[l.path] ?? l.label.toLowerCase()}
                   </a>
                 </li>
@@ -138,7 +138,7 @@ const homeHref = localizeHref('/', locale, routing);
           {
             guides.map((guide) => (
               <li>
-                <a href={localizeHref(guide.path, locale, routing)} class="text-[#c2c8d2] hover:text-white">
+                <a href={localizeHref(guide.path, locale, routing)} class="text-[#c2c8d2] transition-colors hover:text-white hover:underline underline-offset-4">
                   {locale === 'en' ? guide.en : guide.pl}
                 </a>
               </li>
@@ -160,9 +160,10 @@ const homeHref = localizeHref('/', locale, routing);
                   target="_blank"
                   rel="noopener noreferrer"
                   data-outbound={p.label}
-                  class="text-[#c2c8d2] hover:text-white"
+                  class="inline-flex items-center gap-1 text-[#c2c8d2] transition-colors hover:text-white hover:underline underline-offset-4"
                 >
-                  {p.label}
+                  <span>{p.label}</span>
+                  <span class="text-xs text-[#6e7b8f]" aria-hidden="true">↗</span>
                 </a>
               </li>
             ))
@@ -171,8 +172,8 @@ const homeHref = localizeHref('/', locale, routing);
       </nav>
     </div>
 
-    <div class="flex flex-col items-start justify-between gap-5 pt-6 sm:flex-row sm:items-center">
-      <p class="max-w-[560px] text-[12.5px] leading-relaxed text-[#8b96a5]">
+    <div class="flex flex-col items-start justify-between gap-6 pt-8 sm:flex-row sm:items-center">
+      <p class="max-w-[580px] text-[12px] leading-relaxed text-[#8b96a5]">
         {t(locale, 'disclaimer.text')}
       </p>
       <div class="flex items-center gap-5">
@@ -185,7 +186,7 @@ const homeHref = localizeHref('/', locale, routing);
                 rel="noopener noreferrer"
                 data-outbound={s.label}
                 aria-label={s.label}
-                class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[#2c3a52] text-[#c2c8d2] transition-colors hover:border-accent hover:text-white"
+                class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[#2c3a52] text-[#c2c8d2] transition-all hover:border-accent-light hover:bg-[#182438] hover:text-white"
               >
                 <svg class="h-[18px] w-[18px]" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path d={s.path} />
@@ -199,4 +200,5 @@ const homeHref = localizeHref('/', locale, routing);
     </div>
   </div>
 </footer>
+
 

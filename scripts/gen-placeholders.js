@@ -3,19 +3,26 @@ import sharp from 'sharp';
 import fs from 'fs';
 import path from 'path';
 
+const imgDir = '/home/nom/dev/apps/kurcz/public/img';
+
 const images = [
+  'calf_muscle_anatomy.png',
+  'neuromuscular_junction.png',
+  'foot_plantar_anatomy.png',
+  'pregnancy_leg_cramps.png',
+  'pregnancy_calf_stretch.png',
+  'first_aid_calf_stretch.png',
   'runner_stretching_calf.png',
   'magnesium_rich_foods.png',
   'leg_massage_relief.png',
   'vibroacoustic_therapy.png',
-  'pregnancy_leg_cramps.png',
   'elderly_walking_park.png',
   'foot_cramp_stretching.png',
   'water_hydration_electrolytes.png',
 ];
 
-const imgDir = '/home/nom/dev/apps/kurcz/public/img';
 const outputMap = {};
+
 
 console.log('Generating geometrize placeholders & converting images to WebP via Sharp...');
 

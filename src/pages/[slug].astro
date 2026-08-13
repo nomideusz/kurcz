@@ -6,6 +6,7 @@ import FaqAccordion from '../components/FaqAccordion.astro';
 import RelatedLinks from '../components/RelatedLinks.astro';
 import Toc from '../components/Toc.astro';
 import GeometrizedPhoto from '../components/GeometrizedPhoto.svelte';
+import Icon from '../components/Icon.astro';
 
 import { topicRoutes, staticRoutes } from '../seo/routes.js';
 import { landingRoutes, getLandingPage } from '../content/landing-pages.js';
@@ -82,31 +83,48 @@ const eyebrow = (route.breadcrumbLabel ?? route.h1).toLowerCase();
 <Layout route={route}>
   <Shell currentPath={route.path}>
     <!-- ARTICLE HEADER -->
-    <section class="border-b border-line">
+    <section class="border-b border-line bg-card/40">
       <div class="mx-auto max-w-7xl px-5 py-12 sm:px-14">
-        <nav aria-label="Ścieżka okruszków" class="mb-7 font-mono text-[12.5px] text-faint">
+        <nav aria-label="Ścieżka okruszków" class="mb-6 font-mono text-[12px] text-faint">
           {
             crumbs.map((c) => (
               <>
-                <a href={withTrailingSlash(c.path)} class="text-faint hover:text-ink">{c.label}</a>
-                <span class="mx-1.5 text-[#c3b7a2]">/</span>
+                <a href={withTrailingSlash(c.path)} class="text-faint transition-colors hover:text-ink">{c.label}</a>
+                <span class="mx-2 text-[#c3b7a2]">/</span>
               </>
             ))
           }
-          <span class="text-accent">{eyebrow}</span>
+          <span class="text-accent font-medium">{eyebrow}</span>
         </nav>
 
-        <div class="max-w-[760px]">
-          <div class="eyebrow mb-4 text-accent">{eyebrow}</div>
-          <h1 class="text-4xl leading-[1.05] text-ink sm:text-5xl lg:text-[58px] lg:leading-[1.04]">
+        <div class="max-w-[780px]">
+          <div class="mb-3 inline-flex items-center gap-2 rounded-full border border-accent-border bg-accent-bg px-3 py-1 font-mono text-xs uppercase tracking-wider text-accent">
+            <span>{eyebrow}</span>
+          </div>
+          <h1 class="text-4xl leading-[1.05] text-ink sm:text-5xl lg:text-[56px] lg:leading-[1.04]">
             {route.h1}
           </h1>
-          {intro && <p class="mt-5 text-lg leading-relaxed text-body sm:text-[19px]">{intro}</p>}
+          {
+            intro && (
+              <div class="mt-6 rounded-xl border border-line-soft bg-paper/80 p-5 sm:p-6 shadow-xs">
+                <p class="text-lg leading-relaxed text-body sm:text-[18.5px]">{intro}</p>
+              </div>
+            )
+          }
         </div>
-        <div class="mt-7 flex gap-7 font-mono text-[12.5px] text-faint">
-          <span>czas czytania ~{readMin} min</span>
-          <span class="text-[#c3b7a2]">·</span>
-          <span>aktualizacja: 2026</span>
+        <div class="mt-6 flex flex-wrap items-center gap-4 font-mono text-[12px] text-faint">
+          <span class="inline-flex items-center gap-1.5 rounded-md border border-line bg-card px-2.5 py-1">
+            <Icon name="clock" class="h-3.5 w-3.5 text-accent" />
+            <span>czas czytania ~{readMin} min</span>
+          </span>
+          <span class="inline-flex items-center gap-1.5 rounded-md border border-line bg-card px-2.5 py-1">
+            <Icon name="calendar" class="h-3.5 w-3.5 text-accent" />
+            <span>aktualizacja: 2026</span>
+          </span>
+          <span class="inline-flex items-center gap-1.5 rounded-md border border-accent-border bg-accent-bg/50 px-2.5 py-1 text-accent">
+            <Icon name="verified" class="h-3.5 w-3.5 text-accent" />
+            <span>weryfikacja merytoryczna</span>
+          </span>
         </div>
       </div>
     </section>
@@ -114,15 +132,15 @@ const eyebrow = (route.breadcrumbLabel ?? route.h1).toLowerCase();
     <!-- BODY: TOC + ARTICLE -->
     <section
       class:list={[
-        'mx-auto max-w-7xl gap-14 px-5 py-12 sm:px-14',
+        'mx-auto max-w-7xl gap-12 px-5 py-12 sm:px-14',
         hasToc ? 'lg:grid lg:grid-cols-[240px_1fr]' : '',
       ]}
     >
       {hasToc && <Toc sections={sections} />}
-      <article class="max-w-[720px]">
+      <article class="max-w-[740px]">
         {
           pagePhoto && (
-            <figure class="mb-8 overflow-hidden rounded-xl border border-line bg-card shadow-sm">
+            <figure class="mb-10 overflow-hidden rounded-2xl border border-line bg-card shadow-sm">
               <div class="aspect-[16/9] overflow-hidden bg-navy">
                 <GeometrizedPhoto
                   client:visible
@@ -139,19 +157,32 @@ const eyebrow = (route.breadcrumbLabel ?? route.h1).toLowerCase();
           )
         }
         <ContentSections sections={sections} />
-        <p class="mt-12 border-t border-line pt-6 font-serif text-[13px] leading-relaxed text-faint italic">
-          Zastrzeżenie medyczne: informacje mają charakter edukacyjny i nie zastępują
-          profesjonalnej konsultacji medycznej. W przypadku poważnych problemów zdrowotnych
-          zawsze skonsultuj się z wykwalifikowanym lekarzem.
-        </p>
+
+        <!-- Medical Disclaimer Box -->
+        <div class="mt-14 rounded-2xl border border-line bg-card p-6 shadow-xs">
+          <div class="flex items-start gap-3.5">
+            <div class="flex h-9 w-9 flex-none items-center justify-center rounded-lg bg-accent-bg text-accent">
+              <Icon name="medical" class="h-5 w-5" />
+            </div>
+            <div>
+              <div class="text-sm font-semibold text-ink">Zastrzeżenie medyczne</div>
+              <p class="mt-1 text-xs leading-relaxed text-muted">
+                Prezentowane w portalu Kurcz.pl informacje mają wyłącznie charakter edukacyjny i opierają się na aktualnej wiedzy fizjologicznej oraz medycznej. Nie stanowią one porady lekarskiej ani diagnozy. W przypadku przewlekłych, nasilonych lub niepokojących objawów zawsze skonsultuj się z lekarzem lub fizjoterapeutą.
+              </p>
+            </div>
+          </div>
+        </div>
       </article>
     </section>
 
     {
       faq.length > 0 && (
-        <section class="mx-auto max-w-7xl px-5 pb-12 sm:px-14">
-          <div class="grid gap-12 lg:grid-cols-[0.7fr_1.3fr]">
-            <h2 class="text-3xl text-ink sm:text-[34px]">Najczęstsze pytania</h2>
+        <section class="mx-auto max-w-7xl px-5 pb-16 sm:px-14 border-t border-line-soft pt-12">
+          <div class="grid gap-10 lg:grid-cols-[0.7fr_1.3fr]">
+            <div>
+              <span class="eyebrow text-accent">pytania do artykułu</span>
+              <h2 class="mt-1 text-3xl text-ink sm:text-[34px]">Najczęstsze pytania</h2>
+            </div>
             <FaqAccordion items={faq} bare />
           </div>
         </section>
@@ -161,3 +192,4 @@ const eyebrow = (route.breadcrumbLabel ?? route.h1).toLowerCase();
     <RelatedLinks links={relatedLinks} />
   </Shell>
 </Layout>
+

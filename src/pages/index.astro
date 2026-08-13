@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Shell from '../components/Shell.astro';
 import FaqAccordion from '../components/FaqAccordion.astro';
 import GeometrizedPhoto from '../components/GeometrizedPhoto.svelte';
+import Icon from '../components/Icon.astro';
 import { getRouteByPath } from '../seo/routes.js';
 import { faqItems } from '../seo/faq-data.js';
 import { withTrailingSlash } from '../i18n/config.ts';
@@ -10,9 +11,68 @@ import { withTrailingSlash } from '../i18n/config.ts';
 const route = getRouteByPath('/');
 
 const reliefSteps = [
-  { n: 1, title: 'Rozciągnij mięsień', body: 'Delikatnie wyprostuj kończynę i przytrzymaj 20–30 sekund, oddychając głęboko.' },
-  { n: 2, title: 'Nawodnij się', body: 'Uzupełnij elektrolity — woda z solą mineralną lub napój izotoniczny.' },
+  { n: 1, title: 'Przerwij ruch', body: 'Zatrzymaj aktywność, rozluźnij całe ciało i nie napinaj mięśnia wbrew oporowi.' },
+  { n: 2, title: 'Rozciągaj powoli', body: 'Wyprostuj kończynę, przyciągając palce do siebie ze stałym, łagodnym oporem.' },
   { n: 3, title: 'Rozmasuj', body: 'Okrężne, delikatne ruchy z rosnącym naciskiem aż do rozluźnienia.' },
+];
+
+const triageItems = [
+  {
+    path: '/kurcze-lydek',
+    icon: 'calf',
+    tag: 'Najczęstsze',
+    title: 'Kurcze łydek',
+    desc: 'Nagłe spięcie po wysiłku lub przy niefortunnym ruchu.',
+  },
+  {
+    path: '/kurcze-nocne',
+    icon: 'night',
+    tag: 'W nocy',
+    title: 'Kurcze nocne',
+    desc: 'Bolesne wybudzenia ze snu i wieczorna profilaktyka.',
+  },
+  {
+    path: '/kurcze-u-kobiet-w-ciazy',
+    icon: 'pregnancy',
+    tag: 'Ciąża',
+    title: 'Kurcze w ciąży',
+    desc: 'Bezpieczne pozycje, odpoczynek i ulga dla przyszłych mam.',
+  },
+  {
+    path: '/kurcze-stop',
+    icon: 'foot',
+    tag: 'Stopy i palce',
+    title: 'Kurcze stóp',
+    desc: 'Bolesne skurcze łuku podeszwowego i wykręcanie palców.',
+  },
+  {
+    path: '/niedobor-magnezu',
+    icon: 'magnesium',
+    tag: 'Minerały',
+    title: 'Niedobór magnezu',
+    desc: 'Objawy deficytu, przyswajalność i zbilansowana dieta.',
+  },
+  {
+    path: '/kurcze-u-sportowcow',
+    icon: 'sport',
+    tag: 'Trening',
+    title: 'Dla sportowców',
+    desc: 'Utrata soli w pocie, nawodnienie i regeneracja powysiłkowa.',
+  },
+  {
+    path: '/kurcze-dloni',
+    icon: 'hand',
+    tag: 'Dłonie',
+    title: 'Kurcze dłoni',
+    desc: 'Napięcia od pracy przy komputerze, pisania i pracy manualnej.',
+  },
+  {
+    path: '/kurcze-u-osob-starszych',
+    icon: 'senior',
+    tag: 'Seniorzy',
+    title: 'U seniorów',
+    desc: 'Wpływ krążenia obwodowego, leków i bezpieczna aktywność.',
+  },
 ];
 
 const topics = [
@@ -25,24 +85,26 @@ const topics = [
 ];
 
 const popularGuides = [
-  { path: '/kurcze-u-kobiet-w-ciazy', title: 'Kurcze w ciąży', desc: 'Bezpieczna pierwsza pomoc i profilaktyka kurczy łydek w ciąży.' },
-  { path: '/kurcze-nocne', title: 'Kurcze nocne', desc: 'Dlaczego budzą w nocy i jak zmniejszyć ryzyko nawrotów.' },
-  { path: '/kurcze-lydek', title: 'Kurcze łydek', desc: 'Przyczyny, rozciąganie i szybka ulga po treningu lub w nocy.' },
-  { path: '/niedobor-magnezu', title: 'Niedobór magnezu', desc: 'Objawy, dieta i kiedy omówić suplementację z lekarzem.' },
-  { path: '/pierwsza-pomoc', title: 'Pierwsza pomoc', desc: 'Co zrobić krok po kroku, gdy mięsień nagle złapie kurcz.' },
+  { path: '/kurcz-vs-skurcz', tag: 'Pojęcia', title: 'Kurcz czy skurcz?', desc: 'Różnice medyczne i językowe: czym różni się bolesny kurcz od fizjologicznego skurczu.' },
+  { path: '/kurcze-u-kobiet-w-ciazy', tag: 'Ciąża', title: 'Kurcze w ciąży', desc: 'Bezpieczna pierwsza pomoc i profilaktyka kurczy łydek w ciąży.' },
+  { path: '/kurcze-nocne', tag: 'Sen', title: 'Kurcze nocne', desc: 'Dlaczego budzą w nocy i jak zmniejszyć ryzyko nawrotów.' },
+  { path: '/kurcze-lydek', tag: 'Nogi', title: 'Kurcze łydek', desc: 'Przyczyny, rozciąganie i szybka ulga po treningu lub w nocy.' },
+  { path: '/niedobor-magnezu', tag: 'Dieta', title: 'Niedobór magnezu', desc: 'Objawy, dieta i kiedy omówić suplementację z lekarzem.' },
+  { path: '/pierwsza-pomoc', tag: 'Ratunek', title: 'Pierwsza pomoc', desc: 'Co zrobić krok po kroku, gdy mięsień nagle złapie kurcz.' },
 ];
 
+
 const doctorSigns = [
-  'Kurcze utrzymujące się ponad 10 minut',
-  'Częste, nawracające mimo profilaktyki',
-  'Obrzęk, zaczerwienienie lub silny ból',
-  'Kurcze po urazie lub z innymi objawami',
+  'Kurcze utrzymujące się ponad 10 minut mimo rozciągania',
+  'Częste, nawracające dolegliwości mimo prawidłowej profilaktyki',
+  'Towarzyszący obrzęk, zaczerwienienie, ocieplenie lub silny ból',
+  'Kurcze powstałe po urazie lub współwystępujące z niedowładem',
 ];
 
 const galleryItems = [
   {
-    key: 'runner_stretching_calf.png',
-    image: '/img/runner_stretching_calf.png',
+    key: 'first_aid_calf_stretch.png',
+    image: '/img/first_aid_calf_stretch.png',
     title: 'Aktywność i rozciąganie',
     desc: 'Prawidłowe rozciąganie mięśni po treningu i przed snem ogranicza ryzyko nagłych bolesnych skurczów.',
     link: '/rozciaganie-przy-kurczach',
@@ -76,62 +138,127 @@ const homeFaq = faqItems.slice(0, 4);
 <Layout route={route}>
   <Shell currentPath="/">
     <!-- HERO -->
-    <section class="mx-auto grid max-w-7xl items-center gap-12 px-5 py-16 sm:px-14 lg:grid-cols-[1.15fr_0.85fr] lg:gap-14 lg:py-[72px]">
+    <section class="mx-auto grid max-w-7xl items-center gap-12 px-5 py-14 sm:px-14 lg:grid-cols-[1.15fr_0.85fr] lg:gap-14 lg:py-[68px]">
       <div>
         <div class="eyebrow mb-5 flex items-center gap-2.5 text-faint">
-          <span class="h-px w-[22px] bg-[#c9b79b]"></span>poradnik zdrowia · mięśnie
+          <span class="h-px w-[22px] bg-accent/60"></span>poradnik zdrowia · mięśnie
         </div>
-        <h1 class="text-5xl leading-[1.02] text-ink sm:text-6xl lg:text-[70px] lg:leading-[1.02]">
-          Co robić, gdy złapie&nbsp;<span class="text-accent">kurcz</span> mięśnia.
+        <h1 class="text-5xl leading-[1.02] text-ink sm:text-6xl lg:text-[68px] lg:leading-[1.02]">
+          Co robić, gdy złapie&nbsp;<span class="text-accent italic">kurcz</span> mięśnia.
         </h1>
-        <p class="mt-6 max-w-[480px] text-lg leading-relaxed text-body">
+        <p class="mt-6 max-w-[500px] text-lg leading-relaxed text-body">
           Rzetelne i proste informacje o przyczynach, natychmiastowej uldze oraz
           zapobieganiu bolesnym kurczom mięśniowym — zgodne z aktualną wiedzą medyczną.
         </p>
         <div class="mt-8 flex flex-wrap items-center gap-3.5">
           <a
             href="/pierwsza-pomoc/"
-            class="inline-flex items-center gap-2 rounded-md bg-accent px-[26px] py-[15px] text-[15px] font-medium text-paper transition-colors hover:bg-accent-light"
+            class="inline-flex items-center gap-2 rounded-lg bg-accent px-7 py-3.5 text-[15px] font-medium text-paper shadow-sm transition-all hover:bg-accent-hover hover:shadow-md"
           >
             pierwsza pomoc <span class="text-[17px]">→</span>
           </a>
           <a
             href="/kurcze-miesniowe/"
-            class="rounded-md border border-[#cfc6b5] px-[22px] py-[15px] text-[15px] font-medium text-ink transition-colors hover:border-ink"
+            class="rounded-lg border border-line bg-card px-6 py-3.5 text-[15px] font-medium text-ink transition-all hover:border-ink hover:bg-card-elevated"
           >
             poznaj przyczyny
           </a>
         </div>
+
+        <div class="mt-6 flex items-center gap-2 text-[13px] text-muted">
+          <span class="font-medium text-ink">Częste pytanie:</span>
+          <a
+            href="/kurcz-vs-skurcz/"
+            class="inline-flex items-center gap-1 font-semibold text-accent hover:text-accent-hover hover:underline"
+          >
+            <span>Kurcz czy skurcz — jaka jest różnica medyczna?</span>
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
       </div>
 
+
       <!-- Quick relief card -->
-      <div class="rounded-[10px] border border-line bg-card p-[30px] shadow-[0_1px_2px_rgba(24,36,56,.04),0_12px_30px_rgba(24,36,56,.06)]">
-        <div class="mb-5 flex items-center justify-between">
-          <span class="eyebrow text-accent">szybka ulga</span>
-          <span class="font-mono text-[11.5px] text-faint">3 kroki</span>
+      <div class="rounded-2xl border border-line bg-card p-6 sm:p-8 shadow-[0_1px_3px_rgba(22,34,52,0.04),0_12px_32px_rgba(22,34,52,0.06)]">
+        <div class="mb-6 flex items-center justify-between border-b border-line-soft pb-4">
+          <div class="flex items-center gap-2">
+            <span class="inline-flex h-2 w-2 rounded-full bg-accent animate-pulse"></span>
+            <span class="eyebrow text-accent font-semibold">szybka ulga</span>
+          </div>
+          <span class="rounded-full bg-accent-bg px-2.5 py-0.5 font-mono text-[11px] font-medium text-accent">3 kroki</span>
         </div>
-        <div class="flex flex-col">
+        <div class="flex flex-col gap-4">
           {
             reliefSteps.map((s) => (
-              <div class="flex gap-4 border-t border-line-soft py-4">
-                <span class="w-[26px] flex-none font-serif text-2xl leading-none text-accent">{s.n}</span>
+              <div class="flex items-start gap-4 rounded-xl border border-line-soft/80 bg-paper/60 p-3.5 transition-colors hover:border-accent-border hover:bg-card">
+                <span class="flex h-7 w-7 flex-none items-center justify-center rounded-full bg-accent font-serif text-sm font-medium text-paper">
+                  {s.n}
+                </span>
                 <div>
-                  <div class="mb-1 text-[15px] font-semibold text-ink">{s.title}</div>
-                  <div class="text-[13.5px] leading-relaxed text-muted">{s.body}</div>
+                  <div class="text-[15px] font-semibold text-ink">{s.title}</div>
+                  <div class="mt-0.5 text-[13.5px] leading-relaxed text-muted">{s.body}</div>
                 </div>
               </div>
             ))
           }
         </div>
+        <a
+          href="/pierwsza-pomoc/"
+          class="mt-5 inline-flex items-center gap-1.5 text-xs font-semibold text-accent transition-colors hover:text-accent-hover"
+        >
+          <span>Instrukcja krok po kroku</span>
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- QUICK SYMPTOM / PROBLEM NAVIGATOR -->
+    <section class="mx-auto max-w-7xl px-5 pb-16 sm:px-14">
+      <div class="mb-8 max-w-[680px]">
+        <span class="eyebrow text-accent">szybki wybór problemu</span>
+        <h2 class="mt-2 text-3xl text-ink sm:text-[36px]">Gdzie i kiedy pojawia się kurcz?</h2>
+        <p class="mt-2.5 text-[15.5px] leading-relaxed text-muted">
+          Wybierz swoją sytuację, aby natychmiast przejść do dedykowanych wskazówek, przyczyn i profilaktyki.
+        </p>
+      </div>
+
+      <div class="grid gap-3.5 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          triageItems.map((item) => (
+            <a
+              href={withTrailingSlash(item.path)}
+              class="group relative flex flex-col justify-between rounded-xl border border-line bg-card p-5 transition-all duration-200 hover:-translate-y-1 hover:border-accent-border hover:bg-card-elevated hover:shadow-md"
+            >
+              <div>
+                <div class="flex items-center justify-between">
+                  <div class="flex h-9 w-9 items-center justify-center rounded-lg border border-accent-border/50 bg-accent-bg text-accent transition-colors group-hover:bg-accent group-hover:text-paper">
+                    <Icon name={item.icon as any} class="h-4.5 w-4.5" />
+                  </div>
+                  <span class="tag-chip text-[11px]">{item.tag}</span>
+                </div>
+                <h3 class="mt-3.5 text-lg font-semibold text-ink transition-colors group-hover:text-accent">
+                  {item.title}
+                </h3>
+                <p class="mt-1.5 text-xs leading-relaxed text-muted">
+                  {item.desc}
+                </p>
+              </div>
+              <span class="mt-4 inline-flex items-center gap-1 text-xs font-medium text-accent">
+                <span>sprawdź zalecenia</span>
+                <span class="transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">→</span>
+              </span>
+            </a>
+          ))
+        }
       </div>
     </section>
 
     <!-- VISUAL GALLERY SECTION -->
-    <section class="mx-auto max-w-7xl px-5 pb-[72px] sm:px-14">
+    <section class="mx-auto max-w-7xl px-5 pb-16 sm:px-14">
       <div class="mb-8 max-w-[620px]">
         <span class="eyebrow text-accent">edukacja & profilaktyka</span>
         <h2 class="mt-2 text-3xl text-ink sm:text-[36px]">Metody prewencji i fizjoterapii</h2>
-        <p class="mt-3 text-base leading-relaxed text-muted">
+        <p class="mt-2.5 text-[15.5px] leading-relaxed text-muted">
           Poznaj holistyczne podejście do zdrowia mięśni — od rozciągania i diety po profesjonalny masaż i wibroakustykę.
         </p>
       </div>
@@ -140,7 +267,7 @@ const homeFaq = faqItems.slice(0, 4);
           galleryItems.map((item) => (
             <a
               href={withTrailingSlash(item.link)}
-              class="group flex flex-col overflow-hidden rounded-[10px] border border-line bg-card transition-all duration-200 hover:-translate-y-1 hover:border-accent-border hover:shadow-lg"
+              class="group flex flex-col overflow-hidden rounded-xl border border-line bg-card transition-all duration-200 hover:-translate-y-1 hover:border-accent-border hover:shadow-lg"
             >
               <div class="aspect-[4/3] overflow-hidden bg-navy">
                 <GeometrizedPhoto
@@ -167,21 +294,29 @@ const homeFaq = faqItems.slice(0, 4);
     </section>
 
     <!-- POPULAR GUIDES -->
-    <section class="mx-auto max-w-7xl px-5 pb-[72px] sm:px-14">
+    <section class="mx-auto max-w-7xl px-5 pb-16 sm:px-14">
       <div class="mb-7 flex items-end justify-between">
-        <h2 class="text-3xl text-ink sm:text-[34px]">Popularne poradniki</h2>
-        <a href={withTrailingSlash('/poradniki')} class="text-sm text-accent hover:text-accent-light">wszystkie poradniki →</a>
+        <div>
+          <span class="eyebrow text-accent">praktyczna wiedza</span>
+          <h2 class="mt-1 text-3xl text-ink sm:text-[34px]">Popularne poradniki</h2>
+        </div>
+        <a href={withTrailingSlash('/poradniki')} class="text-sm font-medium text-accent hover:text-accent-hover">wszystkie poradniki →</a>
       </div>
       <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {
           popularGuides.map((guide) => (
             <a
               href={withTrailingSlash(guide.path)}
-              class="group flex min-h-[156px] flex-col rounded-[9px] border border-line bg-card p-6 transition-[border-color,transform] hover:-translate-y-0.5 hover:border-accent-border"
+              class="group flex min-h-[160px] flex-col justify-between rounded-xl border border-line bg-card p-6 transition-all duration-200 hover:-translate-y-1 hover:border-accent-border hover:shadow-sm"
             >
-              <h3 class="mb-2 text-xl leading-snug text-ink">{guide.title}</h3>
-              <p class="mb-auto text-sm leading-relaxed text-muted">{guide.desc}</p>
-              <span class="mt-3.5 text-sm text-accent">czytaj →</span>
+              <div>
+                <div class="mb-2 flex items-center justify-between">
+                  <span class="tag-chip text-[10.5px]">{guide.tag}</span>
+                </div>
+                <h3 class="mb-2 text-xl leading-snug text-ink group-hover:text-accent transition-colors">{guide.title}</h3>
+                <p class="text-sm leading-relaxed text-muted">{guide.desc}</p>
+              </div>
+              <span class="mt-4 text-sm font-medium text-accent">czytaj poradnik →</span>
             </a>
           ))
         }
@@ -189,9 +324,12 @@ const homeFaq = faqItems.slice(0, 4);
     </section>
 
     <!-- TOPICS -->
-    <section class="mx-auto max-w-7xl px-5 pb-[72px] sm:px-14">
+    <section class="mx-auto max-w-7xl px-5 pb-16 sm:px-14">
       <div class="mb-7 flex items-end justify-between">
-        <h2 class="text-3xl text-ink sm:text-[34px]">Tematy</h2>
+        <div>
+          <span class="eyebrow text-accent">kompendium</span>
+          <h2 class="mt-1 text-3xl text-ink sm:text-[34px]">Główne działy</h2>
+        </div>
         <span class="font-mono text-xs text-faint">06 zagadnień</span>
       </div>
       <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -199,12 +337,14 @@ const homeFaq = faqItems.slice(0, 4);
           topics.map((t) => (
             <a
               href={withTrailingSlash(t.path)}
-              class="group flex min-h-[172px] flex-col rounded-[9px] border border-line bg-card p-6 transition-[border-color,transform] hover:-translate-y-0.5 hover:border-accent-border"
+              class="group flex min-h-[172px] flex-col justify-between rounded-xl border border-line bg-card p-6 transition-all duration-200 hover:-translate-y-1 hover:border-accent-border hover:shadow-sm"
             >
-              <span class="font-mono text-xs text-faint">{t.n}</span>
-              <h3 class="mt-3.5 mb-2 text-2xl leading-snug text-ink">{t.title}</h3>
-              <p class="mb-auto text-sm leading-relaxed text-muted">{t.desc}</p>
-              <span class="mt-3.5 text-sm text-accent">czytaj →</span>
+              <div>
+                <span class="font-serif text-lg font-medium text-accent/80">{t.n}</span>
+                <h3 class="mt-2 mb-2 text-2xl leading-snug text-ink group-hover:text-accent transition-colors">{t.title}</h3>
+                <p class="text-sm leading-relaxed text-muted">{t.desc}</p>
+              </div>
+              <span class="mt-4 text-sm font-medium text-accent">poznaj szczegóły →</span>
             </a>
           ))
         }
@@ -212,24 +352,27 @@ const homeFaq = faqItems.slice(0, 4);
     </section>
 
     <!-- WHEN TO SEE A DOCTOR -->
-    <section class="mx-auto max-w-7xl px-5 pb-[72px] sm:px-14">
-      <div class="grid items-center gap-12 rounded-xl bg-navy px-8 py-12 sm:px-13 md:grid-cols-2">
+    <section class="mx-auto max-w-7xl px-5 pb-16 sm:px-14">
+      <div class="relative overflow-hidden rounded-2xl bg-navy px-8 py-12 sm:px-12 md:grid md:grid-cols-[1.1fr_0.9fr] md:items-center md:gap-12 shadow-xl border border-navy-border">
+        <div class="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-accent/10 blur-3xl pointer-events-none"></div>
         <div>
-          <div class="eyebrow mb-4 text-accent-light">uwaga</div>
-          <h2 class="mb-3 text-3xl leading-tight text-[#f4efe6] sm:text-4xl">
+          <div class="mb-4 inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/10 px-3 py-1 font-mono text-xs uppercase tracking-wider text-amber-300">
+            <Icon name="warning" class="h-3.5 w-3.5 text-amber-400" />
+            <span>czerwone flagi</span>
+          </div>
+          <h2 class="mb-4 text-3xl leading-tight text-[#f4efe6] sm:text-4xl">
             Kiedy skontaktować się z lekarzem?
           </h2>
           <p class="text-[15.5px] leading-relaxed text-[#a9b0bd]">
-            Większość kurczy mija samoistnie. Są jednak sytuacje, w których warto zgłosić
-            się po pomoc specjalisty.
+            Większość kurczy mija samoistnie i nie zwiastuje poważnej choroby. Są jednak specyficzne sygnały ostrzegawcze, w których warto niezwłocznie zasięgnąć porady specjalisty.
           </p>
         </div>
-        <ul class="flex flex-col">
+        <ul class="mt-8 flex flex-col gap-3 md:mt-0">
           {
             doctorSigns.map((s) => (
-              <li class="flex gap-3.5 border-t border-[#2c3a52] py-3.5 text-[15px] text-[#d9dce2]">
-                <span class="font-semibold text-accent">·</span>
-                {s}
+              <li class="flex items-start gap-3 rounded-lg border border-navy-border bg-navy-card/60 p-3.5 text-[14.5px] leading-relaxed text-[#d9dce2]">
+                <span class="text-amber-400 font-bold" aria-hidden="true">·</span>
+                <span>{s}</span>
               </li>
             ))
           }
@@ -238,15 +381,17 @@ const homeFaq = faqItems.slice(0, 4);
     </section>
 
     <!-- FAQ -->
-    <section class="mx-auto max-w-7xl px-5 pb-[76px] sm:px-14">
+    <section class="mx-auto max-w-7xl px-5 pb-16 sm:px-14">
       <div class="grid gap-12 lg:grid-cols-[0.7fr_1.3fr]">
         <div>
-          <h2 class="mb-3 text-3xl text-ink sm:text-[34px]">Najczęstsze pytania</h2>
+          <span class="eyebrow text-accent">pytania i odpowiedzi</span>
+          <h2 class="mt-1 mb-3 text-3xl text-ink sm:text-[34px]">Najczęstsze pytania</h2>
           <p class="text-[15px] leading-relaxed text-muted">
-            Krótkie odpowiedzi na to, o co pytacie najczęściej.
+            Krótkie, konkretne odpowiedzi na to, o co pytacie najczęściej w kontekście kurczy mięśniowych.
           </p>
-          <a href="/faq/" class="mt-5 inline-block text-sm text-accent hover:text-accent-light">
-            zobacz wszystkie pytania →
+          <a href="/faq/" class="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-accent hover:text-accent-hover">
+            <span>zobacz wszystkie pytania</span>
+            <span aria-hidden="true">→</span>
           </a>
         </div>
         <FaqAccordion items={homeFaq} bare />
@@ -254,3 +399,4 @@ const homeFaq = faqItems.slice(0, 4);
     </section>
   </Shell>
 </Layout>
+

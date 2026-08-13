@@ -59,6 +59,7 @@ export const topicPagesContent = {
       },
     ],
     relatedLinks: [
+      { path: '/kurcz-vs-skurcz', label: 'Kurcz czy skurcz?' },
       { path: '/kurcze-nog', label: 'Kurcze nóg' },
       { path: '/kurcze-lydek', label: 'Kurcze łydek' },
       { path: '/kurcze-nocne', label: 'Kurcze nocne' },
@@ -120,6 +121,7 @@ export const topicPagesContent = {
       },
     ],
     relatedLinks: [
+      { path: '/kurcz-vs-skurcz', label: 'Kurcz czy skurcz?' },
       { path: '/kurcze-nog', label: 'Kurcze nóg' },
       { path: '/rozciaganie-przy-kurczach', label: 'Rozciąganie przy kurczach' },
       { path: '/masaz-przy-kurczach', label: 'Masaż przy kurczach' },
@@ -177,74 +179,87 @@ export const topicPagesContent = {
       },
     ],
     relatedLinks: [
+      { path: '/kurcz-vs-skurcz', label: 'Kurcz czy skurcz?' },
       { path: '/niedobor-magnezu', label: 'Niedobór magnezu' },
       { path: '/suplementacja-magnezem', label: 'Suplementacja magnezem' },
       { path: '/kurcze-a-odwodnienie', label: 'Kurcze a odwodnienie' },
     ],
   },
 
+
   '/kurcz-vs-skurcz': {
-    intro: `Kurcz czy skurcz? W mowie potocznej te słowa często znaczą to samo, ale medycznie nie są synonimami. Poniżej krótka, jednoznaczna odpowiedź — oraz jak powiedzieć to po angielsku (cramp vs spasm).`,
+    intro: `Kurcz czy skurcz? W mowie potocznej te słowa często bywają używane zamiennie, ale w medycynie i anatomii nie są synonimami. Poniżej znajdziesz szybkie wyjaśnienie różnicy, zestawienie cech, odmianę gramatyczną oraz odpowiedniki po angielsku (cramp vs spasm).`,
     sections: [
       {
         heading: `Kurcz czy skurcz — szybka odpowiedź`,
-        body: `Jeśli masz na myśli bolesne, nagłe „złapanie” łydki lub stopy — mówisz o kurczu. Skurcz to szersze pojęcie: każde napięcie mięśnia, także prawidłowe (np. skurcz serca albo skurcz macicy w porodzie). Reguła: każdy kurcz jest rodzajem skurczu, ale nie każdy skurcz jest kurczem.`,
+        body: `Jeśli masz na myśli bolesne, nagłe „złapanie” łydki lub stopy — mówisz o kurczu. Skurcz to pojęcie nadrzędne: każde napięcie mięśnia, także prawidłowe (np. fizjologiczny skurcz serca albo skurcz macicy w porodzie). Złota reguła: każdy kurcz jest rodzajem skurczu, ale nie każdy skurcz jest kurczem.`,
       },
       {
-        heading: `Kurcz`,
-        body: `Kurcz (potocznie też „skurcz mięśnia” w znaczeniu bolesnym) to nagłe, mimowolne i zwykle bolesne napięcie mięśnia szkieletowego. W praktyce pacjenci najczęściej szukają pomocy właśnie przy kurczu łydki, stopy lub uda.`,
+        heading: `Tabela różnic: Kurcz a Skurcz`,
+        body: `Najważniejsze różnice w pigułce:`,
         bullets: [
-          `Nagłe, mimowolne i często bolesne napięcie mięśnia`,
-          `Zawsze nieświadomy i niepożądany (patologiczny w sensie klinicznym)`,
-          `Dominuje w języku potocznym i w tytułach poradników`,
-          `Przykłady: kurcz łydki, kurcz stopy, kurcze nocne`,
+          `Bolesność: Kurcz jest zawsze ostry i bolesny. Skurcz może być bezbolesny (np. celowe zgięcie ręki lub praca mięśnia sercowego).`,
+          `Świadomość: Kurcz jest zawsze mimowolny i niepożądany. Skurcz może być w pełni kontrolowany wolą lub automatyczny.`,
+          `Zastosowanie: Kurcz dotyczy najczęściej mięśni szkieletowych (łydka, stopa, udo). Skurcz obejmuje też mięśnie gładkie narządów wewnętrznych i serce.`,
+          `Język angielski: Kurcz bolesny → muscle cramp. Skurcz ogólny → (muscle) spasm / contraction.`,
         ],
       },
       {
-        heading: `Skurcz`,
-        body: `Skurcz to fizjologiczny lub patologiczny proces napinania się mięśnia. Termin jest częstszy w medycynie i fizjologii — obejmuje też skurcze, które nie bolą i nie są „kurczem” w sensie potocznym.`,
+        heading: `Kurcz (muscle cramp)`,
+        body: `Kurcz (potocznie też „skurcz mięśnia” w znaczeniu bolesnym) to nagłe, mimowolne i silne napięcie mięśnia szkieletowego, któremu towarzyszy twardnienie tkanki („kamień w łydce”). W praktyce pacjenci najczęściej szukają pomocy właśnie przy kurczu łydki, stóp lub ud.`,
         bullets: [
-          `Proces napinania mięśnia (fizjologiczny lub zaburzony)`,
-          `Może być świadomy (ruch) lub mimowolny`,
-          `Preferowany w terminologii medycznej`,
-          `Przykłady: skurcz mięśnia sercowego, skurcz macicy, skurcz izometryczny`,
+          `Nagłe, mimowolne i bolesne napięcie mięśnia szkieletowego`,
+          `Zawsze nieświadomy i klinicznie niepożądany`,
+          `Dominuje w języku potocznym i wyszukiwarkach („co na kurcze”)`,
+          `Przykłady: kurcz łydki w nocy, kurcz rozcięgna stopy, kurcze u sportowców`,
+        ],
+      },
+      {
+        heading: `Skurcz (muscle spasm / contraction)`,
+        body: `Skurcz to fizjologiczny lub patologiczny proces napinania się mięśnia. Termin jest podstawowym pojęciem w medycynie i fizjologii — obejmuje wszystkie procesy biomechaniczne generujące siłę mięśniową.`,
+        bullets: [
+          `Proces skracania lub napinania włókien mięśniowych`,
+          `Może być świadomy (ruch kończyny) lub automatyczny (pompowanie krwi przez serce)`,
+          `Preferowany w oficjalnej terminologii anatomicznej i medycznej`,
+          `Przykłady: skurcz mięśnia sercowego, skurcz macicy, skurcz izometryczny i izotoniczny`,
         ],
       },
       {
         heading: `Skurcz po angielsku — cramp vs spasm`,
-        body: `Po angielsku bolesny kurcz mięśnia szkieletowego to zwykle muscle cramp (np. calf cramp). Spasm to szerszy odpowiednik „skurczu” — bywa też używany luźniej w mowie potocznej. Muscle twitch to raczej krótke drżenie lub fascykulacja, nie pełny bolesny kurcz.`,
+        body: `W języku angielskim bolesny kurcz mięśnia szkieletowego to muscle cramp (często w mowie potocznej w USA nazywany charley horse). Spasm to szerszy odpowiednik skurczu. Z kolei muscle twitch to drżenie pęczkowe (fascykulacja, np. drganie powieki).`,
         bullets: [
-          `kurcz (bolesny) → muscle cramp`,
-          `skurcz (ogólnie) → (muscle) spasm / contraction`,
-          `drżenie / fascykulacja → muscle twitch`,
-          `kurcze mięśniowe → muscle cramps`,
+          `kurcz (bolesny skurcz mięśnia) → muscle cramp`,
+          `skurcz (proces napięcia mięśnia) → (muscle) spasm / contraction`,
+          `drżenie pęczkowe / fascykulacja → muscle twitch`,
+          `kurcze mięśniowe (liczba mnoga) → muscle cramps`,
         ],
       },
       {
         heading: `Podsumowanie`,
-        body: `Każdy kurcz jest rodzajem skurczu, ale nie każdy skurcz jest kurczem. Kurcz odnosi się do patologicznych, mimowolnych, zwykle bolesnych napięć mięśni szkieletowych; skurcz obejmuje zarówno prawidłowe, jak i nieprawidłowe napięcia mięśniowe.`,
+        body: `Każdy kurcz jest rodzajem skurczu, ale nie każdy skurcz jest kurczem. Kurcz odnosi się do patologicznych, mimowolnych, bolesnych napięć mięśni szkieletowych; skurcz obejmuje zarówno prawidłowe, jak i nieprawidłowe napięcia mięśniowe.`,
       },
       {
-        heading: `Odmiana słowa „kurcz”`,
-        body: ``,
+        heading: `Odmiana słowa „kurcz” w języku polskim`,
+        body: `Prawidłowa odmiana przez przypadki:`,
         bullets: [
-          `Mianownik — liczba pojedyncza: kurcz / liczba mnoga: kurcze`,
-          `Dopełniacz — liczba pojedyncza: kurczu / liczba mnoga: kurczy`,
-          `Celownik — liczba pojedyncza: kurczowi / liczba mnoga: kurczom`,
-          `Biernik — liczba pojedyncza: kurcz / liczba mnoga: kurcze`,
-          `Narzędnik — liczba pojedyncza: kurczem / liczba mnoga: kurczami`,
-          `Miejscownik — liczba pojedyncza: kurczu / liczba mnoga: kurczach`,
-          `Wołacz — liczba pojedyncza: kurczu / liczba mnoga: kurcze`,
+          `Mianownik (kto? co?): liczba pojedyncza: kurcz / liczba mnoga: kurcze`,
+          `Dopełniacz (kogo? czego?): liczba pojedyncza: kurczu / liczba mnoga: kurczy`,
+          `Celownik (komu? czemu?): liczba pojedyncza: kurczowi / liczba mnoga: kurczom`,
+          `Biernik (kogo? co?): liczba pojedyncza: kurcz / liczba mnoga: kurcze`,
+          `Narzędnik (z kim? z czym?): liczba pojedyncza: kurczem / liczba mnoga: kurczami`,
+          `Miejscownik (o kim? o czym?): liczba pojedyncza: kurczu / liczba mnoga: kurczach`,
+          `Wołacz: liczba pojedyncza: kurczu! / liczba mnoga: kurcze!`,
         ],
       },
       {
         heading: `Warto wiedzieć`,
-        body: `W kontekście medycznym często używane są frazy takie jak „zapobiegać kurczom” (celownik, l.mn.), „doświadczać kurczy” (dopełniacz, l.mn.) czy „borykać się z kurczami” (narzędnik, l.mn.). W wyszukiwarkach równolegle pojawia się „skurcze mięśni” — zwykle chodzi o te same bolesne kurcze.`,
+        body: `W kontekście medycznym i poradnikowym często używane są frazy takie jak „zapobiegać kurczom” (celownik, l.mn.), „doświadczać kurczy” (dopełniacz, l.mn.) czy „borykać się z kurczami” (narzędnik, l.mn.). W wyszukiwarkach równolegle pojawiają się zapytania „skurcze mięśni” oraz „skurcz czy kurcz” — oba dotyczą tych samych dolegliwości.`,
       },
     ],
     relatedLinks: [
       { path: '/kurcze-miesniowe', label: 'Kurcze mięśniowe' },
       { path: '/kurcze-nog', label: 'Kurcze nóg' },
+      { path: '/pierwsza-pomoc', label: 'Pierwsza pomoc' },
       { path: '/faq', label: 'FAQ' },
     ],
   },
@@ -382,6 +397,7 @@ export const topicPagesContentEn = {
       },
     ],
     relatedLinks: [
+      { path: '/kurcz-vs-skurcz', label: 'Cramp vs Spasm' },
       { path: '/kurcze-nog', label: 'Leg Cramps' },
       { path: '/kurcze-lydek', label: 'Calf Cramps' },
       { path: '/kurcze-nocne', label: 'Night Cramps' },
@@ -443,6 +459,7 @@ export const topicPagesContentEn = {
       },
     ],
     relatedLinks: [
+      { path: '/kurcz-vs-skurcz', label: 'Cramp vs Spasm' },
       { path: '/kurcze-nog', label: 'Leg Cramps' },
       { path: '/rozciaganie-przy-kurczach', label: 'Stretching for Cramps' },
       { path: '/masaz-przy-kurczach', label: 'Massage for Cramps' },
@@ -496,41 +513,53 @@ export const topicPagesContentEn = {
       },
     ],
     relatedLinks: [
+      { path: '/kurcz-vs-skurcz', label: 'Cramp vs Spasm' },
       { path: '/niedobor-magnezu', label: 'Magnesium Deficiency' },
       { path: '/suplementacja-magnezem', label: 'Magnesium Supplementation' },
       { path: '/kurcze-a-odwodnienie', label: 'Cramps and Dehydration' },
     ],
   },
 
+
   '/kurcz-vs-skurcz': {
-    intro: `Cramp vs spasm: people often use these words interchangeably, but they are not medical synonyms. Here is a clear answer — plus how they differ from a muscle twitch.`,
+    intro: `Cramp vs spasm: people often use these words interchangeably, but they are not medical synonyms. Here is a clear explanation of the difference, a comparison summary, and how they differ from a muscle twitch or charley horse.`,
     sections: [
       {
         heading: `Cramp vs Spasm — Quick Answer`,
         body: `If you mean a sudden, painful “charley horse” in the calf or foot, that is a muscle cramp. Spasm is the broader term for muscle contraction — including normal ones (heart muscle, uterine contractions in labor). Rule of thumb: every cramp is a kind of spasm, but not every spasm is a cramp.`,
       },
       {
-        heading: `Muscle Cramp`,
-        body: `A cramp is a sudden, involuntary, usually painful contraction of skeletal muscle. It is what most people search for when a calf or foot locks up at night or after exercise.`,
+        heading: `Comparison Table: Cramp vs Spasm`,
+        body: `Key medical and practical distinctions at a glance:`,
         bullets: [
-          `Sudden, involuntary, often painful`,
-          `Always unwanted / clinically abnormal in everyday use`,
-          `Common in calves, feet, and thighs`,
-          `Examples: calf cramp, night cramps, exercise cramps`,
+          `Pain & Severity: A cramp is always acutely painful, sudden, and locked. A spasm can be painless or physiological.`,
+          `Voluntary Control: Cramps are always involuntary and abnormal. Spasms and contractions can be conscious (movement) or automatic.`,
+          `Body Scope: Cramps typically affect skeletal muscles (calves, feet, thighs). Spasms/contractions also occur in smooth muscle (stomach, blood vessels) and cardiac muscle.`,
+          `Everyday Terms: Cramp → painful contraction. Spasm → general muscular tightening. Twitch → brief painless flicker (fasciculation).`,
         ],
       },
       {
-        heading: `Muscle Spasm`,
+        heading: `Muscle Cramp (charley horse)`,
+        body: `A cramp is a sudden, involuntary, usually painful contraction of skeletal muscle where the tissue visibly hardens. It is what most people search for when a calf or foot locks up at night or after exercise.`,
+        bullets: [
+          `Sudden, involuntary, acutely painful contraction of skeletal muscle`,
+          `Always unwanted / clinically abnormal in everyday use`,
+          `Common in calves, feet, and thighs`,
+          `Examples: calf cramp, night cramps, exercise-associated muscle cramps`,
+        ],
+      },
+      {
+        heading: `Muscle Spasm (contraction)`,
         body: `Spasm describes muscle contraction more generally — physiological or pathological, voluntary or involuntary. Clinicians use it more broadly than “cramp.”`,
         bullets: [
-          `Broader physiological / medical term`,
-          `May be painless or painful`,
+          `Broader physiological / medical term for muscle tension or shortening`,
+          `May be painless, mild, or painful`,
           `Includes normal cardiac and uterine contractions`,
           `Everyday English sometimes blurs spasm and cramp`,
         ],
       },
       {
-        heading: `Cramp vs Twitch`,
+        heading: `Cramp vs Twitch (fasciculation)`,
         body: `A muscle twitch (fasciculation) is a brief, usually painless flicker of a fiber bundle — eyelid twitching is a classic example. A cramp is a sustained, painful lock of the whole muscle. Twitches are common with fatigue, caffeine, or low magnesium; persistent twitching still deserves medical advice if progressive.`,
       },
       {
@@ -549,6 +578,7 @@ export const topicPagesContentEn = {
     relatedLinks: [
       { path: '/kurcze-miesniowe', label: 'Muscle Cramps' },
       { path: '/kurcze-nog', label: 'Leg Cramps' },
+      { path: '/pierwsza-pomoc', label: 'First Aid' },
       { path: '/niedobor-magnezu', label: 'Magnesium Deficiency' },
       { path: '/faq', label: 'FAQ' },
     ],

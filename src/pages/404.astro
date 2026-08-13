@@ -18,19 +18,22 @@ const route = {
 <Layout route={route} robots="noindex, follow" includeCanonical={false}>
   <Shell currentPath="/404">
     <section class="mx-auto max-w-2xl px-5 py-28 text-center sm:px-14">
-      <p class="eyebrow text-accent">błąd 404 / error 404</p>
+      <div class="inline-flex items-center gap-2 rounded-full border border-accent-border bg-accent-bg px-3 py-1 font-mono text-xs uppercase tracking-wider text-accent">
+        <span>błąd 404 / error 404</span>
+      </div>
       <h1 class="mt-4 text-4xl text-ink sm:text-5xl">{t(locale, '404.title')}</h1>
       <p class="mt-5 text-lg leading-relaxed text-body">
         {t(locale, '404.p')}
       </p>
       <div class="mt-8 flex flex-wrap justify-center gap-3.5">
-        <a href={localizeHref('/', locale, routing)} class="rounded-md bg-accent px-[26px] py-[15px] text-[15px] font-medium text-paper hover:bg-accent-light">
+        <a href={localizeHref('/', locale, routing)} class="inline-flex items-center justify-center rounded-lg bg-accent px-7 py-3.5 text-[15px] font-medium text-paper shadow-sm transition-all hover:bg-accent-hover hover:shadow-md">
           {t(locale, '404.home_btn')}
         </a>
-        <a href={localizeHref('/poradniki', locale, routing)} class="rounded-md border border-[#cfc6b5] px-[22px] py-[15px] text-[15px] font-medium text-ink hover:border-ink">
+        <a href={localizeHref('/poradniki', locale, routing)} class="inline-flex items-center justify-center rounded-lg border border-line bg-card px-6 py-3.5 text-[15px] font-medium text-ink transition-all hover:border-ink hover:bg-card-elevated">
           {t(locale, '404.guides_btn')}
         </a>
       </div>
     </section>
   </Shell>
 </Layout>
+

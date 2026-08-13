@@ -9,7 +9,7 @@ const { locale } = extractLocale(currentPath, routing);
 const effectiveLocale = lang ?? locale;
 ---
 
-<form id="contact-form" class="space-y-5" novalidate data-lang={effectiveLocale}>
+<form id="contact-form" class="space-y-5 rounded-2xl border border-line bg-card p-6 sm:p-8 shadow-xs" novalidate data-lang={effectiveLocale}>
   <div>
     <label for="cf-name" class="block text-sm font-medium text-ink">{t(effectiveLocale, 'contact.name')}</label>
     <input
@@ -18,7 +18,7 @@ const effectiveLocale = lang ?? locale;
       type="text"
       required
       autocomplete="name"
-      class="mt-1.5 block w-full rounded-md border border-line bg-card px-3.5 py-2.5 text-ink focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
+      class="mt-2 block w-full rounded-xl border border-line bg-paper px-4 py-3 text-ink transition-all placeholder:text-muted/60 focus:border-accent focus:bg-card-elevated focus:outline-none focus:ring-2 focus:ring-accent/20"
     />
   </div>
   <div>
@@ -29,7 +29,7 @@ const effectiveLocale = lang ?? locale;
       type="email"
       required
       autocomplete="email"
-      class="mt-1.5 block w-full rounded-md border border-line bg-card px-3.5 py-2.5 text-ink focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
+      class="mt-2 block w-full rounded-xl border border-line bg-paper px-4 py-3 text-ink transition-all placeholder:text-muted/60 focus:border-accent focus:bg-card-elevated focus:outline-none focus:ring-2 focus:ring-accent/20"
     />
   </div>
   <div>
@@ -39,7 +39,7 @@ const effectiveLocale = lang ?? locale;
       name="message"
       rows="5"
       required
-      class="mt-1.5 block w-full rounded-md border border-line bg-card px-3.5 py-2.5 text-ink focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
+      class="mt-2 block w-full rounded-xl border border-line bg-paper px-4 py-3 text-ink transition-all placeholder:text-muted/60 focus:border-accent focus:bg-card-elevated focus:outline-none focus:ring-2 focus:ring-accent/20"
     ></textarea>
   </div>
 
@@ -54,11 +54,11 @@ const effectiveLocale = lang ?? locale;
   <button
     type="submit"
     id="cf-submit"
-    class="rounded-md bg-accent px-[26px] py-[13px] text-[15px] font-medium text-paper hover:bg-accent-light disabled:cursor-not-allowed disabled:opacity-60"
+    class="inline-flex items-center justify-center rounded-xl bg-accent px-8 py-3.5 text-[15px] font-medium text-paper shadow-sm transition-all hover:bg-accent-hover hover:shadow-md disabled:cursor-not-allowed disabled:opacity-60"
   >
     {t(effectiveLocale, 'contact.send')}
   </button>
-  <p id="cf-status" role="status" aria-live="polite" class="text-sm"></p>
+  <p id="cf-status" role="status" aria-live="polite" class="text-sm font-medium"></p>
 </form>
 
 <script>

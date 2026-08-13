@@ -55,6 +55,7 @@ export const landingPages = [
       { question: 'Czy kurcze nóg mogą być objawem choroby?', answer: 'Zwykle są niegroźne, ale częste, silne lub niezwiązane z wysiłkiem kurcze, zwłaszcza z drętwieniem lub obrzękiem, wymagają konsultacji lekarskiej w celu wykluczenia chorób metabolicznych, neurologicznych lub żylnych.' },
     ],
     relatedLinks: [
+      { path: '/kurcz-vs-skurcz', label: 'Kurcz czy skurcz?' },
       { path: '/kurcze-lydek', label: 'Kurcze łydek' },
       { path: '/kurcze-nocne', label: 'Kurcze nocne' },
       { path: '/niedobor-magnezu', label: 'Niedobór magnezu' },
@@ -88,6 +89,7 @@ export const landingPages = [
       { question: 'Jak rozciągać mięsień łydki po kurczu?', answer: 'W pozycji stojącej oprzyj dłonie o ścianę, cofnij bolącą nogę do tyłu i zepnij piętę w podłoże. Utrzymuj rozciągnięcie 20–30 sekund bez gwałtownych ruchów.' },
     ],
     relatedLinks: [
+      { path: '/kurcz-vs-skurcz', label: 'Kurcz czy skurcz?' },
       { path: '/kurcze-nog', label: 'Kurcze nóg' },
       { path: '/kurcze-nocne', label: 'Kurcze nocne' },
       { path: '/rozciaganie-przy-kurczach', label: 'Rozciąganie przy kurczach' },
@@ -144,11 +146,13 @@ export const landingPages = [
       { question: 'Czy magnez na noc pomaga na kurcze?', answer: 'Magnez może pomóc osobom z potwierdzonym niedoborem. Nie stosuj suplementów bez konsultacji z lekarzem, szczególnie przy chorobach nerek.' },
     ],
     relatedLinks: [
+      { path: '/kurcz-vs-skurcz', label: 'Kurcz czy skurcz?' },
       { path: '/kurcze-lydek', label: 'Kurcze łydek' },
       { path: '/niedobor-magnezu', label: 'Niedobór magnezu' },
       { path: '/suplementacja-magnezem', label: 'Suplementacja magnezem' },
     ],
   },
+
   {
     path: '/kurcze-u-sportowcow',
     hub: { path: '/kurcze-miesniowe', label: 'Kurcze mięśniowe' },
@@ -179,9 +183,10 @@ export const landingPages = [
     path: '/kurcze-u-kobiet-w-ciazy',
     hub: { path: '/kurcze-miesniowe', label: 'Kurcze mięśniowe' },
     h1: 'Skurcze łydek w ciąży — przyczyny i ulga',
-    title: 'Skurcze łydek w ciąży — 2. i 3. trymestr | Kurcz.pl',
-    description: 'Skurcze łydek i nóg w ciąży (2. i 3. trymestr): częste przyczyny, bezpieczna pierwsza pomoc, rola magnezu oraz objawy wymagające kontaktu z lekarzem.',
+    title: 'Skurcze łydek w ciąży (1, 2 i 3 trymestr) — przyczyny i ulga | Kurcz.pl',
+    description: 'Bolesne skurcze łydek i nóg w ciąży (1, 2 i 3 trymestr): przyczyny, nocne skurcze, bezpieczna pierwsza pomoc, rola magnezu i kiedy zgłosić się do lekarza.',
     intro: 'Skurcze (kurcze) łydek w ciąży to nagłe, bolesne napięcie mięśnia — najczęściej w nocy. Według źródeł klinicznych pojawiają się głównie w drugim i trzecim trymestrze; w III trymestrze zgłasza je nawet około połowy do dwóch trzecich ciężarnych. Dokładna przyczyna nie jest w pełni wyjaśniona, ale rolę odgrywają zmiany krążenia, ucisk rosnącej macicy, obciążenie nóg i gospodarka mineralna.',
+
     sections: [
       {
         heading: 'Skurcze łydek w ciąży w 2. trymestrze',
@@ -312,9 +317,10 @@ export const landingPages = [
     path: '/niedobor-magnezu',
     hub: { path: '/profilaktyka', label: 'Profilaktyka' },
     h1: 'Niedobór magnezu a kurcze mięśniowe',
-    title: 'Niedobór magnezu — kurcze, drżenie mięśni | Kurcz.pl',
-    description: 'Niedobór magnezu a kurcze mięśni i drżenie (twitching): objawy, dieta, kiedy zbadać poziom Mg i kiedy rozważyć suplementację z lekarzem.',
+    title: 'Niedobór magnezu — kurcze, drżenie mięśni i powieki | Kurcz.pl',
+    description: 'Niedobór magnezu a bolesne kurcze, drżenie mięśni i fascykulacje (drganie powieki). Poznaj objawy, źródła w diecie i kiedy wykonać badanie krwi.',
     intro: 'Magnez odgrywa kluczową rolę w prawidłowym skurczu i rozluźnieniu mięśni. Jego niedobór to jedna z najczęściej wymienianych przyczyn kurczy mięśniowych — a także drżenia powiek czy drobnych fascykulacji.',
+
     sections: [
       {
         heading: 'Objawy niedoboru magnezu',
@@ -572,9 +578,10 @@ export const landingPages = [
     path: '/kurcze-u-dzieci',
     hub: { path: '/kurcze-miesniowe', label: 'Kurcze mięśniowe' },
     h1: 'Kurcze mięśniowe u dzieci',
-    title: 'Kurcze u dzieci — przyczyny i kiedy do lekarza | Kurcz.pl',
-    description: 'Kurcze mięśniowe u dzieci: bezpieczna pierwsza pomoc, możliwe przyczyny i objawy, z którymi należy skontaktować się z pediatrą.',
+    title: 'Skurcze nóg u dzieci — przyczyny, bóle wzrostowe i ulga | Kurcz.pl',
+    description: 'Skurcze nóg i mięśni u dzieci: czym różnią się od bólów wzrostowych, jak pomóc przy nagłym ataku, nawodnienie i kiedy skonsultować się z pediatrą.',
     intro: 'Pojedynczy kurcz nogi u dziecka po zabawie, wysiłku lub w nocy często szybko ustępuje. U dzieci nie należy jednak samodzielnie rozpoznawać niedoborów ani podawać suplementów — nawracające lub nietypowe objawy warto najpierw omówić z pediatrą.',
+
     sections: [
       { heading: 'Co może sprzyjać kurczom u dzieci', body: 'Dłuższy wysiłek, małe spożycie płynów podczas upału, zmęczenie i napięcie mięśni po aktywności mogą wywołać pojedynczy skurcz. Kurcze mogą też towarzyszyć infekcji z gorączką, wymiotom lub biegunce, kiedy łatwiej o utratę płynów.' },
       { heading: 'Bezpieczna pierwsza pomoc w domu', body: 'Pomóż dziecku spokojnie rozciągnąć napięty mięsień i zapewnij bezpieczną pozycję. Po ustąpieniu bólu podaj płyn odpowiedni do sytuacji, a jeśli dziecko ma chorobę przewlekłą, leki lub objawy odwodnienia, skontaktuj się z lekarzem.' },
@@ -631,6 +638,7 @@ export const landingPagesEnMap = {
       { question: 'Can leg cramps signal an underlying condition?', answer: 'While usually harmless, frequent or unprovoked cramps accompanied by swelling or numbness warrant medical evaluation to rule out vascular, metabolic, or neurological issues.' },
     ],
     relatedLinks: [
+      { path: '/kurcz-vs-skurcz', label: 'Cramp vs Spasm' },
       { path: '/kurcze-lydek', label: 'Calf Cramps' },
       { path: '/kurcze-nocne', label: 'Night Cramps' },
       { path: '/niedobor-magnezu', label: 'Magnesium Deficiency' },
@@ -662,6 +670,7 @@ export const landingPagesEnMap = {
       { question: 'How to stretch the calf muscle after a cramp?', answer: 'In a standing position, place hands against a wall, step the affected leg back keeping the heel flat on the floor, and hold for 20-30 seconds.' },
     ],
     relatedLinks: [
+      { path: '/kurcz-vs-skurcz', label: 'Cramp vs Spasm' },
       { path: '/kurcze-nog', label: 'Leg Cramps' },
       { path: '/kurcze-nocne', label: 'Night Cramps' },
       { path: '/rozciaganie-przy-kurczach', label: 'Stretching for Cramps' },
@@ -714,11 +723,13 @@ export const landingPagesEnMap = {
       { question: 'Does taking magnesium at night help?', answer: 'Magnesium can help individuals with confirmed deficiency. Always consult a doctor before starting supplements, especially with renal conditions.' },
     ],
     relatedLinks: [
+      { path: '/kurcz-vs-skurcz', label: 'Cramp vs Spasm' },
       { path: '/kurcze-lydek', label: 'Calf Cramps' },
       { path: '/niedobor-magnezu', label: 'Magnesium Deficiency' },
       { path: '/suplementacja-magnezem', label: 'Magnesium Supplementation' },
     ],
   },
+
   '/kurcze-u-sportowcow': {
     h1: 'Cramps in Athletes — Causes & Prevention',
     title: 'Muscle Cramps in Athletes — Prevention Strategies | Kurcz.pl',
@@ -745,9 +756,10 @@ export const landingPagesEnMap = {
   },
   '/kurcze-u-kobiet-w-ciazy': {
     h1: 'Calf Cramps During Pregnancy',
-    title: 'Calf Cramps in Pregnancy — 2nd & 3rd Trimester | Kurcz.pl',
-    description: 'Calf and leg cramps when pregnant (2nd & 3rd trimester): how common they are, what causes them, safe first aid, magnesium evidence, and when to call your doctor.',
+    title: 'Calf Cramps in Pregnancy (1st, 2nd & 3rd Trimester) | Kurcz.pl',
+    description: 'Calf and leg cramps during pregnancy (1st, 2nd & 3rd trimester): causes, nighttime charley horses, safe stretching, magnesium, and warning signs.',
     intro: 'Calf cramps in pregnancy are sudden, painful muscle spasms — often at night. Clinical sources note they are common in the second and third trimesters; in the third trimester, studies report roughly half to two-thirds of pregnant women experience them. The exact cause is unclear, but circulation changes, pressure from the growing uterus, leg muscle load, and mineral balance all play a role.',
+
     sections: [
       {
         heading: 'Calf Cramps in the Second Trimester',
@@ -872,9 +884,10 @@ export const landingPagesEnMap = {
   },
   '/niedobor-magnezu': {
     h1: 'Magnesium Deficiency & Muscle Cramps',
-    title: 'Magnesium Deficiency — Cramps & Twitching | Kurcz.pl',
-    description: 'Magnesium deficiency muscle cramps and twitching: signs, food sources, when to test, and when to discuss supplements with a doctor.',
+    title: 'Magnesium Deficiency — Cramps & Muscle Twitches | Kurcz.pl',
+    description: 'Magnesium deficiency, muscle cramps, and muscle twitches (fasciculations): symptoms, dietary sources, blood tests, and medical guidance.',
     intro: 'Magnesium plays a central role in neuromuscular signaling and muscle relaxation. Low magnesium is often linked to muscle cramps — and to eyelid or muscle twitching.',
+
     sections: [
       {
         heading: 'Signs of Low Magnesium',
@@ -1112,9 +1125,10 @@ export const landingPagesEnMap = {
   },
   '/kurcze-u-dzieci': {
     h1: 'Muscle Cramps in Children',
-    title: 'Cramps in Children — Causes and When to See a Doctor | Kurcz.pl',
-    description: 'Muscle cramps in children: safe first aid, possible causes, and symptoms that require a paediatrician’s advice.',
+    title: 'Leg Cramps in Children — Causes, Growing Pains & Relief | Kurcz.pl',
+    description: 'Muscle and leg cramps in children: growing pains distinction, safe home first aid, hydration, and when to consult a paediatrician.',
     intro: 'An isolated leg cramp after play, exercise, or at night often settles quickly in a child. Do not diagnose deficiencies or give supplements without advice: recurring or unusual symptoms should first be discussed with a paediatrician.',
+
     sections: [
       { heading: 'What can trigger cramps in children', body: 'Long activity, low fluid intake in hot weather, and muscle fatigue can trigger an isolated cramp. Cramps can also happen with fever, vomiting, or diarrhoea, when fluid losses are more likely.' },
       { heading: 'Safe first aid at home', body: 'Help the child slowly stretch the tense muscle in a safe position. Once pain settles, offer suitable fluids; contact a clinician if the child has a chronic condition, takes medicines, or has signs of dehydration.' },

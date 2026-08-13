@@ -1,4 +1,5 @@
 import { getLandingPage } from './landing-pages.js';
+import { getTopicPageContent } from './topic-pages.js';
 
 export const poradnikiHubPath = '/poradniki';
 
@@ -25,6 +26,14 @@ const categoryDefinitions = [
     ],
   },
   {
+    title: { pl: 'Pojęcia medyczne i definicje', en: 'Medical Concepts & Definitions' },
+    description: {
+      pl: 'Kluczowe różnice terminologiczne i językowe — czym różni się ostry kurcz od fizjologicznego skurczu oraz jak działa płytka motoryczna.',
+      en: 'Key terminology and linguistic differences — how acute cramps differ from physiological spasms and motor unit signaling.',
+    },
+    paths: ['/kurcz-vs-skurcz', '/kurcze-miesniowe', '/wibroakustyka', '/joga-a-kurcze'],
+  },
+  {
     title: { pl: 'Przyczyny i czynniki ryzyka', en: 'Causes & Risk Factors' },
     description: {
       pl: 'Co może wywoływać kurcze mięśniowe — elektrolity, niedobory minerałów, odwodnienie i wpływ leków.',
@@ -42,18 +51,55 @@ const categoryDefinitions = [
   },
 ];
 
+const topicPageTitles = {
+  '/kurcz-vs-skurcz': {
+    pl: 'Kurcz czy skurcz? Poznaj różnicę',
+    en: 'Cramp vs Spasm: Key Differences',
+    descPl: 'Wyjaśnienie różnic medycznych i językowych: bolesny kurcz mięśnia szkieletowego a ogólny skurcz fizjologiczny.',
+    descEn: 'Medical and practical distinctions: acute skeletal muscle cramp vs general physiological contraction.',
+  },
+  '/kurcze-miesniowe': {
+    pl: 'Kurcze mięśniowe — przyczyny i objawy',
+    en: 'Muscle Cramps — Causes & Symptoms',
+    descPl: 'Przegląd medyczny: jak dochodzi do mimowolnego napięcia mięśni, grupy ryzyka i diagnostyka.',
+    descEn: 'Medical overview: how involuntary contractions develop, risk factors, and diagnostics.',
+  },
+  '/wibroakustyka': {
+    pl: 'Wibroakustyka w terapii mięśni',
+    en: 'Vibroacoustic Therapy for Muscles',
+    descPl: 'Niskie częstotliwości dźwięku i wibracje jako wsparcie mikrokrążenia i relaksacji mięśni.',
+    descEn: 'Low-frequency sound waves and vibration as support for microcirculation and muscle relaxation.',
+  },
+  '/joga-a-kurcze': {
+    pl: 'Joga a profilaktyka kurczy',
+    en: 'Yoga for Muscle Cramp Prevention',
+    descPl: 'Łagodna praca nad mobilnością, oddechem i elastycznością powięzi nóg i stóp.',
+    descEn: 'Gentle mobility, breathing, and fascial elasticity routines for leg and foot health.',
+  },
+};
+
 function toGuideCard(path, locale = 'pl') {
   const page = getLandingPage(path, locale);
-  if (!page) {
-    return null;
+  if (page) {
+    return {
+      path: page.path,
+      title: page.h1.split(' — ')[0] ?? page.h1,
+      description: page.description,
+    };
   }
 
-  return {
-    path: page.path,
-    title: page.h1.split(' — ')[0] ?? page.h1,
-    description: page.description,
-  };
+  const topicMeta = topicPageTitles[path];
+  if (topicMeta) {
+    return {
+      path: path,
+      title: locale === 'en' ? topicMeta.en : topicMeta.pl,
+      description: locale === 'en' ? topicMeta.descEn : topicMeta.descPl,
+    };
+  }
+
+  return null;
 }
+
 
 export function getPoradnikiCategories(locale = 'pl') {
   return categoryDefinitions.map((category) => ({

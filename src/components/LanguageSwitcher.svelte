@@ -34,21 +34,21 @@
 
   const buttonClass =
     variant === 'dark'
-      ? 'inline-flex h-[38px] items-center justify-center gap-1.5 rounded border border-[#5a6a82] px-[14px] text-sm font-medium leading-none text-[#f4efe6] transition-colors hover:border-accent hover:bg-[#243248] hover:text-white focus:outline-none focus:ring-1 focus:ring-accent'
-      : 'inline-flex h-[38px] items-center justify-center gap-1.5 rounded border border-ink px-[14px] text-sm font-medium leading-none text-ink transition-colors hover:bg-ink hover:text-paper focus:outline-none focus:ring-1 focus:ring-accent';
+      ? 'inline-flex h-[38px] cursor-pointer items-center justify-center gap-1.5 rounded border border-[#2c3a52] bg-[#142030] px-3 text-sm font-medium leading-none text-[#f4efe6] transition-all hover:border-accent-light hover:bg-[#1c2c42] hover:text-white focus:outline-none focus:ring-2 focus:ring-accent-light'
+      : 'inline-flex h-[38px] cursor-pointer items-center justify-center gap-1.5 rounded border border-line bg-card px-3 text-sm font-medium leading-none text-ink shadow-[0_1px_2px_rgba(22,34,52,0.03)] transition-all hover:border-accent hover:bg-accent-bg/40 focus:outline-none focus:ring-2 focus:ring-accent';
 
   const menuClass =
     variant === 'dark'
-      ? 'absolute right-0 mt-1.5 w-24 rounded border border-[#2c3a52] bg-[#182438] py-1 shadow-md z-50'
-      : 'absolute right-0 mt-1.5 w-24 rounded border border-ink bg-paper py-1 shadow-md z-50';
+      ? 'absolute right-0 top-full mt-1.5 w-24 rounded-lg border border-[#2c3a52] bg-[#142030] py-1 shadow-xl z-50'
+      : 'absolute right-0 top-full mt-1.5 w-24 rounded-lg border border-line bg-card py-1 shadow-xl z-50';
 
   function optionClass(loc: SupportedLocale) {
     if (variant === 'dark') {
-      return `flex w-full items-center justify-between px-3 py-1.5 text-xs font-mono font-medium transition-colors hover:bg-[#243248] hover:text-white text-left ${
+      return `flex w-full cursor-pointer items-center justify-between px-3 py-1.5 text-xs font-mono font-medium transition-colors hover:bg-[#1c2c42] hover:text-white text-left ${
         loc === currentLocale ? 'font-bold text-accent-light' : 'text-[#d9dce2]'
       }`;
     }
-    return `flex w-full items-center justify-between px-3 py-1.5 text-xs font-mono font-medium transition-colors hover:bg-ink hover:text-paper text-left ${
+    return `flex w-full cursor-pointer items-center justify-between px-3 py-1.5 text-xs font-mono font-medium transition-colors hover:bg-accent-bg hover:text-accent text-left ${
       loc === currentLocale ? 'font-bold text-accent' : 'text-ink'
     }`;
   }
@@ -64,7 +64,7 @@
   }}
 />
 
-<div class="lang-switcher-container relative inline-block text-left">
+<div class="lang-switcher-container relative inline-flex items-center text-left">
   <button
     type="button"
     onclick={toggleOpen}
@@ -73,6 +73,7 @@
     aria-label="Wybierz język / Select language"
     class={buttonClass}
   >
+
     <span class="font-mono text-xs uppercase tracking-wider leading-none">{currentLocale}</span>
     <svg
       class="h-3.5 w-3.5 transition-transform duration-200"

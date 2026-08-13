@@ -2,6 +2,7 @@
 import Logo from './Logo.astro';
 import LanguageSwitcher from './LanguageSwitcher.svelte';
 import AiSearch from './AiSearch.svelte';
+import Icon from './Icon.astro';
 import { extractLocale, localizeHref, routing, t } from '../i18n/config.ts';
 
 const { currentPath = '/' } = Astro.props;
@@ -9,42 +10,50 @@ const { locale, pathname } = extractLocale(currentPath, routing);
 
 const nav = [
   { path: '/kurcze-miesniowe', key: 'nav.causes' },
-  { path: '/pierwsza-pomoc', key: 'nav.first_aid' },
+  { path: '/pierwsza-pomoc', key: 'nav.first_aid', highlight: true },
   { path: '/profilaktyka', key: 'nav.prevention' },
+  { path: '/kurcz-vs-skurcz', key: 'nav.comparison' },
   { path: '/poradniki', key: 'nav.guides' },
   { path: '/faq', key: 'nav.faq' },
 ];
 
+
 const homeHref = localizeHref('/', locale, routing);
 const contactHref = localizeHref('/kontakt', locale, routing);
+const firstAidHref = localizeHref('/pierwsza-pomoc', locale, routing);
 
 const isActive = (path) =>
   path === '/' ? pathname === '/' : pathname.startsWith(path);
 ---
 
 <header
-  class="sticky top-0 z-40 border-b border-line bg-paper/90 backdrop-blur supports-[backdrop-filter]:bg-paper/80"
+  class="sticky top-0 z-40 border-b border-line/80 bg-paper/90 backdrop-blur-md supports-[backdrop-filter]:bg-paper/85 transition-colors"
 >
-  <div class="mx-auto flex h-[70px] max-w-7xl items-center justify-between px-5 sm:px-14">
-    <a href={homeHref} aria-label="Kurcz.pl — strona główna">
-      <Logo class="text-[25px]" />
+  <div class="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-5 sm:px-14">
+    <a href={homeHref} class="group flex items-center gap-2" aria-label="Kurcz.pl — strona główna">
+      <Logo class="text-[26px] tracking-tight transition-transform duration-200 group-hover:scale-[1.02]" />
     </a>
 
-    <nav class="hidden items-center gap-7 text-[15.5px] md:flex" aria-label="Główna nawigacja">
+    <nav class="hidden items-center gap-6 text-[15px] lg:gap-8 md:flex" aria-label="Główna nawigacja">
       {
         nav.map((item) => {
           const href = localizeHref(item.path, locale, routing);
           const label = t(locale, item.key);
+          const active = isActive(item.path);
           return (
             <a
               href={href}
               class:list={[
-                'transition-colors',
-                isActive(item.path)
-                  ? 'border-b-2 border-accent pb-0.5 font-medium text-ink'
-                  : 'text-body hover:text-ink',
+                'relative py-1 text-sm font-medium transition-all',
+                item.highlight
+                  ? active
+                    ? 'rounded-md bg-accent px-3 py-1 text-paper'
+                    : 'rounded-md border border-accent/30 bg-accent-bg/60 px-3 py-1 text-accent hover:border-accent hover:bg-accent hover:text-paper'
+                  : active
+                    ? 'text-ink after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-accent'
+                    : 'text-body hover:text-ink',
               ]}
-              aria-current={isActive(item.path) ? 'page' : undefined}
+              aria-current={active ? 'page' : undefined}
             >
               {label}
             </a>
@@ -53,14 +62,14 @@ const isActive = (path) =>
       }
     </nav>
 
-    <div class="flex items-center gap-3">
+    <div class="flex items-center gap-2.5 sm:gap-3">
       <AiSearch client:idle locale={locale} />
 
       <LanguageSwitcher client:load currentPath={currentPath} currentLocale={locale} />
 
       <a
         href={contactHref}
-        class="hidden h-[38px] items-center justify-center rounded border border-ink px-[18px] text-sm font-medium leading-none text-ink transition-colors hover:bg-ink hover:text-paper sm:inline-flex"
+        class="hidden h-[38px] items-center justify-center rounded border border-line bg-card px-4 text-sm font-medium leading-none text-ink shadow-[0_1px_2px_rgba(22,34,52,0.03)] transition-all hover:border-ink hover:bg-ink hover:text-paper sm:inline-flex"
       >
         {t(locale, 'nav.contact')}
       </a>
@@ -68,41 +77,70 @@ const isActive = (path) =>
       <button
         type="button"
         id="menu-toggle"
-        class="inline-flex items-center justify-center rounded-md p-2 text-ink md:hidden"
+        class="inline-flex h-[38px] w-[38px] cursor-pointer items-center justify-center rounded border border-line bg-card text-ink transition-colors hover:border-ink md:hidden"
         aria-label="Otwórz menu"
         aria-expanded="false"
         aria-controls="mobile-menu"
       >
-        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6">
+
+        <svg id="menu-icon-open" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
           <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+        <svg id="menu-icon-close" class="hidden h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
         </svg>
       </button>
     </div>
   </div>
 
+  <!-- Mobile Drawer Menu -->
   <nav
     id="mobile-menu"
-    class="hidden border-t border-line bg-paper px-5 pb-4 md:hidden"
+    class="hidden border-t border-line bg-card/95 px-5 py-5 backdrop-blur-md md:hidden"
     aria-label="Nawigacja mobilna"
   >
-    {
-      [...nav, { path: '/kontakt', key: 'nav.contact' }].map((item) => {
-        const href = localizeHref(item.path, locale, routing);
-        const label = t(locale, item.key);
-        return (
-          <a
-            href={href}
-            class:list={[
-              'block border-b border-line-soft py-3 text-base last:border-b-0',
-              isActive(item.path) ? 'font-medium text-accent' : 'text-body',
-            ]}
-            aria-current={isActive(item.path) ? 'page' : undefined}
-          >
-            {label}
-          </a>
-        );
-      })
-    }
+    <a
+      href={firstAidHref}
+      class="mb-3 flex items-center justify-between rounded-lg border border-accent/40 bg-accent-bg/80 px-4 py-3 text-sm font-semibold text-accent transition-colors hover:bg-accent hover:text-paper"
+    >
+      <span class="inline-flex items-center gap-2">
+        <Icon name="first-aid" class="h-4 w-4" />
+        <span>{t(locale, 'nav.first_aid')} — {locale === 'en' ? 'Quick Relief' : 'szybka ulga'}</span>
+      </span>
+      <span aria-hidden="true">→</span>
+    </a>
+
+    <div class="flex flex-col divide-y divide-line-soft">
+      {
+        [
+          { path: '/', key: 'nav.home' },
+          { path: '/kurcze-miesniowe', key: 'nav.causes' },
+          { path: '/profilaktyka', key: 'nav.prevention' },
+          { path: '/kurcz-vs-skurcz', key: 'nav.comparison' },
+          { path: '/poradniki', key: 'nav.guides' },
+          { path: '/faq', key: 'nav.faq' },
+          { path: '/kontakt', key: 'nav.contact' },
+        ].map((item) => {
+
+          const href = localizeHref(item.path, locale, routing);
+          const label = t(locale, item.key);
+          const active = isActive(item.path);
+          return (
+            <a
+              href={href}
+              class:list={[
+                'flex items-center justify-between py-3 text-[15.5px] transition-colors',
+                active ? 'font-semibold text-accent' : 'text-body hover:text-ink',
+              ]}
+              aria-current={active ? 'page' : undefined}
+            >
+              <span>{label}</span>
+              {active && <span class="h-1.5 w-1.5 rounded-full bg-accent"></span>}
+            </a>
+          );
+        })
+      }
+    </div>
   </nav>
 </header>
 
@@ -110,10 +148,17 @@ const isActive = (path) =>
   (function () {
     var btn = document.getElementById('menu-toggle');
     var menu = document.getElementById('mobile-menu');
+    var iconOpen = document.getElementById('menu-icon-open');
+    var iconClose = document.getElementById('menu-icon-close');
     if (!btn || !menu) return;
     btn.addEventListener('click', function () {
-      var open = menu.classList.toggle('hidden') === false;
-      btn.setAttribute('aria-expanded', String(open));
+      var isOpen = menu.classList.toggle('hidden') === false;
+      btn.setAttribute('aria-expanded', String(isOpen));
+      if (iconOpen && iconClose) {
+        iconOpen.classList.toggle('hidden', isOpen);
+        iconClose.classList.toggle('hidden', !isOpen);
+      }
     });
   })();
 </script>
+

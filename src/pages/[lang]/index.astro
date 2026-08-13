@@ -3,6 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import Shell from '../../components/Shell.astro';
 import FaqAccordion from '../../components/FaqAccordion.astro';
 import GeometrizedPhoto from '../../components/GeometrizedPhoto.svelte';
+import Icon from '../../components/Icon.astro';
 import { getRouteByPath } from '../../seo/routes.js';
 import { getFaqItems } from '../../seo/faq-data.js';
 import { LOCALES, DEFAULT_LOCALE, t, localizeHref, routing, type SupportedLocale } from '../../i18n/config.ts';
@@ -22,38 +23,110 @@ const reliefSteps = getLocalizedReliefSteps(lang);
 const topics = getLocalizedTopics(lang);
 const doctorSigns = getLocalizedDoctorSigns(lang);
 const homeFaq = getFaqItems(lang).slice(0, 4);
-const popularGuides = [
+
+const triageItems = [
+  {
+    path: '/kurcze-lydek',
+    icon: 'calf',
+    tag: lang === 'en' ? 'Most common' : 'Najczęstsze',
+    title: lang === 'en' ? 'Calf Cramps' : 'Kurcze łydek',
+    desc: lang === 'en' ? 'Sudden tightening after workouts or during movement.' : 'Nagłe spięcie po wysiłku lub przy niefortunnym ruchu.',
+  },
+  {
+    path: '/kurcze-nocne',
+    icon: 'night',
+    tag: lang === 'en' ? 'During sleep' : 'W nocy',
+    title: lang === 'en' ? 'Night Cramps' : 'Kurcze nocne',
+    desc: lang === 'en' ? 'Painful nighttime wakeups and evening prevention.' : 'Bolesne wybudzenia ze snu i wieczorna profilaktyka.',
+  },
   {
     path: '/kurcze-u-kobiet-w-ciazy',
+    icon: 'pregnancy',
+    tag: lang === 'en' ? 'Pregnancy' : 'Ciąża',
+    title: lang === 'en' ? 'Pregnancy Cramps' : 'Kurcze w ciąży',
+    desc: lang === 'en' ? 'Safe positioning and gentle relief for expectant mothers.' : 'Bezpieczne pozycje, odpoczynek i ulga dla przyszłych mam.',
+  },
+  {
+    path: '/kurcze-stop',
+    icon: 'foot',
+    tag: lang === 'en' ? 'Feet & toes' : 'Stopy i palce',
+    title: lang === 'en' ? 'Foot Cramps' : 'Kurcze stóp',
+    desc: lang === 'en' ? 'Plantar arch spasms and toe curling relief.' : 'Bolesne skurcze łuku podeszwowego i wykręcanie palców.',
+  },
+  {
+    path: '/niedobor-magnezu',
+    icon: 'magnesium',
+    tag: lang === 'en' ? 'Minerals' : 'Minerały',
+    title: lang === 'en' ? 'Magnesium Deficiency' : 'Niedobór magnezu',
+    desc: lang === 'en' ? 'Symptoms of deficit, bioavailability, and food sources.' : 'Objawy deficytu, przyswajalność i zbilansowana dieta.',
+  },
+  {
+    path: '/kurcze-u-sportowcow',
+    icon: 'sport',
+    tag: lang === 'en' ? 'Athletics' : 'Trening',
+    title: lang === 'en' ? 'Athletes & Runners' : 'Dla sportowców',
+    desc: lang === 'en' ? 'Electrolyte loss in sweat, hydration, and recovery.' : 'Utrata soli w pocie, nawodnienie i regeneracja powysiłkowa.',
+  },
+  {
+    path: '/kurcze-dloni',
+    icon: 'hand',
+    tag: lang === 'en' ? 'Hands' : 'Dłonie',
+    title: lang === 'en' ? 'Hand Cramps' : 'Kurcze dłoni',
+    desc: lang === 'en' ? 'Strain from mouse, keyboard, or manual tasks.' : 'Napięcia od pracy przy komputerze, pisania i pracy manualnej.',
+  },
+  {
+    path: '/kurcze-u-osob-starszych',
+    icon: 'senior',
+    tag: lang === 'en' ? 'Seniors' : 'Seniorzy',
+    title: lang === 'en' ? 'Senior Health' : 'U seniorów',
+    desc: lang === 'en' ? 'Circulation, diuretic medications, and gentle mobility.' : 'Wpływ krążenia obwodowego, leków i bezpieczna aktywność.',
+  },
+];
+
+const popularGuides = [
+  {
+    path: '/kurcz-vs-skurcz',
+    tag: lang === 'en' ? 'Concepts' : 'Pojęcia',
+    title: lang === 'en' ? 'Cramp vs Spasm' : 'Kurcz czy skurcz?',
+    desc: lang === 'en' ? 'Medical and practical differences: how an acute muscle cramp differs from a physiological spasm.' : 'Różnice medyczne i językowe: czym różni się bolesny kurcz od fizjologicznego skurczu.',
+  },
+  {
+    path: '/kurcze-u-kobiet-w-ciazy',
+    tag: lang === 'en' ? 'Pregnancy' : 'Ciąża',
     title: lang === 'en' ? 'Cramps During Pregnancy' : 'Kurcze w ciąży',
     desc: lang === 'en' ? 'Safe first aid and prevention for calf cramps during pregnancy.' : 'Bezpieczna pierwsza pomoc i profilaktyka kurczy łydek w ciąży.',
   },
   {
     path: '/kurcze-nocne',
+    tag: lang === 'en' ? 'Sleep' : 'Sen',
     title: lang === 'en' ? 'Night Cramps' : 'Kurcze nocne',
     desc: lang === 'en' ? 'Why cramps wake you at night and how to reduce recurrences.' : 'Dlaczego budzą w nocy i jak zmniejszyć ryzyko nawrotów.',
   },
   {
     path: '/kurcze-lydek',
+    tag: lang === 'en' ? 'Legs' : 'Nogi',
     title: lang === 'en' ? 'Calf Cramps' : 'Kurcze łydek',
     desc: lang === 'en' ? 'Causes, stretching, and fast relief after exercise or at night.' : 'Przyczyny, rozciąganie i szybka ulga po treningu lub w nocy.',
   },
   {
     path: '/niedobor-magnezu',
+    tag: lang === 'en' ? 'Diet' : 'Dieta',
     title: lang === 'en' ? 'Magnesium Deficiency' : 'Niedobór magnezu',
     desc: lang === 'en' ? 'Symptoms, diet, and when to discuss supplements with a clinician.' : 'Objawy, dieta i kiedy omówić suplementację z lekarzem.',
   },
   {
     path: '/pierwsza-pomoc',
+    tag: lang === 'en' ? 'Relief' : 'Ratunek',
     title: lang === 'en' ? 'First Aid' : 'Pierwsza pomoc',
     desc: lang === 'en' ? 'What to do step by step when a muscle suddenly cramps.' : 'Co zrobić krok po kroku, gdy mięsień nagle złapie kurcz.',
   },
 ];
 
+
 const galleryItems = [
   {
-    key: 'runner_stretching_calf.png',
-    image: '/img/runner_stretching_calf.png',
+    key: 'first_aid_calf_stretch.png',
+    image: '/img/first_aid_calf_stretch.png',
     title: lang === 'en' ? 'Activity & Stretching' : 'Aktywność i rozciąganie',
     desc: lang === 'en' ? 'Proper muscle stretching after exercise and before bed reduces sudden painful cramps.' : 'Prawidłowe rozciąganie mięśni po treningu i przed snem ogranicza ryzyko nagłych bolesnych skurczów.',
     link: localizeHref('/rozciaganie-przy-kurczach', lang, routing),
@@ -85,63 +158,130 @@ const galleryItems = [
 <Layout route={route} lang={lang}>
   <Shell currentPath={currentPath}>
     <!-- HERO -->
-    <section class="mx-auto grid max-w-7xl items-center gap-12 px-5 py-16 sm:px-14 lg:grid-cols-[1.15fr_0.85fr] lg:gap-14 lg:py-[72px]">
+    <section class="mx-auto grid max-w-7xl items-center gap-12 px-5 py-14 sm:px-14 lg:grid-cols-[1.15fr_0.85fr] lg:gap-14 lg:py-[68px]">
       <div>
         <div class="eyebrow mb-5 flex items-center gap-2.5 text-faint">
-          <span class="h-px w-[22px] bg-[#c9b79b]"></span>{t(lang, 'hero.eyebrow')}
+          <span class="h-px w-[22px] bg-accent/60"></span>{t(lang, 'hero.eyebrow')}
         </div>
-        <h1 class="text-5xl leading-[1.02] text-ink sm:text-6xl lg:text-[70px] lg:leading-[1.02]">
+        <h1 class="text-5xl leading-[1.02] text-ink sm:text-6xl lg:text-[68px] lg:leading-[1.02]">
           {t(lang, 'hero.h1')}
         </h1>
-        <p class="mt-6 max-w-[480px] text-lg leading-relaxed text-body">
+        <p class="mt-6 max-w-[500px] text-lg leading-relaxed text-body">
           {t(lang, 'hero.p')}
         </p>
         <div class="mt-8 flex flex-wrap items-center gap-3.5">
           <a
             href={localizeHref('/pierwsza-pomoc', lang, routing)}
-            class="inline-flex items-center gap-2 rounded-md bg-accent px-[26px] py-[15px] text-[15px] font-medium text-paper transition-colors hover:bg-accent-light"
+            class="inline-flex items-center gap-2 rounded-lg bg-accent px-7 py-3.5 text-[15px] font-medium text-paper shadow-sm transition-all hover:bg-accent-hover hover:shadow-md"
           >
             {t(lang, 'hero.first_aid_btn')} <span class="text-[17px]">→</span>
           </a>
           <a
             href={localizeHref('/kurcze-miesniowe', lang, routing)}
-            class="rounded-md border border-[#cfc6b5] px-[22px] py-[15px] text-[15px] font-medium text-ink transition-colors hover:border-ink"
+            class="rounded-lg border border-line bg-card px-6 py-3.5 text-[15px] font-medium text-ink transition-all hover:border-ink hover:bg-card-elevated"
           >
             {t(lang, 'hero.causes_btn')}
           </a>
         </div>
+
+        <div class="mt-6 flex items-center gap-2 text-[13px] text-muted">
+          <span class="font-medium text-ink">{lang === 'en' ? 'Common question:' : 'Częste pytanie:'}</span>
+          <a
+            href={localizeHref('/kurcz-vs-skurcz', lang, routing)}
+            class="inline-flex items-center gap-1 font-semibold text-accent hover:text-accent-hover hover:underline"
+          >
+            <span>{lang === 'en' ? 'Cramp vs Spasm — what is the difference?' : 'Kurcz czy skurcz — jaka jest różnica medyczna?'}</span>
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
       </div>
 
+
       <!-- Quick relief card -->
-      <div class="rounded-[10px] border border-line bg-card p-[30px] shadow-[0_1px_2px_rgba(24,36,56,.04),0_12px_30px_rgba(24,36,56,.06)]">
-        <div class="mb-5 flex items-center justify-between">
-          <span class="eyebrow text-accent">{t(lang, 'relief.title')}</span>
-          <span class="font-mono text-[11.5px] text-faint">{t(lang, 'relief.steps_label')}</span>
+      <div class="rounded-2xl border border-line bg-card p-6 sm:p-8 shadow-[0_1px_3px_rgba(22,34,52,0.04),0_12px_32px_rgba(22,34,52,0.06)]">
+        <div class="mb-6 flex items-center justify-between border-b border-line-soft pb-4">
+          <div class="flex items-center gap-2">
+            <span class="inline-flex h-2 w-2 rounded-full bg-accent animate-pulse"></span>
+            <span class="eyebrow text-accent font-semibold">{t(lang, 'relief.title')}</span>
+          </div>
+          <span class="rounded-full bg-accent-bg px-2.5 py-0.5 font-mono text-[11px] font-medium text-accent">{t(lang, 'relief.steps_label')}</span>
         </div>
-        <div class="flex flex-col">
+        <div class="flex flex-col gap-4">
           {
             reliefSteps.map((s) => (
-              <div class="flex gap-4 border-t border-line-soft py-4">
-                <span class="w-[26px] flex-none font-serif text-2xl leading-none text-accent">{s.n}</span>
+              <div class="flex items-start gap-4 rounded-xl border border-line-soft/80 bg-paper/60 p-3.5 transition-colors hover:border-accent-border hover:bg-card">
+                <span class="flex h-7 w-7 flex-none items-center justify-center rounded-full bg-accent font-serif text-sm font-medium text-paper">
+                  {s.n}
+                </span>
                 <div>
-                  <div class="mb-1 text-[15px] font-semibold text-ink">{s.title}</div>
-                  <div class="text-[13.5px] leading-relaxed text-muted">{s.body}</div>
+                  <div class="text-[15px] font-semibold text-ink">{s.title}</div>
+                  <div class="mt-0.5 text-[13.5px] leading-relaxed text-muted">{s.body}</div>
                 </div>
               </div>
             ))
           }
         </div>
+        <a
+          href={localizeHref('/pierwsza-pomoc', lang, routing)}
+          class="mt-5 inline-flex items-center gap-1.5 text-xs font-semibold text-accent transition-colors hover:text-accent-hover"
+        >
+          <span>{lang === 'en' ? 'Step-by-step instructions' : 'Instrukcja krok po kroku'}</span>
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- QUICK SYMPTOM / PROBLEM NAVIGATOR -->
+    <section class="mx-auto max-w-7xl px-5 pb-16 sm:px-14">
+      <div class="mb-8 max-w-[680px]">
+        <span class="eyebrow text-accent">{lang === 'en' ? 'quick symptom finder' : 'szybki wybór problemu'}</span>
+        <h2 class="mt-2 text-3xl text-ink sm:text-[36px]">
+          {lang === 'en' ? 'Where and when do your cramps happen?' : 'Gdzie i kiedy pojawia się kurcz?'}
+        </h2>
+        <p class="mt-2.5 text-[15.5px] leading-relaxed text-muted">
+          {lang === 'en' ? 'Select your context to jump straight to tailored relief steps, causes, and prevention strategies.' : 'Wybierz swoją sytuację, aby natychmiast przejść do dedykowanych wskazówek, przyczyn i profilaktyki.'}
+        </p>
+      </div>
+
+      <div class="grid gap-3.5 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          triageItems.map((item) => (
+            <a
+              href={localizeHref(item.path, lang, routing)}
+              class="group relative flex flex-col justify-between rounded-xl border border-line bg-card p-5 transition-all duration-200 hover:-translate-y-1 hover:border-accent-border hover:bg-card-elevated hover:shadow-md"
+            >
+              <div>
+                <div class="flex items-center justify-between">
+                  <div class="flex h-9 w-9 items-center justify-center rounded-lg border border-accent-border/50 bg-accent-bg text-accent transition-colors group-hover:bg-accent group-hover:text-paper">
+                    <Icon name={item.icon as any} class="h-4.5 w-4.5" />
+                  </div>
+                  <span class="tag-chip text-[11px]">{item.tag}</span>
+                </div>
+                <h3 class="mt-3.5 text-lg font-semibold text-ink transition-colors group-hover:text-accent">
+                  {item.title}
+                </h3>
+                <p class="mt-1.5 text-xs leading-relaxed text-muted">
+                  {item.desc}
+                </p>
+              </div>
+              <span class="mt-4 inline-flex items-center gap-1 text-xs font-medium text-accent">
+                <span>{lang === 'en' ? 'view guide' : 'sprawdź zalecenia'}</span>
+                <span class="transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">→</span>
+              </span>
+            </a>
+          ))
+        }
       </div>
     </section>
 
     <!-- VISUAL GALLERY SECTION -->
-    <section class="mx-auto max-w-7xl px-5 pb-[72px] sm:px-14">
+    <section class="mx-auto max-w-7xl px-5 pb-16 sm:px-14">
       <div class="mb-8 max-w-[620px]">
         <span class="eyebrow text-accent">{lang === 'en' ? 'education & prevention' : 'edukacja & profilaktyka'}</span>
         <h2 class="mt-2 text-3xl text-ink sm:text-[36px]">
           {lang === 'en' ? 'Prevention & Physical Therapy Methods' : 'Metody prewencji i fizjoterapii'}
         </h2>
-        <p class="mt-3 text-base leading-relaxed text-muted">
+        <p class="mt-2.5 text-[15.5px] leading-relaxed text-muted">
           {lang === 'en' ? 'Explore a holistic approach to muscle health — from daily stretching and nutrition to manual massage and soundwave therapy.' : 'Poznaj holistyczne podejście do zdrowia mięśni — od rozciągania i diety po profesjonalny masaż i wibroakustykę.'}
         </p>
       </div>
@@ -150,7 +290,7 @@ const galleryItems = [
           galleryItems.map((item) => (
             <a
               href={item.link}
-              class="group flex flex-col overflow-hidden rounded-[10px] border border-line bg-card transition-all duration-200 hover:-translate-y-1 hover:border-accent-border hover:shadow-lg"
+              class="group flex flex-col overflow-hidden rounded-xl border border-line bg-card transition-all duration-200 hover:-translate-y-1 hover:border-accent-border hover:shadow-lg"
             >
               <div class="aspect-[4/3] overflow-hidden bg-navy">
                 <GeometrizedPhoto
@@ -179,10 +319,13 @@ const galleryItems = [
     </section>
 
     <!-- POPULAR GUIDES -->
-    <section class="mx-auto max-w-7xl px-5 pb-[72px] sm:px-14">
+    <section class="mx-auto max-w-7xl px-5 pb-16 sm:px-14">
       <div class="mb-7 flex items-end justify-between">
-        <h2 class="text-3xl text-ink sm:text-[34px]">{lang === 'en' ? 'Popular Guides' : 'Popularne poradniki'}</h2>
-        <a href={localizeHref('/poradniki', lang, routing)} class="text-sm text-accent hover:text-accent-light">
+        <div>
+          <span class="eyebrow text-accent">{lang === 'en' ? 'practical knowledge' : 'praktyczna wiedza'}</span>
+          <h2 class="mt-1 text-3xl text-ink sm:text-[34px]">{lang === 'en' ? 'Popular Guides' : 'Popularne poradniki'}</h2>
+        </div>
+        <a href={localizeHref('/poradniki', lang, routing)} class="text-sm font-medium text-accent hover:text-accent-hover">
           {lang === 'en' ? 'all guides →' : 'wszystkie poradniki →'}
         </a>
       </div>
@@ -191,11 +334,16 @@ const galleryItems = [
           popularGuides.map((guide) => (
             <a
               href={localizeHref(guide.path, lang, routing)}
-              class="group flex min-h-[156px] flex-col rounded-[9px] border border-line bg-card p-6 transition-[border-color,transform] hover:-translate-y-0.5 hover:border-accent-border"
+              class="group flex min-h-[160px] flex-col justify-between rounded-xl border border-line bg-card p-6 transition-all duration-200 hover:-translate-y-1 hover:border-accent-border hover:shadow-sm"
             >
-              <h3 class="mb-2 text-xl leading-snug text-ink">{guide.title}</h3>
-              <p class="mb-auto text-sm leading-relaxed text-muted">{guide.desc}</p>
-              <span class="mt-3.5 text-sm text-accent">{lang === 'en' ? 'read →' : 'czytaj →'}</span>
+              <div>
+                <div class="mb-2 flex items-center justify-between">
+                  <span class="tag-chip text-[10.5px]">{guide.tag}</span>
+                </div>
+                <h3 class="mb-2 text-xl leading-snug text-ink group-hover:text-accent transition-colors">{guide.title}</h3>
+                <p class="text-sm leading-relaxed text-muted">{guide.desc}</p>
+              </div>
+              <span class="mt-4 text-sm font-medium text-accent">{lang === 'en' ? 'read guide →' : 'czytaj poradnik →'}</span>
             </a>
           ))
         }
@@ -203,9 +351,12 @@ const galleryItems = [
     </section>
 
     <!-- TOPICS -->
-    <section class="mx-auto max-w-7xl px-5 pb-[72px] sm:px-14">
+    <section class="mx-auto max-w-7xl px-5 pb-16 sm:px-14">
       <div class="mb-7 flex items-end justify-between">
-        <h2 class="text-3xl text-ink sm:text-[34px]">{t(lang, 'topics.title')}</h2>
+        <div>
+          <span class="eyebrow text-accent">{lang === 'en' ? 'compendium' : 'kompendium'}</span>
+          <h2 class="mt-1 text-3xl text-ink sm:text-[34px]">{t(lang, 'topics.title')}</h2>
+        </div>
         <span class="font-mono text-xs text-faint">{t(lang, 'topics.count_label', { count: topics.length })}</span>
       </div>
       <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -213,12 +364,14 @@ const galleryItems = [
           topics.map((tItem) => (
             <a
               href={localizeHref(tItem.path, lang, routing)}
-              class="group flex min-h-[172px] flex-col rounded-[9px] border border-line bg-card p-6 transition-[border-color,transform] hover:-translate-y-0.5 hover:border-accent-border"
+              class="group flex min-h-[172px] flex-col justify-between rounded-xl border border-line bg-card p-6 transition-all duration-200 hover:-translate-y-1 hover:border-accent-border hover:shadow-sm"
             >
-              <span class="font-mono text-xs text-faint">{tItem.n}</span>
-              <h3 class="mt-3.5 mb-2 text-2xl leading-snug text-ink">{tItem.title}</h3>
-              <p class="mb-auto text-sm leading-relaxed text-muted">{tItem.desc}</p>
-              <span class="mt-3.5 text-sm text-accent">{t(lang, 'topics.read_more')}</span>
+              <div>
+                <span class="font-serif text-lg font-medium text-accent/80">{tItem.n}</span>
+                <h3 class="mt-2 mb-2 text-2xl leading-snug text-ink group-hover:text-accent transition-colors">{tItem.title}</h3>
+                <p class="text-sm leading-relaxed text-muted">{tItem.desc}</p>
+              </div>
+              <span class="mt-4 text-sm font-medium text-accent">{t(lang, 'topics.read_more')}</span>
             </a>
           ))
         }
@@ -226,23 +379,27 @@ const galleryItems = [
     </section>
 
     <!-- WHEN TO SEE A DOCTOR -->
-    <section class="mx-auto max-w-7xl px-5 pb-[72px] sm:px-14">
-      <div class="grid items-center gap-12 rounded-xl bg-navy px-8 py-12 sm:px-13 md:grid-cols-2">
+    <section class="mx-auto max-w-7xl px-5 pb-16 sm:px-14">
+      <div class="relative overflow-hidden rounded-2xl bg-navy px-8 py-12 sm:px-12 md:grid md:grid-cols-[1.1fr_0.9fr] md:items-center md:gap-12 shadow-xl border border-navy-border">
+        <div class="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-accent/10 blur-3xl pointer-events-none"></div>
         <div>
-          <div class="eyebrow mb-4 text-accent-light">{t(lang, 'doctor.eyebrow')}</div>
-          <h2 class="mb-3 text-3xl leading-tight text-[#f4efe6] sm:text-4xl">
+          <div class="mb-4 inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/10 px-3 py-1 font-mono text-xs uppercase tracking-wider text-amber-300">
+            <Icon name="warning" class="h-3.5 w-3.5 text-amber-400" />
+            <span>{t(lang, 'doctor.eyebrow')}</span>
+          </div>
+          <h2 class="mb-4 text-3xl leading-tight text-[#f4efe6] sm:text-4xl">
             {t(lang, 'doctor.title')}
           </h2>
           <p class="text-[15.5px] leading-relaxed text-[#a9b0bd]">
             {t(lang, 'doctor.p')}
           </p>
         </div>
-        <ul class="flex flex-col">
+        <ul class="mt-8 flex flex-col gap-3 md:mt-0">
           {
             doctorSigns.map((s) => (
-              <li class="flex gap-3.5 border-t border-[#2c3a52] py-3.5 text-[15px] text-[#d9dce2]">
-                <span class="font-semibold text-accent">·</span>
-                {s}
+              <li class="flex items-start gap-3 rounded-lg border border-navy-border bg-navy-card/60 p-3.5 text-[14.5px] leading-relaxed text-[#d9dce2]">
+                <span class="text-amber-400 font-bold" aria-hidden="true">·</span>
+                <span>{s}</span>
               </li>
             ))
           }
@@ -251,15 +408,17 @@ const galleryItems = [
     </section>
 
     <!-- FAQ -->
-    <section class="mx-auto max-w-7xl px-5 pb-[76px] sm:px-14">
+    <section class="mx-auto max-w-7xl px-5 pb-16 sm:px-14">
       <div class="grid gap-12 lg:grid-cols-[0.7fr_1.3fr]">
         <div>
-          <h2 class="mb-3 text-3xl text-ink sm:text-[34px]">{t(lang, 'faq.title')}</h2>
+          <span class="eyebrow text-accent">{lang === 'en' ? 'questions & answers' : 'pytania i odpowiedzi'}</span>
+          <h2 class="mt-1 mb-3 text-3xl text-ink sm:text-[34px]">{t(lang, 'faq.title')}</h2>
           <p class="text-[15px] leading-relaxed text-muted">
             {t(lang, 'faq.intro')}
           </p>
-          <a href={localizeHref('/faq', lang, routing)} class="mt-5 inline-block text-sm text-accent hover:text-accent-light">
-            {t(lang, 'faq.see_all')}
+          <a href={localizeHref('/faq', lang, routing)} class="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-accent hover:text-accent-hover">
+            <span>{t(lang, 'faq.see_all')}</span>
+            <span aria-hidden="true">→</span>
           </a>
         </div>
         <FaqAccordion items={homeFaq} bare />
@@ -267,3 +426,4 @@ const galleryItems = [
     </section>
   </Shell>
 </Layout>
+

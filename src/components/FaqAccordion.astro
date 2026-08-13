@@ -7,37 +7,50 @@ const { items = [], heading = 'Najczęściej zadawane pytania', bare = false } =
 {
   items.length > 0 &&
     (bare ? (
-      <div>
+      <div class="flex flex-col gap-3">
         {items.map((item) => (
-          <details class="group border-t border-line py-[22px] last:border-b last:border-line">
-            <summary class="flex cursor-pointer list-none items-start justify-between gap-5 marker:hidden">
-              <h3 class="text-[18px] font-medium text-ink">{item.question}</h3>
+          <details class="group rounded-xl border border-line bg-card p-5 transition-all open:border-accent-border open:bg-card-elevated open:shadow-sm">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 marker:hidden select-none">
+              <h3 class="text-[17px] font-semibold text-ink transition-colors group-hover:text-accent group-open:text-accent">
+                {item.question}
+              </h3>
               <span
                 aria-hidden="true"
-                class="font-serif text-xl leading-none text-accent transition-transform group-open:rotate-45 after:content-['+']"
-              ></span>
+                class="flex h-7 w-7 flex-none items-center justify-center rounded-full bg-paper border border-line-soft font-mono text-sm leading-none text-accent transition-transform duration-200 group-open:rotate-45 group-open:bg-accent group-open:text-paper"
+              >
+                +
+              </span>
             </summary>
-            <p class="mt-3 max-w-[600px] text-[15.5px] leading-relaxed text-muted">{item.answer}</p>
+            <div class="mt-3.5 border-t border-line-soft pt-3">
+              <p class="text-[15px] leading-relaxed text-muted">{item.answer}</p>
+            </div>
           </details>
         ))}
       </div>
     ) : (
-      <section class="mx-auto max-w-3xl px-5 py-12 sm:px-14">
+      <section class="mx-auto max-w-3xl px-5 py-14 sm:px-14">
         <h2 class="text-3xl text-ink sm:text-[34px]">{heading}</h2>
-        <div class="mt-6">
+        <div class="mt-8 flex flex-col gap-3.5">
           {items.map((item) => (
-            <details class="group border-t border-line py-[22px] last:border-b last:border-line">
-              <summary class="flex cursor-pointer list-none items-start justify-between gap-5 marker:hidden">
-                <h3 class="text-[18px] font-medium text-ink">{item.question}</h3>
+            <details class="group rounded-xl border border-line bg-card p-5 sm:p-6 transition-all open:border-accent-border open:bg-card-elevated open:shadow-sm">
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-4 marker:hidden select-none">
+                <h3 class="text-[17.5px] font-semibold text-ink transition-colors group-hover:text-accent group-open:text-accent">
+                  {item.question}
+                </h3>
                 <span
                   aria-hidden="true"
-                  class="font-serif text-xl leading-none text-accent transition-transform group-open:rotate-45 after:content-['+']"
-                ></span>
+                  class="flex h-7 w-7 flex-none items-center justify-center rounded-full bg-paper border border-line-soft font-mono text-sm leading-none text-accent transition-transform duration-200 group-open:rotate-45 group-open:bg-accent group-open:text-paper"
+                >
+                  +
+                </span>
               </summary>
-              <p class="mt-3 max-w-[640px] text-[15.5px] leading-relaxed text-muted">{item.answer}</p>
+              <div class="mt-4 border-t border-line-soft pt-3.5">
+                <p class="text-[15.5px] leading-relaxed text-muted">{item.answer}</p>
+              </div>
             </details>
           ))}
         </div>
       </section>
     ))
 }
+

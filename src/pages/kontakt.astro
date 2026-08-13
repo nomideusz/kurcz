@@ -4,6 +4,7 @@ import Shell from '../components/Shell.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import PageHeader from '../components/PageHeader.astro';
 import ContactForm from '../components/ContactForm.astro';
+import Icon from '../components/Icon.astro';
 import { getRouteByPath } from '../seo/routes.js';
 
 const route = getRouteByPath('/kontakt');
@@ -15,9 +16,52 @@ const route = getRouteByPath('/kontakt');
     <PageHeader
       title={route.h1}
       intro="Masz pytania o kurcze mięśniowe lub propozycję współpracy? Napisz do nas — odpowiemy najszybciej, jak to możliwe."
+      eyebrow="napisz do nas"
     />
-    <div class="mx-auto max-w-2xl px-4 py-8 sm:px-6">
-      <ContactForm />
+    <div class="mx-auto max-w-7xl px-5 py-12 sm:px-14">
+      <div class="grid gap-12 lg:grid-cols-[0.85fr_1.15fr]">
+        <div>
+          <div class="rounded-2xl border border-line bg-card p-6 sm:p-8">
+            <h2 class="text-2xl text-ink">Przed wysłaniem wiadomości</h2>
+            <p class="mt-3 text-[15px] leading-relaxed text-muted">
+              Jeśli szukasz natychmiastowej instrukcji ulgi przy nagłym ataku skurczu lub odpowiedzi na powszechne pytania, sprawdź nasze sekcje:
+            </p>
+            <div class="mt-6 flex flex-col gap-3">
+              <a
+                href="/pierwsza-pomoc/"
+                class="flex items-center justify-between rounded-xl border border-accent-border bg-accent-bg/60 p-4 text-sm font-semibold text-accent transition-all hover:bg-accent hover:text-paper"
+              >
+                <span class="inline-flex items-center gap-2">
+                  <Icon name="first-aid" class="h-4.5 w-4.5 flex-none" />
+                  <span>Pierwsza pomoc — natychmiastowa ulga</span>
+                </span>
+                <span aria-hidden="true">→</span>
+              </a>
+              <a
+                href="/faq/"
+                class="flex items-center justify-between rounded-xl border border-line bg-paper p-4 text-sm font-medium text-ink transition-all hover:border-accent hover:text-accent"
+              >
+                <span class="inline-flex items-center gap-2">
+                  <Icon name="faq" class="h-4.5 w-4.5 flex-none text-accent" />
+                  <span>Najczęściej zadawane pytania (FAQ)</span>
+                </span>
+                <span aria-hidden="true">→</span>
+              </a>
+            </div>
+
+            <div class="mt-8 flex items-start gap-2.5 border-t border-line-soft pt-6 text-xs leading-relaxed text-faint">
+              <Icon name="medical" class="h-4 w-4 flex-none text-accent mt-0.5" />
+              <span>Zastrzeżenie: Nie prowadzimy indywidualnych porad lekarskich na ostrym dyżurze. W razie nagłego zagrożenia zdrowotnego skontaktuj się z pogotowiem lub lekarzem rodzinnym.</span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <ContactForm />
+        </div>
+      </div>
     </div>
   </Shell>
 </Layout>
+
+
