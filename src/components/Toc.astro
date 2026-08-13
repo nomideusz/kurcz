@@ -24,14 +24,14 @@ const heading = t(effectiveLang, 'toc.heading');
           <Icon name="toc" class="h-3.5 w-3.5" />
           <span>{heading}</span>
         </div>
-        <nav class="flex flex-col border-l border-line text-[13.5px] leading-snug" id="article-toc">
+        <nav class="flex flex-col border-l border-line text-[13px] leading-snug" id="article-toc" aria-label={heading}>
           {items.map((it, i) => (
             <a
               href={`#${it.id}`}
               data-toc-id={it.id}
               class:list={[
-                'toc-link -ml-px py-2 pl-3.5 transition-all text-muted hover:text-ink hover:border-l-2 hover:border-accent-border',
-                i === 0 ? 'border-l-2 border-accent font-medium text-ink' : '',
+                'toc-link -ml-px rounded-r-md py-2 pl-3.5 pr-2 transition-all border-l-2 hover:text-ink hover:border-accent-border',
+                i === 0 ? 'border-accent font-medium text-ink bg-accent-bg/30' : 'border-transparent text-muted',
               ]}
             >
               {it.label}
@@ -44,41 +44,94 @@ const heading = t(effectiveLang, 'toc.heading');
 }
 
 <script is:inline>
-  (function () {
-    var links = document.querySelectorAll('#article-toc .toc-link');
+  function initTocScrollSpy() {
+    var tocNav = document.getElementById('article-toc');
+    if (!tocNav) return;
+
+    var links = Array.prototype.slice.call(tocNav.querySelectorAll('.toc-link'));
     if (!links.length) return;
 
     var headings = [];
     links.forEach(function (link) {
       var id = link.getAttribute('data-toc-id');
       var el = id ? document.getElementById(id) : null;
-      if (el) headings.push({ id: id, element: el, link: link });
+      if (el) {
+        headings.push({ id: id, element: el, link: link });
+      }
     });
 
     if (!headings.length) return;
 
-    var observer = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            var activeId = entry.target.id;
-            links.forEach(function (l) {
-              var match = l.getAttribute('data-toc-id') === activeId;
-              l.classList.toggle('border-l-2', match);
-              l.classList.toggle('border-accent', match);
-              l.classList.toggle('font-medium', match);
-              l.classList.toggle('text-ink', match);
-              l.classList.toggle('text-muted', !match);
-            });
-          }
-        });
-      },
-      { rootMargin: '-80px 0px -70% 0px', threshold: 0 }
-    );
+    function setActive(activeId) {
+      if (!activeId) return;
+      links.forEach(function (l) {
+        var isMatch = l.getAttribute('data-toc-id') === activeId;
+        if (isMatch) {
+          l.classList.add('border-accent', 'font-medium', 'text-ink', 'bg-accent-bg/30');
+          l.classList.remove('border-transparent', 'text-muted');
+          l.setAttribute('aria-current', 'true');
+        } else {
+          l.classList.remove('border-accent', 'font-medium', 'text-ink', 'bg-accent-bg/30');
+          l.classList.add('border-transparent', 'text-muted');
+          l.removeAttribute('aria-current');
+        }
+      });
+    }
 
-    headings.forEach(function (h) {
-      observer.observe(h.element);
+    function getActiveHeadingId() {
+      var headerOffset = 140;
+      var scrollPosition = window.scrollY || document.documentElement.scrollTop;
+      var windowHeight = window.innerHeight;
+      var documentHeight = document.documentElement.scrollHeight;
+
+      if (scrollPosition + windowHeight >= documentHeight - 60) {
+        return headings[headings.length - 1].id;
+      }
+
+      var currentId = headings[0].id;
+      for (var i = 0; i < headings.length; i++) {
+        var rect = headings[i].element.getBoundingClientRect();
+        if (rect.top <= headerOffset) {
+          currentId = headings[i].id;
+        } else {
+          break;
+        }
+      }
+      return currentId;
+    }
+
+    var ticking = false;
+    function onScroll() {
+      if (!ticking) {
+        window.requestAnimationFrame(function () {
+          var activeId = getActiveHeadingId();
+          setActive(activeId);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+
+    links.forEach(function (link) {
+      link.addEventListener('click', function () {
+        var targetId = this.getAttribute('data-toc-id');
+        if (targetId) {
+          setActive(targetId);
+        }
+      });
     });
-  })();
+
+    onScroll();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initTocScrollSpy);
+  } else {
+    initTocScrollSpy();
+  }
+  document.addEventListener('astro:page-load', initTocScrollSpy);
 </script>
 
