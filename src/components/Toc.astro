@@ -79,69 +79,53 @@ const heading = t(effectiveLang, 'toc.heading');
     }
 
     function getActiveHeadingId() {
+      if (headings.length === 0) return null;
+
       var viewportHeight = window.innerHeight || document.documentElement.clientHeight;
       var scrollPosition = window.scrollY || document.documentElement.scrollTop;
       var documentHeight = document.documentElement.scrollHeight;
-      var readingLine = 150;
 
-      if (headings.length === 0) return null;
-
-      // At very top of article before first heading
-      if (headings[0].element.getBoundingClientRect().top > readingLine && scrollPosition < 200) {
+      // 1. If at the top of the page before first section
+      if (scrollPosition < 160) {
         return headings[0].id;
       }
 
       var articleEl = document.querySelector('article') || document.querySelector('.prose-content');
       var articleBottom = articleEl ? articleEl.getBoundingClientRect().bottom : documentHeight;
 
-      // Reached near bottom of page or entire article content is ending
-      if (scrollPosition + viewportHeight >= documentHeight - 50 || articleBottom <= viewportHeight * 0.7) {
+      // 2. If scrolled near the bottom of document or article has finished
+      if (scrollPosition + viewportHeight >= documentHeight - 50 || articleBottom <= viewportHeight * 0.65) {
         return headings[headings.length - 1].id;
       }
 
-      // Check which section spans across the reading line [top, nextTop]
-      var activeId = headings[0].id;
-      var foundSpan = false;
+      // 3. Headline detection zone: from sticky header bottom (~80px) to upper viewport (~35% of screen height)
+      var topOffset = 80;
+      var bottomOffset = Math.max(topOffset + 120, Math.min(320, viewportHeight * 0.38));
+
+      var inZoneHeadings = [];
+      var lastAboveHeading = null;
 
       for (var i = 0; i < headings.length; i++) {
         var top = headings[i].element.getBoundingClientRect().top;
-        var nextTop = (i < headings.length - 1)
-          ? headings[i + 1].element.getBoundingClientRect().top
-          : articleBottom;
-
-        if (top <= readingLine && nextTop > readingLine) {
-          activeId = headings[i].id;
-          foundSpan = true;
-          break;
+        if (top >= topOffset && top <= bottomOffset) {
+          inZoneHeadings.push(headings[i]);
+        } else if (top < topOffset) {
+          lastAboveHeading = headings[i];
         }
       }
 
-      // Fallback for short sections at the end of article that might not reach readingLine
-      if (!foundSpan) {
-        var candidateId = null;
-        var minDistance = Infinity;
-
-        for (var j = 0; j < headings.length; j++) {
-          var hTop = headings[j].element.getBoundingClientRect().top;
-          if (hTop >= 0 && hTop < viewportHeight * 0.65) {
-            var dist = Math.abs(hTop - readingLine);
-            if (dist < minDistance) {
-              minDistance = dist;
-              candidateId = headings[j].id;
-            }
-          }
-        }
-
-        if (candidateId) {
-          return candidateId;
-        }
-
-        if (headings[headings.length - 1].element.getBoundingClientRect().top <= viewportHeight * 0.75) {
-          return headings[headings.length - 1].id;
-        }
+      // If one or more headings are in the active headline zone (visible in top 35%),
+      // the first/topmost of them is active (both scrolling down and scrolling up)
+      if (inZoneHeadings.length > 0) {
+        return inZoneHeadings[0].id;
       }
 
-      return activeId;
+      // If no heading is in the zone, the user is in the middle of the last heading scrolled above the topOffset
+      if (lastAboveHeading) {
+        return lastAboveHeading.id;
+      }
+
+      return headings[0].id;
     }
 
     var ticking = false;
