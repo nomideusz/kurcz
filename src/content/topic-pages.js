@@ -326,13 +326,14 @@ export const topicPagesContent = {
       },
       {
         heading: `Joga jako część szerszej profilaktyki`,
-        body: `Najlepsze rezultaty daje łączenie praktyki z rozsądną progresją treningu, snem, nawodnieniem i dietą. Jeśli kurcze powracają mimo tych działań, nie zakładaj, że wystarczy częściej ćwiczyć — skonsultuj ich przyczynę.`,
+        body: `Najlepsze rezultaty daje łączenie praktyki z rozsądną progresją treningu, snem, nawodnieniem i dietą. Jeśli dopiero zaczynasz, katalog Szkół Jogi pomoże znaleźć sprawdzoną szkołę lub studio w Twojej okolicy. Jeśli kurcze powracają mimo tych działań, nie zakładaj, że wystarczy częściej ćwiczyć — skonsultuj ich przyczynę.`,
       },
     ],
     relatedLinks: [
       { path: '/rozciaganie-przy-kurczach', label: 'Rozciąganie przy kurczach' },
       { path: '/kurcze-nocne', label: 'Kurcze nocne' },
       { path: '/profilaktyka', label: 'Profilaktyka' },
+      { path: 'https://szkolyjogi.pl', label: 'Szkoły Jogi — katalog szkół i studiów w Polsce ↗' },
     ],
   },
 };
@@ -646,13 +647,14 @@ export const topicPagesContentEn = {
       },
       {
         heading: `Yoga as One Part of Prevention`,
-        body: `Yoga works best alongside sensible training progression, sleep, hydration, and nutrition. If cramps continue despite these measures, do not assume that more stretching is the answer — discuss the cause with a clinician.`,
+        body: `Yoga works best alongside sensible training progression, sleep, hydration, and nutrition. If you are just starting out, the Yoga Schools directory can help you find a trusted school or studio near you. If cramps continue despite these measures, do not assume that more stretching is the answer — discuss the cause with a clinician.`,
       },
     ],
     relatedLinks: [
       { path: '/rozciaganie-przy-kurczach', label: 'Stretching for Cramps' },
       { path: '/kurcze-nocne', label: 'Night Cramps' },
       { path: '/profilaktyka', label: 'Prevention' },
+      { path: 'https://szkolyjogi.pl', label: 'Yoga Schools — directory of schools & studios in Poland ↗' },
     ],
   },
 };
