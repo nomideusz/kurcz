@@ -269,7 +269,7 @@ export const topicPagesContent = {
     sections: [
       {
         heading: `Jak działa terapia wibroakustyczna?`,
-        body: `Wibroakustyka wykorzystuje muzykę lub tony przenoszone przez specjalne leżanki, fotele albo urządzenia. Odczuwane wibracje są zwykle łagodne; celem sesji jest relaks, świadomość ciała i subiektywne zmniejszenie napięcia.`,
+        body: `Wibroakustyka wykorzystuje muzykę lub tony przenoszone przez specjalne leżanki, fotele albo urządzenia — takie jak fotele wibroakustyczne opisywane na stronie Wibroakustyka.ai. Odczuwane wibracje są zwykle łagodne; celem sesji jest relaks, świadomość ciała i subiektywne zmniejszenie napięcia.`,
         bullets: [
           `Dźwięk i drgania odbierane jednocześnie przez słuch i ciało`,
           `Sesje prowadzone w pozycji odpoczynkowej`,
@@ -297,6 +297,7 @@ export const topicPagesContent = {
       { path: '/masaz-przy-kurczach', label: 'Masaż przy kurczach' },
       { path: '/rozciaganie-przy-kurczach', label: 'Rozciąganie przy kurczach' },
       { path: '/profilaktyka', label: 'Profilaktyka' },
+      { path: 'https://wibroakustyka.ai', label: 'Wibroakustyka.ai — fotele wibroakustyczne ↗' },
     ],
   },
 
@@ -590,7 +591,7 @@ export const topicPagesContentEn = {
     sections: [
       {
         heading: `How Vibroacoustic Therapy Works`,
-        body: `Vibroacoustic therapy delivers music or tones through specialist loungers, chairs, or devices. The vibration is usually gentle; sessions aim to support relaxation, body awareness, and perceived reduction in tension.`,
+        body: `Vibroacoustic therapy delivers music or tones through specialist loungers, chairs, or devices — such as the vibroacoustic chairs described on Wibroakustyka.ai. The vibration is usually gentle; sessions aim to support relaxation, body awareness, and perceived reduction in tension.`,
         bullets: [
           `Sound and vibration experienced together`,
           `Sessions completed in a resting position`,
@@ -618,6 +619,7 @@ export const topicPagesContentEn = {
       { path: '/masaz-przy-kurczach', label: 'Massage for Cramps' },
       { path: '/rozciaganie-przy-kurczach', label: 'Stretching for Cramps' },
       { path: '/profilaktyka', label: 'Prevention' },
+      { path: 'https://wibroakustyka.ai', label: 'Wibroakustyka.ai — vibroacoustic chairs ↗' },
     ],
   },
 
