@@ -12,6 +12,7 @@ export const enPathByPl = {
   '/profilaktyka': '/prevention',
   '/kurcz-vs-skurcz': '/cramp-vs-spasm',
   '/wibroakustyka': '/vibroacoustics',
+  '/akupunktura': '/acupuncture',
   '/joga-a-kurcze': '/yoga-for-cramps',
   '/o-nas': '/about',
   '/regulamin': '/terms',

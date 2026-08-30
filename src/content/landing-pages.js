@@ -599,9 +599,93 @@ export const landingPages = [
       { path: '/pierwsza-pomoc', label: 'Pierwsza pomoc' },
     ],
   },
+  {
+    path: '/akupunktura',
+    hub: { path: '/kurcze-miesniowe', label: 'Kurcze mięśniowe' },
+    h1: 'Akupunktura a kurcze mięśniowe — korzyści i działanie',
+    title: 'Akupunktura na kurcze mięśniowe — korzyści i działanie | Kurcz.pl',
+    description: 'Jak akupunktura może wspierać mięśnie i łagodzić kurcze? Poznaj korzyści, przebieg zabiegu i to, co mówi nauka — wraz z informacją o klinice w Krakowie.',
+    intro: 'Akupunktura to metoda terapeutyczna wywodząca się z medycyny tradycyjnej, w której cienkie igły umieszczane są w określonych punktach ciała. W kontekście kurczów mięśniowych interesuje nas przede wszystkim jej wpływ na napięcie mięśni, krążenie i odczuwanie bólu. Poniżej przedstawiamy potencjalne korzyści, przebieg zabiegu oraz uczciwe spojrzenie na to, co mówi nauka.',
+    sections: [
+      {
+        heading: 'Jak akupunktura może wspierać mięśnie',
+        body: 'Stymulacja punktów akupunkturowych może poprawiać mikrokrążenie w tkankach, zmniejszać nadmierne napięcie mięśni oraz modulować przekazywanie sygnałów bólowych w układzie nerwowym. Dla osób z nawracającymi kurczami oznacza to potencjalnie rzadsze i mniej bolesne epizody, zwłaszcza gdy kurcze wiążą się z przewlekłym napięciem lub stresem.',
+        bullets: ['Rozluźnienie przewlekle napiętych mięśni', 'Lepsze ukrwienie i odżywienie tkanek', 'Modulacja odczuwania bólu poprzez układ nerwowy', 'Redukcja stresu, który sprzyja napięciom mięśniowym'],
+      },
+      {
+        heading: 'Potencjalne korzyści dla osób z kurczami',
+        body: 'Akupunktura jest metodą nieinwazyjną i dobrze tolerowaną, dlatego bywa rozważana jako element wsparcia obok rozciągania, nawodnienia i suplementacji. Nie zastępuje diagnostyki — nawracające kurcze zawsze warto najpierw omówić z lekarzem — ale może uzupełniać leczenie przyczynowe.',
+        bullets: ['Nieinwazyjna i zwykle dobrze tolerowana', 'Może być łączona z fizjoterapią i farmakoterapią', 'Praca nad całą sylwetką, nie tylko bolesnym miejscem', 'Indywidualny plan terapii po wywiadzie'],
+      },
+      {
+        heading: 'Co mówi nauka',
+        body: 'Badania nad skutecznością akupunktury dają mieszane wyniki — część przeglądów wskazuje na korzyści w bólu mięśniowo-szkieletowym i napięciu mięśni, część podkreśla znaczenie efektu placebo i ograniczenia metodologiczne badań. Uczciwe podejście to traktowanie akupunktury jako opcji wspierającej, a nie leczenia pierwszego wyboru w corazających się kurczach o nieustalonej przyczynie.',
+      },
+      {
+        heading: 'Jak wygląda zabieg',
+        body: 'Pierwsza wizyta zaczyna się od wywiadu — terapeuta pyta o objawy, styl życia i dotychczasowe leczenie. Następnie cienkie, sterylne igły umieszczane są w wybranych punktach na czas zwykle od 20 do 30 minut. Prawidłowo założone igły powodują minimalne lub żadne odczucie bólu; możliwe jest przejściowe uczucie rozpierania lub ciężkości.',
+      },
+      {
+        heading: 'Kiedy skonsultować się z lekarzem',
+        body: 'Akupunktura nie zastępuje diagnostyki. Jeśli kurcze są częste, silne, występują bez wyraźnej przyczyny lub towarzyszą im obrzęk, drętwienie czy osłabienie mięśni, najpierw wykonaj podstawowe badania u lekarza. Terapię wspomagającą rozważ dopiero po wykluczeniu chorób wymagających leczenia.',
+      },
+    ],
+    faq: [
+      { question: 'Czy akupunktura pomaga na kurcze mięśni?', answer: 'Dowody są ograniczone i niejednoznaczne. Część osób zgłasza rzadsze kurcze i mniejsze napięcie mięśni, ale akupunkturę traktuje się jako metodę wspierającą, a nie zastępującą podstawowe postępowanie: nawodnienie, elektrolity, rozciąganie i diagnostykę przyczyn.' },
+      { question: 'Czy zabieg akupunktury jest bolesny?', answer: 'Używane igły są bardzo cienkie, więc większość osób odczuwa jedynie krótkie ukłucie lub uczucie rozpierania. Po zabiegu mogą wystąpić drobne, przejściowe zasinienia w miejscach wkłucia.' },
+      { question: 'Jak wybrać dobre miejsce terapii?', answer: 'Szukaj wykwalifikowanego terapeuty z doświadczeniem medycznym, który przeprowadza rzetelny wywiad i nie obiecuje cudów. Przykładem jest Gabinet Połączenie w Krakowie, gdzie akupunktura prowadzona jest przez lekarza i rozumiana jako uzupełnienie medycyny opartej na dowodach.' },
+    ],
+    relatedLinks: [
+      { path: '/wibroakustyka', label: 'Wibroakustyka' },
+      { path: '/joga-a-kurcze', label: 'Joga a kurcze' },
+      { path: '/masaz-przy-kurczach', label: 'Masaż przy kurczach' },
+      { path: 'https://gabinet-polaczenie.pl', label: 'Gabinet Połączenie — akupunktura w Krakowie ↗' },
+    ],
+  },
 ];
 
 export const landingPagesEnMap = {
+  '/akupunktura': {
+    h1: 'Acupuncture and Muscle Cramps — Benefits & How It Works',
+    title: 'Acupuncture for Muscle Cramps — Benefits & Evidence | Kurcz.pl',
+    description: 'Can acupuncture support tense, cramping muscles? Learn the potential benefits, what a session looks like, and what the evidence honestly says.',
+    intro: 'Acupuncture is a therapeutic method from traditional medicine in which very thin needles are placed at specific points on the body. When it comes to muscle cramps, the interesting question is its effect on muscle tension, circulation, and pain perception. Below we outline the potential benefits, what a session involves, and an honest look at what the science says.',
+    sections: [
+      {
+        heading: 'How Acupuncture May Support Muscles',
+        body: 'Stimulation of acupuncture points may improve microcirculation in tissues, reduce excessive muscle tension, and modulate pain signalling in the nervous system. For people with recurring cramps this can mean fewer and less painful episodes, especially when cramps are linked to chronic tension or stress.',
+        bullets: ['Release of chronically tense muscles', 'Better blood flow and tissue nourishment', 'Modulation of pain perception via the nervous system', 'Reduced stress, which contributes to muscle tension'],
+      },
+      {
+        heading: 'Potential Benefits for People with Cramps',
+        body: 'Acupuncture is non-invasive and generally well tolerated, so it is sometimes considered alongside stretching, hydration, and supplementation. It does not replace diagnostics — recurring cramps should always be discussed with a physician first — but it can complement treatment.',
+        bullets: ['Non-invasive and usually well tolerated', 'Can be combined with physiotherapy and medication', 'Works on the whole body, not just the painful spot', 'An individual therapy plan after a proper intake interview'],
+      },
+      {
+        heading: 'What the Evidence Says',
+        body: 'Research on acupuncture effectiveness is mixed — some reviews point to benefits for musculoskeletal pain and muscle tension, while others highlight placebo effects and methodological limitations. An honest approach treats acupuncture as a supportive option, not a first-line treatment for unexplained, recurring cramps.',
+      },
+      {
+        heading: 'What a Session Looks Like',
+        body: 'The first visit starts with an intake interview about symptoms, lifestyle, and previous treatment. Very thin, sterile needles are then placed at selected points for usually 20 to 30 minutes. Correctly placed needles cause minimal or no pain; a brief feeling of pressure or heaviness is possible.',
+      },
+      {
+        heading: 'When to See a Doctor First',
+        body: 'Acupuncture does not replace diagnostics. If cramps are frequent, severe, occur without an obvious cause, or come with swelling, numbness, or muscle weakness, get basic tests from a physician first. Consider supportive therapy only after conditions requiring treatment have been ruled out.',
+      },
+    ],
+    faq: [
+      { question: 'Does acupuncture help with muscle cramps?', answer: 'Evidence is limited and mixed. Some people report fewer cramps and less muscle tension, but acupuncture is treated as a supportive method — not a replacement for the basics: hydration, electrolytes, stretching, and finding the underlying cause.' },
+      { question: 'Is an acupuncture session painful?', answer: 'The needles used are very thin, so most people feel only a brief prick or a sensation of pressure. Small, temporary bruises at the insertion sites can occur after a session.' },
+      { question: 'How do I choose a good therapy provider?', answer: 'Look for a qualified therapist with a medical background who takes a thorough history and promises no miracles. One example is the Połączenie Clinic (Gabinet Połączenie) in Kraków, where acupuncture is practised by a physician and understood as a complement to evidence-based medicine.' },
+    ],
+    relatedLinks: [
+      { path: '/wibroakustyka', label: 'Vibroacoustic Therapy' },
+      { path: '/joga-a-kurcze', label: 'Yoga & Cramps' },
+      { path: '/masaz-przy-kurczach', label: 'Massage for Cramps' },
+      { path: 'https://gabinet-polaczenie.pl', label: 'Połączenie Clinic — acupuncture in Kraków ↗' },
+    ],
+  },
   '/kurcze-nog': {
     h1: 'Leg Cramps — Causes, First Aid & Prevention',
     title: 'Leg Cramps — Causes and Fast Relief Methods | Kurcz.pl',

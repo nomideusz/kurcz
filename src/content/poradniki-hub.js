@@ -47,7 +47,7 @@ const categoryDefinitions = [
       pl: 'Praktyczne techniki rozciągania, masażu oraz bezpieczna suplementacja magnezem.',
       en: 'Practical stretching techniques, therapeutic massage, and magnesium supplementation.',
     },
-    paths: ['/rozciaganie-przy-kurczach', '/masaz-przy-kurczach', '/suplementacja-magnezem'],
+    paths: ['/rozciaganie-przy-kurczach', '/masaz-przy-kurczach', '/suplementacja-magnezem', '/akupunktura'],
   },
 ];
 
