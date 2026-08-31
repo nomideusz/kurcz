@@ -4,6 +4,10 @@ import { getFaqItems } from './faq-data.js';
 import { getTopicFaq } from './topic-faq.js';
 import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from './routes.js';
 
+// Site-level dates for E-E-A-T: bump SITE_UPDATED whenever content changes meaningfully.
+const SITE_PUBLISHED = '2025-04-19';
+const SITE_UPDATED = '2026-08-31';
+
 function localizedUrl(path, locale = 'pl') {
   const localized = localizeHref(path, locale, routing);
   if (localized === '/') return `${SITE_URL}/`;
@@ -112,6 +116,8 @@ export function buildMedicalWebPageSchema(route, { locale = 'pl', canonicalUrl }
     description: route.description,
     url: canonicalUrl ?? localizedUrl(route.path, locale),
     inLanguage: languageTag(locale),
+    datePublished: SITE_PUBLISHED,
+    dateModified: SITE_UPDATED,
     author: {
       '@type': 'Organization',
       name: SITE_NAME,
@@ -146,6 +152,8 @@ export function buildWebPageSchema(route, { locale = 'pl', canonicalUrl } = {}) 
     description: route.description,
     url: canonicalUrl ?? localizedUrl(route.path, locale),
     inLanguage: languageTag(locale),
+    datePublished: SITE_PUBLISHED,
+    dateModified: SITE_UPDATED,
     isPartOf: {
       '@type': 'WebSite',
       name: SITE_NAME,
