@@ -21,8 +21,8 @@ importers:
         specifier: ^5.2.9
         version: 5.2.9
       '@nomideusz/svelte-geometrize':
-        specifier: ^0.6.0
-        version: 0.6.0(sharp@0.35.2)(svelte@5.56.4(@typescript-eslint/types@8.62.0))
+        specifier: ^0.7.0
+        version: 0.7.0(@types/node@24.13.2)(sharp@0.35.2)(svelte@5.56.4(@typescript-eslint/types@8.62.0))(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(yaml@2.9.0))
       '@nomideusz/svelte-i18n':
         specifier: ^0.3.2
         version: 0.3.2(svelte@5.56.4(@typescript-eslint/types@8.62.0))
@@ -1093,14 +1093,20 @@ packages:
     resolution: {integrity: sha512-oGB+UxlgWcgQkgwo8GcEGwemoTFt3FIO9ababBmaGwXIoBKZ+GTy0pP185beGg7Llih/NSHSV2XAs1lnznocSg==}
     engines: {node: '>= 8'}
 
-  '@nomideusz/svelte-geometrize@0.6.0':
-    resolution: {integrity: sha512-lLI5zNUBTGqYwxNIdUMTKM0DXX5+EBIpzTzfFt9zmN8RENK2bk3tiFq/aKRXmdG6R0vd9sTp7C0gbugSjygwdg==}
+  '@nomideusz/svelte-geometrize@0.7.0':
+    resolution: {integrity: sha512-l0lGDklhPvxBm2M45Noqw0nzAqMacT9cpvOocS9d0KIP/O8btGKp7mI03MMBWTWgD7wodYWuVLa303Kt7hbACQ==}
     hasBin: true
     peerDependencies:
+      '@types/node': '>=20'
       sharp: '>=0.33.0'
       svelte: ^5.0.0
+      vite: '>=6'
     peerDependenciesMeta:
+      '@types/node':
+        optional: true
       sharp:
+        optional: true
+      vite:
         optional: true
 
   '@nomideusz/svelte-i18n@0.3.2':
@@ -5443,12 +5449,14 @@ snapshots:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.20.1
 
-  '@nomideusz/svelte-geometrize@0.6.0(sharp@0.35.2)(svelte@5.56.4(@typescript-eslint/types@8.62.0))':
+  '@nomideusz/svelte-geometrize@0.7.0(@types/node@24.13.2)(sharp@0.35.2)(svelte@5.56.4(@typescript-eslint/types@8.62.0))(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(yaml@2.9.0))':
     dependencies:
       geometrizejs: 0.0.19
       svelte: 5.56.4(@typescript-eslint/types@8.62.0)
     optionalDependencies:
+      '@types/node': 24.13.2
       sharp: 0.35.2
+      vite: 6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(yaml@2.9.0)
 
   '@nomideusz/svelte-i18n@0.3.2(svelte@5.56.4(@typescript-eslint/types@8.62.0))':
     dependencies:

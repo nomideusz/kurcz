@@ -36,7 +36,7 @@ for (const img of images) {
 
   console.log(`Geometrizing ${img}...`);
   try {
-    const placeholder = await generatePlaceholder(fullPath, { shapeCount: 40 });
+    const placeholder = await generatePlaceholder(fullPath, { shapes: 40 });
     outputMap[img] = placeholder;
   } catch (err) {
     console.error(`Failed to geometrize ${img}:`, err);
