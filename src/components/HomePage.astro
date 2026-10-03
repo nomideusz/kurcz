@@ -21,11 +21,6 @@ const topics = getLocalizedTopics(lang);
 const doctorSigns = getLocalizedDoctorSigns(lang);
 const homeFaq = getFaqItems(lang).slice(0, 4);
 
-// Set the key word of the headline in the accent italic.
-const h1 = t(lang, 'hero.h1');
-const accentWord = en ? 'cramp' : 'kurcz';
-const [h1Before, h1After] = h1.split(accentWord);
-
 const triageItems = [
   { path: '/kurcze-lydek', icon: 'calf', title: en ? 'Calf Cramps' : 'Kurcze łydek', desc: en ? 'Sudden tightening after workouts or during movement.' : 'Nagłe spięcie po wysiłku lub przy niefortunnym ruchu.' },
   { path: '/kurcze-nocne', icon: 'night', title: en ? 'Night Cramps' : 'Kurcze nocne', desc: en ? 'Painful nighttime wakeups and evening prevention.' : 'Bolesne wybudzenia ze snu i wieczorna profilaktyka.' },
@@ -51,7 +46,7 @@ const galleryItems = [
     <section class="mx-auto grid max-w-7xl items-center gap-12 px-5 py-14 sm:px-14 lg:grid-cols-[1.15fr_0.85fr] lg:gap-14 lg:py-[68px]">
       <div>
         <h1 class="text-5xl leading-[1.02] text-ink sm:text-6xl lg:text-[68px] lg:leading-[1.02]">
-          {h1After === undefined ? h1 : <>{h1Before.replace(/ $/, ' ')}<span class="text-accent italic">{accentWord}</span>{h1After}</>}
+          {t(lang, 'hero.h1')}
         </h1>
         <p class="mt-6 max-w-[500px] text-lg leading-relaxed text-body">
           {t(lang, 'hero.p')}

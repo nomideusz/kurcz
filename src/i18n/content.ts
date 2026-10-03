@@ -3,14 +3,14 @@ import type { SupportedLocale } from './config.js';
 export const localizedRouteMeta: Record<string, Record<SupportedLocale, { h1?: string; title?: string; description?: string; breadcrumbLabel?: string; ogTitle?: string }>> = {
   '/': {
     pl: {
-      h1: 'Co robić, gdy złapie kurcz mięśnia.',
+      h1: 'Kurcze mięśni',
       breadcrumbLabel: 'Strona główna',
       title: 'Kurcze mięśniowe - przyczyny, objawy i skuteczne leczenie | Kurcz.pl',
       description: 'Dowiedz się wszystkiego o kurczach mięśniowych. Poznaj najczęstsze przyczyny, skuteczne metody leczenia, pierwszą pomoc, wibroakustykę i profilaktykę.',
       ogTitle: 'Kurcze mięśniowe - przyczyny i szybka ulga | Kurcz.pl',
     },
     en: {
-      h1: 'What to do when muscle cramp strikes.',
+      h1: 'Muscle cramps',
       breadcrumbLabel: 'Home',
       title: 'Muscle Cramps - Causes, Symptoms & Effective Relief | Kurcz.pl',
       description: 'Learn everything about muscle cramps. Discover common causes, effective treatment methods, first aid, vibroacoustics, and prevention.',
