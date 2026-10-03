@@ -66,6 +66,8 @@
     font-weight: 400;
     letter-spacing: -0.012em;
     text-wrap: balance;
+    /* Only weight 400 is shipped; never fake a bold serif. */
+    font-synthesis-weight: none;
   }
 
   a,
@@ -128,15 +130,6 @@
   /* Tag chip */
   .tag-chip {
     @apply inline-flex items-center gap-1 rounded-full border border-line bg-card px-3 py-1 text-xs font-medium text-body transition-all hover:border-accent-border hover:bg-accent-bg hover:text-accent;
-  }
-
-  /* Key takeaway / summary box */
-  .takeaway-box {
-    @apply relative overflow-hidden rounded-xl border border-accent-border bg-accent-bg/40 p-6 sm:p-7;
-  }
-  .takeaway-box::before {
-    content: '';
-    @apply absolute left-0 top-0 bottom-0 w-1.5 bg-accent;
   }
 
   /* Article prose */

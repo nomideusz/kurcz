@@ -30,11 +30,11 @@ const isActive = (path) =>
   class="sticky top-0 z-40 border-b border-line/80 bg-paper/90 backdrop-blur-md supports-[backdrop-filter]:bg-paper/85 transition-colors"
 >
   <div class="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-5 sm:px-14">
-    <a href={homeHref} class="group flex items-center gap-2" aria-label="Kurcz.pl — strona główna">
+    <a href={homeHref} class="group flex items-center gap-2" aria-label={locale === 'en' ? 'Kurcz.pl — home' : 'Kurcz.pl — strona główna'}>
       <Logo class="text-[26px] tracking-tight transition-transform duration-200 group-hover:scale-[1.02]" />
     </a>
 
-    <nav class="hidden items-center gap-6 text-[15px] lg:gap-8 md:flex" aria-label="Główna nawigacja">
+    <nav class="hidden items-center gap-6 text-[15px] lg:gap-8 md:flex" aria-label={locale === 'en' ? 'Main navigation' : 'Główna nawigacja'}>
       {
         nav.map((item) => {
           const href = localizeHref(item.path, locale, routing);
@@ -78,7 +78,7 @@ const isActive = (path) =>
         type="button"
         id="menu-toggle"
         class="inline-flex h-[38px] w-[38px] cursor-pointer items-center justify-center rounded border border-line bg-card text-ink transition-colors hover:border-ink md:hidden"
-        aria-label="Otwórz menu"
+        aria-label="Menu"
         aria-expanded="false"
         aria-controls="mobile-menu"
       >
@@ -97,7 +97,7 @@ const isActive = (path) =>
   <nav
     id="mobile-menu"
     class="hidden border-t border-line bg-card/95 px-5 py-5 backdrop-blur-md md:hidden"
-    aria-label="Nawigacja mobilna"
+    aria-label={locale === 'en' ? 'Mobile navigation' : 'Nawigacja mobilna'}
   >
     <a
       href={firstAidHref}

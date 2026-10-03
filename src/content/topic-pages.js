@@ -115,10 +115,6 @@ export const topicPagesContent = {
           `Kurcze pojawiające się po urazie lub współwystępujące z innymi niepokojącymi objawami`,
         ],
       },
-      {
-        heading: `Zastrzeżenie medyczne`,
-        body: `Informacje zawarte na tej stronie mają charakter edukacyjny i nie zastępują profesjonalnej konsultacji medycznej. W przypadku poważnych problemów zdrowotnych zawsze skonsultuj się z wykwalifikowanym lekarzem.`,
-      },
     ],
     relatedLinks: [
       { path: '/kurcz-vs-skurcz', label: 'Kurcz czy skurcz?' },
@@ -172,10 +168,6 @@ export const topicPagesContent = {
           `Właściwe obuwie: Odpowiednie obuwie sportowe z dobrym podparciem łuku stopy zmniejsza ryzyko kurczy. Unikaj obcasów.`,
           `Unikanie używek: Ogranicz alkohol, kofeinę i nikotynę, które mogą przyczyniać się do odwodnienia i zwiększać ryzyko kurczy.`,
         ],
-      },
-      {
-        heading: `Zastrzeżenie medyczne`,
-        body: `Informacje zawarte na tej stronie mają charakter edukacyjny i nie zastępują profesjonalnej konsultacji medycznej. W przypadku poważnych problemów zdrowotnych skonsultuj się z lekarzem.`,
       },
     ],
     relatedLinks: [
@@ -454,10 +446,6 @@ export const topicPagesContentEn = {
           `Swelling, redness, or muscle weakness`,
           `Cramps occurring after injury or accompanied by nerve symptoms`,
         ],
-      },
-      {
-        heading: `Medical Disclaimer`,
-        body: `The information provided is for educational purposes only and does not replace professional medical consultation.`,
       },
     ],
     relatedLinks: [

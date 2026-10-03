@@ -98,30 +98,25 @@ const eyebrow = (route.breadcrumbLabel ?? route.h1).toLowerCase();
         </nav>
 
         <div class="max-w-[780px]">
-          <div class="mb-3 inline-flex items-center gap-2 rounded-full border border-accent-border bg-accent-bg px-3 py-1 font-mono text-xs uppercase tracking-wider text-accent">
-            <span>{eyebrow}</span>
-          </div>
           <h1 class="text-4xl leading-[1.05] text-ink sm:text-5xl lg:text-[56px] lg:leading-[1.04]">
             {route.h1}
           </h1>
           {
             intro && (
-              <div class="mt-6 rounded-xl border border-line-soft bg-paper/80 p-5 sm:p-6 shadow-xs">
-                <p class="text-lg leading-relaxed text-body sm:text-[18.5px]">{intro}</p>
-              </div>
+              <p class="mt-6 max-w-[64ch] text-lg leading-relaxed text-body sm:text-[19px]">{intro}</p>
             )
           }
         </div>
-        <div class="mt-6 flex flex-wrap items-center gap-4 font-mono text-[12px] text-faint">
-          <span class="inline-flex items-center gap-1.5 rounded-md border border-line bg-card px-2.5 py-1">
+        <div class="mt-7 flex flex-wrap items-center gap-x-5 gap-y-2 font-mono text-[12px] text-faint">
+          <span class="inline-flex items-center gap-1.5">
             <Icon name="clock" class="h-3.5 w-3.5 text-accent" />
             <span>czas czytania ~{readMin} min</span>
           </span>
-          <span class="inline-flex items-center gap-1.5 rounded-md border border-line bg-card px-2.5 py-1">
+          <span class="inline-flex items-center gap-1.5">
             <Icon name="calendar" class="h-3.5 w-3.5 text-accent" />
             <span>aktualizacja: 2026</span>
           </span>
-          <span class="inline-flex items-center gap-1.5 rounded-md border border-accent-border bg-accent-bg/50 px-2.5 py-1 text-accent">
+          <span class="inline-flex items-center gap-1.5 text-accent">
             <Icon name="verified" class="h-3.5 w-3.5 text-accent" />
             <span>weryfikacja merytoryczna</span>
           </span>
