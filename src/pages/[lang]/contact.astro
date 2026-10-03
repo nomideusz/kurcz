@@ -34,12 +34,12 @@ const route = getLocalizedRoute(rawRoute, lang);
           <div class="rounded-2xl border border-line bg-card p-6 sm:p-8">
             <h2 class="text-2xl text-ink">{lang === 'en' ? 'Before reaching out' : 'Przed wysłaniem wiadomości'}</h2>
             <p class="mt-3 text-[15px] leading-relaxed text-muted">
-              {lang === 'en' ? 'Looking for immediate cramp relief instructions or answers to common muscle questions? Check our quick sections first:' : 'Jeśli szukasz natychmiastowej instrukcji ulgi przy nagłym ataku skurczu lub odpowiedzi na powszechne pytania, sprawdź nasze sekcje:'}
+              {lang === 'en' ? 'Looking for immediate cramp relief instructions or answers to common muscle questions? Check our quick sections first:' : 'Jeśli szukasz natychmiastowej instrukcji ulgi przy nagłym kurczu lub odpowiedzi na powszechne pytania, sprawdź nasze sekcje:'}
             </p>
             <div class="mt-6 flex flex-col gap-3">
               <a
                 href={localizeHref('/pierwsza-pomoc', lang, routing)}
-                class="flex items-center justify-between rounded-xl border border-accent-border bg-accent-bg/60 p-4 text-sm font-semibold text-accent transition-all hover:bg-accent hover:text-paper"
+                class="flex items-center justify-between rounded-xl border border-accent-border bg-accent-bg/60 p-4 text-sm font-semibold text-accent transition-colors hover:border-accent"
               >
                 <span class="inline-flex items-center gap-2">
                   <Icon name="first-aid" class="h-4.5 w-4.5 flex-none" />
@@ -61,7 +61,7 @@ const route = getLocalizedRoute(rawRoute, lang);
 
             <div class="mt-8 flex items-start gap-2.5 border-t border-line-soft pt-6 text-xs leading-relaxed text-faint">
               <Icon name="medical" class="h-4 w-4 flex-none text-accent mt-0.5" />
-              <span>{t(lang, 'disclaimer.text')}</span>
+              <span>{t(lang, 'contact.no_advice')}</span>
             </div>
           </div>
         </div>

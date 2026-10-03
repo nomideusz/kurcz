@@ -30,7 +30,7 @@ const triageItems = [
   { path: '/kurcze-lydek', icon: 'calf', title: en ? 'Calf Cramps' : 'Kurcze łydek', desc: en ? 'Sudden tightening after workouts or during movement.' : 'Nagłe spięcie po wysiłku lub przy niefortunnym ruchu.' },
   { path: '/kurcze-nocne', icon: 'night', title: en ? 'Night Cramps' : 'Kurcze nocne', desc: en ? 'Painful nighttime wakeups and evening prevention.' : 'Bolesne wybudzenia ze snu i wieczorna profilaktyka.' },
   { path: '/kurcze-u-kobiet-w-ciazy', icon: 'pregnancy', title: en ? 'Pregnancy Cramps' : 'Kurcze w ciąży', desc: en ? 'Safe positioning and gentle relief for expectant mothers.' : 'Bezpieczne pozycje, odpoczynek i ulga dla przyszłych mam.' },
-  { path: '/kurcze-stop', icon: 'foot', title: en ? 'Foot Cramps' : 'Kurcze stóp', desc: en ? 'Plantar arch spasms and toe curling relief.' : 'Bolesne skurcze łuku podeszwowego i wykręcanie palców.' },
+  { path: '/kurcze-stop', icon: 'foot', title: en ? 'Foot Cramps' : 'Kurcze stóp', desc: en ? 'Plantar arch spasms and toe curling relief.' : 'Bolesne kurcze łuku podeszwowego i wykręcanie palców.' },
   { path: '/niedobor-magnezu', icon: 'magnesium', title: en ? 'Magnesium Deficiency' : 'Niedobór magnezu', desc: en ? 'Symptoms of deficit, bioavailability, and food sources.' : 'Objawy deficytu, przyswajalność i zbilansowana dieta.' },
   { path: '/kurcze-u-sportowcow', icon: 'sport', title: en ? 'Athletes & Runners' : 'Dla sportowców', desc: en ? 'Electrolyte loss in sweat, hydration, and recovery.' : 'Utrata soli w pocie, nawodnienie i regeneracja powysiłkowa.' },
   { path: '/kurcze-dloni', icon: 'hand', title: en ? 'Hand Cramps' : 'Kurcze dłoni', desc: en ? 'Strain from mouse, keyboard, or manual tasks.' : 'Napięcia od pracy przy komputerze, pisania i pracy manualnej.' },
@@ -38,7 +38,7 @@ const triageItems = [
 ];
 
 const galleryItems = [
-  { key: 'first_aid_calf_stretch.png', image: '/img/first_aid_calf_stretch.png', link: '/rozciaganie-przy-kurczach', title: en ? 'Activity & Stretching' : 'Aktywność i rozciąganie', desc: en ? 'Proper muscle stretching after exercise and before bed reduces sudden painful cramps.' : 'Prawidłowe rozciąganie mięśni po treningu i przed snem ogranicza ryzyko nagłych bolesnych skurczów.' },
+  { key: 'first_aid_calf_stretch.png', image: '/img/first_aid_calf_stretch.png', link: '/rozciaganie-przy-kurczach', title: en ? 'Activity & Stretching' : 'Aktywność i rozciąganie', desc: en ? 'Proper muscle stretching after exercise and before bed reduces sudden painful cramps.' : 'Prawidłowe rozciąganie mięśni po treningu i przed snem ogranicza ryzyko nagłych, bolesnych kurczy.' },
   { key: 'magnesium_rich_foods.png', image: '/img/magnesium_rich_foods.png', link: '/niedobor-magnezu', title: en ? 'Diet & Minerals' : 'Dieta i minerały', desc: en ? 'Nuts, pumpkin seeds, dark chocolate, and spinach — natural magnesium sources supporting muscles.' : 'Orzechy, pestki dyni, ciemna czekolada i szpinak — naturalne źródła magnezu wspierające mięśnie.' },
   { key: 'leg_massage_relief.png', image: '/img/leg_massage_relief.png', link: '/masaz-przy-kurczach', title: en ? 'Massage & Physical Therapy' : 'Masaż i terapia fizyczna', desc: en ? 'Targeted myofascial massage and manual therapy promote fast recovery after acute cramps.' : 'Okrężny masaż powięziowy i terapia manualna wspomagają szybki powrót do sprawności po ostrym kurczu.' },
   { key: 'vibroacoustic_therapy.png', image: '/img/vibroacoustic_therapy.png', link: '/wibroakustyka', title: en ? 'Modern Vibroacoustics' : 'Nowoczesna wibroakustyka', desc: en ? 'Low-frequency sound waves stimulate microcirculation and relax deep muscle tissues.' : 'Fale dźwiękowe o niskich częstotliwościach stymulują mikrokrążenie i rozluźniają głębokie partie mięśni.' },
@@ -62,7 +62,7 @@ const galleryItems = [
         <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-3.5">
           <a
             href={href('/pierwsza-pomoc')}
-            class="inline-flex items-center justify-center gap-2 rounded-lg bg-accent px-7 py-3.5 text-[15px] font-medium text-paper shadow-sm transition-all hover:bg-accent-hover hover:shadow-md"
+            class="inline-flex items-center justify-center gap-2 rounded-lg bg-accent px-7 py-3.5 text-[15px] font-medium text-paper transition-colors hover:bg-accent-hover"
           >
             {t(lang, 'hero.first_aid_btn')} <span class="text-[17px]">→</span>
           </a>
@@ -76,16 +76,15 @@ const galleryItems = [
       </div>
 
       <!-- Quick relief card -->
-      <div class="rounded-2xl border border-line bg-card p-6 sm:p-8 shadow-[0_1px_3px_rgba(22,34,52,0.04),0_12px_32px_rgba(22,34,52,0.06)]">
-        <div class="mb-6 flex items-center gap-2 border-b border-line-soft pb-4">
-          <span class="inline-flex h-2 w-2 rounded-full bg-accent"></span>
-          <span class="eyebrow text-accent font-semibold">{t(lang, 'relief.title')}</span>
+      <div class="rounded-2xl border border-line bg-card p-6 sm:p-8">
+        <div class="mb-6 border-b border-line-soft pb-4">
+          <span class="eyebrow text-accent">{t(lang, 'relief.title')}</span>
         </div>
         <ol class="flex flex-col gap-5">
           {
             reliefSteps.map((s) => (
               <li class="flex items-start gap-4">
-                <span class="flex h-7 w-7 flex-none items-center justify-center rounded-full bg-accent font-serif text-sm text-paper">
+                <span class="flex h-7 w-7 flex-none items-center justify-center rounded-full border border-accent-border bg-accent-bg font-serif text-sm text-accent">
                   {s.n}
                 </span>
                 <div>
@@ -122,9 +121,9 @@ const galleryItems = [
           triageItems.map((item) => (
             <a
               href={href(item.path)}
-              class="group flex items-center gap-3.5 rounded-xl border border-line bg-card p-4 transition-all duration-200 hover:-translate-y-1 hover:border-accent-border hover:bg-card-elevated hover:shadow-md sm:flex-col sm:items-start sm:gap-0 sm:p-5"
+              class="group flex items-center gap-3.5 rounded-xl border border-line bg-card p-4 transition-colors hover:border-accent-border sm:flex-col sm:items-start sm:gap-0 sm:p-5"
             >
-              <div class="flex h-9 w-9 flex-none items-center justify-center rounded-lg border border-accent-border/50 bg-accent-bg text-accent transition-colors group-hover:bg-accent group-hover:text-paper">
+              <div class="flex h-9 w-9 flex-none items-center justify-center rounded-lg bg-accent-bg text-accent">
                 <Icon name={item.icon as any} class="h-4.5 w-4.5" />
               </div>
               <div class="flex-1 sm:mt-3.5">
@@ -153,7 +152,7 @@ const galleryItems = [
           galleryItems.map((item) => (
             <a
               href={href(item.link)}
-              class="group flex flex-col overflow-hidden rounded-xl border border-line bg-card transition-all duration-200 hover:-translate-y-1 hover:border-accent-border hover:shadow-lg"
+              class="group flex flex-col overflow-hidden rounded-xl border border-line bg-card transition-colors hover:border-accent-border"
             >
               <div class="aspect-[4/3] overflow-hidden bg-navy">
                 <GeometrizedPhoto
@@ -161,7 +160,7 @@ const galleryItems = [
                   imageKey={item.key as any}
                   src={item.image}
                   alt={item.title}
-                  class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  class="h-full w-full object-cover"
                 />
               </div>
               <div class="p-5">
@@ -198,10 +197,10 @@ const galleryItems = [
 
     <!-- WHEN TO SEE A DOCTOR -->
     <section class="mx-auto max-w-7xl px-5 pb-16 sm:px-14">
-      <div class="rounded-2xl border border-navy-border bg-navy px-8 py-12 shadow-xl sm:px-12 md:grid md:grid-cols-[1.1fr_0.9fr] md:items-center md:gap-12">
+      <div class="rounded-2xl border border-navy-border bg-navy px-8 py-12 sm:px-12 md:grid md:grid-cols-[1.1fr_0.9fr] md:items-center md:gap-12">
         <div>
-          <div class="mb-4 inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/10 px-3 py-1 font-mono text-xs uppercase tracking-wider text-amber-300">
-            <Icon name="warning" class="h-3.5 w-3.5 text-amber-400" />
+          <div class="mb-4 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-amber-300">
+            <Icon name="warning" class="h-3.5 w-3.5" />
             <span>{t(lang, 'doctor.eyebrow')}</span>
           </div>
           <h2 class="mb-4 text-3xl leading-tight text-[#f4efe6] sm:text-4xl">

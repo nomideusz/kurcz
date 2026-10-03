@@ -57,8 +57,8 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     return json(429, {
       ok: false,
       error: isEn
-        ? 'Too many attempts. Please try again later.'
-        : 'Zbyt wiele prób. Spróbuj ponownie później.',
+        ? 'Too many messages sent from this connection. Please try again in 10 minutes.'
+        : 'Wysłano zbyt wiele wiadomości z tego połączenia. Spróbuj ponownie za 10 minut.',
     });
   }
 
@@ -72,7 +72,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
   if (!name || name.length > 120) {
     return json(400, {
       ok: false,
-      error: isEn ? 'Please enter your name.' : 'Podaj imię.',
+      error: isEn ? 'Please enter your name.' : 'Podaj imię i nazwisko.',
     });
   }
   if (!isEmail(email)) {
@@ -81,12 +81,18 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
       error: isEn ? 'Please enter a valid email address.' : 'Podaj poprawny adres e-mail.',
     });
   }
-  if (message.length < 5 || message.length > 5000) {
+  if (message.length < 5) {
+    return json(400, {
+      ok: false,
+      error: isEn ? 'Please write a longer message.' : 'Napisz nieco dłuższą wiadomość.',
+    });
+  }
+  if (message.length > 5000) {
     return json(400, {
       ok: false,
       error: isEn
-        ? 'Message is too short or too long.'
-        : 'Wiadomość jest za krótka lub za długa.',
+        ? 'Message is too long — please keep it under 5000 characters.'
+        : 'Wiadomość jest za długa — maksymalnie 5000 znaków.',
     });
   }
 
@@ -95,8 +101,8 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     return json(500, {
       ok: false,
       error: isEn
-        ? 'Form is temporarily unavailable.'
-        : 'Formularz jest chwilowo niedostępny.',
+        ? 'The form is temporarily unavailable. Please try again later.'
+        : 'Formularz jest chwilowo niedostępny. Spróbuj ponownie później.',
     });
   }
 
@@ -117,8 +123,8 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     return json(502, {
       ok: false,
       error: isEn
-        ? 'Failed to send message. Please try again.'
-        : 'Nie udało się wysłać wiadomości. Spróbuj ponownie.',
+        ? 'Your message could not be sent. Please try again in a moment.'
+        : 'Nie udało się wysłać wiadomości. Spróbuj ponownie za chwilę.',
     });
   }
 };

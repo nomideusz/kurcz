@@ -177,7 +177,7 @@
           'Electrolytes for muscle cramps',
         ]
       : [
-          'Co robić przy nagłym skurczu?',
+          'Co robić przy nagłym kurczu?',
           'Skurcze łydek w nocy',
           'Niedobór magnezu i minerałów',
           'Bezpieczna ulga w ciąży',
@@ -234,7 +234,7 @@
         type="button"
         onclick={() => { query = ''; hits = []; answer = ''; sources = []; state = 'idle'; }}
         class="cursor-pointer text-xs font-mono text-faint hover:text-ink"
-        aria-label="Wyczyść"
+        aria-label={t(locale, 'search.clear')}
       >
         ✕
       </button>

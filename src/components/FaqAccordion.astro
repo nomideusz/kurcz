@@ -9,14 +9,14 @@ const { items = [], heading = 'Najczęściej zadawane pytania', bare = false } =
     (bare ? (
       <div class="flex flex-col gap-3">
         {items.map((item) => (
-          <details class="group rounded-xl border border-line bg-card p-5 transition-all open:border-accent-border open:bg-card-elevated open:shadow-sm">
+          <details class="group rounded-xl border border-line bg-card p-5 transition-colors open:border-accent-border">
             <summary class="flex cursor-pointer list-none items-center justify-between gap-4 marker:hidden select-none">
-              <h3 class="text-[17px] font-semibold text-ink transition-colors group-hover:text-accent group-open:text-accent">
+              <h3 class="text-[17px] font-semibold text-ink transition-colors group-hover:text-accent">
                 {item.question}
               </h3>
               <span
                 aria-hidden="true"
-                class="flex h-7 w-7 flex-none items-center justify-center rounded-full bg-paper border border-line-soft font-mono text-sm leading-none text-accent transition-transform duration-200 group-open:rotate-45 group-open:bg-accent group-open:text-paper"
+                class="flex h-7 w-7 flex-none items-center justify-center rounded-full bg-paper border border-line-soft font-mono text-sm leading-none text-accent transition-transform duration-200 group-open:rotate-45"
               >
                 +
               </span>
@@ -32,14 +32,14 @@ const { items = [], heading = 'Najczęściej zadawane pytania', bare = false } =
         <h2 class="text-3xl text-ink sm:text-[34px]">{heading}</h2>
         <div class="mt-8 flex flex-col gap-3.5">
           {items.map((item) => (
-            <details class="group rounded-xl border border-line bg-card p-5 sm:p-6 transition-all open:border-accent-border open:bg-card-elevated open:shadow-sm">
+            <details class="group rounded-xl border border-line bg-card p-5 sm:p-6 transition-colors open:border-accent-border">
               <summary class="flex cursor-pointer list-none items-center justify-between gap-4 marker:hidden select-none">
-                <h3 class="text-[17.5px] font-semibold text-ink transition-colors group-hover:text-accent group-open:text-accent">
+                <h3 class="text-[17.5px] font-semibold text-ink transition-colors group-hover:text-accent">
                   {item.question}
                 </h3>
                 <span
                   aria-hidden="true"
-                  class="flex h-7 w-7 flex-none items-center justify-center rounded-full bg-paper border border-line-soft font-mono text-sm leading-none text-accent transition-transform duration-200 group-open:rotate-45 group-open:bg-accent group-open:text-paper"
+                  class="flex h-7 w-7 flex-none items-center justify-center rounded-full bg-paper border border-line-soft font-mono text-sm leading-none text-accent transition-transform duration-200 group-open:rotate-45"
                 >
                   +
                 </span>

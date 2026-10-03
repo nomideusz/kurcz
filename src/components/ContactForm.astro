@@ -9,7 +9,11 @@ const { locale } = extractLocale(currentPath, routing);
 const effectiveLocale = lang ?? locale;
 ---
 
-<form id="contact-form" class="space-y-5 rounded-2xl border border-line bg-card p-6 sm:p-8 shadow-xs" novalidate data-lang={effectiveLocale}>
+<form id="contact-form" class="space-y-5 rounded-2xl border border-line bg-card p-6 sm:p-8 shadow-xs" novalidate data-lang={effectiveLocale}
+  data-msg-sending={t(effectiveLocale, 'contact.sending')}
+  data-msg-success={t(effectiveLocale, 'contact.success')}
+  data-msg-error={t(effectiveLocale, 'contact.error')}
+  data-msg-offline={t(effectiveLocale, 'contact.offline')}>
   <div>
     <label for="cf-name" class="block text-sm font-medium text-ink">{t(effectiveLocale, 'contact.name')}</label>
     <input
@@ -17,6 +21,7 @@ const effectiveLocale = lang ?? locale;
       name="from_name"
       type="text"
       required
+      maxlength="120"
       autocomplete="name"
       class="mt-2 block w-full rounded-xl border border-line bg-paper px-4 py-3 text-ink transition-all placeholder:text-muted/60 focus:border-accent focus:bg-card-elevated focus:outline-none focus:ring-2 focus:ring-accent/20"
     />
@@ -39,6 +44,8 @@ const effectiveLocale = lang ?? locale;
       name="message"
       rows="5"
       required
+      minlength="5"
+      maxlength="5000"
       class="mt-2 block w-full rounded-xl border border-line bg-paper px-4 py-3 text-ink transition-all placeholder:text-muted/60 focus:border-accent focus:bg-card-elevated focus:outline-none focus:ring-2 focus:ring-accent/20"
     ></textarea>
   </div>
@@ -54,7 +61,7 @@ const effectiveLocale = lang ?? locale;
   <button
     type="submit"
     id="cf-submit"
-    class="inline-flex items-center justify-center rounded-xl bg-accent px-8 py-3.5 text-[15px] font-medium text-paper shadow-sm transition-all hover:bg-accent-hover hover:shadow-md disabled:cursor-not-allowed disabled:opacity-60"
+    class="inline-flex items-center justify-center rounded-xl bg-accent px-8 py-3.5 text-[15px] font-medium text-paper transition-colors hover:bg-accent-hover disabled:cursor-not-allowed disabled:opacity-60"
   >
     {t(effectiveLocale, 'contact.send')}
   </button>
@@ -66,8 +73,8 @@ const effectiveLocale = lang ?? locale;
   if (form) {
     const status = document.getElementById('cf-status')!;
     const submit = document.getElementById('cf-submit') as HTMLButtonElement;
-    const formLang = form.dataset.lang || (location.pathname.startsWith('/en') ? 'en' : 'pl');
-    const isEn = formLang === 'en';
+    const formLang = form.dataset.lang || 'pl';
+    const msg = form.dataset;
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -76,7 +83,7 @@ const effectiveLocale = lang ?? locale;
         return;
       }
       submit.disabled = true;
-      status.textContent = isEn ? 'Sending…' : 'Wysyłanie…';
+      status.textContent = msg.msgSending!;
       status.className = 'text-sm text-muted';
 
       const payload = Object.fromEntries(new FormData(form).entries());
@@ -92,24 +99,18 @@ const effectiveLocale = lang ?? locale;
         });
         const data = await res.json().catch(() => ({}));
         if (res.ok && data.ok) {
-          status.textContent = isEn
-            ? 'Thank you! Your message has been sent.'
-            : 'Dziękujemy! Twoja wiadomość została wysłana.';
+          status.textContent = msg.msgSuccess!;
           status.className = 'text-sm text-accent';
           form.reset();
         } else {
           // A non-JSON response (404 HTML, proxy error) leaves data.error undefined and
           // the visitor sees only the generic string — log enough to name the cause.
           console.error('[contact] submit failed', res.status, res.statusText, data);
-          status.textContent =
-            data.error ??
-            (isEn
-              ? 'An error occurred while sending your message. Please try again.'
-              : 'Wystąpił błąd podczas wysyłania wiadomości. Spróbuj ponownie.');
+          status.textContent = data.error ?? msg.msgError!;
           status.className = 'text-sm text-red-600';
         }
       } catch {
-        status.textContent = isEn ? 'Connection error.' : 'Błąd połączenia.';
+        status.textContent = msg.msgOffline!;
         status.className = 'text-sm text-red-600';
       } finally {
         submit.disabled = false;
