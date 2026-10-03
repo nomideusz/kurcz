@@ -18,6 +18,9 @@
   --text-sm: 0.92rem;
   --text-base: 1.04rem;
   --text-lg: 1.16rem;
+  /* Roles: section = h2 at sm+, label = mono eyebrow / count / kbd. */
+  --text-section: 2.125rem;
+  --text-label: 0.72rem;
 
   --color-paper: #f7f3eb;
   --color-card: #fdfbf7;
@@ -25,7 +28,7 @@
   --color-ink: #162234;
   --color-body: #374357;
   --color-muted: #5c687a;
-  --color-faint: #7d7261;
+  --color-faint: #756a59;
   --color-line: #e3dbce;
   --color-line-soft: #eee7dc;
   --color-navy: #152233;
@@ -124,7 +127,7 @@
 @layer components {
   /* Mono eyebrow / meta label */
   .eyebrow {
-    @apply font-mono text-[11.5px] uppercase tracking-[0.14em] text-faint;
+    @apply font-mono text-label uppercase tracking-[0.14em] text-faint;
   }
 
 
@@ -142,10 +145,10 @@
     @apply mt-9 mb-3 text-xl font-semibold text-ink;
   }
   .prose-content p {
-    @apply my-5 text-[1.08rem] leading-[1.78] text-body;
+    @apply my-5 max-w-[68ch] text-[1.08rem] leading-[1.78] text-body;
   }
   .prose-content ul {
-    @apply my-6 flex flex-col;
+    @apply my-6 flex max-w-[68ch] flex-col;
   }
   .prose-content ul li {
     @apply relative border-t border-line py-3.5 pl-6 text-[1.08rem] leading-relaxed text-body last:border-b;

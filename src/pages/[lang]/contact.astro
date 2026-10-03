@@ -33,7 +33,7 @@ const route = getLocalizedRoute(rawRoute, lang);
         <div>
           <div class="rounded-2xl border border-line bg-card p-6 sm:p-8">
             <h2 class="text-2xl text-ink">{lang === 'en' ? 'Before reaching out' : 'Przed wysłaniem wiadomości'}</h2>
-            <p class="mt-3 text-[15px] leading-relaxed text-muted">
+            <p class="mt-3 text-base leading-relaxed text-muted">
               {lang === 'en' ? 'Looking for immediate cramp relief instructions or answers to common muscle questions? Check our quick sections first:' : 'Jeśli szukasz natychmiastowej instrukcji ulgi przy nagłym kurczu lub odpowiedzi na powszechne pytania, sprawdź nasze sekcje:'}
             </p>
             <div class="mt-6 flex flex-col gap-3">
@@ -59,7 +59,7 @@ const route = getLocalizedRoute(rawRoute, lang);
               </a>
             </div>
 
-            <div class="mt-8 flex items-start gap-2.5 border-t border-line-soft pt-6 text-xs leading-relaxed text-faint">
+            <div class="mt-8 flex items-start gap-2.5 border-t border-line-soft pt-6 text-sm leading-relaxed text-faint">
               <Icon name="medical" class="h-4 w-4 flex-none text-accent mt-0.5" />
               <span>{t(lang, 'contact.no_advice')}</span>
             </div>

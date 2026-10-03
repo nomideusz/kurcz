@@ -26,7 +26,7 @@ const { categories } = poradnikiHub;
               class="inline-flex items-center gap-1.5 rounded-lg border border-line bg-card px-3.5 py-2 text-xs font-medium text-ink transition-all hover:border-accent-border hover:bg-accent-bg hover:text-accent"
             >
               <span>{category.title}</span>
-              <span class="text-accent font-mono text-[11px]">({category.guides.length})</span>
+              <span class="text-accent font-mono text-label">({category.guides.length})</span>
             </a>
           ))
         }
@@ -37,8 +37,8 @@ const { categories } = poradnikiHub;
           <section id={`kat-${idx}`} class="mb-16 scroll-mt-24">
             <div class="mb-6 max-w-[720px]">
               <span class="font-serif text-sm font-semibold text-accent">0{idx + 1}</span>
-              <h2 class="mt-1 text-2xl text-ink sm:text-[30px]">{category.title}</h2>
-              <p class="mt-2 text-[15.5px] leading-relaxed text-muted">{category.description}</p>
+              <h2 class="mt-1 text-2xl text-ink sm:text-3xl">{category.title}</h2>
+              <p class="mt-2 text-base leading-relaxed text-muted">{category.description}</p>
             </div>
             <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {category.guides.map((guide) => (

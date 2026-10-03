@@ -11,7 +11,7 @@ const { items = [], heading = 'Najczęściej zadawane pytania', bare = false } =
         {items.map((item) => (
           <details class="group rounded-xl border border-line bg-card p-5 transition-colors open:border-accent-border">
             <summary class="flex cursor-pointer list-none items-center justify-between gap-4 marker:hidden select-none">
-              <h3 class="text-[17px] font-semibold text-ink transition-colors group-hover:text-accent">
+              <h3 class="text-lg font-semibold text-ink transition-colors group-hover:text-accent">
                 {item.question}
               </h3>
               <span
@@ -22,19 +22,19 @@ const { items = [], heading = 'Najczęściej zadawane pytania', bare = false } =
               </span>
             </summary>
             <div class="mt-3.5 border-t border-line-soft pt-3">
-              <p class="text-[15px] leading-relaxed text-muted">{item.answer}</p>
+              <p class="text-base leading-relaxed text-muted">{item.answer}</p>
             </div>
           </details>
         ))}
       </div>
     ) : (
       <section class="mx-auto max-w-3xl px-5 py-14 sm:px-14">
-        <h2 class="text-3xl text-ink sm:text-[34px]">{heading}</h2>
+        <h2 class="text-3xl text-ink sm:text-section">{heading}</h2>
         <div class="mt-8 flex flex-col gap-3.5">
           {items.map((item) => (
             <details class="group rounded-xl border border-line bg-card p-5 sm:p-6 transition-colors open:border-accent-border">
               <summary class="flex cursor-pointer list-none items-center justify-between gap-4 marker:hidden select-none">
-                <h3 class="text-[17.5px] font-semibold text-ink transition-colors group-hover:text-accent">
+                <h3 class="text-lg font-semibold text-ink transition-colors group-hover:text-accent">
                   {item.question}
                 </h3>
                 <span
@@ -45,7 +45,7 @@ const { items = [], heading = 'Najczęściej zadawane pytania', bare = false } =
                 </span>
               </summary>
               <div class="mt-4 border-t border-line-soft pt-3.5">
-                <p class="text-[15.5px] leading-relaxed text-muted">{item.answer}</p>
+                <p class="text-base leading-relaxed text-muted">{item.answer}</p>
               </div>
             </details>
           ))}

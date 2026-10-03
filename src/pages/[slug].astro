@@ -85,7 +85,7 @@ const eyebrow = (route.breadcrumbLabel ?? route.h1).toLowerCase();
     <!-- ARTICLE HEADER -->
     <section class="border-b border-line bg-card/40">
       <div class="mx-auto max-w-7xl px-5 py-12 sm:px-14">
-        <nav aria-label="Ścieżka okruszków" class="mb-6 font-mono text-[12px] text-faint">
+        <nav aria-label="Ścieżka okruszków" class="mb-6 font-mono text-xs text-faint">
           {
             crumbs.map((c) => (
               <>
@@ -103,11 +103,11 @@ const eyebrow = (route.breadcrumbLabel ?? route.h1).toLowerCase();
           </h1>
           {
             intro && (
-              <p class="mt-6 max-w-[64ch] text-lg leading-relaxed text-body sm:text-[19px]">{intro}</p>
+              <p class="mt-6 max-w-[64ch] text-lg leading-relaxed text-body sm:text-xl">{intro}</p>
             )
           }
         </div>
-        <div class="mt-7 flex flex-wrap items-center gap-x-5 gap-y-2 font-mono text-[12px] text-faint">
+        <div class="mt-7 flex flex-wrap items-center gap-x-5 gap-y-2 font-mono text-xs text-faint">
           <span class="inline-flex items-center gap-1.5">
             <Icon name="clock" class="h-3.5 w-3.5 text-accent" />
             <span>czas czytania ~{readMin} min</span>
@@ -145,7 +145,7 @@ const eyebrow = (route.breadcrumbLabel ?? route.h1).toLowerCase();
                   class="h-full w-full object-cover"
                 />
               </div>
-              <figcaption class="border-t border-line px-5 py-3.5 text-xs leading-relaxed text-muted bg-card">
+              <figcaption class="border-t border-line px-5 py-3.5 text-sm leading-relaxed text-muted bg-card">
                 {pagePhoto.captionPl}
               </figcaption>
             </figure>
@@ -161,7 +161,7 @@ const eyebrow = (route.breadcrumbLabel ?? route.h1).toLowerCase();
             </div>
             <div>
               <div class="text-sm font-semibold text-ink">Zastrzeżenie medyczne</div>
-              <p class="mt-1 text-xs leading-relaxed text-muted">
+              <p class="mt-1 text-sm leading-relaxed text-muted">
                 Prezentowane w portalu Kurcz.pl informacje mają wyłącznie charakter edukacyjny i opierają się na aktualnej wiedzy fizjologicznej oraz medycznej. Nie stanowią one porady lekarskiej ani diagnozy. W przypadku przewlekłych, nasilonych lub niepokojących objawów zawsze skonsultuj się z lekarzem lub fizjoterapeutą.
               </p>
             </div>
@@ -176,7 +176,7 @@ const eyebrow = (route.breadcrumbLabel ?? route.h1).toLowerCase();
           <div class="grid gap-10 lg:grid-cols-[0.7fr_1.3fr]">
             <div>
               <span class="eyebrow text-accent">pytania do artykułu</span>
-              <h2 class="mt-1 text-3xl text-ink sm:text-[34px]">Najczęstsze pytania</h2>
+              <h2 class="mt-1 text-3xl text-ink sm:text-section">Najczęstsze pytania</h2>
             </div>
             <FaqAccordion items={faq} bare />
           </div>

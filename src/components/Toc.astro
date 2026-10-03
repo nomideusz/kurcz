@@ -24,7 +24,7 @@ const heading = t(effectiveLang, 'toc.heading');
           <Icon name="toc" class="h-3.5 w-3.5" />
           <span>{heading}</span>
         </div>
-        <nav class="flex flex-col border-l border-line text-[13px] leading-snug" id="article-toc" aria-label={heading}>
+        <nav class="flex flex-col border-l border-line text-sm leading-snug" id="article-toc" aria-label={heading}>
           {items.map((it, i) => (
             <a
               href={`#${it.id}`}

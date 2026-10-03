@@ -205,7 +205,7 @@
     <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z" />
   </svg>
   <span class="hidden sm:inline text-body group-hover:text-ink">{t(locale, 'search.open')}</span>
-  <kbd class="hidden md:inline-flex items-center rounded border border-line-soft bg-paper px-1.5 py-0.5 font-mono text-[10px] text-faint shadow-xs">⌘K</kbd>
+  <kbd class="hidden md:inline-flex items-center rounded border border-line-soft bg-paper px-1.5 py-0.5 font-mono text-label text-faint shadow-xs">⌘K</kbd>
 </button>
 
 <dialog
@@ -256,8 +256,8 @@
       </div>
     {:else if answer || state === 'asking'}
       <div class="mb-3 flex items-center justify-between">
-        <p class="font-mono text-[11.5px] uppercase tracking-wider text-accent font-medium">{t(locale, 'search.answer')}</p>
-        <span class="rounded-full bg-accent-bg px-2.5 py-0.5 font-mono text-[10.5px] text-accent">AI Search</span>
+        <p class="font-mono text-label uppercase tracking-wider text-accent font-medium">{t(locale, 'search.answer')}</p>
+        <span class="rounded-full bg-accent-bg px-2.5 py-0.5 font-mono text-label text-accent">AI Search</span>
       </div>
 
       {#if waitingForFirstToken}
@@ -274,17 +274,17 @@
       {/if}
 
       <div class="rounded-xl border border-line-soft bg-paper p-4">
-        <p class="whitespace-pre-line text-[15.5px] leading-relaxed text-ink" aria-live="polite" aria-busy={state === 'asking'}>
+        <p class="whitespace-pre-line text-base leading-relaxed text-ink" aria-live="polite" aria-busy={state === 'asking'}>
           {plain(answer)}{#if state === 'asking' && answer}<span class="ml-0.5 inline-block h-4 w-[2px] animate-pulse bg-accent align-middle"></span>{/if}
         </p>
       </div>
 
       {#if sources.length}
-        <p class="mt-5 mb-2 font-mono text-[11.5px] uppercase tracking-wider text-faint">{t(locale, 'search.sources')}</p>
+        <p class="mt-5 mb-2 font-mono text-label uppercase tracking-wider text-faint">{t(locale, 'search.sources')}</p>
         <ul class="flex flex-wrap gap-2">
           {#each sources as s (s.url)}
             <li>
-              <a href={s.url} class="inline-flex items-center gap-1.5 rounded-md border border-accent-border bg-accent-bg px-2.5 py-1 text-[13px] font-medium text-accent transition-colors hover:bg-accent hover:text-white">
+              <a href={s.url} class="inline-flex items-center gap-1.5 rounded-md border border-accent-border bg-accent-bg px-2.5 py-1 text-sm font-medium text-accent transition-colors hover:bg-accent hover:text-white">
                 <svg class="h-3.5 w-3.5 flex-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
                   <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
                   <polyline points="14 2 14 8 20 8" />
@@ -298,7 +298,7 @@
       {/if}
 
       {#if answer && state !== 'asking'}
-        <p class="mt-5 flex items-start gap-2 border-t border-line-soft pt-3 text-[12px] leading-relaxed text-faint">
+        <p class="mt-5 flex items-start gap-2 border-t border-line-soft pt-3 text-sm leading-relaxed text-faint">
           <svg class="mt-0.5 h-3.5 w-3.5 flex-none text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
             <path d="M12 2v20" />
             <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
@@ -308,14 +308,14 @@
         </p>
       {/if}
     {:else if hits.length}
-      <p class="mb-2 font-mono text-[11.5px] uppercase tracking-wider text-faint">{t(locale, 'search.pages')}</p>
+      <p class="mb-2 font-mono text-label uppercase tracking-wider text-faint">{t(locale, 'search.pages')}</p>
       <ul class="divide-y divide-line-soft">
         {#each hits as h (h.url)}
           <li>
             <a href={h.url} class="block rounded-lg p-3 transition-colors hover:bg-paper">
-              <span class="block text-[15.5px] font-semibold text-ink">{h.title}</span>
+              <span class="block text-base font-semibold text-ink">{h.title}</span>
               {#if h.description}
-                <span class="mt-1 block line-clamp-2 text-[13.5px] leading-relaxed text-muted">{h.description}</span>
+                <span class="mt-1 block line-clamp-2 text-sm leading-relaxed text-muted">{h.description}</span>
               {/if}
             </a>
           </li>
@@ -334,7 +334,7 @@
     {:else}
       <!-- Empty state with prompt suggestions -->
       <div class="py-2">
-        <p class="mb-3 font-mono text-[11.5px] uppercase tracking-wider text-faint">
+        <p class="mb-3 font-mono text-label uppercase tracking-wider text-faint">
           {locale === 'en' ? 'Quick topics:' : 'Częste pytania i tematy:'}
         </p>
         <div class="flex flex-wrap gap-2">
