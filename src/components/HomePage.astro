@@ -1,0 +1,243 @@
+---
+// Home page for every locale; the PL root and /[lang] pages both render this.
+import Layout from '../layouts/Layout.astro';
+import Shell from './Shell.astro';
+import FaqAccordion from './FaqAccordion.astro';
+import GeometrizedPhoto from './GeometrizedPhoto.svelte';
+import Icon from './Icon.astro';
+import { getRouteByPath } from '../seo/routes.js';
+import { getFaqItems } from '../seo/faq-data.js';
+import { DEFAULT_LOCALE, t, localizeHref, routing, type SupportedLocale } from '../i18n/config.ts';
+import { getLocalizedRoute, getLocalizedReliefSteps, getLocalizedTopics, getLocalizedDoctorSigns } from '../i18n/content.ts';
+
+const { lang } = Astro.props as { lang: SupportedLocale };
+const en = lang === 'en';
+const href = (path: string) => localizeHref(path, lang, routing);
+const currentPath = lang === DEFAULT_LOCALE ? '/' : `/${lang}`;
+const route = getLocalizedRoute(getRouteByPath('/'), lang);
+
+const reliefSteps = getLocalizedReliefSteps(lang);
+const topics = getLocalizedTopics(lang);
+const doctorSigns = getLocalizedDoctorSigns(lang);
+const homeFaq = getFaqItems(lang).slice(0, 4);
+
+// Set the key word of the headline in the accent italic.
+const h1 = t(lang, 'hero.h1');
+const accentWord = en ? 'cramp' : 'kurcz';
+const [h1Before, h1After] = h1.split(accentWord);
+
+const triageItems = [
+  { path: '/kurcze-lydek', icon: 'calf', title: en ? 'Calf Cramps' : 'Kurcze łydek', desc: en ? 'Sudden tightening after workouts or during movement.' : 'Nagłe spięcie po wysiłku lub przy niefortunnym ruchu.' },
+  { path: '/kurcze-nocne', icon: 'night', title: en ? 'Night Cramps' : 'Kurcze nocne', desc: en ? 'Painful nighttime wakeups and evening prevention.' : 'Bolesne wybudzenia ze snu i wieczorna profilaktyka.' },
+  { path: '/kurcze-u-kobiet-w-ciazy', icon: 'pregnancy', title: en ? 'Pregnancy Cramps' : 'Kurcze w ciąży', desc: en ? 'Safe positioning and gentle relief for expectant mothers.' : 'Bezpieczne pozycje, odpoczynek i ulga dla przyszłych mam.' },
+  { path: '/kurcze-stop', icon: 'foot', title: en ? 'Foot Cramps' : 'Kurcze stóp', desc: en ? 'Plantar arch spasms and toe curling relief.' : 'Bolesne skurcze łuku podeszwowego i wykręcanie palców.' },
+  { path: '/niedobor-magnezu', icon: 'magnesium', title: en ? 'Magnesium Deficiency' : 'Niedobór magnezu', desc: en ? 'Symptoms of deficit, bioavailability, and food sources.' : 'Objawy deficytu, przyswajalność i zbilansowana dieta.' },
+  { path: '/kurcze-u-sportowcow', icon: 'sport', title: en ? 'Athletes & Runners' : 'Dla sportowców', desc: en ? 'Electrolyte loss in sweat, hydration, and recovery.' : 'Utrata soli w pocie, nawodnienie i regeneracja powysiłkowa.' },
+  { path: '/kurcze-dloni', icon: 'hand', title: en ? 'Hand Cramps' : 'Kurcze dłoni', desc: en ? 'Strain from mouse, keyboard, or manual tasks.' : 'Napięcia od pracy przy komputerze, pisania i pracy manualnej.' },
+  { path: '/kurcze-u-osob-starszych', icon: 'senior', title: en ? 'Senior Health' : 'U seniorów', desc: en ? 'Circulation, diuretic medications, and gentle mobility.' : 'Wpływ krążenia obwodowego, leków i bezpieczna aktywność.' },
+];
+
+const galleryItems = [
+  { key: 'first_aid_calf_stretch.png', image: '/img/first_aid_calf_stretch.png', link: '/rozciaganie-przy-kurczach', title: en ? 'Activity & Stretching' : 'Aktywność i rozciąganie', desc: en ? 'Proper muscle stretching after exercise and before bed reduces sudden painful cramps.' : 'Prawidłowe rozciąganie mięśni po treningu i przed snem ogranicza ryzyko nagłych bolesnych skurczów.' },
+  { key: 'magnesium_rich_foods.png', image: '/img/magnesium_rich_foods.png', link: '/niedobor-magnezu', title: en ? 'Diet & Minerals' : 'Dieta i minerały', desc: en ? 'Nuts, pumpkin seeds, dark chocolate, and spinach — natural magnesium sources supporting muscles.' : 'Orzechy, pestki dyni, ciemna czekolada i szpinak — naturalne źródła magnezu wspierające mięśnie.' },
+  { key: 'leg_massage_relief.png', image: '/img/leg_massage_relief.png', link: '/masaz-przy-kurczach', title: en ? 'Massage & Physical Therapy' : 'Masaż i terapia fizyczna', desc: en ? 'Targeted myofascial massage and manual therapy promote fast recovery after acute cramps.' : 'Okrężny masaż powięziowy i terapia manualna wspomagają szybki powrót do sprawności po ostrym kurczu.' },
+  { key: 'vibroacoustic_therapy.png', image: '/img/vibroacoustic_therapy.png', link: '/wibroakustyka', title: en ? 'Modern Vibroacoustics' : 'Nowoczesna wibroakustyka', desc: en ? 'Low-frequency sound waves stimulate microcirculation and relax deep muscle tissues.' : 'Fale dźwiękowe o niskich częstotliwościach stymulują mikrokrążenie i rozluźniają głębokie partie mięśni.' },
+];
+---
+
+<Layout route={route} lang={lang}>
+  <Shell currentPath={currentPath}>
+    <!-- HERO -->
+    <section class="mx-auto grid max-w-7xl items-center gap-12 px-5 py-14 sm:px-14 lg:grid-cols-[1.15fr_0.85fr] lg:gap-14 lg:py-[68px]">
+      <div>
+        <div class="eyebrow mb-5 flex items-center gap-2.5 text-faint">
+          <span class="h-px w-[22px] bg-accent/60"></span>{t(lang, 'hero.eyebrow')}
+        </div>
+        <h1 class="text-5xl leading-[1.02] text-ink sm:text-6xl lg:text-[68px] lg:leading-[1.02]">
+          {h1After === undefined ? h1 : <>{h1Before.replace(/ $/, ' ')}<span class="text-accent italic">{accentWord}</span>{h1After}</>}
+        </h1>
+        <p class="mt-6 max-w-[500px] text-lg leading-relaxed text-body">
+          {t(lang, 'hero.p')}
+        </p>
+        <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-3.5">
+          <a
+            href={href('/pierwsza-pomoc')}
+            class="inline-flex items-center justify-center gap-2 rounded-lg bg-accent px-7 py-3.5 text-[15px] font-medium text-paper shadow-sm transition-all hover:bg-accent-hover hover:shadow-md"
+          >
+            {t(lang, 'hero.first_aid_btn')} <span class="text-[17px]">→</span>
+          </a>
+          <a
+            href={href('/kurcze-miesniowe')}
+            class="inline-flex justify-center rounded-lg border border-line bg-card px-6 py-3.5 text-[15px] font-medium text-ink transition-all hover:border-ink hover:bg-card-elevated"
+          >
+            {t(lang, 'hero.causes_btn')}
+          </a>
+        </div>
+      </div>
+
+      <!-- Quick relief card -->
+      <div class="rounded-2xl border border-line bg-card p-6 sm:p-8 shadow-[0_1px_3px_rgba(22,34,52,0.04),0_12px_32px_rgba(22,34,52,0.06)]">
+        <div class="mb-6 flex items-center gap-2 border-b border-line-soft pb-4">
+          <span class="inline-flex h-2 w-2 rounded-full bg-accent"></span>
+          <span class="eyebrow text-accent font-semibold">{t(lang, 'relief.title')}</span>
+        </div>
+        <ol class="flex flex-col gap-5">
+          {
+            reliefSteps.map((s) => (
+              <li class="flex items-start gap-4">
+                <span class="flex h-7 w-7 flex-none items-center justify-center rounded-full bg-accent font-serif text-sm text-paper">
+                  {s.n}
+                </span>
+                <div>
+                  <div class="text-[15px] font-semibold text-ink">{s.title}</div>
+                  <div class="mt-0.5 text-[13.5px] leading-relaxed text-muted">{s.body}</div>
+                </div>
+              </li>
+            ))
+          }
+        </ol>
+        <a
+          href={href('/pierwsza-pomoc')}
+          class="mt-6 inline-flex items-center gap-1.5 text-xs font-semibold text-accent transition-colors hover:text-accent-hover"
+        >
+          <span>{en ? 'Step-by-step instructions' : 'Instrukcja krok po kroku'}</span>
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- WHERE / WHEN -->
+    <section class="mx-auto max-w-7xl px-5 pb-16 sm:px-14">
+      <div class="mb-8 max-w-[680px]">
+        <h2 class="text-3xl text-ink sm:text-[36px]">
+          {en ? 'Where and when do your cramps happen?' : 'Gdzie i kiedy pojawia się kurcz?'}
+        </h2>
+        <p class="mt-2.5 text-[15.5px] leading-relaxed text-muted">
+          {en ? 'Pick your situation for tailored relief steps, causes, and prevention.' : 'Wybierz swoją sytuację: wskazówki, przyczyny i profilaktyka.'}
+        </p>
+      </div>
+
+      <div class="grid gap-3.5 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          triageItems.map((item) => (
+            <a
+              href={href(item.path)}
+              class="group flex items-center gap-3.5 rounded-xl border border-line bg-card p-4 transition-all duration-200 hover:-translate-y-1 hover:border-accent-border hover:bg-card-elevated hover:shadow-md sm:flex-col sm:items-start sm:gap-0 sm:p-5"
+            >
+              <div class="flex h-9 w-9 flex-none items-center justify-center rounded-lg border border-accent-border/50 bg-accent-bg text-accent transition-colors group-hover:bg-accent group-hover:text-paper">
+                <Icon name={item.icon as any} class="h-4.5 w-4.5" />
+              </div>
+              <div class="flex-1 sm:mt-3.5">
+                <h3 class="text-lg text-ink transition-colors group-hover:text-accent">{item.title}</h3>
+                <p class="mt-1.5 hidden text-xs leading-relaxed text-muted sm:block">{item.desc}</p>
+              </div>
+              <span class="text-accent sm:hidden" aria-hidden="true">→</span>
+            </a>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- PREVENTION METHODS -->
+    <section class="mx-auto max-w-7xl px-5 pb-16 sm:px-14">
+      <div class="mb-8 max-w-[620px]">
+        <h2 class="text-3xl text-ink sm:text-[36px]">
+          {en ? 'Prevention & Physical Therapy Methods' : 'Metody prewencji i fizjoterapii'}
+        </h2>
+        <p class="mt-2.5 text-[15.5px] leading-relaxed text-muted">
+          {en ? 'From daily stretching and nutrition to massage and soundwave therapy.' : 'Od rozciągania i diety po masaż i wibroakustykę.'}
+        </p>
+      </div>
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          galleryItems.map((item) => (
+            <a
+              href={href(item.link)}
+              class="group flex flex-col overflow-hidden rounded-xl border border-line bg-card transition-all duration-200 hover:-translate-y-1 hover:border-accent-border hover:shadow-lg"
+            >
+              <div class="aspect-[4/3] overflow-hidden bg-navy">
+                <GeometrizedPhoto
+                  client:visible
+                  imageKey={item.key as any}
+                  src={item.image}
+                  alt={item.title}
+                  class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                />
+              </div>
+              <div class="p-5">
+                <h3 class="text-lg text-ink transition-colors group-hover:text-accent">{item.title}</h3>
+                <p class="mt-2 text-xs leading-relaxed text-muted">{item.desc}</p>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- MAIN SECTIONS -->
+    <section class="mx-auto max-w-7xl px-5 pb-16 sm:px-14">
+      <div class="mb-6 flex flex-wrap items-end justify-between gap-x-6 gap-y-2">
+        <h2 class="text-3xl text-ink sm:text-[34px]">{t(lang, 'topics.title')}</h2>
+        <a href={href('/poradniki')} class="text-sm font-medium text-accent hover:text-accent-hover">
+          {en ? 'all guides →' : 'wszystkie poradniki →'}
+        </a>
+      </div>
+      <ul class="grid gap-x-10 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          topics.map((tItem) => (
+            <li class="border-t border-line">
+              <a href={href(tItem.path)} class="group block py-5">
+                <h3 class="text-2xl leading-snug text-ink transition-colors group-hover:text-accent">{tItem.title}</h3>
+                <p class="mt-1.5 text-sm leading-relaxed text-muted">{tItem.desc}</p>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <!-- WHEN TO SEE A DOCTOR -->
+    <section class="mx-auto max-w-7xl px-5 pb-16 sm:px-14">
+      <div class="rounded-2xl border border-navy-border bg-navy px-8 py-12 shadow-xl sm:px-12 md:grid md:grid-cols-[1.1fr_0.9fr] md:items-center md:gap-12">
+        <div>
+          <div class="mb-4 inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/10 px-3 py-1 font-mono text-xs uppercase tracking-wider text-amber-300">
+            <Icon name="warning" class="h-3.5 w-3.5 text-amber-400" />
+            <span>{t(lang, 'doctor.eyebrow')}</span>
+          </div>
+          <h2 class="mb-4 text-3xl leading-tight text-[#f4efe6] sm:text-4xl">
+            {t(lang, 'doctor.title')}
+          </h2>
+          <p class="text-[15.5px] leading-relaxed text-[#a9b0bd]">
+            {t(lang, 'doctor.p')}
+          </p>
+        </div>
+        <ul class="mt-8 divide-y divide-navy-border md:mt-0">
+          {
+            doctorSigns.map((s) => (
+              <li class="flex items-start gap-3 py-3.5 text-[14.5px] leading-relaxed text-[#d9dce2]">
+                <span class="font-bold text-amber-400" aria-hidden="true">·</span>
+                <span>{s}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="mx-auto max-w-7xl px-5 pb-16 sm:px-14">
+      <div class="grid gap-12 lg:grid-cols-[0.7fr_1.3fr]">
+        <div>
+          <h2 class="mb-3 text-3xl text-ink sm:text-[34px]">{t(lang, 'faq.title')}</h2>
+          <p class="text-[15px] leading-relaxed text-muted">
+            {t(lang, 'faq.intro')}
+          </p>
+          <a href={href('/faq')} class="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-accent hover:text-accent-hover">
+            {t(lang, 'faq.see_all')}
+          </a>
+        </div>
+        <FaqAccordion items={homeFaq} bare />
+      </div>
+    </section>
+  </Shell>
+</Layout>

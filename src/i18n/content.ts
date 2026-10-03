@@ -163,8 +163,8 @@ export function getLocalizedReliefSteps(locale: SupportedLocale) {
     ];
   }
   return [
-    { n: 1, title: 'Rozciągnij mięsień', body: 'Delikatnie wyprostuj kończynę i przytrzymaj 20–30 sekund, oddychając głęboko.' },
-    { n: 2, title: 'Nawodnij się', body: 'Uzupełnij elektrolity — woda z solą mineralną lub napój izotoniczny.' },
+    { n: 1, title: 'Przerwij ruch', body: 'Zatrzymaj aktywność, rozluźnij całe ciało i nie napinaj mięśnia wbrew oporowi.' },
+    { n: 2, title: 'Rozciągaj powoli', body: 'Wyprostuj kończynę, przyciągając palce do siebie ze stałym, łagodnym oporem.' },
     { n: 3, title: 'Rozmasuj', body: 'Okrężne, delikatne ruchy z rosnącym naciskiem aż do rozluźnienia.' },
   ];
 }
@@ -172,21 +172,21 @@ export function getLocalizedReliefSteps(locale: SupportedLocale) {
 export function getLocalizedTopics(locale: SupportedLocale) {
   if (locale === 'en') {
     return [
-      { n: '01', path: '/kurcze-miesniowe', title: 'Causes of Cramps', desc: 'Dehydration, mineral deficiencies, and strain — what really causes cramps.' },
-      { n: '02', path: '/pierwsza-pomoc', title: 'First Aid', desc: 'Three steps of immediate relief, stretching, massage, and heat/cold therapy.' },
-      { n: '03', path: '/profilaktyka', title: 'Prevention', desc: 'Hydration, electrolyte-rich diet, and stretching to prevent recurrence.' },
-      { n: '04', path: '/kurcz-vs-skurcz', title: 'Cramp vs Spasm', desc: 'Quick answer: not synonyms — a cramp is painful lock-up; spasm is the broader medical term.' },
-      { n: '05', path: '/wibroakustyka', title: 'Vibroacoustics', desc: 'Sound frequency therapy as a modern complement to cramp prevention.' },
-      { n: '06', path: '/joga-a-kurcze', title: 'Yoga & Cramps', desc: 'Asanas, conscious breathing, and improved circulation for flexible muscles.' },
+      { path: '/kurcze-miesniowe', title: 'Causes of Cramps', desc: 'Dehydration, mineral deficiencies, and strain — what really causes cramps.' },
+      { path: '/pierwsza-pomoc', title: 'First Aid', desc: 'Three steps of immediate relief, stretching, massage, and heat/cold therapy.' },
+      { path: '/profilaktyka', title: 'Prevention', desc: 'Hydration, electrolyte-rich diet, and stretching to prevent recurrence.' },
+      { path: '/kurcz-vs-skurcz', title: 'Cramp vs Spasm', desc: 'Quick answer: not synonyms — a cramp is painful lock-up; spasm is the broader medical term.' },
+      { path: '/wibroakustyka', title: 'Vibroacoustics', desc: 'Sound frequency therapy as a modern complement to cramp prevention.' },
+      { path: '/joga-a-kurcze', title: 'Yoga & Cramps', desc: 'Asanas, conscious breathing, and improved circulation for flexible muscles.' },
     ];
   }
   return [
-    { n: '01', path: '/kurcze-miesniowe', title: 'Przyczyny kurczy', desc: 'Odwodnienie, niedobory minerałów i przeciążenie — co naprawdę wywołuje kurcze.' },
-    { n: '02', path: '/pierwsza-pomoc', title: 'Pierwsza pomoc', desc: 'Trzy kroki natychmiastowej ulgi, rozciąganie, masaż oraz terapia ciepłem i zimnem.' },
-    { n: '03', path: '/profilaktyka', title: 'Profilaktyka', desc: 'Nawodnienie, dieta bogata w elektrolity i rozciąganie, które zapobiegają nawrotom.' },
-    { n: '04', path: '/kurcz-vs-skurcz', title: 'Kurcz czy skurcz?', desc: 'Szybka odpowiedź: to nie synonimy — kurcz to bolesne napięcie, skurcz szersze pojęcie medyczne.' },
-    { n: '05', path: '/wibroakustyka', title: 'Wibroakustyka', desc: 'Terapia częstotliwościami dźwięku jako uzupełnienie profilaktyki kurczy.' },
-    { n: '06', path: '/joga-a-kurcze', title: 'Joga a kurcze', desc: 'Asany, świadomy oddech i lepsze ukrwienie w służbie elastycznych mięśni.' },
+    { path: '/kurcze-miesniowe', title: 'Przyczyny kurczy', desc: 'Odwodnienie, niedobory minerałów i przeciążenie — co naprawdę wywołuje kurcze.' },
+    { path: '/pierwsza-pomoc', title: 'Pierwsza pomoc', desc: 'Trzy kroki natychmiastowej ulgi, rozciąganie, masaż oraz terapia ciepłem i zimnem.' },
+    { path: '/profilaktyka', title: 'Profilaktyka', desc: 'Nawodnienie, dieta bogata w elektrolity i rozciąganie, które zapobiegają nawrotom.' },
+    { path: '/kurcz-vs-skurcz', title: 'Kurcz czy skurcz?', desc: 'Szybka odpowiedź: to nie synonimy — kurcz to bolesne napięcie, skurcz szersze pojęcie medyczne.' },
+    { path: '/wibroakustyka', title: 'Wibroakustyka', desc: 'Terapia częstotliwościami dźwięku jako uzupełnienie profilaktyki kurczy.' },
+    { path: '/joga-a-kurcze', title: 'Joga a kurcze', desc: 'Asany, świadomy oddech i lepsze ukrwienie w służbie elastycznych mięśni.' },
   ];
 }
 
@@ -200,9 +200,9 @@ export function getLocalizedDoctorSigns(locale: SupportedLocale) {
     ];
   }
   return [
-    'Kurcze utrzymujące się ponad 10 minut',
-    'Częste, nawracające mimo profilaktyki',
-    'Obrzęk, zaczerwienienie lub silny ból',
-    'Kurcze po urazie lub z innymi objawami',
+    'Kurcze utrzymujące się ponad 10 minut mimo rozciągania',
+    'Częste, nawracające dolegliwości mimo prawidłowej profilaktyki',
+    'Towarzyszący obrzęk, zaczerwienienie, ocieplenie lub silny ból',
+    'Kurcze powstałe po urazie lub współwystępujące z niedowładem',
   ];
 }
