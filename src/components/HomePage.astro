@@ -50,9 +50,6 @@ const galleryItems = [
     <!-- HERO -->
     <section class="mx-auto grid max-w-7xl items-center gap-12 px-5 py-14 sm:px-14 lg:grid-cols-[1.15fr_0.85fr] lg:gap-14 lg:py-[68px]">
       <div>
-        <div class="eyebrow mb-5 flex items-center gap-2.5 text-faint">
-          <span class="h-px w-[22px] bg-accent/60"></span>{t(lang, 'hero.eyebrow')}
-        </div>
         <h1 class="text-5xl leading-[1.02] text-ink sm:text-6xl lg:text-[68px] lg:leading-[1.02]">
           {h1After === undefined ? h1 : <>{h1Before.replace(/ $/, ' ')}<span class="text-accent italic">{accentWord}</span>{h1After}</>}
         </h1>
@@ -62,9 +59,9 @@ const galleryItems = [
         <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-3.5">
           <a
             href={href('/pierwsza-pomoc')}
-            class="inline-flex items-center justify-center gap-2 rounded-lg bg-accent px-7 py-3.5 text-[15px] font-medium text-paper transition-colors hover:bg-accent-hover"
+            class="inline-flex items-center justify-center gap-2 rounded-lg bg-accent px-6 py-3.5 text-[15px] font-medium text-paper transition-colors hover:bg-accent-hover"
           >
-            {t(lang, 'hero.first_aid_btn')} <span class="text-[17px]">→</span>
+            {t(lang, 'hero.first_aid_btn')} <span aria-hidden="true">→</span>
           </a>
           <a
             href={href('/kurcze-miesniowe')}
@@ -77,9 +74,7 @@ const galleryItems = [
 
       <!-- Quick relief card -->
       <div class="rounded-2xl border border-line bg-card p-6 sm:p-8">
-        <div class="mb-6 border-b border-line-soft pb-4">
-          <span class="eyebrow text-accent">{t(lang, 'relief.title')}</span>
-        </div>
+        <h2 class="mb-6 text-2xl text-ink">{t(lang, 'relief.title')}</h2>
         <ol class="flex flex-col gap-5">
           {
             reliefSteps.map((s) => (
@@ -89,7 +84,7 @@ const galleryItems = [
                 </span>
                 <div>
                   <div class="text-[15px] font-semibold text-ink">{s.title}</div>
-                  <div class="mt-0.5 text-[13.5px] leading-relaxed text-muted">{s.body}</div>
+                  <div class="mt-0.5 text-sm leading-relaxed text-muted">{s.body}</div>
                 </div>
               </li>
             ))
@@ -97,7 +92,7 @@ const galleryItems = [
         </ol>
         <a
           href={href('/pierwsza-pomoc')}
-          class="mt-6 inline-flex items-center gap-1.5 text-xs font-semibold text-accent transition-colors hover:text-accent-hover"
+          class="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-accent transition-colors hover:text-accent-hover"
         >
           <span>{en ? 'Step-by-step instructions' : 'Instrukcja krok po kroku'}</span>
           <span aria-hidden="true">→</span>
