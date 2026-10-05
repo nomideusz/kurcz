@@ -19,17 +19,17 @@ const heading = t(effectiveLang, 'toc.heading');
 
 {
   items.length >= 3 && inline && (
-    <details class="group mb-10 border-y-2 border-ink lg:hidden">
+    <details class="group mb-10 border-y-2 border-label lg:hidden">
       <summary class="flex list-none items-center justify-between py-3.5 [&::-webkit-details-marker]:hidden">
-        <span class="caps">{heading}{" "}<span class="font-sans font-normal normal-case tracking-normal text-muted">({items.length})</span></span>
+        <span class="tag first-letter:uppercase">{heading}{" "}<span class="font-sans font-normal text-muted">({items.length})</span></span>
         <svg class="h-4 w-4 transition-transform group-open:rotate-180" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M3 6l5 5 5-5" /></svg>
       </summary>
-      <ol class="border-t border-ink pb-2">
-        {items.map((it, i) => (
+      <ol class="border-t border-rule">
+        {items.map((it) => (
           <li>
-            <a href={`#${it.id}`} class="flex items-start gap-3 border-b border-rule py-2.5 text-[0.9375rem] leading-snug text-ink last:border-b-0 hover:bg-spot-wash">
-              <span class="inline-flex h-6 min-w-6 flex-none items-center justify-center bg-spot px-1 font-head text-sm font-bold tabular-nums text-ink">{i + 1}</span>
-              <span class="pt-0.5">{it.label}</span>
+            <a href={`#${it.id}`} class="flex items-start gap-3 border-b border-rule py-2.5 text-[0.9375rem] leading-snug text-ink last:border-b-0 hover:bg-wash">
+              <span class="mt-[0.4em] h-2.5 w-2.5 flex-none rounded-full border-2 border-label" aria-hidden="true" />
+              <span>{it.label}</span>
             </a>
           </li>
         ))}
@@ -40,20 +40,20 @@ const heading = t(effectiveLang, 'toc.heading');
 
 {
   items.length >= 3 && !inline && (
-    <aside class="sticky top-[96px] hidden max-h-[calc(100vh-120px)] self-start overflow-y-auto lg:block">
-      <h2 class="caps border-b-2 border-ink pb-2.5">{heading}</h2>
+    <aside class="composition sticky top-[96px] hidden max-h-[calc(100vh-120px)] self-start overflow-y-auto lg:block">
+      <h2 class="tag bg-label px-4 py-3 text-on-label first-letter:uppercase">{heading}</h2>
       <nav id="article-toc" aria-label={heading}>
-        <ol>
+        <ol class="composition rounded-none shadow-none">
           {items.map((it, i) => (
             <li>
               <a
                 href={`#${it.id}`}
                 data-toc-id={it.id}
                 aria-current={i === 0 ? 'true' : undefined}
-                class="toc-link group flex items-start gap-3 border-b border-rule py-2.5 text-[0.9375rem] leading-snug text-muted transition-colors hover:text-ink aria-[current=true]:font-bold aria-[current=true]:text-ink"
+                class="toc-link group flex items-start gap-3 px-4 py-2.5 text-[0.9375rem] leading-snug text-muted transition-colors hover:text-ink aria-[current=true]:bg-wash aria-[current=true]:font-bold aria-[current=true]:text-ink"
               >
-                <span class="inline-flex h-6 min-w-6 flex-none items-center justify-center border border-ink px-1 font-head text-sm font-bold tabular-nums text-ink group-aria-[current=true]:bg-spot">{i + 1}</span>
-                <span class="pt-0.5">{it.label}</span>
+                <span class="mt-[0.4em] h-2.5 w-2.5 flex-none rounded-full border-2 border-label transition-colors group-aria-[current=true]:scale-125 group-aria-[current=true]:bg-label" aria-hidden="true" />
+                <span>{it.label}</span>
               </a>
             </li>
           ))}

@@ -24,25 +24,25 @@ const shortcuts = [
     <PageHeader route={route} currentPath={currentPath} title={route.h1} intro={t(lang, 'contact.intro')} />
     <div class="mx-auto grid max-w-[1240px] gap-12 px-4 pt-12 sm:px-8 lg:grid-cols-[1fr_1.25fr] lg:gap-16">
       <div>
-        <h2 class="text-[1.75rem]">{en ? 'Before reaching out' : 'Przed wysłaniem wiadomości'}</h2>
+        <h2 class="text-[1.625rem]">{en ? 'Before reaching out' : 'Przed wysłaniem wiadomości'}</h2>
         <p class="mt-3 max-w-[34rem] text-[1.0625rem] leading-relaxed text-body">
           {en
             ? 'Looking for immediate cramp relief instructions or answers to common muscle questions? Check our quick sections first:'
             : 'Jeśli szukasz natychmiastowej instrukcji ulgi przy nagłym kurczu lub odpowiedzi na powszechne pytania, sprawdź nasze sekcje:'}
         </p>
-        <ul class="mt-6 border-t-2 border-ink">
+        <ul class="composition mt-6">
           {
             shortcuts.map((s) => (
-              <li class="border-b border-ink">
-                <a href={s.href} class="flex items-center justify-between gap-3 px-1 py-4 text-[1.0625rem] font-bold text-ink hover:bg-spot-wash">
+              <li>
+                <a href={s.href} class="flex items-center justify-between gap-3 px-5 py-4 text-[1.0625rem] font-bold text-ink transition-colors hover:bg-wash">
                   <span>{s.label}</span>
-                  <Icon name="arrow" class="h-5 w-5 flex-none" />
+                  <Icon name="arrow" class="h-5 w-5 flex-none text-label" />
                 </a>
               </li>
             ))
           }
         </ul>
-        <div class="mt-8 flex items-start gap-3.5 border-2 border-ink p-5">
+        <div class="mt-8 flex items-start gap-3.5 rounded-[var(--radius-label)] border-2 border-warn bg-warn-wash p-5">
           <Icon name="warn-solid" class="h-6 w-6 flex-none" />
           <p class="text-[0.9375rem] font-bold leading-relaxed text-ink">{t(lang, 'contact.no_advice')}</p>
         </div>

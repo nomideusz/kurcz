@@ -49,19 +49,21 @@ export default defineConfig({
     }),
     svelte(),
   ],
-  // Self-hosted, subset faces (Latin + Polish). Archivo Narrow carries the leaflet's bold
-  // condensed heads; Atkinson Hyperlegible Next (Braille Institute) is the reading face,
-  // chosen for low-vision and senior readers. Astro emits metric-matched fallbacks → ~0 CLS.
+  // Self-hosted, subset faces (Latin + Polish). Anybody, set wide, is the label lettering
+  // (its width axis comes only through the Google provider); Atkinson Hyperlegible Next
+  // (Braille Institute) is the reading face, chosen for low-vision and senior readers.
+  // Astro emits metric-matched fallbacks → ~0 CLS.
   experimental: {
     fonts: [
       {
-        provider: fontProviders.fontsource(),
-        name: 'Archivo Narrow',
+        provider: fontProviders.google(),
+        name: 'Anybody',
         cssVariable: '--font-head-src',
-        weights: [700],
+        weights: ['600 900'],
         styles: ['normal'],
         subsets: ['latin', 'latin-ext'],
-        fallbacks: ['Arial Narrow', 'sans-serif'],
+        fallbacks: ['Verdana', 'sans-serif'],
+        options: { experimental: { variableAxis: { wdth: [['100', '140']] } } },
       },
       {
         provider: fontProviders.fontsource(),

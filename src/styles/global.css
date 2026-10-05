@@ -1,13 +1,14 @@
 @import 'tailwindcss';
 
 /*
-  Design system: "ulotka dla pacjenta".
-  Leaflet paper under black ink, ruled with 1px and 2px black lines, plus one box spot
-  colour (saffron) used as full-width bands and numbered chips. Square corners, no soft
-  shadows, no gradients. Faces are self-hosted via Astro's fonts API (astro.config.mjs).
+  Design system: "etykieta wody mineralnej" — the spa mineral-water label and pump room.
+  A deep spring-green label owns the frame (masthead, bands, footer) and meets the pale
+  mineral-water ground along a wave edge. Reading panels sit on a lighter rinse with rounded
+  label corners. Gold only on the green (numerals, the one seal). Red only for doctor flags,
+  always with a word and an icon. Faces are self-hosted via Astro's fonts API.
 */
 @theme {
-  --font-head: var(--font-head-src), 'Arial Narrow', sans-serif;
+  --font-head: var(--font-head-src), Verdana, sans-serif;
   --font-sans: var(--font-body-src), Verdana, sans-serif;
   --font-mono: ui-monospace, 'Cascadia Code', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
 
@@ -16,21 +17,27 @@
   --text-base: 1.0625rem;
   --text-lg: 1.1875rem;
 
-  --color-paper: #fafaf7;
-  --color-sheet: #ffffff;
-  --color-panel: #f0efe9;
-  --color-ink: #151515;
-  --color-body: #262626;
-  --color-muted: #57564f;
-  --color-line: #151515;
-  --color-rule: #d6d5ce;
+  /* Water side */
+  --color-ground: #eaf3ee;
+  --color-sheet: #f8fbf9;
+  --color-panel: #dbe9e2;
+  --color-wash: #d3e9dd;
+  --color-ink: #0e2a1f;
+  --color-body: #1d382d;
+  --color-muted: #45604f;
+  --color-rule: #b9d1c4;
 
-  --color-spot: #f2a20c;
-  --color-spot-deep: #c47e00;
-  --color-spot-wash: #fcebc4;
-  --color-warn: #c4161c;
+  /* Label side */
+  --color-label: #0d5c45;
+  --color-label-deep: #08432f;
+  --color-on-label: #f1f8f4;
+  --color-on-label-soft: #c3e2d2;
+  --color-gold: #ecc66a;
 
-  --radius-xs: 2px;
+  --color-warn: #b3261e;
+  --color-warn-wash: #fbecea;
+
+  --radius-label: 14px;
 }
 
 @layer base {
@@ -52,7 +59,7 @@
   }
 
   body {
-    @apply bg-paper text-body antialiased;
+    @apply bg-ground text-body antialiased;
     font-family: var(--font-sans);
     font-size: var(--text-base);
     line-height: 1.6;
@@ -64,10 +71,16 @@
   h4 {
     @apply text-ink;
     font-family: var(--font-head);
-    font-weight: 700;
-    letter-spacing: -0.01em;
+    font-weight: 800;
+    letter-spacing: -0.015em;
     line-height: 1.08;
     text-wrap: balance;
+  }
+
+  /* Label lettering is Anybody set wide. Astro's @font-face carries no font-stretch range,
+     so the width axis is driven directly; set --wdth on an element to change it. */
+  :where(h1, h2, h3, h4, .font-head, .tag) {
+    font-variation-settings: 'wdth' var(--wdth, 118);
   }
 
   a,
@@ -81,14 +94,15 @@
   }
 
   ::selection {
-    background: var(--color-spot);
+    background: var(--color-gold);
     color: var(--color-ink);
   }
 
+  /* Ink ring on the water, gold halo on the label: visible on both grounds. */
   :focus-visible {
     outline: 3px solid var(--color-ink);
     outline-offset: 2px;
-    box-shadow: 0 0 0 6px var(--color-spot);
+    box-shadow: 0 0 0 6px var(--color-gold);
   }
 
   input,
@@ -102,50 +116,109 @@
   }
 
   * {
-    scrollbar-color: #9d9c94 var(--color-panel);
+    scrollbar-color: #7fa293 var(--color-panel);
   }
 }
 
-/* Leaflet link: ink text over a thick saffron underline that floods on hover. */
+/* Label link: ink text over a spring-green underline; the water rises under it on hover. */
 @utility ink-link {
   color: var(--color-ink);
   text-decoration: underline;
-  text-decoration-color: var(--color-spot);
-  text-decoration-thickness: 3px;
-  text-underline-offset: 3px;
+  text-decoration-color: var(--color-label);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+  border-radius: 3px;
   transition: background-color 120ms ease-out;
   &:hover {
-    background: var(--color-spot-wash);
+    background: var(--color-wash);
   }
 }
 
-/* Numbered chip: the leaflet's section number, black numeral on saffron. */
-@utility chip {
-  display: inline-flex;
-  flex: none;
-  align-items: center;
-  justify-content: center;
-  border-radius: var(--radius-xs);
-  background: var(--color-spot);
-  color: var(--color-ink);
+/* Small label lettering for navigation-block headings: wide, sentence case. */
+@utility tag {
   font-family: var(--font-head);
   font-weight: 700;
-  font-variant-numeric: tabular-nums;
-  min-width: 1.75rem;
-  height: 1.75rem;
-  padding-inline: 0.375rem;
-  font-size: 1rem;
-  line-height: 1;
+  --wdth: 112;
+  font-size: 0.9375rem;
+  line-height: 1.2;
+  letter-spacing: 0;
 }
 
-/* Condensed caps for headings of navigation blocks (contents, footer columns). */
-@utility caps {
-  font-family: var(--font-head);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  font-size: 0.875rem;
-  line-height: 1.2;
+/* The green label: a full-bleed band with a few carbonation bubbles rising on the right. */
+@utility label-band {
+  position: relative;
+  background-color: var(--color-label);
+  color: var(--color-on-label);
+  background-image:
+    radial-gradient(circle at 93% 18%, transparent 9px, rgb(241 248 244 / 0.16) 10px, transparent 11.5px),
+    radial-gradient(circle at 88% 42%, transparent 5px, rgb(241 248 244 / 0.14) 6px, transparent 7.5px),
+    radial-gradient(circle at 96% 58%, transparent 13px, rgb(241 248 244 / 0.12) 14px, transparent 15.5px),
+    radial-gradient(circle at 84% 74%, transparent 3px, rgb(241 248 244 / 0.18) 4px, transparent 5.5px),
+    radial-gradient(circle at 91% 88%, transparent 7px, rgb(241 248 244 / 0.12) 8px, transparent 9.5px),
+    radial-gradient(circle at 78% 30%, transparent 2px, rgb(241 248 244 / 0.16) 3px, transparent 4.5px);
+  /* Headings on the green go pale; those inside a rinse panel laid on the band stay ink. */
+  /* On a phone the band is one narrow column of text: only two small bubbles, in the
+     strip above the first line, so none lands on a word or a button. */
+  @media (width < 40rem) {
+    background-image:
+      radial-gradient(circle at calc(100% - 22px) 14px, transparent 4px, rgb(241 248 244 / 0.18) 5px, transparent 6.5px),
+      radial-gradient(circle at calc(100% - 46px) 26px, transparent 2px, rgb(241 248 244 / 0.16) 3px, transparent 4.5px);
+  }
+  & :where(h1, h2, h3, h4):not(:where(.bg-sheet) *) {
+    color: var(--color-on-label);
+  }
+}
+
+/* Where the label meets the water: a soft wave below (or above, with wave-top). */
+@utility wave {
+  position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    inset-inline: 0;
+    top: 100%;
+    height: 14px;
+    background: var(--color-label);
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 14'%3E%3Cpath d='M0 0h64v6c-8 0-8 8-16 8s-8-8-16-8-8 8-16 8S8 6 0 6z'/%3E%3C/svg%3E") 0 0 / 64px 14px repeat-x;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 14'%3E%3Cpath d='M0 0h64v6c-8 0-8 8-16 8s-8-8-16-8-8 8-16 8S8 6 0 6z'/%3E%3C/svg%3E") 0 0 / 64px 14px repeat-x;
+    pointer-events: none;
+  }
+}
+@utility wave-top {
+  position: relative;
+  &::before {
+    content: '';
+    position: absolute;
+    inset-inline: 0;
+    bottom: 100%;
+    height: 14px;
+    background: var(--color-label);
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 14'%3E%3Cpath d='M0 14h64V8c-8 0-8-8-16-8s-8 8-16 8-8-8-16-8S8 8 0 8z'/%3E%3C/svg%3E") 0 0 / 64px 14px repeat-x;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 14'%3E%3Cpath d='M0 14h64V8c-8 0-8-8-16-8s-8 8-16 8-8-8-16-8S8 8 0 8z'/%3E%3C/svg%3E") 0 0 / 64px 14px repeat-x;
+    pointer-events: none;
+  }
+}
+
+/* Composition-table leader: the dotted run between a name and its value. */
+@utility leader {
+  flex: 1 1 1.5rem;
+  min-width: 1.5rem;
+  margin-bottom: 0.3em;
+  border-bottom: 2px dotted currentColor;
+  opacity: 0.45;
+}
+
+/* Read mark: an outlined drop that fills once the guide has been visited (CSS only).
+   :visited may only change colours, and only between opaque ones, so the empty state is
+   the row's own ground, not transparent. */
+@utility drop {
+  flex: none;
+  & path {
+    fill: var(--color-sheet);
+  }
+  :visited & path {
+    fill: var(--color-label);
+  }
 }
 
 @utility btn {
@@ -155,36 +228,56 @@
   gap: 0.5rem;
   min-height: 3rem;
   padding-inline: 1.5rem;
-  border-radius: var(--radius-xs);
+  border-radius: 999px;
   font-weight: 700;
   font-size: var(--text-base);
   transition:
     background-color 120ms ease-out,
-    color 120ms ease-out;
+    color 120ms ease-out,
+    border-color 120ms ease-out;
 }
-@utility btn-ink {
-  @apply btn bg-ink text-sheet hover:bg-[#3a3a3a];
+/* On the water */
+@utility btn-solid {
+  @apply btn bg-label text-on-label hover:bg-label-deep;
 }
-@utility btn-rule {
-  @apply btn border-2 border-ink text-ink hover:bg-ink hover:text-sheet;
+@utility btn-line {
+  @apply btn border-2 border-label text-label hover:bg-wash;
+}
+/* On the label */
+@utility btn-pale {
+  @apply btn bg-on-label text-label-deep hover:bg-wash;
+}
+@utility btn-line-pale {
+  @apply btn border-2 border-on-label/70 text-on-label hover:border-on-label hover:bg-label-deep;
 }
 
 @layer components {
-  /* Article prose: calm column, numbered sections (counter matches the contents list). */
+  /* Composition table: a rounded rinse panel ruled into a visible grid. Rows draw their
+     own top and left rule as hairline shadows; the panel clips the outer ones. */
+  .composition {
+    overflow: hidden;
+    border-radius: var(--radius-label);
+    background: var(--color-sheet);
+    box-shadow:
+      0 1px 2px rgb(8 67 47 / 0.08),
+      0 10px 28px -8px rgb(8 67 47 / 0.16);
+  }
+  .composition > li {
+    box-shadow:
+      0 -1px 0 var(--color-rule),
+      -1px 0 0 var(--color-rule);
+  }
+
+  /* Article prose: the calm reading column on the rinse. */
   .prose-content {
     @apply text-body;
-    counter-reset: section;
   }
-  .prose-content > section {
-    counter-increment: section;
+  .prose-content > section + section {
+    @apply mt-14;
   }
   .prose-content h2 {
-    @apply mt-14 mb-4 flex items-start gap-3 text-[1.75rem] text-ink first:mt-0 sm:text-[2.125rem];
+    @apply mb-4 text-[1.625rem] text-ink sm:text-[2rem];
     line-height: 1.12;
-  }
-  .prose-content h2::before {
-    content: counter(section);
-    @apply chip mt-[0.2em];
   }
   .prose-content h3 {
     @apply mt-9 mb-3 text-xl text-ink;
@@ -193,14 +286,15 @@
     @apply my-5 max-w-[68ch] text-[1.125rem] leading-[1.72] text-body;
   }
   .prose-content ul {
-    @apply my-6 flex max-w-[68ch] flex-col border-t-2 border-ink;
+    @apply my-6 flex max-w-[68ch] flex-col;
   }
+  /* Bullets are bubbles: a green ring, the label's carbonation in the text. */
   .prose-content ul li {
-    @apply relative border-b border-rule py-3 pl-6 text-[1.0625rem] leading-relaxed text-body;
+    @apply relative border-b border-rule py-3 pl-7 text-[1.0625rem] leading-relaxed text-body last:border-b-0;
   }
   .prose-content ul li::before {
     content: '';
-    @apply absolute left-0.5 top-[1.3em] h-2 w-2 bg-ink;
+    @apply absolute left-0.5 top-[1.15em] h-3 w-3 rounded-full border-2 border-label;
   }
   .prose-content a {
     @apply ink-link font-bold;

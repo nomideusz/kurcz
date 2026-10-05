@@ -189,7 +189,7 @@
 <svelte:window onkeydown={onWindowKey} />
 
 {#snippet spinner()}
-  <svg class="h-4 w-4 shrink-0 animate-spin text-ink" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+  <svg class="h-4 w-4 shrink-0 animate-spin text-label" viewBox="0 0 24 24" fill="none" aria-hidden="true">
     <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" opacity="0.2" />
     <path d="M22 12a10 10 0 0 0-10-10" stroke="currentColor" stroke-width="3" />
   </svg>
@@ -199,13 +199,13 @@
   type="button"
   onclick={open}
   aria-label={t(locale, 'search.open')}
-  class="inline-flex h-10 cursor-pointer items-center justify-center gap-2 rounded-xs border border-ink px-3 text-sm leading-none text-ink transition-colors hover:bg-spot-wash"
+  class="inline-flex h-10 cursor-pointer items-center justify-center gap-2 rounded-full border border-on-label/60 px-3 text-sm leading-none text-on-label transition-colors hover:bg-label-deep"
 >
   <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
-    <path stroke-linecap="square" d="M20 20l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z" />
+    <path stroke-linecap="round" stroke-linejoin="round" d="M20 20l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z" />
   </svg>
-  <span class="hidden sm:inline">{t(locale, 'search.open')}</span>
-  <kbd class="hidden items-center border border-rule px-1 py-0.5 font-mono text-[0.6875rem] text-muted lg:inline-flex">⌘K</kbd>
+  <span class="hidden xl:inline">{t(locale, 'search.open')}</span>
+  <kbd class="hidden items-center rounded border border-on-label/40 px-1 py-0.5 font-mono text-[0.6875rem] text-on-label-soft xl:inline-flex">⌘K</kbd>
 </button>
 
 <dialog
@@ -213,12 +213,12 @@
   onclose={() => { query = ''; hits = []; answer = ''; sources = []; state = 'idle'; rateLimited = false; }}
   onclick={(e) => { if (e.target === dialog) close(); }}
   aria-label={t(locale, 'search.open')}
-  class="fixed inset-x-0 top-[6vh] mx-auto w-[min(94vw,680px)] border border-ink bg-sheet p-0 text-body backdrop:bg-ink/55 sm:top-[11vh]"
+  class="fixed inset-x-0 top-[6vh] mx-auto w-[min(94vw,680px)] overflow-hidden rounded-[var(--radius-label)] bg-sheet p-0 text-body shadow-[0_18px_48px_rgb(8_67_47/0.35)] backdrop:bg-label-deep/60 sm:top-[11vh]"
 >
-  <div class="h-1.5 bg-spot" aria-hidden="true"></div>
-  <form onsubmit={onFormSubmit} class="flex items-center gap-3 border-b-2 border-ink px-4 py-3.5 sm:px-5">
+  <div class="h-2 bg-label" aria-hidden="true"></div>
+  <form onsubmit={onFormSubmit} class="flex items-center gap-3 border-b border-rule px-4 py-3.5 sm:px-5">
     <svg class="h-5 w-5 shrink-0 text-ink" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
-      <path stroke-linecap="square" d="M20 20l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z" />
+      <path stroke-linecap="round" stroke-linejoin="round" d="M20 20l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z" />
     </svg>
     <input
       bind:this={input}
@@ -234,16 +234,16 @@
       <button
         type="button"
         onclick={() => { query = ''; hits = []; answer = ''; sources = []; state = 'idle'; }}
-        class="inline-flex h-8 w-8 cursor-pointer items-center justify-center text-muted hover:bg-spot-wash hover:text-ink"
+        class="inline-flex h-8 w-8 cursor-pointer items-center justify-center rounded-full text-muted hover:bg-wash hover:text-ink"
         aria-label={t(locale, 'search.clear')}
       >
-        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path stroke-linecap="square" d="M6 18L18 6M6 6l12 12" /></svg>
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
       </button>
     {/if}
     <button
       type="submit"
       disabled={query.trim().length < 3 || state === 'asking'}
-      class="btn-ink min-h-10 shrink-0 px-4 text-sm disabled:cursor-not-allowed disabled:bg-[#8a8a85]"
+      class="btn-solid min-h-10 shrink-0 px-4 text-sm disabled:cursor-not-allowed disabled:bg-[#7d958a]"
     >
       {t(locale, 'search.ask')}
     </button>
@@ -251,14 +251,14 @@
 
   <div class="max-h-[min(72vh,580px)] overflow-y-auto px-4 py-5 sm:px-5">
     {#if state === 'error'}
-      <div class="flex items-start gap-3 border-2 border-ink p-4 text-sm text-ink">
+      <div class="flex items-start gap-3 rounded-[var(--radius-label)] border-2 border-warn bg-warn-wash p-4 text-sm text-ink">
         <svg class="mt-0.5 h-5 w-5 flex-none" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5 1.5 21h21L12 2.5z" fill="var(--color-warn)" /><path d="M12 9v5.5" stroke="#fff" stroke-width="2.4" /><rect x="10.8" y="16.4" width="2.4" height="2.4" fill="#fff" /></svg>
         <p class="font-bold">{t(locale, rateLimited ? 'search.busy' : 'search.error')}</p>
       </div>
     {:else if answer || state === 'asking'}
-      <div class="mb-3 flex items-center justify-between border-b border-ink pb-2">
-        <h2 class="caps">{t(locale, 'search.answer')}</h2>
-        <span class="bg-spot px-2 py-0.5 text-xs font-bold text-ink">AI Search</span>
+      <div class="mb-3 flex items-center justify-between border-b border-rule pb-2">
+        <h2 class="tag">{t(locale, 'search.answer')}</h2>
+        <span class="rounded-full bg-label px-2.5 py-0.5 text-xs font-bold text-on-label">AI Search</span>
       </div>
 
       {#if waitingForFirstToken}
@@ -274,18 +274,18 @@
         </div>
       {/if}
 
-      <p class="whitespace-pre-line text-[1.0625rem] leading-relaxed text-ink" aria-live="polite" aria-busy={state === 'asking'}>
-        {plain(answer)}{#if state === 'asking' && answer}<span class="ml-0.5 inline-block h-4 w-[2px] animate-pulse bg-ink align-middle"></span>{/if}
+      <p class="max-w-[68ch] whitespace-pre-line text-[1.0625rem] leading-relaxed text-ink" aria-live="polite" aria-busy={state === 'asking'}>
+        {plain(answer)}{#if state === 'asking' && answer}<span class="ml-0.5 inline-block h-4 w-[2px] animate-pulse bg-label align-middle"></span>{/if}
       </p>
 
       {#if sources.length}
-        <h3 class="caps mb-2 mt-6">{t(locale, 'search.sources')}</h3>
-        <ul class="flex flex-col border-t border-ink">
+        <h3 class="tag mb-2 mt-6">{t(locale, 'search.sources')}</h3>
+        <ul class="flex flex-col border-t border-rule">
           {#each sources as s (s.url)}
             <li class="border-b border-rule">
-              <a href={s.url} class="flex items-center justify-between gap-3 py-2.5 text-[0.9375rem] font-bold text-ink hover:bg-spot-wash">
+              <a href={s.url} class="flex items-center justify-between gap-3 py-2.5 text-[0.9375rem] font-bold text-ink hover:bg-wash">
                 <span>{s.title}</span>
-                <svg class="h-4 w-4 flex-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6" /></svg>
+                <svg class="h-4 w-4 flex-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6" /></svg>
               </a>
             </li>
           {/each}
@@ -293,16 +293,16 @@
       {/if}
 
       {#if answer && state !== 'asking'}
-        <p class="mt-5 bg-panel p-3 text-sm leading-relaxed text-muted">
+        <p class="mt-5 rounded-[10px] bg-panel p-3 text-sm leading-relaxed text-muted">
           {t(locale, 'search.disclaimer')}
         </p>
       {/if}
     {:else if hits.length}
-      <h2 class="caps mb-2">{t(locale, 'search.pages')}</h2>
-      <ul class="border-t border-ink">
+      <h2 class="tag mb-2">{t(locale, 'search.pages')}</h2>
+      <ul class="border-t border-rule">
         {#each hits as h (h.url)}
           <li class="border-b border-rule">
-            <a href={h.url} class="block px-1 py-3 transition-colors hover:bg-spot-wash">
+            <a href={h.url} class="block px-1 py-3 transition-colors hover:bg-wash">
               <span class="block font-head text-lg font-bold leading-snug text-ink">{h.title}</span>
               {#if h.description}
                 <span class="mt-1 block line-clamp-2 text-sm leading-relaxed text-muted">{h.description}</span>
@@ -324,17 +324,17 @@
     {:else}
       <!-- Empty state with prompt suggestions -->
       <div>
-        <h2 class="caps mb-2">{locale === 'en' ? 'Quick topics' : 'Częste pytania i tematy'}</h2>
-        <ul class="border-t border-ink">
+        <h2 class="tag mb-2">{locale === 'en' ? 'Quick topics' : 'Częste pytania i tematy'}</h2>
+        <ul class="border-t border-rule">
           {#each promptSuggestions as prompt}
             <li class="border-b border-rule">
               <button
                 type="button"
                 onclick={() => selectPrompt(prompt)}
-                class="flex w-full cursor-pointer items-center justify-between gap-3 px-1 py-2.5 text-left text-[0.9375rem] text-ink transition-colors hover:bg-spot-wash"
+                class="flex w-full cursor-pointer items-center justify-between gap-3 px-1 py-2.5 text-left text-[0.9375rem] text-ink transition-colors hover:bg-wash"
               >
                 <span>{prompt}</span>
-                <svg class="h-4 w-4 flex-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6" /></svg>
+                <svg class="h-4 w-4 flex-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6" /></svg>
               </button>
             </li>
           {/each}

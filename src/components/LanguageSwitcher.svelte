@@ -4,12 +4,9 @@
   let {
     currentPath = '/',
     currentLocale = 'pl',
-    variant = 'light',
   }: {
     currentPath?: string;
     currentLocale?: SupportedLocale;
-    /** `light` = on paper (header). `spot` = on the saffron footer. */
-    variant?: 'light' | 'spot';
   } = $props();
 
   let isOpen = $state(false);
@@ -32,15 +29,13 @@
     }
   }
 
-  // Both variants are ink on their ground; `spot` (footer, on saffron) hovers to ink.
-  const buttonClass = $derived(`inline-flex h-10 cursor-pointer items-center justify-center gap-1.5 rounded-xs border border-ink px-3 text-sm font-bold leading-none text-ink transition-colors ${
-    variant === 'spot' ? 'hover:bg-ink hover:text-spot' : 'hover:bg-spot-wash'
-  }`);
+  // Header and footer both sit on the green label.
+  const buttonClass = 'inline-flex h-10 cursor-pointer items-center justify-center gap-1.5 rounded-full border border-on-label/60 px-3 text-sm font-bold leading-none text-on-label transition-colors hover:bg-label-deep';
 
-  const menuClass = 'absolute right-0 top-full z-50 mt-1 w-28 border border-ink bg-sheet py-1';
+  const menuClass = 'absolute right-0 top-full z-50 mt-1.5 w-32 overflow-hidden rounded-[var(--radius-label)] bg-sheet py-1 shadow-[0_8px_24px_rgb(8_67_47/0.25)]';
 
   function optionClass(loc: SupportedLocale) {
-    return `flex w-full cursor-pointer items-center justify-between px-3 py-2 text-left text-sm text-ink transition-colors hover:bg-spot-wash ${
+    return `flex w-full cursor-pointer items-center justify-between px-3 py-2 text-left text-sm text-ink transition-colors hover:bg-wash ${
       loc === currentLocale ? 'font-bold' : ''
     }`;
   }
@@ -66,7 +61,7 @@
     class={buttonClass}
   >
 
-    <span class="uppercase tracking-wide leading-none">{currentLocale}</span>
+    <span class="leading-none">{currentLocale.toUpperCase()}</span>
     <svg
       class="h-3.5 w-3.5 transition-transform duration-200"
       class:rotate-180={isOpen}
@@ -91,7 +86,7 @@
         >
           <span>{localeLabels[loc] ?? loc.toUpperCase()}</span>
           {#if loc === currentLocale}
-            <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path stroke-linecap="square" d="M5 13l4 4L19 7" /></svg>
+            <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
           {/if}
         </button>
       {/each}

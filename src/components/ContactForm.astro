@@ -9,7 +9,7 @@ const { locale } = extractLocale(currentPath, routing);
 const effectiveLocale = lang ?? locale;
 ---
 
-<form id="contact-form" class="space-y-6 border border-ink bg-sheet p-5 sm:p-8" novalidate data-lang={effectiveLocale}
+<form id="contact-form" class="composition space-y-6 p-5 sm:p-8" novalidate data-lang={effectiveLocale}
   data-msg-sending={t(effectiveLocale, 'contact.sending')}
   data-msg-success={t(effectiveLocale, 'contact.success')}
   data-msg-error={t(effectiveLocale, 'contact.error')}
@@ -23,7 +23,7 @@ const effectiveLocale = lang ?? locale;
       required
       maxlength="120"
       autocomplete="name"
-      class="mt-2 block w-full rounded-xs border border-ink bg-paper px-4 py-3 text-[1.0625rem] text-ink focus:bg-sheet"
+      class="mt-2 block w-full rounded-[10px] border-2 border-rule bg-ground px-4 py-3 text-[1.0625rem] text-ink transition-colors hover:border-label/60 focus:border-label focus:bg-sheet"
     />
   </div>
   <div>
@@ -34,7 +34,7 @@ const effectiveLocale = lang ?? locale;
       type="email"
       required
       autocomplete="email"
-      class="mt-2 block w-full rounded-xs border border-ink bg-paper px-4 py-3 text-[1.0625rem] text-ink focus:bg-sheet"
+      class="mt-2 block w-full rounded-[10px] border-2 border-rule bg-ground px-4 py-3 text-[1.0625rem] text-ink transition-colors hover:border-label/60 focus:border-label focus:bg-sheet"
     />
   </div>
   <div>
@@ -46,7 +46,7 @@ const effectiveLocale = lang ?? locale;
       required
       minlength="5"
       maxlength="5000"
-      class="mt-2 block w-full rounded-xs border border-ink bg-paper px-4 py-3 text-[1.0625rem] text-ink focus:bg-sheet"
+      class="mt-2 block w-full rounded-[10px] border-2 border-rule bg-ground px-4 py-3 text-[1.0625rem] text-ink transition-colors hover:border-label/60 focus:border-label focus:bg-sheet"
     ></textarea>
   </div>
 
@@ -61,7 +61,7 @@ const effectiveLocale = lang ?? locale;
   <button
     type="submit"
     id="cf-submit"
-    class="btn-ink px-8 disabled:bg-[#8a8a85]"
+    class="btn-solid px-8 disabled:bg-[#7d958a]"
   >
     {t(effectiveLocale, 'contact.send')}
   </button>
@@ -100,18 +100,18 @@ const effectiveLocale = lang ?? locale;
         const data = await res.json().catch(() => ({}));
         if (res.ok && data.ok) {
           status.textContent = msg.msgSuccess!;
-          status.className = 'border-2 border-ink bg-spot-wash p-3 text-base font-bold text-ink';
+          status.className = 'rounded-[10px] border-2 border-label bg-wash p-3 text-base font-bold text-ink';
           form.reset();
         } else {
           // A non-JSON response (404 HTML, proxy error) leaves data.error undefined and
           // the visitor sees only the generic string — log enough to name the cause.
           console.error('[contact] submit failed', res.status, res.statusText, data);
           status.textContent = data.error ?? msg.msgError!;
-          status.className = 'border-2 border-warn p-3 text-base font-bold text-warn';
+          status.className = 'rounded-[10px] border-2 border-warn bg-warn-wash p-3 text-base font-bold text-warn';
         }
       } catch {
         status.textContent = msg.msgOffline!;
-        status.className = 'border-2 border-warn p-3 text-base font-bold text-warn';
+        status.className = 'rounded-[10px] border-2 border-warn bg-warn-wash p-3 text-base font-bold text-warn';
       } finally {
         submit.disabled = false;
       }

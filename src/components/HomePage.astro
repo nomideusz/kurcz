@@ -3,7 +3,7 @@
 import Layout from '../layouts/Layout.astro';
 import Shell from './Shell.astro';
 import FaqAccordion from './FaqAccordion.astro';
-import Braille from './Braille.astro';
+import CompositionRow from './CompositionRow.astro';
 import Icon from './Icon.astro';
 import { getRouteByPath } from '../seo/routes.js';
 import { getFaqItems } from '../seo/faq-data.js';
@@ -21,14 +21,14 @@ const doctorSigns = getLocalizedDoctorSigns(lang);
 const homeFaq = getFaqItems(lang).slice(0, 4);
 
 const triageItems = [
-  { path: '/kurcze-lydek', title: en ? 'Calf Cramps' : 'Kurcze łydek', desc: en ? 'Sudden tightening after workouts or during movement.' : 'Nagłe spięcie po wysiłku lub przy niefortunnym ruchu.' },
-  { path: '/kurcze-nocne', title: en ? 'Night Cramps' : 'Kurcze nocne', desc: en ? 'Painful nighttime wakeups and evening prevention.' : 'Bolesne wybudzenia ze snu i wieczorna profilaktyka.' },
-  { path: '/kurcze-u-kobiet-w-ciazy', title: en ? 'Pregnancy Cramps' : 'Kurcze w ciąży', desc: en ? 'Safe positioning and gentle relief for expectant mothers.' : 'Bezpieczne pozycje, odpoczynek i ulga dla przyszłych mam.' },
-  { path: '/kurcze-stop', title: en ? 'Foot Cramps' : 'Kurcze stóp', desc: en ? 'Plantar arch spasms and toe curling relief.' : 'Bolesne kurcze łuku podeszwowego i wykręcanie palców.' },
-  { path: '/niedobor-magnezu', title: en ? 'Magnesium Deficiency' : 'Niedobór magnezu', desc: en ? 'Symptoms of deficit, bioavailability, and food sources.' : 'Objawy deficytu, przyswajalność i zbilansowana dieta.' },
-  { path: '/kurcze-u-sportowcow', title: en ? 'Athletes & Runners' : 'Dla sportowców', desc: en ? 'Electrolyte loss in sweat, hydration, and recovery.' : 'Utrata soli w pocie, nawodnienie i regeneracja powysiłkowa.' },
-  { path: '/kurcze-dloni', title: en ? 'Hand Cramps' : 'Kurcze dłoni', desc: en ? 'Strain from mouse, keyboard, or manual tasks.' : 'Napięcia od pracy przy komputerze, pisania i pracy manualnej.' },
-  { path: '/kurcze-u-osob-starszych', title: en ? 'Senior Health' : 'U seniorów', desc: en ? 'Circulation, diuretic medications, and gentle mobility.' : 'Wpływ krążenia obwodowego, leków i bezpieczna aktywność.' },
+  { path: '/kurcze-lydek', icon: 'calf', title: en ? 'Calf Cramps' : 'Kurcze łydek', desc: en ? 'Sudden tightening after workouts or during movement.' : 'Nagłe spięcie po wysiłku lub przy niefortunnym ruchu.' },
+  { path: '/kurcze-nocne', icon: 'night', title: en ? 'Night Cramps' : 'Kurcze nocne', desc: en ? 'Painful nighttime wakeups and evening prevention.' : 'Bolesne wybudzenia ze snu i wieczorna profilaktyka.' },
+  { path: '/kurcze-u-kobiet-w-ciazy', icon: 'pregnancy', title: en ? 'Pregnancy Cramps' : 'Kurcze w ciąży', desc: en ? 'Safe positioning and gentle relief for expectant mothers.' : 'Bezpieczne pozycje, odpoczynek i ulga dla przyszłych mam.' },
+  { path: '/kurcze-stop', icon: 'foot', title: en ? 'Foot Cramps' : 'Kurcze stóp', desc: en ? 'Plantar arch spasms and toe curling relief.' : 'Bolesne kurcze łuku podeszwowego i wykręcanie palców.' },
+  { path: '/niedobor-magnezu', icon: 'magnesium', title: en ? 'Magnesium Deficiency' : 'Niedobór magnezu', desc: en ? 'Symptoms of deficit, bioavailability, and food sources.' : 'Objawy deficytu, przyswajalność i zbilansowana dieta.' },
+  { path: '/kurcze-u-sportowcow', icon: 'sport', title: en ? 'Athletes & Runners' : 'Dla sportowców', desc: en ? 'Electrolyte loss in sweat, hydration, and recovery.' : 'Utrata soli w pocie, nawodnienie i regeneracja powysiłkowa.' },
+  { path: '/kurcze-dloni', icon: 'hand', title: en ? 'Hand Cramps' : 'Kurcze dłoni', desc: en ? 'Strain from mouse, keyboard, or manual tasks.' : 'Napięcia od pracy przy komputerze, pisania i pracy manualnej.' },
+  { path: '/kurcze-u-osob-starszych', icon: 'senior', title: en ? 'Senior Health' : 'U seniorów', desc: en ? 'Circulation, diuretic medications, and gentle mobility.' : 'Wpływ krążenia obwodowego, leków i bezpieczna aktywność.' },
 ];
 
 // Topics plus the two therapy guides not already linked above, as one ruled list.
@@ -41,42 +41,46 @@ const sections = [
 
 <Layout route={route} lang={lang}>
   <Shell currentPath={currentPath}>
-    <!-- BOX FRONT: saffron band with the quick-relief leaflet laid over its lower edge -->
-    <section class="bg-spot">
-      <div class="mx-auto grid max-w-[1240px] gap-10 px-4 pb-10 pt-12 sm:px-8 sm:pt-16 lg:grid-cols-[1fr_27rem] lg:gap-16 lg:pb-0 lg:pt-20">
-        <div class="lg:pb-20">
-          <Braille class="h-8 text-spot-deep sm:h-9" />
-          <h1 class="mt-5 text-[clamp(3.25rem,9vw,6rem)] leading-[0.92] tracking-[-0.025em]">
+    <!-- THE LABEL: green band with rising bubbles; the quick-relief panel sits on its wave edge -->
+    <section class="label-band wave">
+      <div class="mx-auto grid max-w-[1240px] gap-10 px-4 pb-12 pt-12 sm:px-8 sm:pt-16 lg:grid-cols-[1fr_27rem] lg:gap-16 lg:pb-0 lg:pt-20">
+        <div class="lg:pb-24">
+          <h1 class="text-[clamp(3rem,8.4vw,5.75rem)] leading-[0.94] tracking-[-0.03em] [--wdth:132]">
             {t(lang, 'hero.h1')}
           </h1>
-          <p class="mt-6 max-w-[34rem] text-[1.1875rem] leading-relaxed text-ink">
+          <p class="mt-6 max-w-[34rem] text-[1.1875rem] leading-relaxed text-on-label">
             {t(lang, 'hero.p')}
           </p>
           <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-            <a href={href('/pierwsza-pomoc')} class="btn-ink">
+            <a href={href('/pierwsza-pomoc')} class="btn-pale">
               {t(lang, 'hero.first_aid_btn')} <Icon name="arrow" class="h-[1.1em] w-[1.1em] flex-none" />
             </a>
-            <a href={href('/kurcze-miesniowe')} class="btn-rule">
+            <a href={href('/kurcze-miesniowe')} class="btn-line-pale">
               {t(lang, 'hero.causes_btn')}
             </a>
           </div>
-          <p class="mt-8 text-sm text-ink">{t(lang, 'last_updated', { year: '2026' })} · PL / EN</p>
+          <p class="mt-8 text-sm text-on-label-soft">{t(lang, 'last_updated', { year: '2026' })} · PL / EN</p>
         </div>
 
-        <div class="self-end border border-ink bg-sheet lg:-mb-14">
-          <div class="flex items-center gap-3 border-b-2 border-ink px-5 py-4 sm:px-6">
-            <Icon name="first-aid" class="h-6 w-6 text-ink" />
-            <h2 class="text-[1.75rem]">{t(lang, 'relief.title')}</h2>
+        <div class="relative z-10 self-end rounded-[var(--radius-label)] bg-sheet text-body shadow-[0_18px_40px_-12px_rgb(4_40_28/0.45)] lg:-mb-20">
+          <div class="relative flex items-center gap-3 rounded-t-[var(--radius-label)] bg-label-deep px-5 py-4 pr-24 sm:px-6">
+            <Icon name="first-aid" class="h-6 w-6 text-on-label-soft" />
+            <h2 class="text-[1.625rem] text-on-label">{t(lang, 'relief.title')}</h2>
+            <span class="absolute -top-6 right-5 flex h-[4.5rem] w-[4.5rem] rotate-[-8deg] flex-col items-center justify-center rounded-full border-2 border-dashed border-label-deep bg-gold text-center font-head leading-none text-label-deep shadow-[0_0_0_3px_var(--color-gold)] [--wdth:110]">
+              <span class="text-[1.375rem] font-extrabold">{reliefSteps.length}</span>
+              <span class="mt-0.5 text-[0.6875rem] font-bold">{en ? 'steps' : 'kroki'}</span>
+            </span>
           </div>
-          <ol class="divide-y divide-rule px-5 sm:px-6">
+          <ol class="px-5 sm:px-6">
             {
               reliefSteps.map((s) => (
-                <li class="flex items-start gap-4 py-4">
-                  <span class="chip mt-0.5">{s.n}</span>
-                  <div>
-                    <h3 class="font-sans text-[1.0625rem] font-bold leading-snug tracking-normal">
-                      {s.title}
-                      {s.time && <span class="ml-1.5 whitespace-nowrap border border-ink px-1.5 py-px align-[0.1em] font-head text-sm tabular-nums">{s.time}</span>}
+                <li class="flex items-start gap-4 border-b border-rule py-4 last:border-b-0">
+                  <span class="mt-0.5 inline-flex h-8 w-8 flex-none items-center justify-center rounded-full bg-label font-head text-base font-extrabold text-on-label tabular-nums">{s.n}</span>
+                  <div class="min-w-0 flex-1">
+                    <h3 class="flex items-baseline-last gap-2 font-head text-[1.125rem] leading-snug [--wdth:110]">
+                      <span>{s.title}</span>
+                      {s.time && <span class="leader text-label" aria-hidden="true" />}
+                      {s.time && <span class="whitespace-nowrap font-sans text-[0.9375rem] font-bold tabular-nums text-label">{s.time}</span>}
                     </h3>
                     <p class="mt-1 text-[0.9375rem] leading-relaxed text-muted">{s.body}</p>
                   </div>
@@ -84,7 +88,7 @@ const sections = [
               ))
             }
           </ol>
-          <div class="border-t border-ink px-5 py-4 sm:px-6">
+          <div class="rounded-b-[var(--radius-label)] border-t border-rule bg-ground/60 px-5 py-4 sm:px-6">
             <a href={href('/pierwsza-pomoc')} class="ink-link inline-flex items-center gap-1.5 text-[0.9375rem] font-bold">
               {en ? 'Step-by-step instructions' : 'Instrukcja krok po kroku'} <Icon name="arrow" class="h-[1.1em] w-[1.1em] flex-none" />
             </a>
@@ -93,83 +97,63 @@ const sections = [
       </div>
     </section>
 
-    <!-- WHERE / WHEN: the leaflet's numbered contents of situations -->
-    <section class="mx-auto grid max-w-[1240px] gap-8 px-4 pt-16 sm:px-8 lg:grid-cols-[18rem_1fr] lg:gap-16 lg:pt-28">
+    <!-- SKŁAD: the label's composition table, one row per situation -->
+    <section class="mx-auto grid max-w-[1240px] gap-8 px-4 pt-20 sm:px-8 lg:grid-cols-[18rem_1fr] lg:gap-16 lg:pt-32">
       <div>
-        <h2 class="text-[2rem] sm:text-[2.5rem]">
+        <h2 class="text-[1.875rem] sm:text-[2.25rem]">
           {en ? 'Where and when do your cramps happen?' : 'Gdzie i kiedy pojawia się kurcz?'}
         </h2>
         <p class="mt-3 text-lg text-muted">
           {en ? 'Pick your situation for tailored relief steps, causes, and prevention.' : 'Wybierz swoją sytuację: wskazówki, przyczyny i profilaktyka.'}
         </p>
+        <p class="mt-5 flex items-center gap-2 text-sm text-muted">
+          <Icon name="drop" class="h-4 w-4 flex-none [&_path]:fill-label" />
+          {en ? 'A filled drop marks a guide you have already opened.' : 'Pełna kropla: poradnik już otwarty na tym urządzeniu.'}
+        </p>
       </div>
-      <ol class="grid border-t-2 border-ink sm:grid-cols-2 sm:gap-x-10">
-        {
-          triageItems.map((item, i) => (
-            <li class="border-b border-ink">
-              <a href={href(item.path)} class="group flex h-full items-start gap-4 px-1 py-5 transition-colors hover:bg-spot-wash">
-                <span class="chip mt-0.5">{i + 1}</span>
-                <div class="flex-1">
-                  <h3 class="flex items-center justify-between gap-2 text-[1.375rem] leading-tight">
-                    <span>{item.title}</span>
-                    <Icon name="arrow" class="h-5 w-5 flex-none transition-transform group-hover:translate-x-0.5" />
-                  </h3>
-                  <p class="mt-1.5 text-[0.9375rem] leading-relaxed text-muted">{item.desc}</p>
-                </div>
-              </a>
-            </li>
-          ))
-        }
-      </ol>
+      <ul class="composition grid sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+        {triageItems.map((item) => <CompositionRow href={href(item.path)} title={item.title} desc={item.desc} icon={item.icon} as="h3" />)}
+      </ul>
     </section>
 
-    <!-- MAIN SECTIONS: causes, first aid, prevention and therapy in one ruled list -->
-    <section class="mx-auto mt-20 grid max-w-[1240px] gap-8 px-4 sm:px-8 lg:grid-cols-[18rem_1fr] lg:gap-16">
+    <!-- MAIN SECTIONS: causes, first aid, prevention and therapy -->
+    <section class="mx-auto mt-24 grid max-w-[1240px] gap-8 px-4 sm:px-8 lg:grid-cols-[18rem_1fr] lg:gap-16">
       <div>
-        <h2 class="text-[2rem] sm:text-[2.5rem]">{t(lang, 'topics.title')}</h2>
+        <h2 class="text-[1.875rem] sm:text-[2.25rem]">{t(lang, 'topics.title')}</h2>
         <a href={href('/poradniki')} class="ink-link mt-4 inline-flex items-center gap-1.5 font-bold">
           {en ? 'All guides' : 'Wszystkie poradniki'} <Icon name="arrow" class="h-[1.1em] w-[1.1em] flex-none" />
         </a>
       </div>
-      <ul class="grid border-t-2 border-ink sm:grid-cols-2 sm:gap-x-10">
-        {
-          sections.map((item) => (
-            <li class="border-b border-rule">
-              <a href={href(item.path)} class="group block px-1 py-5 transition-colors hover:bg-spot-wash">
-                <h3 class="text-[1.625rem] leading-tight underline decoration-spot decoration-[3px] underline-offset-[5px]">{item.title}</h3>
-                <p class="mt-2 text-[0.9375rem] leading-relaxed text-muted">{item.desc}</p>
-              </a>
-            </li>
-          ))
-        }
+      <ul class="composition grid sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+        {sections.map((item) => <CompositionRow href={href(item.path)} title={item.title} desc={item.desc} as="h3" />)}
       </ul>
     </section>
 
-    <!-- WHEN TO SEE A DOCTOR: the leaflet's ruled warning box -->
-    <section class="mx-auto mt-20 max-w-[1240px] px-4 sm:px-8">
-      <div class="border-2 border-ink bg-sheet md:grid md:grid-cols-[1fr_1.1fr]">
-        <div class="border-b-2 border-ink p-6 sm:p-10 md:border-b-0 md:border-r-2">
+    <!-- WHEN TO SEE A DOCTOR: the one red panel; every flag carries an icon, not colour alone -->
+    <section class="mx-auto mt-24 max-w-[1240px] px-4 sm:px-8">
+      <div class="overflow-hidden rounded-[var(--radius-label)] border-2 border-warn bg-sheet md:grid md:grid-cols-[1fr_1.1fr]">
+        <div class="bg-warn-wash p-6 sm:p-10">
           <Icon name="warn-solid" class="h-10 w-10" />
-          <h2 class="mt-5 text-[2rem] sm:text-[2.5rem]">{t(lang, 'doctor.title')}</h2>
+          <h2 class="mt-5 text-[1.875rem] sm:text-[2.25rem]">{t(lang, 'doctor.title')}</h2>
           <p class="mt-4 max-w-[30rem] text-lg leading-relaxed text-body">{t(lang, 'doctor.p')}</p>
         </div>
-        <ol class="flex flex-col justify-center px-6 py-4 sm:px-10">
+        <ul class="flex flex-col justify-center px-6 py-4 sm:px-10">
           {
-            doctorSigns.map((s, i) => (
+            doctorSigns.map((s) => (
               <li class="flex items-start gap-3.5 border-b border-rule py-4 text-[1.0625rem] font-bold leading-snug text-ink last:border-b-0">
-                <span class="inline-flex h-7 min-w-7 flex-none items-center justify-center rounded-xs bg-warn px-1.5 font-head text-base leading-none text-sheet tabular-nums">{i + 1}</span>
+                <Icon name="warning" class="mt-px h-6 w-6 flex-none text-warn" />
                 <span>{s}</span>
               </li>
             ))
           }
-        </ol>
+        </ul>
       </div>
     </section>
 
     <!-- FAQ -->
-    <section class="mx-auto mt-20 grid max-w-[1240px] gap-8 px-4 sm:px-8 lg:grid-cols-[18rem_1fr] lg:gap-16">
+    <section class="mx-auto mt-24 grid max-w-[1240px] gap-8 px-4 sm:px-8 lg:grid-cols-[18rem_1fr] lg:gap-16">
       <div>
-        <h2 class="text-[2rem] sm:text-[2.5rem]">{t(lang, 'faq.title')}</h2>
+        <h2 class="text-[1.875rem] sm:text-[2.25rem]">{t(lang, 'faq.title')}</h2>
         <p class="mt-3 text-lg text-muted">{t(lang, 'faq.intro')}</p>
         <a href={href('/faq')} class="ink-link mt-5 inline-flex items-center gap-1.5 font-bold">{t(lang, 'faq.see_all')} <Icon name="arrow" class="h-[1.1em] w-[1.1em] flex-none" /></a>
       </div>

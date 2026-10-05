@@ -1,5 +1,5 @@
 ---
-import Icon from './Icon.astro';
+import CompositionRow from './CompositionRow.astro';
 import {
   extractLocale,
   routing,
@@ -23,15 +23,10 @@ const title = heading ?? t(effectiveLang, 'related_links.heading');
 {
   links.length > 0 && (
     <nav aria-label={title} class="mx-auto mt-20 grid max-w-[1240px] gap-6 px-4 sm:px-8 lg:grid-cols-[16rem_1fr] lg:gap-16">
-      <h2 class="text-[1.75rem]">{title}</h2>
-      <ul class="grid max-w-[46rem] border-t-2 border-ink sm:grid-cols-2 sm:gap-x-8">
+      <h2 class="text-[1.75rem] sm:text-[2rem]">{title}</h2>
+      <ul class="composition grid max-w-[48rem] sm:grid-cols-2">
         {links.map((l) => (
-          <li class="border-b border-rule">
-            <a href={withTrailingSlash(l.path)} class="flex items-center justify-between gap-3 px-1 py-3.5 text-[1.0625rem] font-bold text-ink transition-colors hover:bg-spot-wash">
-              <span>{l.label}</span>
-              <Icon name={l.path.startsWith("http") ? "external" : "arrow"} class="h-5 w-5 flex-none" />
-            </a>
-          </li>
+          <CompositionRow href={l.path.startsWith('http') ? l.path : withTrailingSlash(l.path)} title={l.label} external={l.path.startsWith('http')} />
         ))}
       </ul>
     </nav>

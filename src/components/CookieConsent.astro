@@ -10,7 +10,7 @@ const privacyHref = localizeHref('/polityka-prywatnosci', lang, routing);
 <div
   id="cookie-consent"
   hidden
-  class="fixed inset-x-0 bottom-0 z-50 border-t-2 border-ink bg-sheet"
+  class="fixed inset-x-0 bottom-0 z-50 border-t-4 border-label bg-sheet shadow-[0_-8px_24px_rgb(8_67_47/0.15)]"
 >
   <div class="mx-auto flex max-w-[1240px] flex-col gap-4 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-8">
     <p class="text-[0.9375rem] leading-relaxed text-body">
@@ -20,14 +20,14 @@ const privacyHref = localizeHref('/polityka-prywatnosci', lang, routing);
       <button
         type="button"
         id="cookie-reject"
-        class="btn-rule min-h-11 px-5 text-[0.9375rem]"
+        class="btn-line min-h-11 px-5 text-[0.9375rem]"
       >
         {t(lang, 'cookie.reject')}
       </button>
       <button
         type="button"
         id="cookie-accept"
-        class="btn-ink min-h-11 px-5 text-[0.9375rem]"
+        class="btn-solid min-h-11 px-5 text-[0.9375rem]"
       >
         {t(lang, 'cookie.accept')}
       </button>

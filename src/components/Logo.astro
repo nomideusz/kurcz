@@ -1,13 +1,11 @@
 ---
-// Wordmark: lowercase condensed "kurcz" with ".pl" set on a saffron box-band chip.
+// Wordmark: wide label lettering "kurcz" with a gold ".pl", set on the green label.
 interface Props {
   class?: string;
-  /** On a saffron ground the chip inverts to ink. */
-  onSpot?: boolean;
 }
-const { class: className = 'text-[1.75rem]', onSpot = false } = Astro.props;
+const { class: className = 'text-[1.75rem]' } = Astro.props;
 ---
 
-<span class:list={['inline-flex items-baseline font-head font-bold leading-none tracking-[-0.02em] text-ink', className]}
-  >kurcz<span class:list={['ml-[0.06em] rounded-xs px-[0.14em] pb-[0.04em]', onSpot ? 'bg-ink text-spot' : 'bg-spot text-ink']}>.pl</span></span
+<span class:list={['inline-flex items-baseline font-head font-extrabold leading-none tracking-[-0.02em] text-on-label [--wdth:135]', className]}
+  >kurcz<span class="text-gold">.pl</span></span
 >

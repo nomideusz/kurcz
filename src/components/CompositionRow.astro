@@ -1,0 +1,38 @@
+---
+// One row of a composition table, the label's "Skład": name, dotted leader, value (the
+// guide's reading time), read-drop, arrow.
+// The drop fills once the linked guide has been visited (CSS :visited, zero JS).
+import Icon from './Icon.astro';
+import { guideMinutes } from '../utils/reading.ts';
+
+const { href, title, desc, icon, external = false, as: Title = 'span' } = Astro.props as {
+  href: string;
+  title: string;
+  desc?: string;
+  icon?: any;
+  external?: boolean;
+  /** Heading level for the name where the row stands for a section of the site. */
+  as?: 'span' | 'h3';
+};
+const min = external ? undefined : guideMinutes(href);
+---
+
+<li>
+  <a
+    href={href}
+    {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+    class="group flex h-full items-start gap-4 px-4 py-4 transition-colors hover:bg-wash sm:px-5"
+  >
+    {icon && <Icon name={icon} class="mt-0.5 h-7 w-7 flex-none text-label" />}
+    <span class="min-w-0 flex-1">
+      <span class="flex items-baseline-last gap-2">
+        <Title class="font-head text-[1.1875rem] font-bold leading-snug text-ink [--wdth:112]">{title}</Title>
+        <span class="leader text-label" aria-hidden="true"></span>
+        {min && <span class="whitespace-nowrap text-sm font-bold tabular-nums text-label">~{min} min</span>}
+        {!external && <Icon name="drop" class="drop mb-px h-4 w-4" />}
+        <Icon name={external ? 'external' : 'arrow'} class="-mb-0.5 h-5 w-5 flex-none text-label transition-transform group-hover:translate-x-0.5" />
+      </span>
+      {desc && <span class="mt-1 block text-[0.9375rem] leading-relaxed text-muted">{desc}</span>}
+    </span>
+  </a>
+</li>

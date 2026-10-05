@@ -38,7 +38,7 @@ A single-topic, editorially calm reference on cramps, in Polish first. It goes d
 - Content pages must stay zero-JS by default for speed and indexability.
 
 ## Brand Commitments
-- Name and wordmark: lowercase serif "kurcz" with an accented ".pl" (`src/components/Logo.astro`, `public/logo.webp`, `public/logo-white.webp`).
+- Name and wordmark: lowercase "kurcz" in wide label lettering with a gold ".pl", set on the spring-green label (`src/components/Logo.astro`). The raster logos `public/logo.webp` and `public/logo-white.webp` predate it and were not redrawn.
 - Voice: calm, reassuring, editorial and plain-spoken. It explains without alarming and without selling. Reference line: "Rzetelne i proste informacje o przyczynach, natychmiastowej uldze oraz zapobieganiu bolesnym kurczom mięśniowym — zgodne z aktualną wiedzą medyczną."
 - Authorship stays organizational ("Kurcz.pl"). This is a confirmed decision.
 
