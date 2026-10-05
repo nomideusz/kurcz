@@ -157,14 +157,14 @@ export function getLocalizedRoute(route: any, locale: SupportedLocale) {
 export function getLocalizedReliefSteps(locale: SupportedLocale) {
   if (locale === 'en') {
     return [
-      { n: 1, title: 'Stretch the muscle', body: 'Gently straighten the limb and hold for 20–30 seconds while breathing deeply.' },
+      { n: 1, title: 'Stretch the muscle', time: '20–30 s', body: 'Gently straighten the limb and hold for 20–30 seconds while breathing deeply.' },
       { n: 2, title: 'Hydrate', body: 'Replenish electrolytes — mineralized water or an isotonic drink.' },
       { n: 3, title: 'Massage gently', body: 'Circular, gentle movements with increasing pressure until relaxed.' },
     ];
   }
   return [
     { n: 1, title: 'Przerwij ruch', body: 'Zatrzymaj aktywność, rozluźnij całe ciało i nie napinaj mięśnia wbrew oporowi.' },
-    { n: 2, title: 'Rozciągaj powoli', body: 'Wyprostuj kończynę, przyciągając palce do siebie ze stałym, łagodnym oporem.' },
+    { n: 2, title: 'Rozciągaj powoli', time: '20–30 s', body: 'Wyprostuj kończynę, przyciągając palce do siebie ze stałym, łagodnym oporem.' },
     { n: 3, title: 'Rozmasuj', body: 'Okrężne, delikatne ruchy z rosnącym naciskiem aż do rozluźnienia.' },
   ];
 }

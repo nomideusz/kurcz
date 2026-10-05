@@ -17,12 +17,6 @@ importers:
       '@astrojs/svelte':
         specifier: ^7.2.5
         version: 7.2.5(@types/node@24.13.2)(astro@5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.2)(typescript@5.9.3)(yaml@2.9.0))(jiti@2.7.0)(lightningcss@1.32.0)(svelte@5.56.4(@typescript-eslint/types@8.62.0))(typescript@5.9.3)(yaml@2.9.0)
-      '@fontsource-variable/source-serif-4':
-        specifier: ^5.2.9
-        version: 5.2.9
-      '@nomideusz/svelte-geometrize':
-        specifier: ^0.7.0
-        version: 0.7.0(@types/node@24.13.2)(sharp@0.35.2)(svelte@5.56.4(@typescript-eslint/types@8.62.0))(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(yaml@2.9.0))
       '@nomideusz/svelte-i18n':
         specifier: ^0.3.2
         version: 0.3.2(svelte@5.56.4(@typescript-eslint/types@8.62.0))
@@ -610,9 +604,6 @@ packages:
   '@fastify/busboy@3.2.0':
     resolution: {integrity: sha512-m9FVDXU3GT2ITSe0UaMA5rU3QkfC/UXtCU8y0gSN/GugTqtVldOBWIB5V6V3sbmenVZUIpU6f+mPEO2+m5iTaA==}
 
-  '@fontsource-variable/source-serif-4@5.2.9':
-    resolution: {integrity: sha512-PPcxjLFk/fS0WHg79pDM2YNvz61kC+oYZ5cWZZyCS0DHpJncmuYOuiZAsvj4tDxlWPBEvxxcRLQQNmSaRbPkqw==}
-
   '@humanwhocodes/momoa@2.0.4':
     resolution: {integrity: sha512-RE815I4arJFtt+FVeU1Tgp9/Xvecacji8w/V6XtXsWWH/wz/eNkNbhb+ny/+PlVZjV0rxQpRSQKNKE3lcktHEA==}
     engines: {node: '>=10.10.0'}
@@ -1092,22 +1083,6 @@ packages:
   '@nodelib/fs.walk@1.2.8':
     resolution: {integrity: sha512-oGB+UxlgWcgQkgwo8GcEGwemoTFt3FIO9ababBmaGwXIoBKZ+GTy0pP185beGg7Llih/NSHSV2XAs1lnznocSg==}
     engines: {node: '>= 8'}
-
-  '@nomideusz/svelte-geometrize@0.7.0':
-    resolution: {integrity: sha512-l0lGDklhPvxBm2M45Noqw0nzAqMacT9cpvOocS9d0KIP/O8btGKp7mI03MMBWTWgD7wodYWuVLa303Kt7hbACQ==}
-    hasBin: true
-    peerDependencies:
-      '@types/node': '>=20'
-      sharp: '>=0.33.0'
-      svelte: ^5.0.0
-      vite: '>=6'
-    peerDependenciesMeta:
-      '@types/node':
-        optional: true
-      sharp:
-        optional: true
-      vite:
-        optional: true
 
   '@nomideusz/svelte-i18n@0.3.2':
     resolution: {integrity: sha512-a4nh3PzOWpBjLnNP9FCsv+yvfzzhUWxAU4TDU+BXGPVBskap5CWDd3ZefhxdwTfwuNcD7gwg5LpU4jWgqrpMsA==}
@@ -2532,9 +2507,6 @@ packages:
   generator-function@2.0.1:
     resolution: {integrity: sha512-SFdFmIJi+ybC0vjlHN0ZGVGHc3lgE0DxPAT0djjVg+kjOnSqclqmj0KQ7ykTOLP6YxoqOvuAODGdcHJn+43q3g==}
     engines: {node: '>= 0.4'}
-
-  geometrizejs@0.0.19:
-    resolution: {integrity: sha512-YRZRub22/do3Vpo2/JzqRo/cHS8FcYg5DXd38xZz7D5avsCqlwxBbLXK6AjBHulDnuVpbNtvtzgL2wcKXd4xpQ==}
 
   get-amd-module-type@6.0.2:
     resolution: {integrity: sha512-7zShVYAYtMnj9S65CfN+hvpBCByfuB1OY8xID01nZEzXTZbx4YyysAfi+nMl95JSR6odt4q8TCj2W63KAoyVLQ==}
@@ -4842,8 +4814,6 @@ snapshots:
 
   '@fastify/busboy@3.2.0': {}
 
-  '@fontsource-variable/source-serif-4@5.2.9': {}
-
   '@humanwhocodes/momoa@2.0.4': {}
 
   '@iarna/toml@2.2.5': {}
@@ -5448,15 +5418,6 @@ snapshots:
     dependencies:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.20.1
-
-  '@nomideusz/svelte-geometrize@0.7.0(@types/node@24.13.2)(sharp@0.35.2)(svelte@5.56.4(@typescript-eslint/types@8.62.0))(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(yaml@2.9.0))':
-    dependencies:
-      geometrizejs: 0.0.19
-      svelte: 5.56.4(@typescript-eslint/types@8.62.0)
-    optionalDependencies:
-      '@types/node': 24.13.2
-      sharp: 0.35.2
-      vite: 6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(yaml@2.9.0)
 
   '@nomideusz/svelte-i18n@0.3.2(svelte@5.56.4(@typescript-eslint/types@8.62.0))':
     dependencies:
@@ -7019,8 +6980,6 @@ snapshots:
   functions-have-names@1.2.3: {}
 
   generator-function@2.0.1: {}
-
-  geometrizejs@0.0.19: {}
 
   get-amd-module-type@6.0.2:
     dependencies:

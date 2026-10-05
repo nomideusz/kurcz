@@ -1,4 +1,5 @@
 ---
+import Icon from './Icon.astro';
 import Logo from './Logo.astro';
 import LanguageSwitcher from './LanguageSwitcher.svelte';
 import { footerLegalLinks } from '../seo/routes.js';
@@ -71,100 +72,63 @@ const year = new Date().getFullYear();
 const homeHref = localizeHref('/', locale, routing);
 ---
 
-<footer class="mt-20 border-t border-[#1e2d42] bg-navy-deep text-[#a9b0bd]">
-  <div class="mx-auto max-w-7xl px-5 py-16 sm:px-14">
-    <div class="grid gap-10 border-b border-[#243248] pb-12 md:grid-cols-2 lg:grid-cols-5">
-      <div>
-        <a href={homeHref} class="group inline-block" aria-label="Kurcz.pl — strona główna">
-          <Logo class="text-[27px] text-[#f4efe6] transition-transform duration-200 group-hover:scale-[1.02]" accentClass="text-accent-light" />
+<footer class="mt-24 bg-spot text-ink">
+  <div class="mx-auto max-w-[1240px] px-4 pb-10 pt-14 sm:px-8">
+    <div class="grid grid-cols-2 gap-x-6 gap-y-10 border-b-2 border-ink pb-12 sm:gap-x-8 lg:grid-cols-[1.3fr_1fr_1fr_1fr_1fr]">
+      <div class="col-span-2 lg:col-span-1">
+        <a href={homeHref} class="inline-flex" aria-label={locale === 'en' ? 'Kurcz.pl — home' : 'Kurcz.pl — strona główna'}>
+          <Logo class="text-[2rem]" onSpot />
         </a>
-        <p class="mt-3.5 max-w-[280px] text-sm leading-relaxed text-[#8b93a1]">
+        <p class="mt-4 max-w-[17rem] text-[0.9375rem] leading-relaxed">
           {t(locale, 'footer.tagline')}
         </p>
         <div class="mt-5">
-          <LanguageSwitcher client:load currentPath={currentPath} currentLocale={locale} variant="dark" />
+          <LanguageSwitcher client:load currentPath={currentPath} currentLocale={locale} variant="spot" />
         </div>
       </div>
 
-      <nav aria-label="Tematy">
-        <div class="eyebrow mb-4 text-[#8b96a5]">
-          {locale === 'en' ? 'topics' : 'tematy'}
-        </div>
-        <ul class="flex flex-col gap-2.5 text-sm">
+      {
+        [
           {
-            topics.map((l) => (
-              <li>
-                <a href={localizeHref(l.path, locale, routing)} class="text-[#c2c8d2] transition-colors hover:text-white hover:underline underline-offset-4">
-                  {topicLabels[locale]?.[l.key] ?? l.key}
-                </a>
-              </li>
-            ))
-          }
-        </ul>
-      </nav>
-
-      <nav aria-label="Serwis">
-        <div class="eyebrow mb-4 text-[#8b96a5]">
-          {locale === 'en' ? 'service' : 'serwis'}
-        </div>
-        <ul class="flex flex-col gap-2.5 text-sm">
+            label: locale === 'en' ? 'Topics' : 'Tematy',
+            links: topics.map((l) => ({ href: localizeHref(l.path, locale, routing), text: topicLabels[locale]?.[l.key] ?? l.key })),
+          },
           {
-            serwis.map((l) => (
-              <li>
-                <a href={localizeHref(l.path, locale, routing)} class="text-[#c2c8d2] transition-colors hover:text-white hover:underline underline-offset-4">
-                  {serwisLabels[locale]?.[l.key] ?? l.key}
-                </a>
-              </li>
-            ))
-          }
+            label: locale === 'en' ? 'Service' : 'Serwis',
+            links: [
+              ...serwis.map((l) => ({ href: localizeHref(l.path, locale, routing), text: serwisLabels[locale]?.[l.key] ?? l.key })),
+              ...footerLegalLinks
+                .filter((l) => ['/regulamin', '/polityka-prywatnosci', '/disclaimer-medyczny'].includes(l.path))
+                .map((l) => ({ href: localizeHref(l.path, locale, routing), text: legalLabels[locale]?.[l.path] ?? l.label.toLowerCase() })),
+            ],
+          },
           {
-            footerLegalLinks
-              .filter((l) => ['/regulamin', '/polityka-prywatnosci', '/disclaimer-medyczny'].includes(l.path))
-              .map((l) => (
+            label: locale === 'en' ? 'Guides' : 'Poradniki',
+            links: guides.map((g) => ({ href: localizeHref(g.path, locale, routing), text: locale === 'en' ? g.en : g.pl })),
+          },
+        ].map((col) => (
+          <nav aria-label={col.label}>
+            <h2 class="caps mb-3 border-b border-ink pb-2">{col.label}</h2>
+            <ul class="flex flex-col gap-1.5 text-[0.9375rem]">
+              {col.links.map((l) => (
                 <li>
-                  <a href={localizeHref(l.path, locale, routing)} class="text-[#c2c8d2] transition-colors hover:text-white hover:underline underline-offset-4">
-                    {legalLabels[locale]?.[l.path] ?? l.label.toLowerCase()}
-                  </a>
+                  <a href={l.href} class="underline-offset-4 hover:underline">{l.text}</a>
                 </li>
-              ))
-          }
-        </ul>
-      </nav>
+              ))}
+            </ul>
+          </nav>
+        ))
+      }
 
-      <nav aria-label={locale === 'en' ? 'Guides' : 'Poradniki'}>
-        <div class="eyebrow mb-4 text-[#8b96a5]">
-          {locale === 'en' ? 'guides' : 'poradniki'}
-        </div>
-        <ul class="flex flex-col gap-2.5 text-sm">
-          {
-            guides.map((guide) => (
-              <li>
-                <a href={localizeHref(guide.path, locale, routing)} class="text-[#c2c8d2] transition-colors hover:text-white hover:underline underline-offset-4">
-                  {locale === 'en' ? guide.en : guide.pl}
-                </a>
-              </li>
-            ))
-          }
-        </ul>
-      </nav>
-
-      <nav aria-label="Partnerzy">
-        <div class="eyebrow mb-4 text-[#8b96a5]">
-          {locale === 'en' ? 'partners' : 'partnerzy'}
-        </div>
-        <ul class="flex flex-col gap-2.5 text-sm">
+      <nav aria-label={locale === 'en' ? 'Partners' : 'Partnerzy'}>
+        <h2 class="caps mb-3 border-b border-ink pb-2">{locale === 'en' ? 'Partners' : 'Partnerzy'}</h2>
+        <ul class="flex flex-col gap-1.5 text-[0.9375rem]">
           {
             partners.map((p) => (
               <li>
-                <a
-                  href={p.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  data-outbound={p.label}
-                  class="inline-flex items-center gap-1 text-[#c2c8d2] transition-colors hover:text-white hover:underline underline-offset-4"
-                >
+                <a href={p.url} target="_blank" rel="noopener noreferrer" data-outbound={p.label} class="inline-flex items-center gap-1 underline-offset-4 hover:underline">
                   <span>{p.label}</span>
-                  <span class="text-xs text-[#6e7b8f]" aria-hidden="true">↗</span>
+                  <Icon name="external" class="h-3.5 w-3.5 flex-none" />
                 </a>
               </li>
             ))
@@ -173,33 +137,29 @@ const homeHref = localizeHref('/', locale, routing);
       </nav>
     </div>
 
-    <div class="flex flex-col items-start justify-between gap-6 pt-8 sm:flex-row sm:items-center">
-      <p class="max-w-[580px] text-xs leading-relaxed text-[#8b96a5]">
+    <div class="flex flex-col items-start justify-between gap-6 pt-6 sm:flex-row sm:items-center">
+      <p class="max-w-[38rem] text-[0.8125rem] leading-relaxed">
         {t(locale, 'disclaimer.text')}
       </p>
-      <div class="flex items-center gap-5">
-        <div class="flex items-center gap-2.5">
-          {
-            socials.map((s) => (
-              <a
-                href={s.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                data-outbound={s.label}
-                aria-label={s.label}
-                class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[#2c3a52] text-[#c2c8d2] transition-all hover:border-accent-light hover:bg-[#182438] hover:text-white"
-              >
-                <svg class="h-[18px] w-[18px]" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path d={s.path} />
-                </svg>
-              </a>
-            ))
-          }
-        </div>
-        <span class="font-mono text-xs whitespace-nowrap text-[#8b96a5]">© {year} kurcz.pl</span>
+      <div class="flex items-center gap-4">
+        {
+          socials.map((s) => (
+            <a
+              href={s.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-outbound={s.label}
+              aria-label={s.label}
+              class="inline-flex h-10 w-10 items-center justify-center rounded-xs border border-ink transition-colors hover:bg-ink hover:text-spot"
+            >
+              <svg class="h-[18px] w-[18px]" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path d={s.path} />
+              </svg>
+            </a>
+          ))
+        }
+        <span class="whitespace-nowrap text-[0.8125rem]">© {year} kurcz.pl</span>
       </div>
     </div>
   </div>
 </footer>
-
-

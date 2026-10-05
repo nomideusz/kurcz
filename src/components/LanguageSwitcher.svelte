@@ -8,8 +8,8 @@
   }: {
     currentPath?: string;
     currentLocale?: SupportedLocale;
-    /** `light` = dark ink on paper (header). `dark` = light controls on navy (footer). */
-    variant?: 'light' | 'dark';
+    /** `light` = on paper (header). `spot` = on the saffron footer. */
+    variant?: 'light' | 'spot';
   } = $props();
 
   let isOpen = $state(false);
@@ -32,24 +32,16 @@
     }
   }
 
-  const buttonClass =
-    variant === 'dark'
-      ? 'inline-flex h-[38px] cursor-pointer items-center justify-center gap-1.5 rounded border border-[#2c3a52] bg-[#142030] px-3 text-sm font-medium leading-none text-[#f4efe6] transition-all hover:border-accent-light hover:bg-[#1c2c42] hover:text-white focus:outline-none focus:ring-2 focus:ring-accent-light'
-      : 'inline-flex h-[38px] cursor-pointer items-center justify-center gap-1.5 rounded border border-line bg-card px-3 text-sm font-medium leading-none text-ink shadow-[0_1px_2px_rgba(22,34,52,0.03)] transition-all hover:border-accent hover:bg-accent-bg/40 focus:outline-none focus:ring-2 focus:ring-accent';
+  // Both variants are ink on their ground; `spot` (footer, on saffron) hovers to ink.
+  const buttonClass = $derived(`inline-flex h-10 cursor-pointer items-center justify-center gap-1.5 rounded-xs border border-ink px-3 text-sm font-bold leading-none text-ink transition-colors ${
+    variant === 'spot' ? 'hover:bg-ink hover:text-spot' : 'hover:bg-spot-wash'
+  }`);
 
-  const menuClass =
-    variant === 'dark'
-      ? 'absolute right-0 top-full mt-1.5 w-24 rounded-lg border border-[#2c3a52] bg-[#142030] py-1 shadow-xl z-50'
-      : 'absolute right-0 top-full mt-1.5 w-24 rounded-lg border border-line bg-card py-1 shadow-xl z-50';
+  const menuClass = 'absolute right-0 top-full z-50 mt-1 w-28 border border-ink bg-sheet py-1';
 
   function optionClass(loc: SupportedLocale) {
-    if (variant === 'dark') {
-      return `flex w-full cursor-pointer items-center justify-between px-3 py-1.5 text-xs font-mono font-medium transition-colors hover:bg-[#1c2c42] hover:text-white text-left ${
-        loc === currentLocale ? 'font-bold text-accent-light' : 'text-[#d9dce2]'
-      }`;
-    }
-    return `flex w-full cursor-pointer items-center justify-between px-3 py-1.5 text-xs font-mono font-medium transition-colors hover:bg-accent-bg hover:text-accent text-left ${
-      loc === currentLocale ? 'font-bold text-accent' : 'text-ink'
+    return `flex w-full cursor-pointer items-center justify-between px-3 py-2 text-left text-sm text-ink transition-colors hover:bg-spot-wash ${
+      loc === currentLocale ? 'font-bold' : ''
     }`;
   }
 </script>
@@ -74,7 +66,7 @@
     class={buttonClass}
   >
 
-    <span class="font-mono text-xs uppercase tracking-wider leading-none">{currentLocale}</span>
+    <span class="uppercase tracking-wide leading-none">{currentLocale}</span>
     <svg
       class="h-3.5 w-3.5 transition-transform duration-200"
       class:rotate-180={isOpen}
@@ -99,7 +91,7 @@
         >
           <span>{localeLabels[loc] ?? loc.toUpperCase()}</span>
           {#if loc === currentLocale}
-            <span class={variant === 'dark' ? 'text-accent-light' : 'text-accent'}>✓</span>
+            <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path stroke-linecap="square" d="M5 13l4 4L19 7" /></svg>
           {/if}
         </button>
       {/each}

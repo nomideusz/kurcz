@@ -1,10 +1,7 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import Shell from '../../components/Shell.astro';
-import Breadcrumbs from '../../components/Breadcrumbs.astro';
-import PageHeader from '../../components/PageHeader.astro';
+import GuidesPage from '../../components/GuidesPage.astro';
 import { getPoradnikiHub, poradnikiHubRoute } from '../../content/poradniki-hub.js';
-import { LOCALES, DEFAULT_LOCALE, t, localizeHref, routing, type SupportedLocale } from '../../i18n/config.ts';
+import { LOCALES, DEFAULT_LOCALE, localizeHref, routing, type SupportedLocale } from '../../i18n/config.ts';
 import { getLocalizedRoute } from '../../i18n/content.ts';
 
 export function getStaticPaths() {
@@ -27,63 +24,4 @@ const categories = hubData.categories.map((cat) => ({
 }));
 ---
 
-<Layout route={route} lang={lang}>
-  <Shell currentPath={currentPath}>
-    <Breadcrumbs route={route} currentPath={currentPath} />
-    <PageHeader title={route.h1} intro={hubData.intro} eyebrow={lang === 'en' ? 'knowledge compendium' : 'kompendium wiedzy'} />
-
-    <div class="mx-auto max-w-7xl px-5 py-12 sm:px-14">
-      <!-- Quick category jump pills -->
-      <nav aria-label={lang === 'en' ? 'Guide categories' : 'Kategorie poradników'} class="mb-12 flex flex-wrap gap-2.5 border-b border-line-soft pb-6">
-        <span class="font-mono text-xs uppercase tracking-wider text-faint self-center mr-2">{lang === 'en' ? 'Sections:' : 'Działy:'}</span>
-        {
-          categories.map((category, idx) => (
-            <a
-              href={`#kat-${idx}`}
-              class="inline-flex items-center gap-1.5 rounded-lg border border-line bg-card px-3.5 py-2 text-xs font-medium text-ink transition-all hover:border-accent-border hover:bg-accent-bg hover:text-accent"
-            >
-              <span>{category.title}</span>
-              <span class="text-accent font-mono text-label">({category.guides.length})</span>
-            </a>
-          ))
-        }
-      </nav>
-
-      {
-        categories.map((category, idx) => (
-          <section id={`kat-${idx}`} class="mb-16 scroll-mt-24">
-            <div class="mb-6 max-w-[720px]">
-              <span class="font-serif text-sm font-semibold text-accent">0{idx + 1}</span>
-              <h2 class="mt-1 text-2xl text-ink sm:text-3xl">{category.title}</h2>
-              <p class="mt-2 text-base leading-relaxed text-muted">{category.description}</p>
-            </div>
-            <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {category.guides.map((guide) => (
-                <li>
-                  <a
-                    href={guide.path}
-                    class="group flex h-full flex-col justify-between rounded-xl border border-line bg-card p-6 transition-colors hover:border-accent-border"
-                  >
-                    <div>
-                      <h3 class="text-xl leading-snug text-ink group-hover:text-accent transition-colors">
-                        {guide.title}
-                      </h3>
-                      <p class="mt-2.5 text-sm leading-relaxed text-muted">
-                        {guide.description}
-                      </p>
-                    </div>
-                    <div class="mt-6 flex items-center justify-between border-t border-line-soft pt-3 text-xs font-medium text-accent">
-                      <span>{lang === 'en' ? 'read guide' : 'czytaj artykuł'}</span>
-                      <span aria-hidden="true">→</span>
-                    </div>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </section>
-        ))
-      }
-    </div>
-  </Shell>
-</Layout>
-
+<GuidesPage route={route} lang={lang} currentPath={currentPath} title={route.h1} intro={hubData.intro} categories={categories} />

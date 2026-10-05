@@ -49,19 +49,28 @@ export default defineConfig({
     }),
     svelte(),
   ],
-  // Self-host Source Serif 4, subset to glyphs we actually use (Latin + Polish, weight
-  // 400 only). Drops ~222 KB of variable font to a few KB so the H1 (LCP) no longer
-  // waits on the font; Astro also emits metric-matched fallbacks → ~0 CLS.
+  // Self-hosted, subset faces (Latin + Polish). Archivo Narrow carries the leaflet's bold
+  // condensed heads; Atkinson Hyperlegible Next (Braille Institute) is the reading face,
+  // chosen for low-vision and senior readers. Astro emits metric-matched fallbacks → ~0 CLS.
   experimental: {
     fonts: [
       {
         provider: fontProviders.fontsource(),
-        name: 'Source Serif 4',
-        cssVariable: '--font-serif-src',
-        weights: [400],
+        name: 'Archivo Narrow',
+        cssVariable: '--font-head-src',
+        weights: [700],
+        styles: ['normal'],
+        subsets: ['latin', 'latin-ext'],
+        fallbacks: ['Arial Narrow', 'sans-serif'],
+      },
+      {
+        provider: fontProviders.fontsource(),
+        name: 'Atkinson Hyperlegible Next',
+        cssVariable: '--font-body-src',
+        weights: [400, 700],
         styles: ['normal', 'italic'],
         subsets: ['latin', 'latin-ext'],
-        fallbacks: ['Georgia', 'Times New Roman', 'serif'],
+        fallbacks: ['Verdana', 'sans-serif'],
       },
     ],
   },

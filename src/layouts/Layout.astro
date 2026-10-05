@@ -96,9 +96,10 @@ const alternateOgLocale = effectiveLang === 'en' ? 'pl_PL' : 'en_US';
       defer
       src="https://rybit.picarro.info/api/script.js"
       data-site-id="3"></script>
-    <!-- Subsetted, self-hosted Source Serif 4. No preload: the metric-matched fallback paints
-         the H1 shift-free, so preloading would only steal critical bandwidth at first paint. -->
-    <Font cssVariable="--font-serif-src" />
+    <!-- Subsetted, self-hosted faces. Metric-matched fallbacks paint shift-free, so only the
+         heading face (the H1 is LCP) is preloaded. -->
+    <Font cssVariable="--font-head-src" preload />
+    <Font cssVariable="--font-body-src" />
 
     <!-- Google Tag Manager (Deferred to First User Interaction or Idle fallback) -->
     <script is:inline>
@@ -152,7 +153,7 @@ const alternateOgLocale = effectiveLang === 'en' ? 'pl_PL' : 'en_US';
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="shortcut icon" href="/favicon.ico" />
-    <meta name="theme-color" content="#f4efe6" />
+    <meta name="theme-color" content="#f2a20c" />
 
     <!-- Structured data -->
     {includeCanonical && <script type="application/ld+json" is:inline set:html={jsonLd} />}

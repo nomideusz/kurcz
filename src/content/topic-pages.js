@@ -289,7 +289,7 @@ export const topicPagesContent = {
       { path: '/masaz-przy-kurczach', label: 'Masaż przy kurczach' },
       { path: '/rozciaganie-przy-kurczach', label: 'Rozciąganie przy kurczach' },
       { path: '/profilaktyka', label: 'Profilaktyka' },
-      { path: 'https://wibroakustyka.ai', label: 'Wibroakustyka.ai — fotele wibroakustyczne ↗' },
+      { path: 'https://wibroakustyka.ai', label: 'Wibroakustyka.ai — fotele wibroakustyczne' },
     ],
   },
 
@@ -326,7 +326,7 @@ export const topicPagesContent = {
       { path: '/rozciaganie-przy-kurczach', label: 'Rozciąganie przy kurczach' },
       { path: '/kurcze-nocne', label: 'Kurcze nocne' },
       { path: '/profilaktyka', label: 'Profilaktyka' },
-      { path: 'https://szkolyjogi.pl', label: 'Szkoły Jogi — katalog szkół i studiów w Polsce ↗' },
+      { path: 'https://szkolyjogi.pl', label: 'Szkoły Jogi — katalog szkół i studiów w Polsce' },
     ],
   },
 };
@@ -607,7 +607,7 @@ export const topicPagesContentEn = {
       { path: '/masaz-przy-kurczach', label: 'Massage for Cramps' },
       { path: '/rozciaganie-przy-kurczach', label: 'Stretching for Cramps' },
       { path: '/profilaktyka', label: 'Prevention' },
-      { path: 'https://wibroakustyka.ai', label: 'Wibroakustyka.ai — vibroacoustic chairs ↗' },
+      { path: 'https://wibroakustyka.ai', label: 'Wibroakustyka.ai — vibroacoustic chairs' },
     ],
   },
 
@@ -644,7 +644,7 @@ export const topicPagesContentEn = {
       { path: '/rozciaganie-przy-kurczach', label: 'Stretching for Cramps' },
       { path: '/kurcze-nocne', label: 'Night Cramps' },
       { path: '/profilaktyka', label: 'Prevention' },
-      { path: 'https://szkolyjogi.pl', label: 'Yoga Schools — directory of schools & studios in Poland ↗' },
+      { path: 'https://szkolyjogi.pl', label: 'Yoga Schools — directory of schools & studios in Poland' },
     ],
   },
 };

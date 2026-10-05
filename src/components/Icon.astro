@@ -11,6 +11,9 @@ interface Props {
     | 'senior'
     | 'first-aid'
     | 'warning'
+    | 'warn-solid'
+    | 'arrow'
+    | 'external'
     | 'clock'
     | 'calendar'
     | 'verified'
@@ -121,6 +124,32 @@ const dimension = size ? { width: size, height: size } : {};
       <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
       <path d="M12 9v4" />
       <path d="M12 17h.01" />
+    </svg>
+  )
+}
+
+{
+  name === 'arrow' && (
+    <svg class={className} {...dimension} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square" aria-hidden="true">
+      <path d="M4 12h15M13 6l6 6-6 6" />
+    </svg>
+  )
+}
+
+{
+  name === 'external' && (
+    <svg class={className} {...dimension} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square" aria-hidden="true">
+      <path d="M8 16 17 7M9 7h8v8" />
+    </svg>
+  )
+}
+
+{
+  name === 'warn-solid' && (
+    <svg class={className} {...dimension} viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M12 2.5 1.5 21h21L12 2.5z" fill="var(--color-warn)" />
+      <path d="M12 9v5.5" stroke="#fff" stroke-width="2.4" />
+      <rect x="10.8" y="16.4" width="2.4" height="2.4" fill="#fff" />
     </svg>
   )
 }

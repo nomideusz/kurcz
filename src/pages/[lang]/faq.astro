@@ -1,7 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import Shell from '../../components/Shell.astro';
-import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import PageHeader from '../../components/PageHeader.astro';
 import FaqAccordion from '../../components/FaqAccordion.astro';
 import { getRouteByPath } from '../../seo/routes.js';
@@ -24,8 +23,9 @@ const localizedFaqItems = getFaqItems(lang);
 
 <Layout route={route} lang={lang}>
   <Shell currentPath={currentPath}>
-    <Breadcrumbs route={route} currentPath={currentPath} />
     <PageHeader
+      route={route}
+      currentPath={currentPath}
       title={route.h1}
       intro={t(lang, 'faq.intro')}
     />

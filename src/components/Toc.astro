@@ -2,12 +2,13 @@
 // Sticky in-article table of contents, built from section headings with dynamic scroll-spy.
 import { extractLocale, routing, t, type SupportedLocale } from '../i18n/config.ts';
 import { slugify } from '../utils/slug.js';
-import Icon from './Icon.astro';
 
-const { sections = [], currentPath = Astro.url.pathname, lang } = Astro.props as {
+// `inline`: the collapsible contents block at the top of the article below lg.
+const { sections = [], currentPath = Astro.url.pathname, lang, inline = false } = Astro.props as {
   sections?: any[];
   currentPath?: string;
   lang?: SupportedLocale;
+  inline?: boolean;
 };
 const { locale } = extractLocale(currentPath, routing);
 const effectiveLang = lang ?? locale;
@@ -17,28 +18,47 @@ const heading = t(effectiveLang, 'toc.heading');
 ---
 
 {
-  items.length >= 3 && (
-    <aside class="sticky top-[96px] hidden self-start lg:block w-[240px] pr-4">
-      <div class="rounded-xl border border-line-soft bg-card/60 p-4 shadow-xs">
-        <div class="eyebrow mb-3 flex items-center gap-1.5 text-accent font-semibold">
-          <Icon name="toc" class="h-3.5 w-3.5" />
-          <span>{heading}</span>
-        </div>
-        <nav class="flex flex-col border-l border-line text-sm leading-snug" id="article-toc" aria-label={heading}>
-          {items.map((it, i) => (
-            <a
-              href={`#${it.id}`}
-              data-toc-id={it.id}
-              class:list={[
-                'toc-link -ml-px rounded-r-md py-2 pl-3.5 pr-2 transition-all border-l-2 hover:text-ink hover:border-accent-border',
-                i === 0 ? 'border-accent font-medium text-ink bg-accent-bg/30' : 'border-transparent text-muted',
-              ]}
-            >
-              {it.label}
+  items.length >= 3 && inline && (
+    <details class="group mb-10 border-y-2 border-ink lg:hidden">
+      <summary class="flex list-none items-center justify-between py-3.5 [&::-webkit-details-marker]:hidden">
+        <span class="caps">{heading}{" "}<span class="font-sans font-normal normal-case tracking-normal text-muted">({items.length})</span></span>
+        <svg class="h-4 w-4 transition-transform group-open:rotate-180" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M3 6l5 5 5-5" /></svg>
+      </summary>
+      <ol class="border-t border-ink pb-2">
+        {items.map((it, i) => (
+          <li>
+            <a href={`#${it.id}`} class="flex items-start gap-3 border-b border-rule py-2.5 text-[0.9375rem] leading-snug text-ink last:border-b-0 hover:bg-spot-wash">
+              <span class="inline-flex h-6 min-w-6 flex-none items-center justify-center bg-spot px-1 font-head text-sm font-bold tabular-nums text-ink">{i + 1}</span>
+              <span class="pt-0.5">{it.label}</span>
             </a>
+          </li>
+        ))}
+      </ol>
+    </details>
+  )
+}
+
+{
+  items.length >= 3 && !inline && (
+    <aside class="sticky top-[96px] hidden max-h-[calc(100vh-120px)] self-start overflow-y-auto lg:block">
+      <h2 class="caps border-b-2 border-ink pb-2.5">{heading}</h2>
+      <nav id="article-toc" aria-label={heading}>
+        <ol>
+          {items.map((it, i) => (
+            <li>
+              <a
+                href={`#${it.id}`}
+                data-toc-id={it.id}
+                aria-current={i === 0 ? 'true' : undefined}
+                class="toc-link group flex items-start gap-3 border-b border-rule py-2.5 text-[0.9375rem] leading-snug text-muted transition-colors hover:text-ink aria-[current=true]:font-bold aria-[current=true]:text-ink"
+              >
+                <span class="inline-flex h-6 min-w-6 flex-none items-center justify-center border border-ink px-1 font-head text-sm font-bold tabular-nums text-ink group-aria-[current=true]:bg-spot">{i + 1}</span>
+                <span class="pt-0.5">{it.label}</span>
+              </a>
+            </li>
           ))}
-        </nav>
-      </div>
+        </ol>
+      </nav>
     </aside>
   )
 }
@@ -65,16 +85,8 @@ const heading = t(effectiveLang, 'toc.heading');
     function setActive(activeId) {
       if (!activeId) return;
       links.forEach(function (l) {
-        var isMatch = l.getAttribute('data-toc-id') === activeId;
-        if (isMatch) {
-          l.classList.add('border-accent', 'font-medium', 'text-ink', 'bg-accent-bg/30');
-          l.classList.remove('border-transparent', 'text-muted');
-          l.setAttribute('aria-current', 'true');
-        } else {
-          l.classList.remove('border-accent', 'font-medium', 'text-ink', 'bg-accent-bg/30');
-          l.classList.add('border-transparent', 'text-muted');
-          l.removeAttribute('aria-current');
-        }
+        if (l.getAttribute('data-toc-id') === activeId) l.setAttribute('aria-current', 'true');
+        else l.removeAttribute('aria-current');
       });
     }
 

@@ -1,0 +1,53 @@
+---
+// Contact page for every locale.
+import Layout from '../layouts/Layout.astro';
+import Shell from './Shell.astro';
+import PageHeader from './PageHeader.astro';
+import ContactForm from './ContactForm.astro';
+import Icon from './Icon.astro';
+import { getRouteByPath } from '../seo/routes.js';
+import { t, localizeHref, routing, type SupportedLocale } from '../i18n/config.ts';
+import { getLocalizedRoute } from '../i18n/content.ts';
+
+const { lang, currentPath } = Astro.props as { lang: SupportedLocale; currentPath: string };
+const en = lang === 'en';
+const rawRoute = getRouteByPath('/kontakt');
+const route = en ? getLocalizedRoute(rawRoute, lang) : rawRoute;
+const shortcuts = [
+  { href: localizeHref('/pierwsza-pomoc', lang, routing), label: en ? 'First aid — immediate relief' : 'Pierwsza pomoc — natychmiastowa ulga' },
+  { href: localizeHref('/faq', lang, routing), label: en ? t(lang, 'faq.title') : 'Najczęściej zadawane pytania (FAQ)' },
+];
+---
+
+<Layout route={route} lang={lang}>
+  <Shell currentPath={currentPath}>
+    <PageHeader route={route} currentPath={currentPath} title={route.h1} intro={t(lang, 'contact.intro')} />
+    <div class="mx-auto grid max-w-[1240px] gap-12 px-4 pt-12 sm:px-8 lg:grid-cols-[1fr_1.25fr] lg:gap-16">
+      <div>
+        <h2 class="text-[1.75rem]">{en ? 'Before reaching out' : 'Przed wysłaniem wiadomości'}</h2>
+        <p class="mt-3 max-w-[34rem] text-[1.0625rem] leading-relaxed text-body">
+          {en
+            ? 'Looking for immediate cramp relief instructions or answers to common muscle questions? Check our quick sections first:'
+            : 'Jeśli szukasz natychmiastowej instrukcji ulgi przy nagłym kurczu lub odpowiedzi na powszechne pytania, sprawdź nasze sekcje:'}
+        </p>
+        <ul class="mt-6 border-t-2 border-ink">
+          {
+            shortcuts.map((s) => (
+              <li class="border-b border-ink">
+                <a href={s.href} class="flex items-center justify-between gap-3 px-1 py-4 text-[1.0625rem] font-bold text-ink hover:bg-spot-wash">
+                  <span>{s.label}</span>
+                  <Icon name="arrow" class="h-5 w-5 flex-none" />
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+        <div class="mt-8 flex items-start gap-3.5 border-2 border-ink p-5">
+          <Icon name="warn-solid" class="h-6 w-6 flex-none" />
+          <p class="text-[0.9375rem] font-bold leading-relaxed text-ink">{t(lang, 'contact.no_advice')}</p>
+        </div>
+      </div>
+      <ContactForm currentPath={currentPath} lang={lang} />
+    </div>
+  </Shell>
+</Layout>

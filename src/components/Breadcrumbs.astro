@@ -17,17 +17,14 @@ const current = (route.breadcrumbLabel ?? route.h1).toLowerCase();
 
 {
   route.path !== '/' && (
-    <nav
-      aria-label={locale === 'en' ? 'Breadcrumb navigation' : 'Ścieżka okruszków'}
-      class="mx-auto max-w-7xl px-5 pt-10 font-mono text-xs text-faint sm:px-14"
-    >
+    <nav aria-label={locale === 'en' ? 'Breadcrumb navigation' : 'Ścieżka okruszków'} class="text-sm text-ink">
       {crumbs.map((c) => (
         <>
-          <a href={c.path} class="text-faint hover:text-ink">{c.label}</a>
-          <span class="mx-1.5 text-[#c3b7a2]">/</span>
+          <a href={c.path} class="underline decoration-ink/35 underline-offset-4 hover:decoration-ink">{c.label}</a>
+          <span class="mx-2" aria-hidden="true">/</span>
         </>
       ))}
-      <span class="text-accent" aria-current="page">{current}</span>
+      <span class="font-bold text-ink" aria-current="page">{current}</span>
     </nav>
   )
 }
