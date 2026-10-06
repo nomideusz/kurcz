@@ -222,6 +222,13 @@
   /* The rail is cloth: woven slate with a darker stitched binding down its spine. */
   .rail {
     background: var(--color-slate) var(--tex-cloth) 0 0 / 512px auto;
+    /* The rail's contents measure about 63u + 9px tall, so on wide, short screens the unit
+       also follows the height (with 32px to spare) and they fit the window without a
+       scrollbar. Below about 690px of height the rem floors win and the rail scrolls.
+       Its width (--rail) is set outside, so it doesn't move. */
+    @media (width >= 64rem) {
+      --u: clamp(10px, min(1vw, (100dvh - 32px) / 63), 18.72px);
+    }
   }
   @media (width >= 64rem) {
     .rail::before {
