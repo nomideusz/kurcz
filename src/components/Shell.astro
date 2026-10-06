@@ -2,15 +2,32 @@
 import Header from './Header.astro';
 import Footer from './Footer.astro';
 import CookieConsent from './CookieConsent.astro';
+import { getImage } from 'astro:assets';
+import groundPlate from '../../assets/plates/ground.png';
+import railClothPlate from '../../assets/plates/rail-cloth.png';
+import bindingPlate from '../../assets/plates/rail-binding.png';
 import type { SupportedLocale } from '../i18n/config.ts';
 
 const { currentPath = '/' } = Astro.props;
+// Chart textures: linen ground for the sheet, one book cloth for the rail and the card title strips,
+// and the corded spine on desktop.
+const groundTex = await getImage({ src: groundPlate, format: 'webp', width: 1024, quality: 80 });
+const clothTex = await getImage({ src: railClothPlate, format: 'webp', width: 1024, quality: 85 });
+const bindingTex = await getImage({ src: bindingPlate, format: 'webp', width: 56, quality: 85 });
 const lang: SupportedLocale = currentPath.startsWith('/en') ? 'en' : 'pl';
 ---
 
-<Header currentPath={currentPath} />
-<main class="flex-1">
-  <slot />
-</main>
-<Footer currentPath={currentPath} />
+<div
+  style={`--tex-ground:url(${groundTex.src});--tex-cloth:url(${clothTex.src});--tex-binding:url(${bindingTex.src})`}
+  class="flex-1 lg:grid lg:bg-slate lg:grid-cols-[var(--rail)_minmax(0,1fr)]">
+  <Header currentPath={currentPath} />
+  <div class="sheet flex min-h-dvh flex-col">
+    <div class="paper flex flex-1 flex-col">
+      <main class="flex-1">
+        <slot />
+      </main>
+      <Footer currentPath={currentPath} />
+    </div>
+  </div>
+</div>
 <CookieConsent lang={lang} />

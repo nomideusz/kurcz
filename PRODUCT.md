@@ -30,7 +30,7 @@ A single-topic, editorially calm reference on cramps, in Polish first. It goes d
 - Contact goes through the `/kontakt` form (SMTP).
 
 ## Capabilities and Constraints
-- Stack: Astro 5 static output, Svelte 5 islands only (AI search, language switcher, geometrized image placeholders), Tailwind v4. Deployed on Netlify (`@astrojs/netlify`, `netlify.toml`). The Dockerfile and CapRover config are legacy.
+- Stack: Astro 5 static output, Tailwind v4, and a single Svelte 5 island: the AI search (`client:idle`). The language switch is a plain link. Deployed on Netlify (`@astrojs/netlify`, `netlify.toml`). The Dockerfile and CapRover config are legacy.
 - About 34 pages per language: home, around 26 topic/guide pages, hubs, FAQ, contact, about, terms, privacy, medical disclaimer, 404.
 - Content lives in JS data files (`src/content/landing-pages.js`, `topic-pages.js`, `static-pages.js`). SEO and schema code is in `src/seo/`.
 - Build runs `check:seo` and `check:search` as postbuild gates.
@@ -38,7 +38,8 @@ A single-topic, editorially calm reference on cramps, in Polish first. It goes d
 - Content pages must stay zero-JS by default for speed and indexability.
 
 ## Brand Commitments
-- Name and wordmark: lowercase "kurcz" in wide label lettering with a gold ".pl", set on the spring-green label (`src/components/Logo.astro`). The raster logos `public/logo.webp` and `public/logo-white.webp` predate it and were not redrawn.
+- Name and wordmark: plain lowercase "kurcz.pl" set in Cabin (narrowed, semibold), taking the colour of its surface: light on the slate cloth rail, slate on the linen footer (`src/components/Logo.astro`). The raster logos `public/logo.webp` and `public/logo-white.webp` (used in structured data) predate it and were not redrawn.
+- Visual identity: a classroom anatomy wall chart, recorded in `DESIGN.md`. Every guide has its own engraved anatomical plate (`assets/plates/`, mapped in `src/content/plates.ts`, shared by PL and EN) that explains the topic; no stock photography.
 - Voice: calm, reassuring, editorial and plain-spoken. It explains without alarming and without selling. Reference line: "Rzetelne i proste informacje o przyczynach, natychmiastowej uldze oraz zapobieganiu bolesnym kurczom mięśniowym — zgodne z aktualną wiedzą medyczną."
 - Authorship stays organizational ("Kurcz.pl"). This is a confirmed decision.
 

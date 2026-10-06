@@ -1,13 +1,13 @@
 ---
-// Hub and service page header: the green label band with its wave edge. Crumbs render inside when a route is passed.
+// Hub and service page header on the chart sheet: crumbs, title, lead, then the slate rule
+// that closes the hero on the home page.
 import Breadcrumbs from './Breadcrumbs.astro';
 const { title, intro, route, currentPath } = Astro.props;
 ---
 
-<header class="label-band wave">
-  <div class="mx-auto max-w-[1240px] px-4 pb-14 pt-8 sm:px-8 sm:pb-16">
-    {route && <Breadcrumbs route={route} currentPath={currentPath} />}
-    <h1 class="mt-6 max-w-[52rem] text-[clamp(2.25rem,5.4vw,4rem)] leading-[1] tracking-[-0.025em] [--wdth:125]">{title}</h1>
-    {intro && <p class="mt-5 max-w-[44rem] text-[1.1875rem] leading-relaxed text-on-label">{intro}</p>}
-  </div>
+<header class="page-x pt-6 lg:pt-[calc(var(--u)*2.6)]">
+  {route && <Breadcrumbs route={route} currentPath={currentPath} />}
+  <h1 class="mt-5 max-w-[52rem] text-[clamp(2.5rem,7vw,3.75rem)] font-bold leading-[1] tracking-[-0.015em] lg:mt-[calc(var(--u)*1.4)] lg:text-[max(3.25rem,calc(var(--u)*4.6))]">{title}</h1>
+  {intro && <p class="mt-4 max-w-[40rem] text-[1.1875rem] leading-[1.45] text-ink lg:mt-[calc(var(--u)*1.2)] lg:max-w-[calc(var(--u)*42)] lg:text-[max(1.1875rem,calc(var(--u)*1.4))]">{intro}</p>}
+  <hr class="mt-8 border-t-2 border-slate/70 lg:mt-[calc(var(--u)*2.2)]" />
 </header>

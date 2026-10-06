@@ -10,9 +10,9 @@ const privacyHref = localizeHref('/polityka-prywatnosci', lang, routing);
 <div
   id="cookie-consent"
   hidden
-  class="fixed inset-x-0 bottom-0 z-50 border-t-4 border-label bg-sheet shadow-[0_-8px_24px_rgb(8_67_47/0.15)]"
+  class="fixed inset-x-0 bottom-0 z-50 border-t-2 border-slate bg-paper shadow-[0_-8px_24px_rgb(10_16_15/0.18)] lg:left-[var(--rail)]"
 >
-  <div class="mx-auto flex max-w-[1240px] flex-col gap-4 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-8">
+  <div class="page-x flex flex-col gap-4 py-4 sm:flex-row sm:items-center sm:justify-between">
     <p class="text-[0.9375rem] leading-relaxed text-body">
       {t(lang, 'cookie.text')}<a href={privacyHref} class="ink-link">{t(lang, 'cookie.link')}</a>.
     </p>

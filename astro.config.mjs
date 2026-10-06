@@ -28,7 +28,8 @@ export default defineConfig({
   // Static-first: every page is prerendered. The Netlify adapter exists only so the
   // contact endpoint (src/pages/api/contact.ts, prerender = false) runs as a function.
   output: 'static',
-  adapter: netlify(),
+  // Plates are optimised to webp at build time (sharp), so pages stay plain static files.
+  adapter: netlify({ imageCDN: false }),
   build: {
     format: 'directory',
     inlineStylesheets: 'always',
@@ -49,30 +50,23 @@ export default defineConfig({
     }),
     svelte(),
   ],
-  // Self-hosted, subset faces (Latin + Polish). Anybody, set wide, is the label lettering
-  // (its width axis comes only through the Google provider); Atkinson Hyperlegible Next
-  // (Braille Institute) is the reading face, chosen for low-vision and senior readers.
-  // Astro emits metric-matched fallbacks → ~0 CLS.
+  // Self-hosted, subset faces (Latin + Polish). Cabin is the one humanist sans of the
+  // classroom wall chart: headings and rail lettering bold and condensed on its width axis,
+  // reading text at normal width, with a Verdana fallback.
   experimental: {
     fonts: [
       {
         provider: fontProviders.google(),
-        name: 'Anybody',
-        cssVariable: '--font-head-src',
-        weights: ['600 900'],
-        styles: ['normal'],
-        subsets: ['latin', 'latin-ext'],
-        fallbacks: ['Verdana', 'sans-serif'],
-        options: { experimental: { variableAxis: { wdth: [['100', '140']] } } },
-      },
-      {
-        provider: fontProviders.fontsource(),
-        name: 'Atkinson Hyperlegible Next',
-        cssVariable: '--font-body-src',
-        weights: [400, 700],
+        name: 'Cabin',
+        cssVariable: '--font-sans-src',
+        weights: ['400 700'],
         styles: ['normal', 'italic'],
         subsets: ['latin', 'latin-ext'],
         fallbacks: ['Verdana', 'sans-serif'],
+        options: { experimental: { variableAxis: { wdth: [['75', '100']] } } },
+        // Astro's generated metric fallback for this face comes out at size-adjust 37%,
+        // which would shrink text during swap; plain Verdana is the safer stand-in.
+        optimizedFallbacks: false,
       },
     ],
   },

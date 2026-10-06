@@ -22,11 +22,11 @@ const title = heading ?? t(effectiveLang, 'related_links.heading');
 
 {
   links.length > 0 && (
-    <nav aria-label={title} class="mx-auto mt-20 grid max-w-[1240px] gap-6 px-4 sm:px-8 lg:grid-cols-[16rem_1fr] lg:gap-16">
-      <h2 class="text-[1.75rem] sm:text-[2rem]">{title}</h2>
-      <ul class="composition grid max-w-[48rem] sm:grid-cols-2">
+    <nav aria-label={title} class="page-x mt-20">
+      <h2 class="border-t-2 border-slate/70 pt-4 text-[1.75rem] sm:text-[2.125rem]">{title}</h2>
+      <ul class="chart-table mt-5 grid sm:grid-cols-2">
         {links.map((l) => (
-          <CompositionRow href={l.path.startsWith('http') ? l.path : withTrailingSlash(l.path)} title={l.label} external={l.path.startsWith('http')} />
+          <CompositionRow href={l.path.startsWith('http') ? l.path : withTrailingSlash(l.path)} title={l.label} external={l.path.startsWith('http')} thumb />
         ))}
       </ul>
     </nav>

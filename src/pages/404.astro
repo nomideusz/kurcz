@@ -17,17 +17,14 @@ const route = {
 
 <Layout route={route} robots="noindex, follow" includeCanonical={false}>
   <Shell currentPath="/404">
-    <section class="label-band wave">
-      <div class="mx-auto max-w-[1240px] px-4 pb-20 pt-16 sm:px-8 sm:pt-24">
-        <p class="font-head text-[clamp(4.5rem,14vw,6rem)] font-extrabold leading-none tracking-[-0.03em] text-gold [--wdth:140]" aria-hidden="true">404</p>
-        <h1 class="mt-4 max-w-[40rem] text-[clamp(2rem,5vw,3.25rem)] leading-[1.02] [--wdth:125]">{t(locale, '404.title')}</h1>
-        <p class="mt-5 max-w-[36rem] text-[1.1875rem] leading-relaxed text-on-label">{t(locale, '404.p')}</p>
-        <div class="mt-8 flex flex-col gap-3 sm:flex-row">
-          <a href={localizeHref('/', locale, routing)} class="btn-pale">{t(locale, '404.home_btn')}</a>
-          <a href={localizeHref('/poradniki', locale, routing)} class="btn-line-pale">{t(locale, '404.guides_btn')}</a>
-        </div>
+    <section class="page-x pb-16 pt-10 lg:pt-[calc(var(--u)*4)]">
+      <p class="font-head text-[clamp(4.5rem,14vw,7rem)] font-bold leading-none text-ochre [font-variant-numeric:lining-nums] [text-shadow:0_1px_0_rgb(60_42_12/0.35)]" aria-hidden="true">404</p>
+      <h1 class="mt-4 max-w-[40rem] text-[clamp(2.25rem,5vw,3.5rem)] font-bold leading-[1.02]">{t(locale, '404.title')}</h1>
+      <p class="mt-5 max-w-[36rem] text-[1.1875rem] leading-relaxed text-ink">{t(locale, '404.p')}</p>
+      <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+        <a href={localizeHref('/', locale, routing)} class="btn-solid">{t(locale, '404.home_btn')}</a>
+        <a href={localizeHref('/poradniki', locale, routing)} class="btn-line">{t(locale, '404.guides_btn')}</a>
       </div>
     </section>
   </Shell>
 </Layout>
-

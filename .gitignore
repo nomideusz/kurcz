@@ -11,3 +11,9 @@ npm-debug.log*
 .env
 .env.production
 .DS_Store
+
+# impeccable working files (comps, build state, review captures)
+.impeccable/build/
+.impeccable/review/
+.impeccable/mocks/
+.impeccable/questions/

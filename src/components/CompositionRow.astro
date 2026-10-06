@@ -1,38 +1,42 @@
 ---
-// One row of a composition table, the label's "Skład": name, dotted leader, value (the
-// guide's reading time), read-drop, arrow.
-// The drop fills once the linked guide has been visited (CSS :visited, zero JS).
+// One row of a chart index: the guide's plate as a thumbnail (hubs), its name, a dotted
+// leader to the reading time, a read mark and an arrow.
+// The mark fills once the linked guide has been visited (CSS :visited, zero JS).
+import { Image } from 'astro:assets';
 import Icon from './Icon.astro';
 import { guideMinutes } from '../utils/reading.ts';
+import { guidePlate } from '../content/plates.ts';
 
-const { href, title, desc, icon, external = false, as: Title = 'span' } = Astro.props as {
+const { href, title, desc, external = false, thumb = false, as: Title = 'span' } = Astro.props as {
   href: string;
   title: string;
   desc?: string;
-  icon?: any;
   external?: boolean;
+  /** Show the guide's plate at the start of the row. */
+  thumb?: boolean;
   /** Heading level for the name where the row stands for a section of the site. */
   as?: 'span' | 'h3';
 };
 const min = external ? undefined : guideMinutes(href);
+const plate = thumb && !external ? guidePlate(href) : undefined;
 ---
 
 <li>
   <a
     href={href}
     {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-    class="group flex h-full items-start gap-4 px-4 py-4 transition-colors hover:bg-wash sm:px-5"
+    class="group flex h-full items-center gap-3 px-4 py-3.5 sm:gap-4 transition-colors hover:bg-wash sm:px-5"
   >
-    {icon && <Icon name={icon} class="mt-0.5 h-7 w-7 flex-none text-label" />}
+    {plate && <Image src={plate.src} width={240} alt="" class="h-12 w-16 flex-none object-contain sm:h-20 sm:w-[7.5rem]" />}
     <span class="min-w-0 flex-1">
       <span class="flex items-baseline-last gap-2">
-        <Title class="font-head text-[1.1875rem] font-bold leading-snug text-ink [--wdth:112]">{title}</Title>
-        <span class="leader text-label" aria-hidden="true"></span>
-        {min && <span class="whitespace-nowrap text-sm font-bold tabular-nums text-label">~{min} min</span>}
-        {!external && <Icon name="drop" class="drop mb-px h-4 w-4" />}
-        <Icon name={external ? 'external' : 'arrow'} class="-mb-0.5 h-5 w-5 flex-none text-label transition-transform group-hover:translate-x-0.5" />
+        <Title class="font-head text-[1.25rem] font-semibold leading-snug text-slate">{title}</Title>
+        <span class="leader text-slate" aria-hidden="true"></span>
+        {min && <span class="whitespace-nowrap text-sm font-semibold tabular-nums text-ink">~{min} min</span>}
+        {!external && <span class="read-mark mb-[0.15em]" aria-hidden="true"></span>}
+        <Icon name={external ? 'external' : 'arrow'} class="-mb-0.5 h-5 w-5 flex-none text-slate transition-transform group-hover:translate-x-0.5" />
       </span>
-      {desc && <span class="mt-1 block text-[0.9375rem] leading-relaxed text-muted">{desc}</span>}
+      {desc && <span class="mt-1 block text-base leading-relaxed text-muted">{desc}</span>}
     </span>
   </a>
 </li>

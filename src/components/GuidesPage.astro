@@ -1,5 +1,6 @@
 ---
-// Guides hub for every locale: the label band, then each category as a composition table.
+// Guides hub for every locale: the sheet header, then each category as a chart index whose
+// rows carry their guide's plate.
 import Layout from '../layouts/Layout.astro';
 import Shell from './Shell.astro';
 import PageHeader from './PageHeader.astro';
@@ -21,13 +22,13 @@ const en = lang === 'en';
   <Shell currentPath={currentPath}>
     <PageHeader title={title} intro={intro} route={route} currentPath={currentPath} />
 
-    <nav aria-label={en ? 'Guide categories' : 'Kategorie poradników'}>
-      <ul class="mx-auto flex max-w-[1240px] flex-wrap gap-2 px-4 pt-12 sm:px-8">
+    <nav aria-label={en ? 'Guide categories' : 'Kategorie poradników'} class="page-x pt-8 lg:pt-[calc(var(--u)*2)]">
+      <ul class="flex flex-wrap gap-2">
         {
           categories.map((category, idx) => (
             <li>
-              <a href={`#kat-${idx}`} class="inline-flex min-h-10 items-center gap-1.5 rounded-full border-2 border-label px-4 text-[0.9375rem] font-bold text-label transition-colors hover:bg-wash">
-                {category.title} <span class="font-normal text-muted">({category.guides.length})</span>
+              <a href={`#kat-${idx}`} class="inline-flex min-h-11 items-center gap-1.5 rounded-[6px] border-2 border-slate px-4 text-base font-semibold text-slate transition-colors hover:bg-wash">
+                {category.title} <span class="font-normal tabular-nums text-muted">({category.guides.length})</span>
               </a>
             </li>
           ))
@@ -35,17 +36,17 @@ const en = lang === 'en';
       </ul>
     </nav>
 
-    <div class="mx-auto max-w-[1240px] px-4 sm:px-8">
+    <div class="page-x">
       {
         categories.map((category, idx) => (
-          <section id={`kat-${idx}`} class="mt-16 grid scroll-mt-24 gap-6 lg:grid-cols-[18rem_1fr] lg:gap-16">
-            <div>
-              <h2 class="text-[1.75rem] sm:text-[2.125rem]">{category.title}</h2>
-              <p class="mt-3 text-[1.0625rem] leading-relaxed text-muted">{category.description}</p>
+          <section id={`kat-${idx}`} class="mt-14 lg:mt-[calc(var(--u)*3.4)]">
+            <div class="border-t-2 border-slate/70 pt-4">
+              <h2 class="text-[1.75rem] font-bold sm:text-[2.25rem]">{category.title}</h2>
+              <p class="mt-2 max-w-[44rem] text-[1.0625rem] leading-relaxed text-muted">{category.description}</p>
             </div>
-            <ul class="composition grid self-start sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+            <ul class="chart-table mt-5 grid sm:grid-cols-2">
               {category.guides.map((guide) => (
-                <CompositionRow href={withTrailingSlash(guide.path)} title={guide.title} desc={guide.description} as="h3" />
+                <CompositionRow href={withTrailingSlash(guide.path)} title={guide.title} desc={guide.description} as="h3" thumb />
               ))}
             </ul>
           </section>

@@ -4,11 +4,22 @@ import Layout from '../layouts/Layout.astro';
 import Shell from './Shell.astro';
 import FaqAccordion from './FaqAccordion.astro';
 import CompositionRow from './CompositionRow.astro';
+import ReliefSteps from './ReliefSteps.astro';
+import { guidePlate } from '../content/plates.ts';
+import { guideMinutes } from '../utils/reading.ts';
+import { Image } from 'astro:assets';
+import heroPlate from '../../assets/plates/hero-plate.png';
+import lydekPlate from '../../assets/plates/card-lydek-plate.png';
+import nocnePlate from '../../assets/plates/card-nocne-plate.png';
+import ciazaPlate from '../../assets/plates/card-ciaza-plate.png';
+import stopyPlate from '../../assets/plates/card-stopy-plate.png';
+import dloniePlate from '../../assets/plates/card-magnez-plate.png';
+import seniorzyPlate from '../../assets/plates/card-seniorzy-plate.png';
 import Icon from './Icon.astro';
 import { getRouteByPath } from '../seo/routes.js';
 import { getFaqItems } from '../seo/faq-data.js';
 import { DEFAULT_LOCALE, t, localizeHref, routing, type SupportedLocale } from '../i18n/config.ts';
-import { getLocalizedRoute, getLocalizedReliefSteps, getLocalizedTopics, getLocalizedDoctorSigns } from '../i18n/content.ts';
+import { getLocalizedRoute, getLocalizedTopics, getLocalizedDoctorSigns } from '../i18n/content.ts';
 
 const { lang } = Astro.props as { lang: SupportedLocale };
 const en = lang === 'en';
@@ -16,7 +27,6 @@ const href = (path: string) => localizeHref(path, lang, routing);
 const currentPath = lang === DEFAULT_LOCALE ? '/' : `/${lang}`;
 const route = getLocalizedRoute(getRouteByPath('/'), lang);
 
-const reliefSteps = getLocalizedReliefSteps(lang);
 const doctorSigns = getLocalizedDoctorSigns(lang);
 const homeFaq = getFaqItems(lang).slice(0, 4);
 
@@ -31,6 +41,27 @@ const triageItems = [
   { path: '/kurcze-u-osob-starszych', icon: 'senior', title: en ? 'Senior Health' : 'U seniorów', desc: en ? 'Circulation, diuretic medications, and gentle mobility.' : 'Wpływ krążenia obwodowego, leków i bezpieczna aktywność.' },
 ];
 
+// The comp's six mini wall charts, then the two remaining guides; each shows its own
+// engraved vignette.
+const chartCards = [
+  { path: '/kurcze-lydek', plate: lydekPlate },
+  { path: '/kurcze-nocne', plate: nocnePlate },
+  { path: '/kurcze-u-kobiet-w-ciazy', plate: ciazaPlate },
+  { path: '/kurcze-stop', plate: stopyPlate },
+  { path: '/kurcze-dloni', plate: dloniePlate },
+  { path: '/kurcze-u-osob-starszych', plate: seniorzyPlate },
+  { path: '/kurcze-u-sportowcow', plate: guidePlate('/kurcze-u-sportowcow')!.src },
+  { path: '/niedobor-magnezu', plate: guidePlate('/niedobor-magnezu')!.src },
+].map((c) => ({ ...c, title: triageItems.find((i) => i.path === c.path)!.title }));
+
+// The hero plate's three blank callout discs, lettered here so they never read as the
+// rail's relief steps. Positions are disc centres as % of the plate.
+const plateMarks = [
+  { key: 'A', x: 82.42, y: 34.72, label: en ? 'gastrocnemius (calf) muscle' : 'mięsień brzuchaty łydki' },
+  { key: 'B', x: 65.89, y: 69.01, label: en ? 'Achilles tendon' : 'ścięgno Achillesa' },
+  { key: 'C', x: 36.0, y: 95.75, label: en ? 'sole muscles' : 'mięśnie podeszwy stopy' },
+];
+
 // Topics plus the two therapy guides not already linked above, as one ruled list.
 const sections = [
   ...getLocalizedTopics(lang),
@@ -41,123 +72,133 @@ const sections = [
 
 <Layout route={route} lang={lang}>
   <Shell currentPath={currentPath}>
-    <!-- THE LABEL: green band with rising bubbles; the quick-relief panel sits on its wave edge -->
-    <section class="label-band wave">
-      <div class="mx-auto grid max-w-[1240px] gap-10 px-4 pb-12 pt-12 sm:px-8 sm:pt-16 lg:grid-cols-[1fr_27rem] lg:gap-16 lg:pb-0 lg:pt-20">
-        <div class="lg:pb-24">
-          <h1 class="text-[clamp(3rem,8.4vw,5.75rem)] leading-[0.94] tracking-[-0.03em] [--wdth:132]">
-            {t(lang, 'hero.h1')}
-          </h1>
-          <p class="mt-6 max-w-[34rem] text-[1.1875rem] leading-relaxed text-on-label">
-            {t(lang, 'hero.p')}
-          </p>
-          <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-            <a href={href('/pierwsza-pomoc')} class="btn-pale">
-              {t(lang, 'hero.first_aid_btn')} <Icon name="arrow" class="h-[1.1em] w-[1.1em] flex-none" />
-            </a>
-            <a href={href('/kurcze-miesniowe')} class="btn-line-pale">
-              {t(lang, 'hero.causes_btn')}
-            </a>
-          </div>
-          <p class="mt-8 text-sm text-on-label-soft">{t(lang, 'last_updated', { year: '2026' })} · PL / EN</p>
-        </div>
-
-        <div class="relative z-10 self-end rounded-[var(--radius-label)] bg-sheet text-body shadow-[0_18px_40px_-12px_rgb(4_40_28/0.45)] lg:-mb-20">
-          <div class="relative flex items-center gap-3 rounded-t-[var(--radius-label)] bg-label-deep px-5 py-4 pr-24 sm:px-6">
-            <Icon name="first-aid" class="h-6 w-6 text-on-label-soft" />
-            <h2 class="text-[1.625rem] text-on-label">{t(lang, 'relief.title')}</h2>
-            <span class="absolute -top-6 right-5 flex h-[4.5rem] w-[4.5rem] rotate-[-8deg] flex-col items-center justify-center rounded-full border-2 border-dashed border-label-deep bg-gold text-center font-head leading-none text-label-deep shadow-[0_0_0_3px_var(--color-gold)] [--wdth:110]">
-              <span class="text-[1.375rem] font-extrabold">{reliefSteps.length}</span>
-              <span class="mt-0.5 text-[0.6875rem] font-bold">{en ? 'steps' : 'kroki'}</span>
-            </span>
-          </div>
-          <ol class="px-5 sm:px-6">
-            {
-              reliefSteps.map((s) => (
-                <li class="flex items-start gap-4 border-b border-rule py-4 last:border-b-0">
-                  <span class="mt-0.5 inline-flex h-8 w-8 flex-none items-center justify-center rounded-full bg-label font-head text-base font-extrabold text-on-label tabular-nums">{s.n}</span>
-                  <div class="min-w-0 flex-1">
-                    <h3 class="flex items-baseline-last gap-2 font-head text-[1.125rem] leading-snug [--wdth:110]">
-                      <span>{s.title}</span>
-                      {s.time && <span class="leader text-label" aria-hidden="true" />}
-                      {s.time && <span class="whitespace-nowrap font-sans text-[0.9375rem] font-bold tabular-nums text-label">{s.time}</span>}
-                    </h3>
-                    <p class="mt-1 text-[0.9375rem] leading-relaxed text-muted">{s.body}</p>
-                  </div>
-                </li>
-              ))
-            }
+    <!-- THE CHART: title and lead on the linen, the engraved leg bleeding off the top right -->
+    <section class="relative px-4 pt-8 sm:px-8 lg:min-h-[calc(var(--u)*29.55)] lg:px-0 lg:pl-[calc(var(--u)*3.47)] lg:pt-[calc(var(--u)*3.3)]">
+      <figure class="hero-plate relative mx-auto mb-6 w-full max-w-[34rem] [container-type:inline-size] lg:absolute lg:right-0 lg:top-[calc(var(--u)*1.2)] lg:z-0 lg:mb-0 lg:w-[calc(var(--u)*43.8)] lg:max-w-none lg:[mask-image:linear-gradient(transparent,#000_9%)]">
+        <Image
+          src={heroPlate}
+          width={1536}
+          alt={en ? 'Engraved plate of the lower leg and foot from the side, with the calf, Achilles tendon and sole muscles marked.' : 'Rycina podudzia i stopy z boku z zaznaczonym mięśniem łydki, ścięgnem Achillesa i mięśniami podeszwy stopy.'}
+          loading="eager"
+          fetchpriority="high"
+          class="block h-auto w-full"
+        />
+        {/* top is a share of the image height, set in cqw so a legend below the image doesn't move it */}
+        {
+          plateMarks.map((m, i) => (
+            <span class="plate-mark" style={`left:${m.x}%;top:calc(${(m.y * heroPlate.height) / heroPlate.width}cqw);--i:${i}`} aria-hidden="true">{m.key}</span>
+          ))
+        }
+        <figcaption class="plate-legend">
+          <ol>
+            {plateMarks.map((m) => <li><span class="plate-key" aria-hidden="true">{m.key}</span> {m.label}</li>)}
           </ol>
-          <div class="rounded-b-[var(--radius-label)] border-t border-rule bg-ground/60 px-5 py-4 sm:px-6">
-            <a href={href('/pierwsza-pomoc')} class="ink-link inline-flex items-center gap-1.5 text-[0.9375rem] font-bold">
-              {en ? 'Step-by-step instructions' : 'Instrukcja krok po kroku'} <Icon name="arrow" class="h-[1.1em] w-[1.1em] flex-none" />
-            </a>
-          </div>
+        </figcaption>
+      </figure>
+
+      <div class="relative z-10 lg:max-w-[calc(var(--u)*36)]">
+        <h1 class="text-[clamp(3rem,13vw,4.5rem)] font-bold leading-[1] tracking-[-0.015em] lg:text-[calc(var(--u)*6.3)]">
+          {t(lang, 'hero.h1')}
+        </h1>
+        <p class="mt-4 max-w-[34rem] text-[1.25rem] [font-variation-settings:'wdth'_88] leading-[1.3] text-ink lg:mt-[calc(var(--u)*1.55)] lg:max-w-[calc(var(--u)*31.6)] lg:text-[max(1.25rem,calc(var(--u)*1.72))] lg:leading-[1.2]">
+          {t(lang, 'hero.p')}
+        </p>
+        <div class="mt-7 flex flex-col gap-3 sm:flex-row lg:ml-[calc(var(--u)*0.2)] lg:mt-[calc(var(--u)*1.3)] lg:gap-[calc(var(--u)*1.65)]">
+          <a href={href('/pierwsza-pomoc')} class="btn-solid lg:min-h-[calc(var(--u)*4.03)] lg:min-w-[calc(var(--u)*16.4)] lg:text-[max(1.125rem,calc(var(--u)*1.6))] lg:font-semibold">{t(lang, 'hero.first_aid_btn')}</a>
+          <a href={href('/kurcze-miesniowe')} class="btn-line lg:min-h-[calc(var(--u)*4.03)] lg:min-w-[calc(var(--u)*16.4)] lg:text-[max(1.125rem,calc(var(--u)*1.6))] lg:font-semibold">{t(lang, 'hero.causes_btn')}</a>
         </div>
       </div>
+      <hr class="mt-10 border-t-2 border-slate/70 lg:absolute lg:bottom-0 lg:left-[calc(var(--u)*0.32)] lg:m-0 lg:w-[calc(var(--u)*38.74)]" />
     </section>
 
-    <!-- SKŁAD: the label's composition table, one row per situation -->
-    <section class="mx-auto grid max-w-[1240px] gap-8 px-4 pt-20 sm:px-8 lg:grid-cols-[18rem_1fr] lg:gap-16 lg:pt-32">
-      <div>
-        <h2 class="text-[1.875rem] sm:text-[2.25rem]">
-          {en ? 'Where and when do your cramps happen?' : 'Gdzie i kiedy pojawia się kurcz?'}
-        </h2>
-        <p class="mt-3 text-lg text-muted">
-          {en ? 'Pick your situation for tailored relief steps, causes, and prevention.' : 'Wybierz swoją sytuację: wskazówki, przyczyny i profilaktyka.'}
-        </p>
-        <p class="mt-5 flex items-center gap-2 text-sm text-muted">
-          <Icon name="drop" class="h-4 w-4 flex-none [&_path]:fill-label" />
-          {en ? 'A filled drop marks a guide you have already opened.' : 'Pełna kropla: poradnik już otwarty na tym urządzeniu.'}
-        </p>
-      </div>
-      <ul class="composition grid sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
-        {triageItems.map((item) => <CompositionRow href={href(item.path)} title={item.title} desc={item.desc} icon={item.icon} as="h3" />)}
+    <!-- QUICK RELIEF on a phone: the rail's cloth panel, here in the page since the rail folds away -->
+    <section class="cloth-strip mx-4 mt-8 rounded-[7px] px-5 pb-3 pt-4 sm:mx-8 lg:hidden" aria-labelledby="relief-home-title">
+      <h2 id="relief-home-title" class="text-[1.5rem] font-bold text-on-slate">
+        <a href={href('/pierwsza-pomoc')} class="rail-link">{t(lang, 'relief.title')}</a>
+      </h2>
+      <ReliefSteps locale={lang} class="mt-1" />
+    </section>
+
+    <!-- WHERE AND WHEN: mini wall charts, a cloth title strip over an engraved vignette -->
+    <section class="px-4 pt-10 sm:px-8 lg:px-0 lg:pl-[calc(var(--u)*3.2)] lg:pr-[calc(var(--u)*4.8)] lg:pt-[calc(var(--u)*1.45)]">
+      <h2 class="text-[1.875rem] font-bold sm:text-[2.25rem] lg:text-[calc(var(--u)*3)]">
+        {en ? 'Where and when do your cramps happen?' : 'Gdzie i kiedy pojawia się kurcz?'}
+      </h2>
+      <ul class="mt-5 grid gap-4 sm:grid-cols-2 lg:mt-[calc(var(--u)*0.7)] lg:grid-cols-[21.55fr_23.24fr_24.67fr] lg:grid-rows-[calc(var(--u)*14.52)] lg:auto-rows-[calc(var(--u)*13.09)] lg:gap-x-[calc(var(--u)*1.07)] lg:gap-y-[calc(var(--u)*1.04)]">
+        {
+          chartCards.map((c) => {
+            const min = guideMinutes(href(c.path));
+            return (
+              <li>
+                <a href={href(c.path)} class="chart-card">
+                  <h3 class="chart-card-title">{c.title}</h3>
+                  <Image src={c.plate} width={960} loading="eager" alt="" class="chart-card-plate" />
+                  {min && <span class="chart-card-time">~{min} min</span>}
+                </a>
+              </li>
+            );
+          })
+        }
+        <li>
+          <a href={href('/poradniki')} class="chart-card group">
+            <h3 class="chart-card-title">{en ? 'All guides' : 'Wszystkie poradniki'}</h3>
+            <span class="flex flex-1 flex-col items-center justify-center gap-3 text-center">
+              <span class="grid h-14 w-14 place-items-center rounded-full bg-ochre text-paper shadow-[inset_0_0_0_2px_rgb(60_42_12/0.25)] transition-transform group-hover:translate-x-1 lg:h-[calc(var(--u)*3.6)] lg:w-[calc(var(--u)*3.6)]">
+                <Icon name="arrow" class="h-7 w-7 lg:h-[calc(var(--u)*1.8)] lg:w-[calc(var(--u)*1.8)]" />
+              </span>
+              <span class="text-lg font-medium text-ink lg:text-[max(1.0625rem,calc(var(--u)*1.35))]">{en ? 'the full index of topics' : 'pełny spis tematów'}</span>
+            </span>
+          </a>
+        </li>
       </ul>
     </section>
 
-    <!-- MAIN SECTIONS: causes, first aid, prevention and therapy -->
-    <section class="mx-auto mt-24 grid max-w-[1240px] gap-8 px-4 sm:px-8 lg:grid-cols-[18rem_1fr] lg:gap-16">
-      <div>
-        <h2 class="text-[1.875rem] sm:text-[2.25rem]">{t(lang, 'topics.title')}</h2>
-        <a href={href('/poradniki')} class="ink-link mt-4 inline-flex items-center gap-1.5 font-bold">
+    <!-- TOPICS: the chart index, each row with its plate -->
+    <section class="page-x mt-16 lg:mt-[calc(var(--u)*4)]">
+      <div class="flex flex-wrap items-end justify-between gap-x-8 gap-y-2 border-t-2 border-slate/70 pt-4">
+        <h2 class="text-[1.875rem] font-bold sm:text-[2.25rem] lg:text-[calc(var(--u)*3)]">{t(lang, 'topics.title')}</h2>
+        <a href={href('/poradniki')} class="ink-link inline-flex items-center gap-1.5 font-bold">
           {en ? 'All guides' : 'Wszystkie poradniki'} <Icon name="arrow" class="h-[1.1em] w-[1.1em] flex-none" />
         </a>
       </div>
-      <ul class="composition grid sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
-        {sections.map((item) => <CompositionRow href={href(item.path)} title={item.title} desc={item.desc} as="h3" />)}
+      <ul class="chart-table mt-5 grid sm:grid-cols-2">
+        {sections.map((item) => <CompositionRow href={href(item.path)} title={item.title} desc={item.desc} as="h3" thumb />)}
       </ul>
     </section>
 
-    <!-- WHEN TO SEE A DOCTOR: the one red panel; every flag carries an icon, not colour alone -->
-    <section class="mx-auto mt-24 max-w-[1240px] px-4 sm:px-8">
-      <div class="overflow-hidden rounded-[var(--radius-label)] border-2 border-warn bg-sheet md:grid md:grid-cols-[1fr_1.1fr]">
-        <div class="bg-warn-wash p-6 sm:p-10">
-          <Icon name="warn-solid" class="h-10 w-10" />
-          <h2 class="mt-5 text-[1.875rem] sm:text-[2.25rem]">{t(lang, 'doctor.title')}</h2>
-          <p class="mt-4 max-w-[30rem] text-lg leading-relaxed text-body">{t(lang, 'doctor.p')}</p>
+    <!-- WHEN TO SEE A DOCTOR: the one red frame; every flag carries an icon, not colour alone -->
+    <section class="page-x mt-16 lg:mt-[calc(var(--u)*4)]" aria-labelledby="doctor-title">
+      <div class="chart-frame chart-frame-warn">
+        <h2 id="doctor-title" class="cloth-strip cloth-strip-warn flex items-center gap-3 px-4 py-2.5 text-[1.625rem] font-bold text-on-slate sm:px-5 sm:text-[2rem]">
+          <Icon name="warning" class="h-7 w-7 flex-none sm:h-8 sm:w-8" />
+          {t(lang, 'doctor.title')}
+        </h2>
+        <div class="grid gap-x-12 px-4 pb-2 pt-4 sm:px-5 md:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)]">
+          <p class="max-w-[30rem] text-lg leading-relaxed text-body md:pt-3">{t(lang, 'doctor.p')}</p>
+          <ul class="mt-2 md:mt-0">
+            {
+              doctorSigns.map((s) => (
+                <li class="flex items-start gap-3.5 border-b border-rule py-3.5 text-[1.0625rem] font-semibold leading-snug text-ink last:border-b-0">
+                  <Icon name="warning" class="mt-px h-6 w-6 flex-none text-madder-deep" />
+                  <span>{s}</span>
+                </li>
+              ))
+            }
+          </ul>
         </div>
-        <ul class="flex flex-col justify-center px-6 py-4 sm:px-10">
-          {
-            doctorSigns.map((s) => (
-              <li class="flex items-start gap-3.5 border-b border-rule py-4 text-[1.0625rem] font-bold leading-snug text-ink last:border-b-0">
-                <Icon name="warning" class="mt-px h-6 w-6 flex-none text-warn" />
-                <span>{s}</span>
-              </li>
-            ))
-          }
-        </ul>
       </div>
     </section>
 
     <!-- FAQ -->
-    <section class="mx-auto mt-24 grid max-w-[1240px] gap-8 px-4 sm:px-8 lg:grid-cols-[18rem_1fr] lg:gap-16">
-      <div>
-        <h2 class="text-[1.875rem] sm:text-[2.25rem]">{t(lang, 'faq.title')}</h2>
-        <p class="mt-3 text-lg text-muted">{t(lang, 'faq.intro')}</p>
-        <a href={href('/faq')} class="ink-link mt-5 inline-flex items-center gap-1.5 font-bold">{t(lang, 'faq.see_all')} <Icon name="arrow" class="h-[1.1em] w-[1.1em] flex-none" /></a>
+    <section class="page-x mt-16 lg:mt-[calc(var(--u)*4)]">
+      <div class="flex flex-wrap items-end justify-between gap-x-8 gap-y-2 border-t-2 border-slate/70 pt-4">
+        <h2 class="text-[1.875rem] font-bold sm:text-[2.25rem] lg:text-[calc(var(--u)*3)]">{t(lang, 'faq.title')}</h2>
+        <a href={href('/faq')} class="ink-link inline-flex items-center gap-1.5 font-bold">{t(lang, 'faq.see_all')} <Icon name="arrow" class="h-[1.1em] w-[1.1em] flex-none" /></a>
       </div>
-      <FaqAccordion items={homeFaq} bare />
+      <p class="mt-2 max-w-[44rem] text-lg text-muted">{t(lang, 'faq.intro')}</p>
+      <div class="mt-5 max-w-[56rem]">
+        <FaqAccordion items={homeFaq} bare />
+      </div>
     </section>
   </Shell>
 </Layout>

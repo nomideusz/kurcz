@@ -1,492 +1,519 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-05T13:22:02+00:00",
+  "generatedAt": "2026-10-06T19:40:21+00:00",
   "title": "Design System: kurcz.pl",
   "extensions": {
     "colorMeta": {
-      "label": {
+      "slate": {
         "role": "primary",
-        "displayName": "Spring-Green Label",
-        "canonical": "#0d5c45",
+        "displayName": "Book-Cloth Slate",
+        "canonical": "#284442",
         "tonalRamp": [
-          "#094332",
-          "#107054",
-          "#169c75",
-          "#1cc997",
-          "#43e4b6",
-          "#79eccb",
-          "#aff4e0",
-          "#e9fcf6"
+          "oklch(15% 0.034 190.0)",
+          "oklch(26% 0.034 190.0)",
+          "oklch(37% 0.034 190.0)",
+          "oklch(48% 0.034 190.0)",
+          "oklch(59% 0.034 190.0)",
+          "oklch(70% 0.034 190.0)",
+          "oklch(82% 0.034 190.0)",
+          "oklch(95% 0.034 190.0)"
         ]
       },
-      "label-deep": {
+      "slate-deep": {
         "role": "primary",
-        "displayName": "Deep Label Green",
-        "canonical": "#08432f",
+        "displayName": "Deep Slate",
+        "canonical": "#1b302e",
         "tonalRamp": [
-          "#084430",
-          "#0e7250",
-          "#139f70",
-          "#18cd90",
-          "#40e8af",
-          "#76efc6",
-          "#adf5dd",
-          "#e8fcf5"
+          "oklch(15% 0.027 188.1)",
+          "oklch(26% 0.027 188.1)",
+          "oklch(37% 0.027 188.1)",
+          "oklch(48% 0.027 188.1)",
+          "oklch(59% 0.027 188.1)",
+          "oklch(70% 0.027 188.1)",
+          "oklch(82% 0.027 188.1)",
+          "oklch(95% 0.027 188.1)"
         ]
       },
-      "on-label": {
+      "on-slate": {
         "role": "primary",
-        "displayName": "Label Lettering",
-        "canonical": "#f1f8f4",
+        "displayName": "Cloth Lettering",
+        "canonical": "#dcddd5",
         "tonalRamp": [
-          "#193324",
-          "#2a553d",
-          "#3b7755",
-          "#4c996d",
-          "#70b88f",
-          "#99ccaf",
-          "#c2e0cf",
-          "#eef6f2"
+          "oklch(15% 0.011 112.4)",
+          "oklch(26% 0.011 112.4)",
+          "oklch(37% 0.011 112.4)",
+          "oklch(48% 0.011 112.4)",
+          "oklch(59% 0.011 112.4)",
+          "oklch(70% 0.011 112.4)",
+          "oklch(82% 0.011 112.4)",
+          "oklch(95% 0.011 112.4)"
         ]
       },
-      "on-label-soft": {
+      "on-slate-soft": {
         "role": "primary",
-        "displayName": "Soft Label Lettering",
-        "canonical": "#c3e2d2",
+        "displayName": "Faded Cloth Lettering",
+        "canonical": "#b3b8ad",
         "tonalRamp": [
-          "#193426",
-          "#2a563f",
-          "#3a7858",
-          "#4b9b71",
-          "#6fb993",
-          "#98cdb2",
-          "#c1e1d1",
-          "#eef7f2"
+          "oklch(15% 0.016 126.9)",
+          "oklch(26% 0.016 126.9)",
+          "oklch(37% 0.016 126.9)",
+          "oklch(48% 0.016 126.9)",
+          "oklch(59% 0.016 126.9)",
+          "oklch(70% 0.016 126.9)",
+          "oklch(82% 0.016 126.9)",
+          "oklch(95% 0.016 126.9)"
         ]
       },
-      "gold": {
+      "madder": {
         "role": "secondary",
-        "displayName": "Medal Gold",
-        "canonical": "#ecc66a",
+        "displayName": "Madder",
+        "canonical": "#b26252",
         "tonalRamp": [
-          "#443309",
-          "#71540e",
-          "#9e7614",
-          "#cc981a",
-          "#e7b641",
-          "#eecb77",
-          "#f5e0ae",
-          "#fcf6e8"
+          "oklch(15% 0.107 32.4)",
+          "oklch(26% 0.107 32.4)",
+          "oklch(37% 0.107 32.4)",
+          "oklch(48% 0.107 32.4)",
+          "oklch(59% 0.107 32.4)",
+          "oklch(70% 0.107 32.4)",
+          "oklch(82% 0.107 32.4)",
+          "oklch(95% 0.107 32.4)"
+        ]
+      },
+      "madder-deep": {
+        "role": "secondary",
+        "displayName": "Madder Deep",
+        "canonical": "#8a3524",
+        "tonalRamp": [
+          "oklch(15% 0.120 33.1)",
+          "oklch(26% 0.120 33.1)",
+          "oklch(37% 0.120 33.1)",
+          "oklch(48% 0.120 33.1)",
+          "oklch(59% 0.120 33.1)",
+          "oklch(70% 0.120 33.1)",
+          "oklch(82% 0.120 33.1)",
+          "oklch(95% 0.120 33.1)"
+        ]
+      },
+      "ochre": {
+        "role": "tertiary",
+        "displayName": "Callout Ochre",
+        "canonical": "#c09a55",
+        "tonalRamp": [
+          "oklch(15% 0.099 81.0)",
+          "oklch(26% 0.099 81.0)",
+          "oklch(37% 0.099 81.0)",
+          "oklch(48% 0.099 81.0)",
+          "oklch(59% 0.099 81.0)",
+          "oklch(70% 0.099 81.0)",
+          "oklch(82% 0.099 81.0)",
+          "oklch(95% 0.099 81.0)"
+        ]
+      },
+      "warn": {
+        "role": "error",
+        "displayName": "Warn Red",
+        "canonical": "#b3261e",
+        "tonalRamp": [
+          "oklch(15% 0.178 28.7)",
+          "oklch(26% 0.178 28.7)",
+          "oklch(37% 0.178 28.7)",
+          "oklch(48% 0.178 28.7)",
+          "oklch(59% 0.178 28.7)",
+          "oklch(70% 0.178 28.7)",
+          "oklch(82% 0.178 28.7)",
+          "oklch(95% 0.178 28.7)"
+        ]
+      },
+      "warn-wash": {
+        "role": "error",
+        "displayName": "Warn Wash",
+        "canonical": "#f3e3e0",
+        "tonalRamp": [
+          "oklch(15% 0.018 30.3)",
+          "oklch(26% 0.018 30.3)",
+          "oklch(37% 0.018 30.3)",
+          "oklch(48% 0.018 30.3)",
+          "oklch(59% 0.018 30.3)",
+          "oklch(70% 0.018 30.3)",
+          "oklch(82% 0.018 30.3)",
+          "oklch(95% 0.018 30.3)"
         ]
       },
       "ground": {
         "role": "neutral",
-        "displayName": "Mineral Water",
-        "canonical": "#eaf3ee",
+        "displayName": "Linen Ground",
+        "canonical": "#dce3e4",
         "tonalRamp": [
-          "#1c3125",
-          "#2e513e",
-          "#417257",
-          "#53926f",
-          "#77b191",
-          "#9ec7b0",
-          "#c5ded0",
-          "#eff6f2"
+          "oklch(15% 0.008 207.1)",
+          "oklch(26% 0.008 207.1)",
+          "oklch(37% 0.008 207.1)",
+          "oklch(48% 0.008 207.1)",
+          "oklch(59% 0.008 207.1)",
+          "oklch(70% 0.008 207.1)",
+          "oklch(82% 0.008 207.1)",
+          "oklch(95% 0.008 207.1)"
         ]
       },
-      "sheet": {
+      "paper": {
         "role": "neutral",
-        "displayName": "Rinse",
-        "canonical": "#f8fbf9",
+        "displayName": "Chart Paper",
+        "canonical": "#e9eeee",
         "tonalRamp": [
-          "#1c3123",
-          "#2e513a",
-          "#417251",
-          "#539268",
-          "#77b18a",
-          "#9ec7ac",
-          "#c5decd",
-          "#eff6f1"
+          "oklch(15% 0.005 197.1)",
+          "oklch(26% 0.005 197.1)",
+          "oklch(37% 0.005 197.1)",
+          "oklch(48% 0.005 197.1)",
+          "oklch(59% 0.005 197.1)",
+          "oklch(70% 0.005 197.1)",
+          "oklch(82% 0.005 197.1)",
+          "oklch(95% 0.005 197.1)"
         ]
       },
       "panel": {
         "role": "neutral",
-        "displayName": "Pump-Room Panel",
-        "canonical": "#dbe9e2",
+        "displayName": "Panel",
+        "canonical": "#cfd8d9",
         "tonalRamp": [
-          "#1d2f26",
-          "#304f40",
-          "#446f59",
-          "#578e73",
-          "#7aae94",
-          "#a0c5b2",
-          "#c6dcd1",
-          "#eff5f2"
+          "oklch(15% 0.010 204.9)",
+          "oklch(26% 0.010 204.9)",
+          "oklch(37% 0.010 204.9)",
+          "oklch(48% 0.010 204.9)",
+          "oklch(59% 0.010 204.9)",
+          "oklch(70% 0.010 204.9)",
+          "oklch(82% 0.010 204.9)",
+          "oklch(95% 0.010 204.9)"
         ]
       },
       "wash": {
         "role": "neutral",
         "displayName": "Wash",
-        "canonical": "#d3e9dd",
+        "canonical": "#c9d4d5",
         "tonalRamp": [
-          "#1a3325",
-          "#2b553e",
-          "#3c7757",
-          "#4d996f",
-          "#70b891",
-          "#99ccb0",
-          "#c2e0d0",
-          "#eef6f2"
+          "oklch(15% 0.012 203.5)",
+          "oklch(26% 0.012 203.5)",
+          "oklch(37% 0.012 203.5)",
+          "oklch(48% 0.012 203.5)",
+          "oklch(59% 0.012 203.5)",
+          "oklch(70% 0.012 203.5)",
+          "oklch(82% 0.012 203.5)",
+          "oklch(95% 0.012 203.5)"
         ]
       },
       "rule": {
         "role": "neutral",
-        "displayName": "Water Rule",
-        "canonical": "#b9d1c4",
+        "displayName": "Hairline Rule",
+        "canonical": "#a3b2b2",
         "tonalRamp": [
-          "#1e2e26",
-          "#334d3f",
-          "#476c58",
-          "#5b8a71",
-          "#7eaa92",
-          "#a3c2b1",
-          "#c8dbd0",
-          "#f0f5f2"
+          "oklch(15% 0.017 196.8)",
+          "oklch(26% 0.017 196.8)",
+          "oklch(37% 0.017 196.8)",
+          "oklch(48% 0.017 196.8)",
+          "oklch(59% 0.017 196.8)",
+          "oklch(70% 0.017 196.8)",
+          "oklch(82% 0.017 196.8)",
+          "oklch(95% 0.017 196.8)"
         ]
       },
       "ink": {
         "role": "neutral",
-        "displayName": "Green-Black Ink",
-        "canonical": "#0e2a1f",
+        "displayName": "Ink",
+        "canonical": "#1b2826",
         "tonalRamp": [
-          "#13392a",
-          "#206047",
-          "#2d8663",
-          "#39ac7f",
-          "#5ec99f",
-          "#8cd9bb",
-          "#bae8d6",
-          "#ecf9f4"
+          "oklch(15% 0.018 184.4)",
+          "oklch(26% 0.018 184.4)",
+          "oklch(37% 0.018 184.4)",
+          "oklch(48% 0.018 184.4)",
+          "oklch(59% 0.018 184.4)",
+          "oklch(70% 0.018 184.4)",
+          "oklch(82% 0.018 184.4)",
+          "oklch(95% 0.018 184.4)"
         ]
       },
       "body": {
         "role": "neutral",
-        "displayName": "Body Green",
-        "canonical": "#1d382d",
+        "displayName": "Body",
+        "canonical": "#26332f",
         "tonalRamp": [
-          "#1a3228",
-          "#2c5444",
-          "#3d765e",
-          "#4e977a",
-          "#72b69a",
-          "#9acbb7",
-          "#c3e0d4",
-          "#eef6f3"
+          "oklch(15% 0.019 174.2)",
+          "oklch(26% 0.019 174.2)",
+          "oklch(37% 0.019 174.2)",
+          "oklch(48% 0.019 174.2)",
+          "oklch(59% 0.019 174.2)",
+          "oklch(70% 0.019 174.2)",
+          "oklch(82% 0.019 174.2)",
+          "oklch(95% 0.019 174.2)"
         ]
       },
       "muted": {
         "role": "neutral",
-        "displayName": "Muted Green",
-        "canonical": "#45604f",
+        "displayName": "Muted",
+        "canonical": "#475553",
         "tonalRamp": [
-          "#202d25",
-          "#354a3d",
-          "#4b6855",
-          "#60866e",
-          "#82a58f",
-          "#a6bfaf",
-          "#cad9cf",
-          "#f0f4f2"
-        ]
-      },
-      "warn": {
-        "role": "tertiary",
-        "displayName": "Doctor-Flag Red",
-        "canonical": "#b3261e",
-        "tonalRamp": [
-          "#420e0b",
-          "#6d1712",
-          "#99201a",
-          "#c52a21",
-          "#e05048",
-          "#e9827c",
-          "#f2b4b0",
-          "#fbeae9"
-        ]
-      },
-      "warn-wash": {
-        "role": "tertiary",
-        "displayName": "Flag Wash",
-        "canonical": "#fbecea",
-        "tonalRamp": [
-          "#40120c",
-          "#6b1f14",
-          "#962b1d",
-          "#c13725",
-          "#dd5c4b",
-          "#e78b7e",
-          "#f0b9b2",
-          "#fbecea"
+          "oklch(15% 0.018 186.0)",
+          "oklch(26% 0.018 186.0)",
+          "oklch(37% 0.018 186.0)",
+          "oklch(48% 0.018 186.0)",
+          "oklch(59% 0.018 186.0)",
+          "oklch(70% 0.018 186.0)",
+          "oklch(82% 0.018 186.0)",
+          "oklch(95% 0.018 186.0)"
         ]
       }
     },
     "typographyMeta": {
       "display": {
         "displayName": "Display",
-        "purpose": "Home H1 only, on the green band."
+        "purpose": "Home hero title only; 6.3 units on lg."
       },
-      "headline-hub": {
-        "displayName": "Hub Headline",
-        "purpose": "Hub, service and 404 page H1."
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Article and hub page titles."
       },
-      "headline-article": {
-        "displayName": "Article Headline",
-        "purpose": "Article H1 in the green band."
+      "section": {
+        "displayName": "Section",
+        "purpose": "Section heads under a 2px slate rule; 3 units on lg."
       },
       "title": {
         "displayName": "Title",
-        "purpose": "Section headings on the water (1.875rem below sm)."
+        "purpose": "Cloth strip titles, prose h3, index row titles."
       },
-      "row-title": {
-        "displayName": "Row Title",
-        "purpose": "Composition-row names."
-      },
-      "tag": {
-        "displayName": "Tag",
-        "purpose": "Sentence-case navigation-block headings."
+      "lead": {
+        "displayName": "Lead",
+        "purpose": "Hero and page intros in ink."
       },
       "body": {
         "displayName": "Body",
-        "purpose": "Interface and descriptive text."
+        "purpose": "Reading prose at 68ch, full Cabin width."
       },
-      "body-prose": {
-        "displayName": "Prose",
-        "purpose": "Article paragraphs, max 68ch."
+      "label": {
+        "displayName": "Label",
+        "purpose": "Sentence-case tags: footer heads, disclaimer and search section heads."
       },
       "small": {
         "displayName": "Small",
-        "purpose": "Descriptions, nav, meta lines."
-      }
-    },
-    "fontVariation": {
-      "mechanism": "font-variation-settings: 'wdth' var(--wdth, 118) on h1-h4, .font-head, .tag; Astro @font-face carries no font-stretch range.",
-      "values": {
-        "default": 118,
-        "home-h1": 132,
-        "hub-h1": 125,
-        "article-h1": 122,
-        "row": 112,
-        "tag": 112,
-        "wordmark": 135,
-        "404-numeral": 140
+        "purpose": "Crumbs, meta, footer links, cookie text; floor 0.875rem."
+      },
+      "numeral": {
+        "displayName": "Numeral",
+        "purpose": "Ochre relief-step numbers on cloth."
       }
     },
     "shadows": [
       {
-        "name": "rinse-lift",
-        "value": "0 1px 2px rgb(8 67 47 / 0.08), 0 10px 28px -8px rgb(8 67 47 / 0.16)",
-        "purpose": "Composition tables, article sheet, contact form."
+        "name": "paper-set-in-cloth",
+        "value": "inset 0 1px 3px rgb(10 16 15 / 0.35), 0 0 0 1px rgb(10 16 15 / 0.35)",
+        "purpose": "Linen page set into the slate cloth on desktop (with a 2px slate outline inset 0.5 units)."
       },
       {
-        "name": "seal-panel-lift",
-        "value": "0 18px 40px -12px rgb(4 40 28 / 0.45)",
-        "purpose": "Home relief panel overlapping the green band."
+        "name": "spine-cord",
+        "value": "2px 0 3px rgb(10 16 15 / 0.35)",
+        "purpose": "Two-cord binding strip on the rail's left edge."
       },
       {
-        "name": "bottom-bar-lift",
-        "value": "0 -8px 24px rgb(8 67 47 / 0.15)",
-        "purpose": "Cookie consent bar."
+        "name": "rail-edge",
+        "value": "inset -2px 0 0 rgb(10 16 15 / 0.35), inset -3px 0 0 rgb(220 221 213 / 0.12)",
+        "purpose": "Fold between rail and sheet."
       },
       {
-        "name": "row-grid",
-        "value": "0 -1px 0 #b9d1c4, -1px 0 0 #b9d1c4",
-        "purpose": "Per-row hairlines forming the composition grid."
+        "name": "overlay-lift",
+        "value": "0 -8px 24px rgb(10 16 15 / 0.18)",
+        "purpose": "Cookie bar; overlays are the only lifted surfaces."
+      },
+      {
+        "name": "chart-hairline",
+        "value": "0 -1px 0 var(--color-rule), -1px 0 0 var(--color-rule)",
+        "purpose": "Chart table rows draw their own top and left rule; the frame clips the outer ones."
       },
       {
         "name": "focus-ring",
-        "value": "outline: 3px solid #0e2a1f; outline-offset: 2px; box-shadow: 0 0 0 6px #ecc66a",
-        "purpose": "Global :focus-visible, visible on water and label."
+        "value": "outline: 3px solid ink; outline-offset: 2px; box-shadow: 0 0 0 6px ochre",
+        "purpose": "Global focus, visible on linen and cloth."
+      },
+      {
+        "name": "callout-emboss",
+        "value": "text-shadow: 0 1px 1px rgb(60 42 12 / 0.55)",
+        "purpose": "Paper-light letters on plate callout discs."
       }
     ],
     "motion": [
       {
-        "name": "state-transition",
-        "value": "120ms ease-out",
-        "purpose": "Background, colour and border on hover."
+        "name": "ease-settle",
+        "value": "cubic-bezier(0.22, 1, 0.36, 1)",
+        "purpose": "Plate entrance, callout pins and card plate scale."
       },
       {
-        "name": "details-open",
-        "value": "200ms transform",
-        "purpose": "FAQ plus rotates 45deg when open."
+        "name": "plate-settle",
+        "value": "700ms ease-settle both; from opacity 0, translate 0 0.75rem",
+        "purpose": "Hero plate settles onto the page."
+      },
+      {
+        "name": "mark-pin",
+        "value": "360ms ease-settle both; from opacity 0, scale 0.3; delay 420ms + i*120ms",
+        "purpose": "Callout letters pinned one by one."
+      },
+      {
+        "name": "state-fast",
+        "value": "120ms ease-out",
+        "purpose": "Buttons, links, rail underline."
+      },
+      {
+        "name": "state-card",
+        "value": "160ms ease-out (fill, strip); 240ms ease-settle (plate scale 1.03)",
+        "purpose": "Chart card hover."
       },
       {
         "name": "reduced-motion",
-        "value": "transition-duration: 0.01ms; scroll-behavior: auto",
-        "purpose": "Under prefers-reduced-motion."
+        "value": "animation: none; transition-duration: 0.01ms; scroll-behavior: auto",
+        "purpose": "prefers-reduced-motion: reduce removes all motion."
       }
     ],
     "breakpoints": [
-      {
-        "name": "band-phone",
-        "value": "40rem",
-        "purpose": "Below it the label band shows only two small bubbles in the top strip."
-      },
       {
         "name": "sm",
         "value": "40rem"
       },
       {
-        "name": "lg",
-        "value": "64rem",
-        "purpose": "Two-column heading split, sticky contents, desktop nav."
+        "name": "md",
+        "value": "48rem"
       },
       {
-        "name": "xl",
-        "value": "80rem",
-        "purpose": "Composition tables return to two columns."
+        "name": "lg",
+        "value": "64rem"
       }
-    ],
-    "surfaces": {
-      "wave": {
-        "height": "14px",
-        "period": "64px",
-        "purpose": "Mask edge where the label meets the water (wave below, wave-top above)."
-      },
-      "bubbles": "Six faint rings (12-18% on-label) at the right of the label band; two at phone width."
-    }
+    ]
   },
   "components": [
     {
-      "name": "Solid Button",
+      "name": "Primary Button (madder cloth)",
       "kind": "button",
-      "refersTo": "button-solid",
-      "description": "Primary action on the water.",
-      "html": "<button class=\"ds-btn-solid\">Wyślij wiadomość</button>",
-      "css": ".ds-btn-solid{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;min-height:3rem;padding:0 1.5rem;border-radius:999px;font-family:var(--font-sans,'Atkinson Hyperlegible Next',Verdana,sans-serif);font-weight:700;font-size:1.0625rem;cursor:pointer;transition:background-color 120ms ease-out,color 120ms ease-out,border-color 120ms ease-out;background:#0d5c45;color:#f1f8f4;border:0;}.ds-btn-solid:hover{background:#08432f;}.ds-btn-solid:focus-visible{outline:3px solid var(--color-ink,#0e2a1f);outline-offset:2px;box-shadow:0 0 0 6px var(--color-gold,#ecc66a);}"
+      "refersTo": "button-primary",
+      "description": "The one primary action per view: madder with a soft-light cloth grain.",
+      "html": "<a class=\"ds-btn-solid\" href=\"#\">pierwsza pomoc</a>",
+      "css": ".ds-btn-solid { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; min-height: 3rem; padding: 0 1.5rem; border: 2px solid var(--color-madder, #b26252); border-radius: 6px; background-color: var(--color-madder, #b26252); background-image: var(--tex-cloth, none); background-size: 420px auto; background-blend-mode: soft-light; color: var(--color-on-slate, #dcddd5); font-family: Cabin, Verdana, sans-serif; font-variation-settings: 'wdth' 86; font-weight: 700; font-size: 1.125rem; text-decoration: none; transition: background-color 120ms ease-out, border-color 120ms ease-out; } .ds-btn-solid:hover { background-color: var(--color-madder-deep, #8a3524); border-color: var(--color-madder-deep, #8a3524); } .ds-btn-solid:focus-visible { outline: 3px solid var(--color-ink, #1b2826); outline-offset: 2px; box-shadow: 0 0 0 6px var(--color-ochre, #c09a55); }"
     },
     {
       "name": "Line Button",
       "kind": "button",
       "refersTo": "button-line",
-      "description": "Secondary action on the water.",
-      "html": "<button class=\"ds-btn-line\">Tylko niezbędne</button>",
-      "css": ".ds-btn-line{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;min-height:3rem;padding:0 1.5rem;border-radius:999px;font-family:var(--font-sans,'Atkinson Hyperlegible Next',Verdana,sans-serif);font-weight:700;font-size:1.0625rem;cursor:pointer;transition:background-color 120ms ease-out,color 120ms ease-out,border-color 120ms ease-out;background:transparent;color:#0d5c45;border:2px solid #0d5c45;}.ds-btn-line:hover{background:#d3e9dd;}.ds-btn-line:focus-visible{outline:3px solid var(--color-ink,#0e2a1f);outline-offset:2px;box-shadow:0 0 0 6px var(--color-gold,#ecc66a);}"
+      "description": "Secondary action on the linen: slate outline, ink text.",
+      "html": "<a class=\"ds-btn-line\" href=\"#\">poznaj przyczyny</a>",
+      "css": ".ds-btn-line { display: inline-flex; align-items: center; justify-content: center; min-height: 3rem; padding: 0 1.5rem; border: 2px solid var(--color-slate, #284442); border-radius: 6px; background: transparent; color: var(--color-ink, #1b2826); font-family: Cabin, Verdana, sans-serif; font-variation-settings: 'wdth' 86; font-weight: 700; font-size: 1.125rem; text-decoration: none; transition: background-color 120ms ease-out; } .ds-btn-line:hover { background: var(--color-wash, #c9d4d5); } .ds-btn-line:focus-visible { outline: 3px solid var(--color-ink, #1b2826); outline-offset: 2px; box-shadow: 0 0 0 6px var(--color-ochre, #c09a55); }"
     },
     {
-      "name": "Pale Button",
-      "kind": "button",
-      "refersTo": "button-pale",
-      "description": "Primary action on the green label band.",
-      "html": "<div class=\"ds-band\"><button class=\"ds-btn-pale\">pierwsza pomoc <svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></button> <button class=\"ds-btn-line-pale\">poznaj przyczyny</button></div>",
-      "css": ".ds-band{background:#0d5c45;padding:24px;display:flex;gap:12px;flex-wrap:wrap;}.ds-btn-pale{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;min-height:3rem;padding:0 1.5rem;border-radius:999px;font-family:var(--font-sans,'Atkinson Hyperlegible Next',Verdana,sans-serif);font-weight:700;font-size:1.0625rem;cursor:pointer;transition:background-color 120ms ease-out,color 120ms ease-out,border-color 120ms ease-out;background:#f1f8f4;color:#08432f;border:0;}.ds-btn-pale:hover{background:#d3e9dd;}.ds-btn-line-pale{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;min-height:3rem;padding:0 1.5rem;border-radius:999px;font-family:var(--font-sans,'Atkinson Hyperlegible Next',Verdana,sans-serif);font-weight:700;font-size:1.0625rem;cursor:pointer;transition:background-color 120ms ease-out,color 120ms ease-out,border-color 120ms ease-out;background:transparent;color:#f1f8f4;border:2px solid rgb(241 248 244/.7);}.ds-btn-line-pale:hover{background:#08432f;border-color:#f1f8f4;}.ds-btn-pale:focus-visible{outline:3px solid var(--color-ink,#0e2a1f);outline-offset:2px;box-shadow:0 0 0 6px var(--color-gold,#ecc66a);}.ds-btn-line-pale:focus-visible{outline:3px solid var(--color-ink,#0e2a1f);outline-offset:2px;box-shadow:0 0 0 6px var(--color-gold,#ecc66a);}"
-    },
-    {
-      "name": "Composition Table",
-      "kind": "custom",
-      "refersTo": "composition-table",
-      "description": "Signature index: name, dotted leader, reading time, read-drop, arrow, in a ruled rinse panel.",
-      "html": "<ul class=\"ds-comp\"><li><a href=\"#\" class=\"ds-row\"><span class=\"ds-row-line\"><span class=\"ds-row-title\">Kurcze łydek</span><span class=\"ds-leader\"></span><span class=\"ds-val\">~2 min</span><svg class=\"ds-drop\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" stroke=\"#0d5c45\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"M12 3s6 6.6 6 11a6 6 0 0 1-12 0c0-4.4 6-11 6-11z\"/></svg><span class=\"ds-arrow\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></span></span><span class=\"ds-desc\">Nagłe spięcie po wysiłku lub przy niefortunnym ruchu.</span></a></li><li><a href=\"#\" class=\"ds-row\"><span class=\"ds-row-line\"><span class=\"ds-row-title\">Kurcze nocne</span><span class=\"ds-leader\"></span><span class=\"ds-val\">~3 min</span><svg class=\"ds-drop\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" stroke=\"#0d5c45\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"M12 3s6 6.6 6 11a6 6 0 0 1-12 0c0-4.4 6-11 6-11z\"/></svg><span class=\"ds-arrow\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></span></span><span class=\"ds-desc\">Bolesne wybudzenia ze snu i wieczorna profilaktyka.</span></a></li></ul>",
-      "css": ".ds-comp{list-style:none;margin:0;padding:0;overflow:hidden;border-radius:14px;background:#f8fbf9;box-shadow:0 1px 2px rgb(8 67 47/.08),0 10px 28px -8px rgb(8 67 47/.16);}.ds-comp>li{box-shadow:0 -1px 0 #b9d1c4,-1px 0 0 #b9d1c4;}.ds-row{display:block;padding:16px 20px;text-decoration:none;transition:background-color 120ms ease-out;}.ds-row:hover{background:#d3e9dd;}.ds-row:hover .ds-arrow{transform:translateX(2px);}.ds-row:focus-visible{outline:3px solid var(--color-ink,#0e2a1f);outline-offset:2px;box-shadow:0 0 0 6px var(--color-gold,#ecc66a);}.ds-row-line{display:flex;align-items:last baseline;gap:8px;}.ds-row-title{font-family:Anybody,Verdana,sans-serif;font-variation-settings:'wdth' 112;font-weight:700;font-size:1.1875rem;line-height:1.375;color:#0e2a1f;}.ds-leader{flex:1 1 1.5rem;min-width:1.5rem;margin-bottom:.3em;border-bottom:2px dotted #0d5c45;opacity:.45;}.ds-val{white-space:nowrap;font-weight:700;font-size:.9375rem;color:#0d5c45;font-variant-numeric:tabular-nums;}.ds-drop path{fill:#f8fbf9;}.ds-row:visited .ds-drop path{fill:#0d5c45;}.ds-arrow{color:#0d5c45;display:inline-flex;transition:transform 120ms ease-out;}.ds-desc{display:block;margin-top:4px;font-size:.9375rem;line-height:1.625;color:#45604f;}"
-    },
-    {
-      "name": "Text Field",
-      "kind": "input",
-      "refersTo": "input-field",
-      "description": "Contact form field with a bold label.",
-      "html": "<label class=\"ds-field-label\">Imię<input class=\"ds-field\" placeholder=\"Twoje imię\"></label>",
-      "css": ".ds-field-label{display:block;font-weight:700;color:#0e2a1f;font-family:'Atkinson Hyperlegible Next',Verdana,sans-serif;}.ds-field{margin-top:8px;display:block;width:100%;box-sizing:border-box;border:2px solid #b9d1c4;border-radius:10px;background:#eaf3ee;padding:12px 16px;font:inherit;font-weight:400;font-size:1.0625rem;color:#0e2a1f;transition:border-color 120ms ease-out,background-color 120ms ease-out;}.ds-field::placeholder{color:#45604f;}.ds-field:hover{border-color:rgb(13 92 69/.6);}.ds-field:focus{border-color:#0d5c45;background:#f8fbf9;}.ds-field:focus-visible{outline:3px solid var(--color-ink,#0e2a1f);outline-offset:2px;box-shadow:0 0 0 6px var(--color-gold,#ecc66a);}"
-    },
-    {
-      "name": "Header Navigation",
-      "kind": "nav",
-      "refersTo": null,
-      "description": "Sticky green masthead with wordmark and pill-target text nav.",
-      "html": "<nav class=\"ds-nav\"><span class=\"ds-logo\">kurcz<span>.pl</span></span><a href=\"#\">przyczyny</a><a href=\"#\" class=\"ds-active\" aria-current=\"page\">pierwsza pomoc</a><a href=\"#\">profilaktyka</a></nav>",
-      "css": ".ds-nav{display:flex;align-items:center;gap:2px;height:64px;padding:0 24px;background:#0d5c45;font-family:'Atkinson Hyperlegible Next',Verdana,sans-serif;}.ds-logo{font-family:Anybody,Verdana,sans-serif;font-variation-settings:'wdth' 135;font-weight:800;font-size:1.75rem;letter-spacing:-.02em;color:#f1f8f4;margin-right:24px;line-height:1;}.ds-logo span{color:#ecc66a;}.ds-nav a{position:relative;padding:8px 12px;border-radius:999px;color:#f1f8f4;text-decoration:none;font-size:.9375rem;line-height:1;transition:background-color 120ms ease-out;}.ds-nav a:hover{background:#08432f;}.ds-nav a.ds-active{font-weight:700;}.ds-nav a.ds-active::after{content:'';position:absolute;left:12px;right:12px;bottom:-13px;height:3px;border-radius:999px;background:#f1f8f4;}.ds-nav a:focus-visible{outline:3px solid var(--color-ink,#0e2a1f);outline-offset:2px;box-shadow:0 0 0 6px var(--color-gold,#ecc66a);}"
-    },
-    {
-      "name": "Filter Pill",
-      "kind": "chip",
-      "refersTo": "filter-pill",
-      "description": "Jump link on the guides hub, with a muted count.",
-      "html": "<a href=\"#\" class=\"ds-pill\">Przyczyny <span>(6)</span></a>",
-      "css": ".ds-pill{display:inline-flex;align-items:center;gap:6px;min-height:40px;padding:0 16px;border:2px solid #0d5c45;border-radius:999px;color:#0d5c45;font-weight:700;font-size:.9375rem;text-decoration:none;font-family:'Atkinson Hyperlegible Next',Verdana,sans-serif;transition:background-color 120ms ease-out;}.ds-pill span{font-weight:400;color:#45604f;}.ds-pill:hover{background:#d3e9dd;}.ds-pill:focus-visible{outline:3px solid var(--color-ink,#0e2a1f);outline-offset:2px;box-shadow:0 0 0 6px var(--color-gold,#ecc66a);}"
-    },
-    {
-      "name": "Doctor Panel",
+      "name": "Chart Card",
       "kind": "card",
-      "refersTo": "doctor-panel",
-      "description": "The one red panel: flags that mean see a doctor, each with an icon and words.",
-      "html": "<aside class=\"ds-doc\"><h3>Kiedy do lekarza?</h3><ul><li><svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#b3261e\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"M12 3 2 20h20L12 3z\"/><path d=\"M12 10v4M12 17h.01\"/></svg>Kurcze utrzymujące się ponad 10 minut mimo rozciągania</li><li><svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#b3261e\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"M12 3 2 20h20L12 3z\"/><path d=\"M12 10v4M12 17h.01\"/></svg>Towarzyszący obrzęk, zaczerwienienie, ocieplenie lub silny ból</li></ul></aside>",
-      "css": ".ds-doc{border:2px solid #b3261e;border-radius:14px;background:#fbecea;padding:24px;font-family:'Atkinson Hyperlegible Next',Verdana,sans-serif;}.ds-doc h3{margin:0 0 12px;font-family:Anybody,Verdana,sans-serif;font-variation-settings:'wdth' 118;font-weight:800;font-size:1.5rem;color:#0e2a1f;}.ds-doc ul{list-style:none;margin:0;padding:0;border-top:1px solid rgb(179 38 30/.3);}.ds-doc li{display:flex;gap:14px;align-items:flex-start;padding:14px 0;border-bottom:1px solid rgb(179 38 30/.2);font-weight:700;color:#0e2a1f;}.ds-doc li:last-child{border-bottom:0;}"
+      "refersTo": "chart-card",
+      "description": "Mini wall chart: 7px slate frame, cloth title strip, engraved vignette, reading time.",
+      "html": "<a class=\"ds-chart-card\" href=\"#\"><span class=\"ds-chart-card-title\">Kurcze łydek</span><span class=\"ds-chart-card-plate\"><svg viewBox=\"0 0 120 80\" width=\"120\" height=\"80\" aria-hidden=\"true\"><path d=\"M40 6c8 18 6 34 14 48 6 10 30 14 46 16\" fill=\"none\" stroke=\"#26332f\" stroke-width=\"2\"/><path d=\"M44 14c10 10 12 24 10 34\" fill=\"none\" stroke=\"#b26252\" stroke-width=\"7\" stroke-linecap=\"round\"/></svg></span><span class=\"ds-chart-card-time\">~2 min</span></a>",
+      "css": ".ds-chart-card { position: relative; display: flex; flex-direction: column; width: 18rem; height: 15rem; padding: 3px; border: 2px solid var(--color-slate, #284442); border-radius: 7px; color: var(--color-ink, #1b2826); text-decoration: none; font-family: Cabin, Verdana, sans-serif; transition: background-color 160ms ease-out; } .ds-chart-card:hover { background-color: rgb(233 238 238 / 0.45); } .ds-chart-card-title { background-color: var(--color-slate, #284442); background-image: var(--tex-cloth, none); background-size: 560px auto; color: var(--color-on-slate, #dcddd5); border-radius: 4px; padding: 0.26em 0.75em 0.325em; text-align: center; font-size: 1.375rem; font-weight: 600; line-height: 1.1; font-variation-settings: 'wdth' 86; transition: background-color 160ms ease-out; } .ds-chart-card:hover .ds-chart-card-title, .ds-chart-card:focus-visible .ds-chart-card-title { background-color: var(--color-slate-deep, #1b302e); } .ds-chart-card-plate { flex: 1; display: grid; place-items: center; transition: scale 240ms cubic-bezier(0.22, 1, 0.36, 1); } .ds-chart-card:hover .ds-chart-card-plate { scale: 1.03; } .ds-chart-card-time { position: absolute; right: 0.75em; bottom: 0.5em; font-size: 1.0625rem; font-weight: 500; font-variant-numeric: tabular-nums; } .ds-chart-card:focus-visible { outline: 3px solid var(--color-ink, #1b2826); outline-offset: 2px; box-shadow: 0 0 0 6px var(--color-ochre, #c09a55); }"
+    },
+    {
+      "name": "Red Frame (when to see a doctor)",
+      "kind": "card",
+      "refersTo": "cloth-strip-warn",
+      "description": "The one see-a-doctor surface: madder-deep frame and cloth strip, flags each with icon and words.",
+      "html": "<aside class=\"ds-warn-frame\"><h2 class=\"ds-warn-strip\"><svg viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"M12 3 2 20h20L12 3z\"/><path d=\"M12 10v4M12 17v.5\"/></svg>Kiedy skontaktować się z lekarzem?</h2><ul><li><svg viewBox=\"0 0 24 24\" width=\"22\" height=\"22\" fill=\"none\" stroke=\"#8a3524\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"M12 3 2 20h20L12 3z\"/><path d=\"M12 10v4M12 17v.5\"/></svg>Kurcze utrzymujące się ponad 10 minut</li><li><svg viewBox=\"0 0 24 24\" width=\"22\" height=\"22\" fill=\"none\" stroke=\"#8a3524\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"M12 3 2 20h20L12 3z\"/><path d=\"M12 10v4M12 17v.5\"/></svg>Obrzęk, zaczerwienienie, silny ból</li></ul></aside>",
+      "css": ".ds-warn-frame { padding: 3px; border: 2px solid var(--color-madder-deep, #8a3524); border-radius: 7px; font-family: Cabin, Verdana, sans-serif; max-width: 36rem; } .ds-warn-strip { display: flex; align-items: center; gap: 0.625rem; margin: 0; padding: 0.625rem 1rem; border-radius: 4px; background-color: var(--color-madder-deep, #8a3524); background-image: var(--tex-cloth, none); background-size: 512px auto; background-blend-mode: soft-light; color: var(--color-on-slate, #dcddd5); font-size: 1.375rem; font-weight: 600; font-variation-settings: 'wdth' 86; } .ds-warn-frame ul { list-style: none; margin: 0; padding: 0.25rem 1rem; } .ds-warn-frame li { display: flex; gap: 0.875rem; align-items: flex-start; padding: 0.875rem 0; border-bottom: 1px solid var(--color-rule, #a3b2b2); font-size: 1.0625rem; font-weight: 600; color: var(--color-ink, #1b2826); } .ds-warn-frame li:last-child { border-bottom: 0; } .ds-warn-frame li svg { flex: none; }"
+    },
+    {
+      "name": "Chart Index Row",
+      "kind": "custom",
+      "refersTo": "chart-card",
+      "description": "Row in a framed chart table: plate thumb, title, dotted leader, minutes, read mark, arrow.",
+      "html": "<ul class=\"ds-chart-table\"><li><a class=\"ds-row\" href=\"#\"><span class=\"ds-row-thumb\"></span><span class=\"ds-row-main\"><span class=\"ds-row-line\"><span class=\"ds-row-title\">Profilaktyka</span><span class=\"ds-leader\"></span><span class=\"ds-row-min\">~2 min</span><span class=\"ds-read-mark\"></span><svg viewBox=\"0 0 24 24\" width=\"20\" height=\"20\" fill=\"none\" stroke=\"#284442\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"M4 12h15M13 6l6 6-6 6\"/></svg></span><span class=\"ds-row-desc\">Nawodnienie, dieta bogata w elektrolity i rozciąganie.</span></span></a></li></ul>",
+      "css": ".ds-chart-table { list-style: none; margin: 0; padding: 0; overflow: hidden; border: 2px solid var(--color-slate, #284442); border-radius: 7px; max-width: 34rem; font-family: Cabin, Verdana, sans-serif; } .ds-chart-table > li { box-shadow: 0 -1px 0 var(--color-rule, #a3b2b2), -1px 0 0 var(--color-rule, #a3b2b2); } .ds-row { display: flex; align-items: center; gap: 1rem; padding: 0.875rem 1.25rem; color: inherit; text-decoration: none; transition: background-color 150ms; } .ds-row:hover { background: var(--color-wash, #c9d4d5); } .ds-row:focus-visible { outline: 3px solid var(--color-ink, #1b2826); outline-offset: 2px; box-shadow: 0 0 0 6px var(--color-ochre, #c09a55); } .ds-row-thumb { width: 4rem; height: 3rem; flex: none; background: radial-gradient(closest-side, #b26252 40%, transparent 42%); } .ds-row-main { flex: 1; min-width: 0; } .ds-row-line { display: flex; align-items: baseline; gap: 0.5rem; } .ds-row-title { font-size: 1.25rem; font-weight: 600; color: var(--color-slate, #284442); font-variation-settings: 'wdth' 86; } .ds-leader { flex: 1 1 1.5rem; min-width: 1.5rem; border-bottom: 2px dotted var(--color-slate, #284442); opacity: 0.45; } .ds-row-min { font-size: 1rem; font-weight: 600; font-variant-numeric: tabular-nums; color: var(--color-ink, #1b2826); white-space: nowrap; } .ds-read-mark { width: 0.7em; height: 0.7em; border: 2px solid var(--color-slate, #284442); border-radius: 50%; background: var(--color-ground, #dce3e4); flex: none; } .ds-row-desc { display: block; margin-top: 0.25rem; color: var(--color-muted, #475553); font-size: 1rem; line-height: 1.6; }"
+    },
+    {
+      "name": "Plate Key",
+      "kind": "custom",
+      "refersTo": "plate-key",
+      "description": "Legend for a plate's callouts: ink letters on ochre discs beside plain labels.",
+      "html": "<ol class=\"ds-plate-legend\"><li><span class=\"ds-plate-key\">A</span>mięsień brzuchaty łydki</li><li><span class=\"ds-plate-key\">B</span>ścięgno Achillesa</li><li><span class=\"ds-plate-key\">C</span>mięśnie podeszwy stopy</li></ol>",
+      "css": ".ds-plate-legend { list-style: none; margin: 0; padding: 0.5em 0.75em 0.55em; border: 1px solid var(--color-rule, #a3b2b2); border-radius: 3px; background: rgb(220 227 228 / 0.94); color: var(--color-ink, #1b2826); font-family: Cabin, Verdana, sans-serif; font-size: 0.875rem; line-height: 1.25; display: inline-block; } .ds-plate-legend li { display: flex; align-items: baseline; gap: 0.45em; } .ds-plate-legend li + li { margin-top: 0.3em; } .ds-plate-key { display: inline-grid; place-items: center; flex: none; width: 1.45em; height: 1.45em; translate: 0 0.12em; border-radius: 50%; background: var(--color-ochre, #c09a55); color: var(--color-ink, #1b2826); font-weight: 700; font-size: 0.9em; }"
+    },
+    {
+      "name": "Text Input",
+      "kind": "input",
+      "refersTo": "input-text",
+      "description": "Contact form field: paper fill, 2px slate border, 6px corner.",
+      "html": "<label class=\"ds-field\"><span>Imię</span><input class=\"ds-input\" type=\"text\" placeholder=\"Twoje imię\"></label>",
+      "css": ".ds-field { display: block; max-width: 24rem; font-family: Cabin, Verdana, sans-serif; } .ds-field > span { display: block; font-size: 1rem; font-weight: 700; color: var(--color-ink, #1b2826); } .ds-input { display: block; width: 100%; margin-top: 0.5rem; padding: 0.75rem 1rem; border: 2px solid rgb(40 68 66 / 0.7); border-radius: 6px; background: var(--color-paper, #e9eeee); color: var(--color-ink, #1b2826); font: inherit; font-size: 1.0625rem; caret-color: var(--color-ink, #1b2826); transition: border-color 150ms; } .ds-input::placeholder { color: var(--color-muted, #475553); opacity: 1; } .ds-input:hover, .ds-input:focus { border-color: var(--color-slate, #284442); } .ds-input:focus-visible { outline: 3px solid var(--color-ink, #1b2826); outline-offset: 2px; box-shadow: 0 0 0 6px var(--color-ochre, #c09a55); }"
+    },
+    {
+      "name": "Category Chip",
+      "kind": "chip",
+      "refersTo": "chip-category",
+      "description": "Hub jump link to a guide category, with a muted count.",
+      "html": "<a class=\"ds-chip\" href=\"#\">Przyczyny <span>(6)</span></a>",
+      "css": ".ds-chip { display: inline-flex; align-items: center; gap: 0.375rem; min-height: 2.75rem; padding: 0 1rem; border: 2px solid var(--color-slate, #284442); border-radius: 6px; color: var(--color-slate, #284442); font-family: Cabin, Verdana, sans-serif; font-size: 1rem; font-weight: 600; text-decoration: none; transition: background-color 150ms; } .ds-chip span { font-weight: 400; color: var(--color-muted, #475553); font-variant-numeric: tabular-nums; } .ds-chip:hover { background: var(--color-wash, #c9d4d5); } .ds-chip:focus-visible { outline: 3px solid var(--color-ink, #1b2826); outline-offset: 2px; box-shadow: 0 0 0 6px var(--color-ochre, #c09a55); }"
+    },
+    {
+      "name": "Cloth Rail",
+      "kind": "nav",
+      "refersTo": "rail-nav",
+      "description": "Slate cloth rail: wordmark, lowercase nav with ochre current underline, quick-relief steps.",
+      "html": "<nav class=\"ds-rail\"><span class=\"ds-rail-logo\">kurcz.pl</span><hr><a href=\"#\" aria-current=\"page\">przyczyny</a><a href=\"#\">pierwsza pomoc</a><a href=\"#\">profilaktyka</a><p class=\"ds-rail-relief\">Szybka ulga</p><ol><li><b>1</b>Przerwij ruch</li><li><b>2</b>Rozciągaj powoli 20–30 s</li><li><b>3</b>Rozmasuj</li></ol></nav>",
+      "css": ".ds-rail { background-color: var(--color-slate, #284442); background-image: var(--tex-cloth, none); background-size: 512px auto; width: 260px; padding: 1.5rem 1.25rem 1.5rem 2.5rem; color: var(--color-on-slate, #dcddd5); font-family: Cabin, Verdana, sans-serif; font-variation-settings: 'wdth' 86; box-shadow: inset 26px 0 0 var(--color-slate-deep, #1b302e), inset -2px 0 0 rgb(10 16 15 / 0.35); } .ds-rail-logo { font-size: 2.75rem; font-weight: 600; line-height: 1; letter-spacing: -0.01em; } .ds-rail hr { border: 0; border-top: 2px solid rgb(220 221 213 / 0.6); margin: 1rem 0 0.5rem; } .ds-rail a { display: block; padding: 0.5rem 0; color: inherit; font-size: 1.25rem; font-weight: 500; text-decoration: underline 2px transparent; text-underline-offset: 0.22em; transition: text-decoration-color 120ms ease-out; } .ds-rail a:hover { text-decoration-color: currentColor; } .ds-rail a[aria-current='page'] { font-weight: 700; text-decoration-color: var(--color-ochre, #c09a55); } .ds-rail a:focus-visible { outline: 3px solid var(--color-ink, #1b2826); outline-offset: 2px; box-shadow: 0 0 0 6px var(--color-ochre, #c09a55); } .ds-rail-relief { margin: 1.5rem 0 0; padding-top: 1rem; border-top: 2px solid rgb(220 221 213 / 0.7); font-size: 1.375rem; font-weight: 700; } .ds-rail ol { list-style: none; margin: 0.5rem 0 0; padding: 0; } .ds-rail li { display: flex; align-items: center; gap: 1rem; padding: 0.75rem 0; border-bottom: 2px solid rgb(220 221 213 / 0.7); font-size: 1.125rem; font-weight: 500; } .ds-rail li:last-child { border-bottom: 0; } .ds-rail li b { width: 0.6em; flex: none; font-size: 2.75rem; line-height: 0.85; color: var(--color-ochre, #c09a55); font-variant-numeric: lining-nums tabular-nums; }"
     }
   ],
   "narrative": {
-    "northStar": "The Mineral-Water Label and the Pump Room",
-    "overview": "kurcz.pl reads like the label on a Polish spa mineral-water bottle and the pump-room board beside it: the familiar, trusted place where a body's minerals are listed plainly. A deep spring-green label owns the frame (masthead, hero bands, page headers, footer) and meets the pale mineral-water ground along a soft wave edge. Reading happens on a lighter rinse, in rounded panels with label corners, in a calm column set in a face designed for low-vision readers.\n\nThe signature is the composition table: name on the left, a dotted leader, the value on the right, inside a rounded rinse panel ruled into a visible grid. Every index uses it: the home situations and sections, article contents, hubs and related guides. Values carry information (a guide's reading time, a relief step's duration), and a drop beside each row fills once that guide has been opened. Density is moderate and generous for older readers; the system is code-led with no generated imagery, and motion stops at hover and the native details open state.\n\nThe world explicitly rejects the discarded patient-leaflet system (saffron spot, black ink, Archivo Narrow, hairline rules), Friendly Festivals, zaur.app's cobalt deploy canvas, and the generic kit of white sheet, black ink, one spot colour, condensed grotesk and uppercase tracked labels.",
+    "northStar": "Classroom Anatomy Chart",
+    "overview": "kurcz.pl is a cloth-bound wall chart from a school biology room. A slate book-cloth rail, its spine bound with two rounded cords, holds a cool linen chart sheet. On the sheet sit engraved anatomical plates: muscle tinted red, bone and tendon in ivory line, with ochre callout discs and a printed key. Every chart on the sheet sits in the same thin slate frame under a cloth title strip, as the mini charts pinned to a teaching board would.\n\nThe interface stays flat and ruled. All engraving lives in the plates. The UI is lettering, 2px slate rules, hairline grids and cloth. Materials carry the depth: woven cloth on the rail, the title strips and the one primary button, and linen grain on the ground. Density is calm and generous. One fluid unit, 1% of the 1872px comp width, scales the desktop chart so the rail, hero and cards keep the comp's proportions on any wide screen.\n\nImages explain. Each picture is an engraved plate of the anatomy or the remedy a page discusses. None is decoration or stock photography.",
     "keyCharacteristics": [
-      "Spring-green label frame, pale mineral-water ground, never cream or white.",
-      "Wave edge wherever the label meets the water.",
-      "Composition tables with dotted leaders and a visible row grid for every index.",
-      "Wide, heavy Anybody lettering over Atkinson Hyperlegible Next reading text.",
-      "Gold is a medal, not a palette colour; red is a doctor flag, never decoration.",
-      "Zero-JS states: :visited read-drops, native details disclosure."
+      "Slate cloth rail with a two-cord spine; on desktop the cloth also wraps the linen page on three sides.",
+      "Cool linen ground with a procedural grain; the paper has a thin slate rule inset from its edge.",
+      "Engraved plates on transparent backgrounds, one per guide, shared by PL and EN.",
+      "Framed chart cards: 2px slate frame, 3px inset, cloth title strip.",
+      "Madder cloth for the single primary action; ochre for callouts, numerals and bullets.",
+      "One humanist sans (Cabin), condensed on its width axis for lettering and full width for reading."
     ],
     "rules": [
       {
-        "name": "The Medal Rule",
-        "body": "Gold sits on the green, as a medal sits on a label: numerals and the one round seal. Outside that it appears only as an accessibility affordance (gold focus halo outside the ink ring, gold ::selection) and on the wordmark's \".pl\". It is never a fill, border or text colour on the water side.",
+        "name": "The One Red Frame Rule",
+        "body": "Exactly one kind of frame says \"see a doctor\": the chart frame in madder-deep under a madder-deep cloth strip. The warning icon and the words carry the alarm; colour alone never does. Warn red is kept for error states only.",
         "section": "colors"
       },
       {
-        "name": "The Flag Rule",
-        "body": "Red appears only for doctor flags, and every flag carries a warning icon and words. State is never conveyed by colour alone: the read-drop changes fill and is explained in a caption, the current TOC entry is bold with a filled ring, the active nav item is bold with an underbar.",
+        "name": "The One Madder Action Rule",
+        "body": "A view has at most one madder button. Every other action is a slate outline or an ink link.",
         "section": "colors"
       },
       {
-        "name": "The Water Ground Rule",
-        "body": "The ground is pale mineral water and reading surfaces are the rinse. No cream, no paper white, no grey.",
+        "name": "The Ochre Callout Rule",
+        "body": "Ochre marks and points, and it never fills a surface. Letters on the plate's own callout discs are paper-light. At legend size the key letter is ink on ochre, for AA contrast.",
         "section": "colors"
       },
       {
-        "name": "The Width Axis Rule",
-        "body": "Astro's @font-face for Anybody carries no font-stretch range, so width is driven only through `font-variation-settings: 'wdth' var(--wdth)` on headings, `.font-head` and `.tag`. The default is 118; set `--wdth` on the element to change it (home H1 132, hub H1 125, article H1 122, rows and tags 112). Never use `font-stretch`.",
+        "name": "The Narrowed Lettering Rule",
+        "body": "Anything lettered onto the chart (headings, rail, buttons, strips) uses Cabin at wdth 86. Paragraphs never do.",
         "section": "typography"
       },
       {
-        "name": "The Sentence Case Rule",
-        "body": "No eyebrows or kickers above headings, no uppercase tracked labels, no section number chips. Headings and tags are sentence case with zero or negative tracking. Numbering appears only where the sequence carries information (the relief steps).",
+        "name": "The Sentence-Case Rule",
+        "body": "Labels and tags are sentence case. Nav items, crumbs and the wordmark are lower case, as in the copy. There are no uppercase tracked labels and no eyebrows above headings.",
         "section": "typography"
       },
       {
-        "name": "The Plain Words Rule",
-        "body": "The article contents keep the plain label \"Spis treści\" for clarity with senior readers rather than a themed name.",
-        "section": "typography"
-      },
-      {
-        "name": "The Rinse Lift Rule",
-        "body": "Only rinse reading surfaces lift. Bands, buttons, rows and fields stay flat.",
+        "name": "The Engraving Stays In The Plate Rule",
+        "body": "Hatching, tint and modelling belong to the plates. UI surfaces are flat fills, cloth texture or linen, ruled in slate.",
         "section": "elevation"
       }
     ],
     "dos": [
-      "Do open every page on the green label band with a wave edge, and close it with the wave-topped green footer.",
-      "Do set every index as a composition table: name, dotted leader, an informative value, read-drop, arrow.",
-      "Do drive Anybody's width with `--wdth` (118 default; 132 home H1, 125 hubs, 122 articles, 112 rows and tags).",
-      "Do keep reading text in Atkinson Hyperlegible Next at 1.125rem / 1.72 and at most 68ch in articles.",
-      "Do pair every doctor flag with a warning icon and words, and every state change with more than colour.",
-      "Do keep content pages zero-JS: :visited for read state, native details for disclosure.",
-      "Do respect reduced motion; motion stops at hover transitions and the details open state."
+      "**Do** give every guide its own engraved plate and use it twice: in the article header and as the guide's thumbnail in hub rows, cards and related links.",
+      "**Do** put every chart on the sheet in the 7px slate frame with a 3px inset and head it with a 4px cloth strip.",
+      "**Do** size desktop layout in units of `--u` so it keeps the comp's proportions, and fall back to rem below lg.",
+      "**Do** keep reading text at 68ch and full Cabin width, and keep lettering at wdth 86.",
+      "**Do** pair every red flag with the warning icon and words.",
+      "**Do** honour reduced motion: all animation stops, transitions drop to 0.01ms and smooth scroll turns off."
     ],
     "donts": [
-      "Don't use gold outside numerals and the one seal on the green, the focus halo, ::selection and the wordmark's \".pl\".",
-      "Don't use red for anything but doctor flags.",
-      "Don't add eyebrows, kickers, uppercase tracked labels or section number chips.",
-      "Don't use cream, paper white or grey grounds; the ground is mineral water.",
-      "Don't set width with `font-stretch`; the Astro font face has no stretch range.",
-      "Don't add hard offset shadows or lift anything but rinse reading surfaces.",
-      "Don't echo the old leaflet (saffron, black ink, Archivo Narrow, hairline/uppercase labels), Friendly Festivals, or zaur.app's cobalt canvas.",
-      "Don't name mineral-water brands or imply any water treats cramps."
+      "**Don't** use stock photography or decorative images. A picture must explain anatomy or a remedy.",
+      "**Don't** use warn red for anything except error states; red flags use madder-deep cloth.",
+      "**Don't** add a second madder button to a view, and don't fill surfaces with ochre.",
+      "**Don't** set paper-light letters on legend-size ochre keys. They fail AA, so use ink.",
+      "**Don't** add drop shadows to cards, frames or tables. Only overlays lift.",
+      "**Don't** put eyebrows or uppercase tracked labels above headings."
     ]
   }
 }

@@ -1,0 +1,22 @@
+---
+// The three quick-relief steps on cloth: the rail's "Szybka ulga" and the phone home panel.
+import { getLocalizedReliefSteps } from '../i18n/content.ts';
+import type { SupportedLocale } from '../i18n/config.ts';
+
+const { locale, class: className } = Astro.props as { locale: SupportedLocale; class?: string };
+const steps = getLocalizedReliefSteps(locale);
+---
+
+<ol class={className}>
+  {
+    steps.map((s) => (
+      <li class="flex items-center gap-[calc(var(--u)*1.25)] border-b-2 border-on-slate/70 py-3 last:border-b-0 lg:py-[calc(var(--u)*1.05)] lg:first:pt-[calc(var(--u)*0.35)]">
+        <span class="w-[0.6em] flex-none font-head text-[2.75rem] font-bold leading-[0.85] text-ochre [font-variant-numeric:lining-nums_tabular-nums] lg:text-[max(2.5rem,calc(var(--u)*3.6))]" aria-hidden="true">{s.n}</span>
+        <span class="text-[1.125rem] font-medium leading-snug lg:text-[max(1.0625rem,calc(var(--u)*1.5))]">
+          {s.title}
+          {s.time && <span class="block tabular-nums">{s.time}</span>}
+        </span>
+      </li>
+    ))
+  }
+</ol>

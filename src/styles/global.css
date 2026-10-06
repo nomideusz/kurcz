@@ -1,49 +1,62 @@
 @import 'tailwindcss';
 
 /*
-  Design system: "etykieta wody mineralnej" — the spa mineral-water label and pump room.
-  A deep spring-green label owns the frame (masthead, bands, footer) and meets the pale
-  mineral-water ground along a wave edge. Reading panels sit on a lighter rinse with rounded
-  label corners. Gold only on the green (numerals, the one seal). Red only for doctor flags,
-  always with a word and an icon. Faces are self-hosted via Astro's fonts API.
+  Design system: "tablica anatomiczna" — the classroom anatomy wall chart.
+  A slate-green cloth binding (the side rail, card title strips) holds a cool linen chart
+  sheet. Engraving lives only in the plates; the interface itself is flat, ruled in thin
+  slate. Madder is muscle and the one primary action; ochre marks callouts and numerals
+  on the cloth. Red flags use deep madder cloth, always with a word and an icon; warn red
+  is left for errors.
 */
 @theme {
-  --font-head: var(--font-head-src), Verdana, sans-serif;
-  --font-sans: var(--font-body-src), Verdana, sans-serif;
+  --font-head: var(--font-sans-src), Verdana, sans-serif;
+  --font-sans: var(--font-sans-src), Verdana, sans-serif;
   --font-mono: ui-monospace, 'Cascadia Code', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
 
-  --text-xs: 0.8125rem;
-  --text-sm: 0.9375rem;
-  --text-base: 1.0625rem;
-  --text-lg: 1.1875rem;
+  --text-xs: 0.875rem;
+  --text-sm: 1rem;
+  --text-base: 1.125rem;
+  --text-lg: 1.25rem;
 
-  /* Water side */
-  --color-ground: #eaf3ee;
-  --color-sheet: #f8fbf9;
-  --color-panel: #dbe9e2;
-  --color-wash: #d3e9dd;
-  --color-ink: #0e2a1f;
-  --color-body: #1d382d;
-  --color-muted: #45604f;
-  --color-rule: #b9d1c4;
+  /* Chart sheet */
+  --color-ground: #dce3e4;
+  --color-paper: #e9eeee;
+  --color-panel: #cfd8d9;
+  --color-wash: #c9d4d5;
+  --color-ink: #1b2826;
+  --color-body: #26332f;
+  --color-muted: #475553;
+  --color-rule: #a3b2b2;
 
-  /* Label side */
-  --color-label: #0d5c45;
-  --color-label-deep: #08432f;
-  --color-on-label: #f1f8f4;
-  --color-on-label-soft: #c3e2d2;
-  --color-gold: #ecc66a;
+  /* Cloth binding */
+  --color-slate: #284442;
+  --color-slate-deep: #1b302e;
+  --color-on-slate: #dcddd5;
+  --color-on-slate-soft: #b3b8ad;
+  --color-ochre: #c09a55;
+  --color-madder: #b26252;
+  --color-madder-deep: #8a3524;
 
   --color-warn: #b3261e;
-  --color-warn-wash: #fbecea;
+  --color-warn-wash: #f3e3e0;
 
-  --radius-label: 14px;
+  --radius-chart: 4px;
 }
 
 @layer base {
+  /* Desktop measure: one unit is 1% of the 1872px comp width, capped there, so the rail,
+     hero and chart cards keep the comp's proportions on any desktop screen. */
+  :root {
+    --u: clamp(10px, 1vw, 18.72px);
+    --rail: max(260px, calc(var(--u) * 19.86));
+  }
+
   html {
     scroll-behavior: smooth;
     scroll-padding-top: 88px;
+    @media (width >= 64rem) {
+      scroll-padding-top: 24px;
+    }
     -webkit-text-size-adjust: 100%;
   }
 
@@ -55,6 +68,7 @@
     *::before,
     *::after {
       transition-duration: 0.01ms !important;
+      animation: none !important;
     }
   }
 
@@ -69,18 +83,18 @@
   h2,
   h3,
   h4 {
-    @apply text-ink;
+    @apply text-slate;
     font-family: var(--font-head);
-    font-weight: 800;
-    letter-spacing: -0.015em;
-    line-height: 1.08;
+    font-weight: 700;
+    letter-spacing: -0.005em;
+    line-height: 1.05;
     text-wrap: balance;
   }
 
-  /* Label lettering is Anybody set wide. Astro's @font-face carries no font-stretch range,
-     so the width axis is driven directly; set --wdth on an element to change it. */
-  :where(h1, h2, h3, h4, .font-head, .tag) {
-    font-variation-settings: 'wdth' var(--wdth, 118);
+  /* Chart lettering is Cabin narrowed on its width axis. Astro's @font-face carries no
+     font-stretch range, so the axis is driven directly; set --wdth to change it. */
+  :where(h1, h2, h3, h4, .font-head, .tag, .rail, .btn, .chart-card-title) {
+    font-variation-settings: 'wdth' var(--wdth, 86);
   }
 
   a,
@@ -94,15 +108,15 @@
   }
 
   ::selection {
-    background: var(--color-gold);
+    background: var(--color-ochre);
     color: var(--color-ink);
   }
 
-  /* Ink ring on the water, gold halo on the label: visible on both grounds. */
+  /* Ink ring on the linen, ochre halo on the cloth: visible on both grounds. */
   :focus-visible {
     outline: 3px solid var(--color-ink);
     outline-offset: 2px;
-    box-shadow: 0 0 0 6px var(--color-gold);
+    box-shadow: 0 0 0 6px var(--color-ochre);
   }
 
   input,
@@ -116,15 +130,15 @@
   }
 
   * {
-    scrollbar-color: #7fa293 var(--color-panel);
+    scrollbar-color: #6f8280 var(--color-panel);
   }
 }
 
-/* Label link: ink text over a spring-green underline; the water rises under it on hover. */
+/* Chart link: ink text over a slate underline; the linen darkens under it on hover. */
 @utility ink-link {
   color: var(--color-ink);
   text-decoration: underline;
-  text-decoration-color: var(--color-label);
+  text-decoration-color: var(--color-slate);
   text-decoration-thickness: 2px;
   text-underline-offset: 4px;
   border-radius: 3px;
@@ -134,72 +148,16 @@
   }
 }
 
-/* Small label lettering for navigation-block headings: wide, sentence case. */
+/* Small heading lettering for navigation blocks: sentence case. */
 @utility tag {
   font-family: var(--font-head);
   font-weight: 700;
-  --wdth: 112;
-  font-size: 0.9375rem;
+  font-size: 1rem;
   line-height: 1.2;
   letter-spacing: 0;
 }
 
-/* The green label: a full-bleed band with a few carbonation bubbles rising on the right. */
-@utility label-band {
-  position: relative;
-  background-color: var(--color-label);
-  color: var(--color-on-label);
-  background-image:
-    radial-gradient(circle at 93% 18%, transparent 9px, rgb(241 248 244 / 0.16) 10px, transparent 11.5px),
-    radial-gradient(circle at 88% 42%, transparent 5px, rgb(241 248 244 / 0.14) 6px, transparent 7.5px),
-    radial-gradient(circle at 96% 58%, transparent 13px, rgb(241 248 244 / 0.12) 14px, transparent 15.5px),
-    radial-gradient(circle at 84% 74%, transparent 3px, rgb(241 248 244 / 0.18) 4px, transparent 5.5px),
-    radial-gradient(circle at 91% 88%, transparent 7px, rgb(241 248 244 / 0.12) 8px, transparent 9.5px),
-    radial-gradient(circle at 78% 30%, transparent 2px, rgb(241 248 244 / 0.16) 3px, transparent 4.5px);
-  /* Headings on the green go pale; those inside a rinse panel laid on the band stay ink. */
-  /* On a phone the band is one narrow column of text: only two small bubbles, in the
-     strip above the first line, so none lands on a word or a button. */
-  @media (width < 40rem) {
-    background-image:
-      radial-gradient(circle at calc(100% - 22px) 14px, transparent 4px, rgb(241 248 244 / 0.18) 5px, transparent 6.5px),
-      radial-gradient(circle at calc(100% - 46px) 26px, transparent 2px, rgb(241 248 244 / 0.16) 3px, transparent 4.5px);
-  }
-  & :where(h1, h2, h3, h4):not(:where(.bg-sheet) *) {
-    color: var(--color-on-label);
-  }
-}
-
-/* Where the label meets the water: a soft wave below (or above, with wave-top). */
-@utility wave {
-  position: relative;
-  &::after {
-    content: '';
-    position: absolute;
-    inset-inline: 0;
-    top: 100%;
-    height: 14px;
-    background: var(--color-label);
-    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 14'%3E%3Cpath d='M0 0h64v6c-8 0-8 8-16 8s-8-8-16-8-8 8-16 8S8 6 0 6z'/%3E%3C/svg%3E") 0 0 / 64px 14px repeat-x;
-    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 14'%3E%3Cpath d='M0 0h64v6c-8 0-8 8-16 8s-8-8-16-8-8 8-16 8S8 6 0 6z'/%3E%3C/svg%3E") 0 0 / 64px 14px repeat-x;
-    pointer-events: none;
-  }
-}
-@utility wave-top {
-  position: relative;
-  &::before {
-    content: '';
-    position: absolute;
-    inset-inline: 0;
-    bottom: 100%;
-    height: 14px;
-    background: var(--color-label);
-    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 14'%3E%3Cpath d='M0 14h64V8c-8 0-8-8-16-8s-8 8-16 8-8-8-16-8S8 8 0 8z'/%3E%3C/svg%3E") 0 0 / 64px 14px repeat-x;
-    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 14'%3E%3Cpath d='M0 14h64V8c-8 0-8-8-16-8s-8 8-16 8-8-8-16-8S8 8 0 8z'/%3E%3C/svg%3E") 0 0 / 64px 14px repeat-x;
-    pointer-events: none;
-  }
-}
-
-/* Composition-table leader: the dotted run between a name and its value. */
+/* Index leader: the dotted run between a guide and its reading time. */
 @utility leader {
   flex: 1 1 1.5rem;
   min-width: 1.5rem;
@@ -208,16 +166,29 @@
   opacity: 0.45;
 }
 
-/* Read mark: an outlined drop that fills once the guide has been visited (CSS only).
-   :visited may only change colours, and only between opaque ones, so the empty state is
-   the row's own ground, not transparent. */
-@utility drop {
+/* Read mark: an empty ring that fills slate once the guide has been visited (CSS only).
+   :visited may only change colours, between opaque ones, so the empty ring is linen. */
+@utility read-mark {
   flex: none;
-  & path {
-    fill: var(--color-sheet);
+  width: 0.7em;
+  height: 0.7em;
+  border: 2px solid var(--color-slate);
+  border-radius: 50%;
+  background-color: var(--color-ground);
+  :visited & {
+    background-color: var(--color-slate);
   }
-  :visited & path {
-    fill: var(--color-label);
+}
+
+/* Page gutters on the sheet; on desktop they follow the hero's chart margins. */
+@utility page-x {
+  padding-inline: 1rem;
+  @media (width >= 40rem) {
+    padding-inline: 2rem;
+  }
+  @media (width >= 64rem) {
+    padding-left: calc(var(--u) * 3.2);
+    padding-right: calc(var(--u) * 4.8);
   }
 }
 
@@ -228,7 +199,7 @@
   gap: 0.5rem;
   min-height: 3rem;
   padding-inline: 1.5rem;
-  border-radius: 999px;
+  border-radius: 6px;
   font-weight: 700;
   font-size: var(--text-base);
   transition:
@@ -236,70 +207,333 @@
     color 120ms ease-out,
     border-color 120ms ease-out;
 }
-/* On the water */
+/* On the linen: madder is the one primary action, slate the outline. */
 @utility btn-solid {
-  @apply btn bg-label text-on-label hover:bg-label-deep;
+  @apply btn border-2 border-madder bg-madder text-on-slate hover:border-madder-deep hover:bg-madder-deep;
+  /* Book-cloth grain on the one red action, as on the comp. */
+  background-image: var(--tex-cloth);
+  background-size: 420px auto;
+  background-blend-mode: soft-light;
 }
 @utility btn-line {
-  @apply btn border-2 border-label text-label hover:bg-wash;
+  @apply btn border-2 border-slate text-ink hover:bg-wash;
 }
-/* On the label */
-@utility btn-pale {
-  @apply btn bg-on-label text-label-deep hover:bg-wash;
-}
-@utility btn-line-pale {
-  @apply btn border-2 border-on-label/70 text-on-label hover:border-on-label hover:bg-label-deep;
-}
-
 @layer components {
-  /* Composition table: a rounded rinse panel ruled into a visible grid. Rows draw their
-     own top and left rule as hairline shadows; the panel clips the outer ones. */
-  .composition {
-    overflow: hidden;
-    border-radius: var(--radius-label);
-    background: var(--color-sheet);
-    box-shadow:
-      0 1px 2px rgb(8 67 47 / 0.08),
-      0 10px 28px -8px rgb(8 67 47 / 0.16);
+  /* The rail is cloth: woven slate with a darker stitched binding down its spine. */
+  .rail {
+    background: var(--color-slate) var(--tex-cloth) 0 0 / 512px auto;
   }
-  .composition > li {
+  @media (width >= 64rem) {
+    .rail::before {
+      content: '';
+      position: absolute;
+      inset-block: 0;
+      left: 0;
+      width: calc(var(--u) * 2.99);
+      /* Two rounded cords of the book spine, cut from the comp and repeated down the rail. */
+      background: var(--tex-binding) repeat-y 0 0 / 100% auto;
+      box-shadow: 2px 0 3px rgb(10 16 15 / 0.35);
+      pointer-events: none;
+    }
+  }
+  @media (width >= 64rem) {
+    .rail {
+      box-shadow:
+        inset -2px 0 0 rgb(10 16 15 / 0.35),
+        inset -3px 0 0 rgb(220 221 213 / 0.12);
+    }
+  }
+  @media (width < 64rem) {
+    .rail:not([data-open]) .rail-drawer {
+      display: none;
+    }
+    .rail:not([data-open]) .menu-close,
+    .rail[data-open] .menu-open {
+      display: none;
+    }
+  }
+  .rail-link {
+    border-radius: 2px;
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.22em;
+    transition: text-decoration-color 120ms ease-out;
+    &:hover {
+      text-decoration-color: currentColor;
+    }
+    &[aria-current='page'] {
+      text-decoration-color: var(--color-ochre);
+    }
+  }
+
+  /* The notebook: on desktop the slate cloth cover wraps the linen page on three sides;
+     the page has softened corners and a thin slate rule inset from its edge. */
+  .sheet {
+    @media (width >= 64rem) {
+      padding: calc(var(--u) * 0.5) calc(var(--u) * 0.5) calc(var(--u) * 0.5) 0;
+      background: var(--color-slate) var(--tex-cloth) 0 0 / 512px auto;
+      box-shadow: inset 1px 0 0 rgb(220 221 213 / 0.18);
+    }
+  }
+  .paper {
+    background: var(--color-ground) var(--tex-ground) 0 0 / 512px auto;
+    @media (width >= 64rem) {
+      border-radius: 6px;
+      box-shadow:
+        inset 0 1px 3px rgb(10 16 15 / 0.35),
+        0 0 0 1px rgb(10 16 15 / 0.35);
+      outline: 2px solid var(--color-slate);
+      outline-offset: calc(var(--u) * -0.5);
+    }
+  }
+
+  /* Plate callouts: letters set in the plate's blank ochre discs, and their key. */
+  .plate-mark {
+    position: absolute;
+    translate: -50% -50%;
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: 3.1cqw;
+    line-height: 1;
+    color: var(--color-paper);
+    text-shadow: 0 1px 1px rgb(60 42 12 / 0.55);
+  }
+  /* Entrance: the plate settles onto the page, then its callouts are pinned one by one. */
+  .hero-plate > img {
+    animation: plate-settle 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  .plate-mark {
+    animation: mark-pin 360ms cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-delay: calc(420ms + var(--i, 0) * 120ms);
+  }
+  @keyframes plate-settle {
+    from {
+      opacity: 0;
+      translate: 0 0.75rem;
+    }
+  }
+  @keyframes mark-pin {
+    from {
+      opacity: 0;
+      scale: 0.3;
+    }
+  }
+  .plate-legend {
+    position: absolute;
+    left: 61%;
+    top: 77%;
+    padding: 0.5em 0.75em 0.55em;
+    border: 1px solid var(--color-rule);
+    border-radius: 3px;
+    background: rgb(220 227 228 / 0.94);
+    font-size: max(0.875rem, 2.4cqw);
+    line-height: 1.25;
+    color: var(--color-ink);
+    & li {
+      display: flex;
+      align-items: baseline;
+      gap: 0.45em;
+    }
+    & li + li {
+      margin-top: 0.3em;
+    }
+    /* Narrow plates leave no room inside the drawing: the key sits under it as one row. */
+    @media (width < 64rem) {
+      position: static;
+      margin-top: 0.5rem;
+      padding: 0;
+      border: 0;
+      background: none;
+      & ol {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.35em 1.1em;
+      }
+      & li + li {
+        margin-top: 0;
+      }
+    }
+  }
+  .plate-key {
+    display: inline-grid;
+    place-items: center;
+    flex: none;
+    width: 1.45em;
+    height: 1.45em;
+    translate: 0 0.12em;
+    border-radius: 50%;
+    background: var(--color-ochre);
+    /* Ink, not paper: at legend size the key letter must read on ochre (AA). */
+    color: var(--color-ink);
+    font-weight: 700;
+    font-size: 0.9em;
+  }
+  /* Mini wall chart: thin slate frame, cloth title strip, engraved vignette, reading time. */
+  .chart-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 15rem;
+    overflow: hidden;
+    padding: 3px;
+    border: 2px solid var(--color-slate);
+    border-radius: 7px;
+    color: var(--color-ink);
+    transition: background-color 160ms ease-out;
+    @media (width >= 64rem) {
+      height: 100%;
+    }
+    &:hover {
+      background-color: rgb(233 238 238 / 0.45);
+    }
+    &:hover .chart-card-title,
+    &:focus-visible .chart-card-title {
+      background-color: var(--color-slate-deep);
+    }
+    &:hover .chart-card-plate,
+    &:focus-visible .chart-card-plate {
+      scale: 1.03;
+    }
+  }
+  .chart-card-title {
+    padding: 0.18em 0.75em 0.26em;
+    font-size: 1.375rem;
+    font-weight: 600;
+    line-height: 1.1;
+    text-align: center;
+    transition: background-color 160ms ease-out;
+    @media (width >= 64rem) {
+      padding-block: 0.26em 0.325em;
+      font-size: max(1.25rem, calc(var(--u) * 1.62));
+    }
+  }
+  .chart-card-plate {
+    flex: 1 1 0;
+    min-height: 0;
+    width: 100%;
+    padding: 0.15rem 4% 0.1rem;
+    object-fit: contain;
+    @media (width >= 64rem) {
+      padding: 2px calc(var(--u) * 0.52 - 3px) calc(var(--u) * 0.4 - 3px);
+    }
+    transition: scale 240ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .chart-card-time {
+    position: absolute;
+    right: 0.75em;
+    bottom: 0.5em;
+    @media (width >= 64rem) {
+      right: calc(var(--u) * 1.28 - 5px);
+      bottom: calc(var(--u) * 0.64 - 5px);
+    }
+    text-shadow:
+      0 0 3px var(--color-ground),
+      0 0 8px var(--color-ground);
+    font-size: 1.0625rem;
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+    @media (width >= 64rem) {
+      font-size: max(1rem, calc(var(--u) * 1.6));
+    }
+  }
+
+  /* Any chart on the sheet sits in the cards' frame: thin slate border, 3px inset. */
+  .chart-frame {
+    padding: 3px;
+    border: 2px solid var(--color-slate);
+    border-radius: 7px;
+  }
+  /* Cloth title strip heading a frame (and every chart card). */
+  .cloth-strip,
+  .chart-card-title {
+    border-radius: 4px;
+    background: var(--color-slate) var(--tex-cloth) 0 0 / 512px auto;
+    color: var(--color-on-slate);
+  }
+  /* Red flags: the same frame and strip in deep madder cloth; the warning icon and the words
+     carry the alarm, so the chart keeps its own palette. */
+  .chart-frame-warn {
+    border-color: var(--color-madder-deep);
+  }
+  .cloth-strip-warn {
+    background: var(--color-madder-deep) var(--tex-cloth) 0 0 / 512px auto;
+    background-blend-mode: soft-light;
+  }
+
+  /* Chart table: a framed list ruled into a grid. Rows draw their own top and left rule
+     as hairline shadows; the frame clips the outer ones, so 1 or 2 columns both work. */
+  .chart-table {
+    overflow: hidden;
+    border: 2px solid var(--color-slate);
+    border-radius: 7px;
+  }
+  .chart-table > * {
     box-shadow:
       0 -1px 0 var(--color-rule),
       -1px 0 0 var(--color-rule);
   }
 
-  /* Article prose: the calm reading column on the rinse. */
-  .prose-content {
-    @apply text-body;
-  }
-  .prose-content > section + section {
-    @apply mt-14;
-  }
-  .prose-content h2 {
-    @apply mb-4 text-[1.625rem] text-ink sm:text-[2rem];
-    line-height: 1.12;
-  }
-  .prose-content h3 {
-    @apply mt-9 mb-3 text-xl text-ink;
-  }
-  .prose-content p {
-    @apply my-5 max-w-[68ch] text-[1.125rem] leading-[1.72] text-body;
-  }
-  .prose-content ul {
-    @apply my-6 flex max-w-[68ch] flex-col;
-  }
-  /* Bullets are bubbles: a green ring, the label's carbonation in the text. */
-  .prose-content ul li {
-    @apply relative border-b border-rule py-3 pl-7 text-[1.0625rem] leading-relaxed text-body last:border-b-0;
-  }
-  .prose-content ul li::before {
-    content: '';
-    @apply absolute left-0.5 top-[1.15em] h-3 w-3 rounded-full border-2 border-label;
-  }
-  .prose-content a {
-    @apply ink-link font-bold;
-  }
-  .prose-content strong {
-    @apply font-bold text-ink;
+  /* Article prose: one 68ch column; each section opens under a slate rule, as on the chart. */
+  .prose-chart {
+    color: var(--color-body);
+    & > section + section {
+      margin-top: 3.25rem;
+    }
+    & h2 {
+      margin-bottom: 1rem;
+      padding-top: 0.9rem;
+      border-top: 2px solid rgb(40 68 66 / 0.7);
+      font-size: 1.75rem;
+      line-height: 1.1;
+      @media (width >= 40rem) {
+        font-size: 2.125rem;
+      }
+    }
+    & h3 {
+      margin: 2.25rem 0 0.75rem;
+      font-size: 1.375rem;
+    }
+    & p {
+      max-width: 68ch;
+      margin-block: 1.25rem;
+      font-size: 1.125rem;
+      line-height: 1.72;
+    }
+    & ul {
+      display: flex;
+      flex-direction: column;
+      max-width: 68ch;
+      margin-block: 1.5rem;
+    }
+    /* Bullets are the plate's ochre callout discs. */
+    & ul li {
+      position: relative;
+      padding: 0.7rem 0 0.7rem 1.75rem;
+      border-bottom: 1px solid var(--color-rule);
+      font-size: 1.0625rem;
+      line-height: 1.6;
+      &:last-child {
+        border-bottom: 0;
+      }
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0.15rem;
+        top: 1.2em;
+        width: 0.7rem;
+        height: 0.7rem;
+        border-radius: 50%;
+        background: var(--color-ochre);
+        box-shadow: inset 0 0 0 1.5px rgb(60 42 12 / 0.35);
+      }
+    }
+    & a {
+      @apply ink-link font-bold;
+    }
+    & strong {
+      font-weight: 700;
+      color: var(--color-ink);
+    }
   }
 }
