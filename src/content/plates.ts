@@ -41,5 +41,5 @@ export function guidePlate(href: string) {
   const { locale, pathname } = extractLocale(href);
   const entry = plates[pathname.replace(/\/$/, '') || '/'];
   const src = entry && file(entry.file);
-  return src ? { src, alt: locale === 'en' ? entry.en : entry.pl } : undefined;
+  return src ? { src, file: entry.file, alt: locale === 'en' ? entry.en : entry.pl } : undefined;
 }

@@ -10,7 +10,7 @@ import FaqAccordion from './FaqAccordion.astro';
 import RelatedLinks from './RelatedLinks.astro';
 import Toc from './Toc.astro';
 import Icon from './Icon.astro';
-import { Image } from 'astro:assets';
+import Plate from './Plate.astro';
 import { guidePlate } from '../content/plates.ts';
 import { t, localizeHref, routing, type SupportedLocale } from '../i18n/config.ts';
 import { getLocalizedDoctorSigns } from '../i18n/content.ts';
@@ -45,7 +45,7 @@ const plate = guidePlate(currentPath);
         {
           plate && (
             <figure class="order-first mx-auto mb-6 w-full max-w-[26rem] lg:order-none lg:col-start-2 lg:row-start-1 lg:mb-0 lg:max-w-none">
-              <Image src={plate.src} width={1024} alt={plate.alt} loading="eager" fetchpriority="high" class="block h-auto max-h-60 w-full object-contain lg:max-h-none" />
+              <Plate name={plate.file} src={plate.src} width={1024} alt={plate.alt} loading="eager" fetchpriority="high" class="block h-auto max-h-60 w-full object-contain lg:max-h-none" />
             </figure>
           )
         }

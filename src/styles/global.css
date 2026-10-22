@@ -306,18 +306,59 @@
     color: var(--color-paper);
     text-shadow: 0 1px 1px rgb(60 42 12 / 0.55);
   }
-  /* Entrance: the plate settles onto the page, then its callouts are pinned one by one. */
-  .hero-plate > img {
-    animation: plate-settle 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  /* Entrance (Plate.astro): the plate cramps — its low-poly shards snap tight, big ones
+     first — then lets go into the engraving; on the hero its callouts are pinned after.
+     The engraving is faintly there from the first frame so it stays the page's LCP. */
+  .plate {
+    position: relative;
+    & > svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      animation: plate-let-go 450ms ease-in 850ms both;
+    }
+    & > svg > g > * {
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: shard-clench 300ms cubic-bezier(0.3, 1.4, 0.5, 1) both;
+      animation-delay: calc(pow(var(--i) / var(--last), 1.6) * 550ms);
+    }
+    & > img {
+      position: relative;
+      animation: plate-relax 1300ms ease-out both;
+    }
   }
   .plate-mark {
     animation: mark-pin 360ms cubic-bezier(0.22, 1, 0.36, 1) both;
-    animation-delay: calc(420ms + var(--i, 0) * 120ms);
+    animation-delay: calc(1150ms + var(--i, 0) * 120ms);
   }
-  @keyframes plate-settle {
+  @keyframes shard-clench {
     from {
       opacity: 0;
-      translate: 0 0.75rem;
+      scale: 1.7;
+    }
+  }
+  @keyframes plate-let-go {
+    to {
+      opacity: 0;
+      scale: 1.015;
+    }
+  }
+  @keyframes plate-relax {
+    0% {
+      opacity: 0;
+    }
+    1%,
+    55% {
+      opacity: 0.06;
+    }
+  }
+  /* The global reduced-motion rule stops the animations; the shards would then show
+     through the plate's transparent ground. */
+  @media (prefers-reduced-motion: reduce) {
+    .plate > svg {
+      display: none;
     }
   }
   @keyframes mark-pin {

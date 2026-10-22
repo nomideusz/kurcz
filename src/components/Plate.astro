@@ -1,0 +1,24 @@
+---
+// An engraved plate that arrives as a cramp and lets go: its low-poly fit
+// (scripts/plate-shapes.mjs, svelte-geometrize) snaps tight shard by shard in fit order,
+// then the engraving relaxes in over it. CSS only (.plate in global.css), no island.
+import { Image } from 'astro:assets';
+import { shapeFragments, shapeGroupOpen, type GeometrizePlaceholder } from '@nomideusz/svelte-geometrize';
+import fits from '../content/plate-shapes.json';
+
+// name: the plate's file under assets/plates without .png; the rest goes to <Image>.
+const { name, ...image } = Astro.props as { name: string } & Record<string, any>;
+const fit = (fits as Record<string, GeometrizePlaceholder>)[name];
+const frags = fit ? shapeFragments(fit) : [];
+const shards =
+  fit &&
+  `<svg viewBox="0 0 ${fit.fw} ${fit.fh}" preserveAspectRatio="xMidYMid meet" aria-hidden="true" style="--last:${frags.length - 1}">` +
+  shapeGroupOpen(fit) +
+  frags.map((f, i) => f.replace('<polygon', `<polygon style="--i:${i}"`)).join('') +
+  '</g></svg>';
+---
+
+<div class="plate">
+  {shards && <Fragment set:html={shards} />}
+  <Image {...image} />
+</div>

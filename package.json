@@ -2,7 +2,7 @@
   "name": "kurcz-astro",
   "version": "1.0.0",
   "type": "module",
-  "description": "Kurcz.pl \u2014 wiedza o kurczach mi\u0119\u015bniowych (Astro)",
+  "description": "Kurcz.pl — wiedza o kurczach mięśniowych (Astro)",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
@@ -12,12 +12,14 @@
     "infra:ai-search": "node scripts/apply-ai-search.mjs",
     "preview": "astro preview",
     "start": "node ./dist/server/entry.mjs",
-    "astro": "astro"
+    "astro": "astro",
+    "plates:shapes": "node scripts/plate-shapes.mjs"
   },
   "dependencies": {
     "@astrojs/netlify": "^6.6.5",
     "@astrojs/sitemap": "^3.7.3",
     "@astrojs/svelte": "^7.2.5",
+    "@nomideusz/svelte-geometrize": "0.9.3",
     "@nomideusz/svelte-i18n": "^0.3.2",
     "astro": "^5.18.2",
     "nodemailer": "^9.0.1",

@@ -8,6 +8,7 @@ import ReliefSteps from './ReliefSteps.astro';
 import { guidePlate } from '../content/plates.ts';
 import { guideMinutes } from '../utils/reading.ts';
 import { Image } from 'astro:assets';
+import Plate from './Plate.astro';
 import heroPlate from '../../assets/plates/hero-plate.png';
 import lydekPlate from '../../assets/plates/card-lydek-plate.png';
 import nocnePlate from '../../assets/plates/card-nocne-plate.png';
@@ -75,7 +76,8 @@ const sections = [
     <!-- THE CHART: title and lead on the linen, the engraved leg bleeding off the top right -->
     <section class="relative px-4 pt-8 sm:px-8 lg:min-h-[calc(var(--u)*29.55)] lg:px-0 lg:pl-[calc(var(--u)*3.47)] lg:pt-[calc(var(--u)*3.3)]">
       <figure class="hero-plate relative mx-auto mb-6 w-full max-w-[34rem] [container-type:inline-size] lg:absolute lg:right-0 lg:top-[calc(var(--u)*1.2)] lg:z-0 lg:mb-0 lg:w-[calc(var(--u)*43.8)] lg:max-w-none lg:[mask-image:linear-gradient(transparent,#000_9%)]">
-        <Image
+        <Plate
+          name="hero-plate"
           src={heroPlate}
           width={1536}
           alt={en ? 'Engraved plate of the lower leg and foot from the side, with the calf, Achilles tendon and sole muscles marked.' : 'Rycina podudzia i stopy z boku z zaznaczonym mięśniem łydki, ścięgnem Achillesa i mięśniami podeszwy stopy.'}
